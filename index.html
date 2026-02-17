@@ -3,64 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscador ODS - Educación Dual 2025</title>
+    <title>Buscador ODS - Educación Dual</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #00689d; --secondary: #28a745; --dark: #2d3436; --light: #f4f7f6; --accent: #d35400; }
         body { font-family: 'Inter', sans-serif; background-color: var(--light); color: var(--dark); margin: 0; padding: 20px; }
-        .container { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
-        .header-logos { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 2px solid var(--primary); padding-bottom: 15px; }
-        .logo-agenda { height: 75px; }
-        h1 { color: var(--primary); text-align: center; font-size: 20px; font-weight: 700; margin: 20px 0; line-height: 1.3; }
-        .nota { font-size: 12px; color: #636e72; text-align: justify; background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #eee; }
-        .guia-instructor { background: #e3f2fd; border-left: 5px solid #2196f3; padding: 20px; margin-bottom: 25px; border-radius: 4px; }
-        .guia-instructor h3 { margin-top: 0; color: #0d47a1; font-size: 16px; }
-        .search-area { background: #f1f3f5; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
-        .search-box { width: 100%; padding: 15px; border: 2px solid #dfe6e9; border-radius: 8px; font-size: 16px; cursor: pointer; }
-        .card { border: 1px solid #dfe6e9; padding: 25px; border-radius: 12px; margin-top: 20px; border-left: 10px solid var(--primary); position: relative; background: #fff; animation: fadeIn 0.5s ease; }
-        .ods-badge { position: absolute; top: 15px; right: 15px; text-align: center; width: 100px; }
-        .ods-img { width: 90px; height: 90px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .label { font-weight: 700; color: var(--primary); display: block; text-transform: uppercase; font-size: 10px; margin-top: 12px; letter-spacing: 0.5px; }
-        .content { font-size: 14px; color: #2d3436; margin-top: 2px; line-height: 1.4; padding-right: 110px; }
-        .indicador-box { background: #fff3e0; padding: 15px; border-radius: 8px; border: 1px dashed var(--accent); margin-top: 15px; }
-        .btn-descargar { background: var(--secondary); color: white; padding: 12px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin-bottom: 20px; display: none; width: 100%; font-size: 14px; }
+        .container { max-width: 900px; margin: auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        
+        /* Título Principal Único */
+        .main-title { color: var(--primary); text-align: center; font-size: 24px; font-weight: 700; margin-bottom: 30px; line-height: 1.3; border-bottom: 3px solid var(--primary); padding-bottom: 20px; }
+        
+        /* Notas Legales y Derechos */
+        .nota-legal { font-size: 13px; color: #636e72; text-align: justify; background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 25px; border: 1px solid #eee; line-height: 1.5; }
+        .derechos { display: block; margin-top: 10px; font-weight: bold; text-align: center; color: var(--dark); }
+
+        /* Guía Pedagógica */
+        .guia-pedagogica { background: #eef2f7; border-left: 5px solid var(--primary); padding: 25px; margin-bottom: 30px; border-radius: 4px; }
+        .guia-pedagogica h3 { margin-top: 0; color: var(--primary); font-size: 18px; display: flex; align-items: center; }
+        .guia-pedagogica p { font-size: 15px; margin-bottom: 10px; }
+        .guia-pedagogica ul { margin-left: -15px; }
+        .guia-pedagogica li { margin-bottom: 12px; font-size: 14px; line-height: 1.4; }
+
+        /* Buscador */
+        .search-area { background: #f1f3f5; padding: 25px; border-radius: 8px; margin-bottom: 25px; }
+        .search-box { width: 100%; padding: 15px; border: 2px solid #dfe6e9; border-radius: 8px; font-size: 16px; cursor: pointer; transition: border 0.3s; }
+        .search-box:focus { border-color: var(--primary); outline: none; }
+
+        /* Tarjeta de Resultado */
+        .card { border: 1px solid #dfe6e9; padding: 30px; border-radius: 12px; margin-top: 20px; border-left: 12px solid var(--primary); position: relative; background: #fff; animation: fadeIn 0.5s ease; }
+        .ods-badge { position: absolute; top: 20px; right: 20px; text-align: center; width: 110px; }
+        .ods-img { width: 100px; height: 100px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .label { font-weight: 700; color: var(--primary); display: block; text-transform: uppercase; font-size: 11px; margin-top: 15px; letter-spacing: 0.8px; }
+        .content { font-size: 15px; color: #2d3436; margin-top: 4px; line-height: 1.5; padding-right: 130px; }
+        .indicador-box { background: #fff3e0; padding: 18px; border-radius: 8px; border: 1px dashed var(--accent); margin-top: 20px; }
+        
+        .btn-descargar { background: var(--secondary); color: white; padding: 15px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin-bottom: 20px; display: none; width: 100%; font-size: 15px; transition: background 0.3s; }
+        .btn-descargar:hover { background: #218838; }
+
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        @media (max-width: 600px) { .ods-badge { position: static; width: 100%; margin-bottom: 15px; } .content { padding-right: 0; } }
+        @media (max-width: 600px) { .ods-badge { position: static; width: 100%; margin-bottom: 20px; } .content { padding-right: 0; } .main-title { font-size: 20px; } }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="header-logos">
-        <img src="https://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_logo_without_Goal_un_marking_horizontal_RGB.png" class="logo-agenda" alt="Agenda 2030">
-        <div style="text-align: right; font-weight: bold; color: var(--primary); font-size: 12px;">Educación Dual México<br>Catálogo SEP/SEMS 2025</div>
-    </div>
-
-    <h1>Buscador de Carreras de Educación Dual alineados a los Objetivos de Desarrollo Sostenible (ODS), de la Agenda 2030.</h1>
+    <h1 class="main-title">Buscador de Carreras Técnicas de Educación Dual alineadas a los Objetivos de Desarrollo Sostenible (ODS), de la Agenda 2030.</h1>
     
-    <div class="nota">
-        <b>Nota aclaratoria:</b> Este catálogo vincula las carreras técnicas con la Agenda 2030 para facilitar el llenado de bitácoras y la planeación didáctica de instructores en la empresa.
+    <div class="nota-legal">
+        El buscador está elaborado con fines meramente ilustrativos y pedagógicos que faciliten la asociación de las actividades en los puestos de aprendizaje de la educación dual con los ODS. 
+        La información y datos aquí presentados es de carácter público, disponible en los portales de la Secretaría de Educación Pública (SEP), Instituto Nacional de Estadística y Geografía (INEGI) y la Organización de Naciones Unidas (ONU).
+        <span class="derechos">Derechos reservados 2026.</span>
     </div>
 
-    <div class="guia-instructor">
-        <h3>👨‍🏫 Guía de Implementación</h3>
-        <ul style="font-size: 13px; color: #1565c0; margin-left: -20px;">
-            <li><b>Selección:</b> Elija la carrera del alumno para ver su vinculación técnica sustentable.</li>
-            <li><b>Registro:</b> El alumno debe usar el "Indicador" para medir su impacto semanal.</li>
+    <div class="guia-pedagogica">
+        <h3>👨‍🏫 Orientaciones para la o el Instructor de la Empresa</h3>
+        <p>Su papel es fundamental para conectar la técnica con el propósito global. Utilice este buscador como herramienta de mediación pedagógica:</p>
+        <ul>
+            <li><strong>Contextualización:</strong> Al asignar una tarea en el puesto de aprendizaje, identifique el ODS vinculado para explicar al estudiante cómo su trabajo impacta en la sostenibilidad.</li>
+            <li><strong>Evidencia con Propósito:</strong> Impulse al estudiante a registrar el "Indicador" sugerido en su bitácora semanal; esto le permite cuantificar su aporte social y ambiental.</li>
+            <li><strong>Diálogo Reflexivo:</strong> Durante la retroalimentación, pregunte al joven cómo la "Habilidad de Sostenibilidad" aplicada hoy le ayuda a ser un mejor profesional para el futuro.</li>
         </ul>
     </div>
 
     <div class="search-area">
         <select id="carreraSelect" class="search-box" onchange="mostrarResultado()">
-            <option value="">-- Busque y seleccione una carrera (80 registros) --</option>
+            <option value="">-- Seleccione una Carrera Técnica para consultar --</option>
         </select>
     </div>
 
-    <button id="btnDescargar" class="btn-descargar" onclick="descargarFicha()">📥 DESCARGAR FICHA TÉCNICA</button>
+    <button id="btnDescargar" class="btn-descargar" onclick="descargarFicha()">📥 DESCARGAR FICHA TÉCNICA PARA EXPEDIENTE</button>
     <div id="resultadoContenedor"></div>
 </div>
 
 <script>
+    const mapaLogos = {
+        "1": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Sustainable_Development_Goal_01.png/1200px-Sustainable_Development_Goal_01.png",
+        "2": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Sustainable_Development_Goal_02.png/1200px-Sustainable_Development_Goal_02.png",
+        "3": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Sustainable_Development_Goal_03.png/1200px-Sustainable_Development_Goal_03.png",
+        "4": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Sustainable_Development_Goal_04.png/1200px-Sustainable_Development_Goal_04.png",
+        "5": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Sustainable_Development_Goal_05.png/1200px-Sustainable_Development_Goal_05.png",
+        "6": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Sustainable_Development_Goal_06.png/1200px-Sustainable_Development_Goal_06.png",
+        "7": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Sustainable_Development_Goal_07.png/1200px-Sustainable_Development_Goal_07.png",
+        "8": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Sustainable_Development_Goal_08.png/1200px-Sustainable_Development_Goal_08.png",
+        "9": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Sustainable_Development_Goal_09.png/1200px-Sustainable_Development_Goal_09.png",
+        "10": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Sustainable_Development_Goal_10.png/1200px-Sustainable_Development_Goal_10.png",
+        "11": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Sustainable_Development_Goal_11.png/1200px-Sustainable_Development_Goal_11.png",
+        "12": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Sustainable_Development_Goal_12.png/1200px-Sustainable_Development_Goal_12.png",
+        "13": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Sustainable_Development_Goal_13.png/1200px-Sustainable_Development_Goal_13.png",
+        "14": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Sustainable_Development_Goal_14.png/1200px-Sustainable_Development_Goal_14.png",
+        "15": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Sustainable_Development_Goal_15.png/1200px-Sustainable_Development_Goal_15.png",
+        "16": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Sustainable_Development_Goal_16.png/1200px-Sustainable_Development_Goal_16.png",
+        "17": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Sustainable_Development_Goal_17.png/1200px-Sustainable_Development_Goal_17.png"
+    };
+
     const baseDatos = [
         {c:"Acabado de Textiles", sc:"313", s:"Textil", a:"Control de teñido y tratamiento de aguas residuales.", h:"Responsabilidad Normativa: Gestión de químicos hídricos.", ods:"6", m:"Meta 6.3: Mejorar calidad del agua.", i:"Litros de agua tratada por lote."},
         {c:"Administración", sc:"54", s:"Servicios Profesionales", a:"Optimización de procesos de oficina y digitalización.", h:"Eficiencia de Recursos: Reducción de huella administrativa.", ods:"12", m:"Meta 12.5: Reducción de generación de desechos.", i:"% de reducción en uso de papel."},
@@ -110,7 +145,6 @@
         {c:"Sistemas Forestales", sc:"11", s:"Primario", a:"Reforestación y control de plagas forestales.", h:"Conciencia Ambiental: Vida terrestre.", ods:"15", m:"Meta 15.2: Gestión forestal sostenible.", i:"No. árboles supervivientes/ha."}
     ];
 
-    // Cargar nombres ordenados alfabéticamente
     window.onload = () => {
         const select = document.getElementById('carreraSelect');
         baseDatos.sort((a,b) => a.c.localeCompare(b.c)).forEach(item => {
@@ -137,33 +171,29 @@
         itemActual = baseDatos.find(i => i.c === carreraSel);
         btn.style.display = 'block';
 
-        const odsNum = itemActual.ods.padStart(2, '0');
-        const logoUrl = `https://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_Icons_2019_${odsNum}.png`;
+        const logoUrl = mapaLogos[itemActual.ods];
 
         contenedor.innerHTML = `
             <div class="card">
                 <div class="ods-badge">
                     <img src="${logoUrl}" class="ods-img" alt="ODS ${itemActual.ods}">
-                    <div style="font-size:11px; font-weight:bold; color:var(--primary); margin-top:5px;">ODS ${itemActual.ods}</div>
+                    <div style="font-size:11px; font-weight:bold; color:var(--primary); margin-top:10px;">ODS ${itemActual.ods}</div>
                 </div>
                 
-                <span class="label">Carrera Autorizada SEP/SEMS 2025</span>
+                <span class="label">Carrera Técnica Consultada</span>
                 <div class="content"><b>${itemActual.c}</b></div>
 
-                <span class="label">Código SCIAN y Sector</span>
-                <div class="content">${itemActual.sc} - ${itemActual.s}</div>
-
-                <span class="label">Módulo / Actividad de Aprendizaje</span>
+                <span class="label">Actividad Clave en Puesto de Aprendizaje</span>
                 <div class="content">${itemActual.a}</div>
 
-                <span class="label">Habilidad de Desarrollo Sostenible</span>
+                <span class="label">Habilidad de Desarrollo Sostenible a Fortalecer</span>
                 <div class="content"><em>${itemActual.h}</em></div>
 
-                <span class="label">Meta Agenda 2030</span>
+                <span class="label">Meta Agenda 2030 Relacionada</span>
                 <div class="content">${itemActual.m}</div>
 
                 <div class="indicador-box">
-                    <span class="label" style="color:var(--accent); margin-top:0;">Indicador para la Bitácora del Estudiante</span>
+                    <span class="label" style="color:var(--accent); margin-top:0;">Propuesta de Indicador para Bitácora</span>
                     <div class="content" style="font-weight:700; color:var(--accent);">${itemActual.i}</div>
                 </div>
             </div>
@@ -172,7 +202,16 @@
 
     function descargarFicha() {
         if(!itemActual) return;
-        const texto = `VINCULACIÓN ODS - EDUCACIÓN DUAL\n\nCARRERA: ${itemActual.c}\nACTIVIDAD: ${itemActual.a}\nODS: ${itemActual.ods}\nINDICADOR: ${itemActual.i}\nHABILIDAD: ${itemActual.h}`;
+        const texto = `VINCULACIÓN ODS - EDUCACIÓN DUAL 2026\n` +
+                      `==========================================\n` +
+                      `CARRERA: ${itemActual.c}\n` +
+                      `ACTIVIDAD: ${itemActual.a}\n` +
+                      `ODS VINCULADO: ${itemActual.ods}\n` +
+                      `INDICADOR SUGERIDO: ${itemActual.i}\n` +
+                      `HABILIDAD: ${itemActual.h}\n` +
+                      `META 2030: ${itemActual.m}\n` +
+                      `==========================================\n` +
+                      `Ficha generada para fines pedagógicos.`;
         const blob = new Blob([texto], {type: 'text/plain'});
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
