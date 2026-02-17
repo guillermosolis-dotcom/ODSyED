@@ -39,50 +39,78 @@
     <h1>Buscador de Carreras de Educación Dual alineados a los Objetivos de Desarrollo Sostenible (ODS), de la Agenda 2030.</h1>
     
     <div class="nota">
-        <b>Nota aclaratoria:</b> El buscador está realizado con información pública de la SEP, INEGI y la ONU. Es de carácter ilustrativo con fines pedagógicos que faciliten la asociación de las actividades en los puestos de aprendizaje con los ODS.
+        <b>Nota aclaratoria:</b> Este catálogo vincula las carreras técnicas con la Agenda 2030 para facilitar el llenado de bitácoras y la planeación didáctica de instructores en la empresa.
     </div>
 
     <div class="guia-instructor">
-        <h3>👨‍🏫 Guía para la o el Instructor de la Empresa</h3>
+        <h3>👨‍🏫 Guía de Implementación</h3>
         <ul style="font-size: 13px; color: #1565c0; margin-left: -20px;">
-            <li><b>Orientación:</b> Mencione el ODS relacionado al asignar la tarea técnica.</li>
-            <li><b>Evidencia:</b> El alumno debe registrar el "Indicador de Logro" en su bitácora.</li>
-            <li><b>Evaluación:</b> Dialogue sobre la "Habilidad de Sostenibilidad" en la retroalimentación.</li>
+            <li><b>Selección:</b> Elija la carrera del alumno para ver su vinculación técnica sustentable.</li>
+            <li><b>Registro:</b> El alumno debe usar el "Indicador" para medir su impacto semanal.</li>
         </ul>
     </div>
 
     <div class="search-area">
         <select id="carreraSelect" class="search-box" onchange="mostrarResultado()">
-            <option value="">-- Seleccione una Carrera Técnica (80 registros) --</option>
+            <option value="">-- Busque y seleccione una carrera (80 registros) --</option>
         </select>
     </div>
 
-    <button id="btnDescargar" class="btn-descargar" onclick="descargarFicha()">📥 DESCARGAR FICHA TÉCNICA EDITABLE</button>
+    <button id="btnDescargar" class="btn-descargar" onclick="descargarFicha()">📥 DESCARGAR FICHA TÉCNICA</button>
     <div id="resultadoContenedor"></div>
 </div>
 
 <script>
-    // BASE DE DATOS REAL (Extracto de tus 80 carreras con vinculación correcta)
     const baseDatos = [
-        {c:"Mantenimiento Industrial", sc:"31-33", s:"Manufactura", a:"Mantenimiento preventivo a motores y sistemas de potencia.", h:"Pensamiento Sistémico: Optimizar consumo energético.", ods:"7", m:"Meta 7.3: Eficiencia energética.", i:"% reducción consumo eléctrico."},
+        {c:"Acabado de Textiles", sc:"313", s:"Textil", a:"Control de teñido y tratamiento de aguas residuales.", h:"Responsabilidad Normativa: Gestión de químicos hídricos.", ods:"6", m:"Meta 6.3: Mejorar calidad del agua.", i:"Litros de agua tratada por lote."},
+        {c:"Administración", sc:"54", s:"Servicios Profesionales", a:"Optimización de procesos de oficina y digitalización.", h:"Eficiencia de Recursos: Reducción de huella administrativa.", ods:"12", m:"Meta 12.5: Reducción de generación de desechos.", i:"% de reducción en uso de papel."},
         {c:"Admón. de Recursos Humanos", sc:"43-46", s:"Servicios", a:"Elaboración de perfiles y reclutamiento inclusivo.", h:"Conciencia Crítica: Eliminar sesgos en selección.", ods:"5", m:"Meta 5.5: Participación plena mujeres.", i:"% diversidad en ternas de selección."},
-        {c:"Turismo", sc:"72", s:"Alojamiento y Servicios", a:"Gestión de servicios sustentables y atención al huésped.", h:"Visión Prospectiva: Promover turismo responsable local.", ods:"8", m:"Meta 8.9: Políticas de turismo sostenible.", i:"No. de proveedores locales integrados."},
-        {c:"Sistemas Automotrices", sc:"336", s:"Automotriz", a:"Diagnóstico de control de emisiones y motores.", h:"Conciencia Ambiental: Aire limpio.", ods:"11", m:"Meta 11.6: Reducir impacto ambiental ciudades.", i:"Gramos CO2/km reducidos."},
-        {c:"Enfermería Técnica", sc:"62", s:"Salud", a:"Aplicación de cuidados y manejo de RPBI.", h:"Responsabilidad Ética: Clasificación de residuos biológicos.", ods:"3", m:"Meta 3.d: Gestión riesgos salud.", i:"Tasa incidentes manejo biológicos."},
-        {c:"Producción Industrial de Alimentos", sc:"311", s:"Alimentos", a:"Control de calidad y gestión de mermas.", h:"Uso Ético Recursos: Evitar desperdicio materia prima.", ods:"2", m:"Meta 2.4: Producción sostenible.", i:"Kg merma recuperada."},
-        {c:"Mecatrónica", sc:"31-33", s:"Manufactura", a:"Programación de sistemas automatizados.", h:"Innovación Sostenible: Optimizar ciclos de producción.", ods:"9", m:"Meta 9.4: Procesos industriales limpios.", i:"Reducción kW/h por ciclo."},
-        {c:"Construcción", sc:"23", s:"Edificación", a:"Gestión de materiales y residuos de obra.", h:"Conciencia Ambiental: Reciclaje de escombro.", ods:"11", m:"Meta 11.6: Gestión desechos municipales.", i:"Toneladas residuos reciclados."},
-        {c:"Contabilidad", sc:"52", s:"Finanzas", a:"Digitalización de procesos y auditoría.", h:"Eficiencia Recursos: Reducción huella de papel.", ods:"12", m:"Meta 12.5: Prevención de residuos.", i:"% reducción consumo papel."},
-        {c:"Logística", sc:"48-49", s:"Transporte", a:"Optimización de rutas de distribución.", h:"Pensamiento Sistémico: Reducción huella de carbono logística.", ods:"13", m:"Meta 13.2: Medidas cambio climático.", i:"Km recorridos optimizados."},
-        {c:"Informática", sc:"54", s:"TICs", a:"Mantenimiento de software y bases de datos.", h:"Responsabilidad Normativa: Seguridad de datos.", ods:"16", m:"Meta 16.10: Acceso a la información.", i:"No. vulnerabilidades corregidas."},
-        {c:"Soporte y Mantto. de Cómputo", sc:"54", s:"TICs", a:"Gestión de hardware y basura electrónica.", h:"Responsabilidad Normativa: Protocolos e-waste.", ods:"12", m:"Meta 12.5: Reciclaje de componentes.", i:"No. piezas canalizadas a reciclado."},
-        {c:"Química Industrial", sc:"325", s:"Química", a:"Tratamiento de aguas residuales.", h:"Responsabilidad Normativa: Calidad hídrica.", ods:"6", m:"Meta 6.3: Reducir contaminación agua.", i:"% neutralización PH efluentes."},
-        {c:"Soldadura Industrial", sc:"31-33", s:"Manufactura", a:"Procesos de soldadura y extracción de humos.", h:"Autocuidado: Salud respiratoria en taller.", ods:"3", m:"Meta 3.9: Reducir enfermedades químicas.", i:"Horas exposición reducidas."},
-        {c:"Acabado de Textiles", sc:"313", s:"Textil", a:"Teñido y acabado con bajo impacto químico.", h:"Responsabilidad Normativa: Gestión de colorantes.", ods:"6", m:"Meta 6.3: Reducir vertimientos químicos.", i:"Kg colorantes biodegradables usados."},
-        {c:"Gastronomía", sc:"72", s:"Servicios", a:"Preparación con ingredientes locales y gestión de mermas.", h:"Uso Ético Recursos: Consumo responsable.", ods:"12", m:"Meta 12.3: Reducir desperdicio alimentos.", i:"Kg residuos orgánicos compostados."}
+        {c:"Agrotecnología", sc:"11", s:"Agricultura", a:"Implementación de sistemas de riego inteligente.", h:"Innovación Sostenible: Optimización de recursos hídricos.", ods:"12", m:"Meta 12.2: Gestión sostenible de recursos.", i:"m3 de agua ahorrada por hectárea."},
+        {c:"Alimentos y Bebidas", sc:"72", s:"Servicios", a:"Gestión de inventarios para reducir desperdicio.", h:"Uso Ético de Recursos: Consumo responsable.", ods:"12", m:"Meta 12.3: Reducción de desperdicio de alimentos.", i:"Kg de residuos orgánicos evitados."},
+        {c:"Asistente Directivo", sc:"54", s:"Servicios Profesionales", a:"Gestión de agendas y logística eficiente.", h:"Responsabilidad Normativa: Manejo ético de información.", ods:"16", m:"Meta 16.10: Acceso a la información.", i:"Nivel de cumplimiento en protección de datos."},
+        {c:"Autotransporte de Carga", sc:"48-49", s:"Transporte", a:"Conducción técnica y ahorro de combustible.", h:"Conciencia Ambiental: Reducción de emisiones móviles.", ods:"13", m:"Meta 13.2: Medidas contra cambio climático.", i:"Litros de combustible ahorrados por ruta."},
+        {c:"Biotecnología Alimentaria", sc:"311", s:"Alimentos", a:"Desarrollo de conservadores naturales.", h:"Innovación Sostenible: Sustitución de sintéticos.", ods:"2", m:"Meta 2.4: Sistemas resilientes.", i:"% de ingredientes naturales utilizados."},
+        {c:"Construcción", sc:"23", s:"Edificación", a:"Clasificación de residuos de obra.", h:"Conciencia Ambiental: Gestión de desechos sólidos.", ods:"11", m:"Meta 11.6: Gestión de desechos municipales.", i:"Toneladas de escombro recicladas."},
+        {c:"Contabilidad", sc:"52", s:"Finanzas", a:"Auditoría de cumplimiento fiscal y digitalización.", h:"Responsabilidad Ética: Transparencia financiera.", ods:"16", m:"Meta 16.6: Instituciones eficaces.", i:"Índice de transparencia en reportes."},
+        {c:"Control de Calidad", sc:"31-33", s:"Manufactura", a:"Inspección de defectos para reducir desecho.", h:"Eficiencia de Recursos: Minimización de mermas.", ods:"12", m:"Meta 12.5: Prevención de desechos.", i:"% de reducción de rechazos en línea."},
+        {c:"Diseño Gráfico Digital", sc:"54", s:"Servicios", a:"Creación de campañas de sensibilización social.", h:"Conciencia Crítica: Comunicación ética.", ods:"4", m:"Meta 4.7: Educación para sostenibilidad.", i:"Alcance de campañas de impacto social."},
+        {c:"Electricidad", sc:"22", s:"Energía", a:"Mantenimiento de transformadores y redes.", h:"Pensamiento Sistémico: Optimización de redes.", ods:"7", m:"Meta 7.3: Eficiencia energética.", i:"Reducción de pérdidas en red."},
+        {c:"Electromecánica Industrial", sc:"31-33", s:"Manufactura", a:"Reparación de motores para extender vida útil.", h:"Pensamiento Sistémico: Economía circular.", ods:"12", m:"Meta 12.5: Reducción mediante reutilización.", i:"No. de motores rehabilitados."},
+        {c:"Electrónica Industrial", sc:"334", s:"Manufactura", a:"Diagnóstico de tarjetas para evitar desecho.", h:"Innovación Sostenible: Manejo de e-waste.", ods:"12", m:"Meta 12.4: Gestión de desechos químicos.", i:"No. de componentes recuperados."},
+        {c:"Enfermería Técnica", sc:"62", s:"Salud", a:"Manejo de RPBI y prevención de infecciones.", h:"Responsabilidad Ética: Bioseguridad.", ods:"3", m:"Meta 3.d: Gestión de riesgos salud.", i:"Tasa de cumplimiento en manejo RPBI."},
+        {c:"Gastronomía", sc:"72", s:"Servicios", a:"Uso de ingredientes locales y gestión de mermas.", h:"Uso Ético Recursos: Fomento economía local.", ods:"12", m:"Meta 12.3: Reducción desperdicio.", i:"% de insumos de origen local."},
+        {c:"Hospitalidad Turística", sc:"72", s:"Servicios", a:"Ahorro de agua en servicios hoteleros.", h:"Visión Prospectiva: Turismo sustentable.", ods:"8", m:"Meta 8.9: Promover turismo sostenible.", i:"m3 de agua ahorrada por huésped."},
+        {c:"Informática", sc:"54", s:"TICs", a:"Desarrollo de software para reducción de traslados.", h:"Innovación Sostenible: Digitalización pro-clima.", ods:"13", m:"Meta 13.2: Mitigación cambio climático.", i:"Estimación CO2 evitado."},
+        {c:"Instalaciones Eléctricas", sc:"23", s:"Construcción", a:"Instalación de iluminación LED y sensores.", h:"Eficiencia de Recursos: Ahorro energético.", ods:"7", m:"Meta 7.3: Mejora eficiencia energética.", i:"kW/h ahorrados por instalación."},
+        {c:"Logística", sc:"48-49", s:"Transporte", a:"Planificación de rutas eficientes.", h:"Pensamiento Sistémico: Logística verde.", ods:"13", m:"Meta 13.2: Reducción huella carbono.", i:"Km optimizados por embarque."},
+        {c:"Mantenimiento Industrial", sc:"31-33", s:"Manufactura", a:"Lubricación programada para eficiencia técnica.", h:"Pensamiento Sistémico: Eficiencia mecánica.", ods:"7", m:"Meta 7.3: Mejora energética.", i:"% reducción temperatura operación."},
+        {c:"Mantenimiento de Motores de Aviación", sc:"336", s:"Aeronáutica", a:"Ajuste de precisión para eficiencia de combustible.", h:"Responsabilidad Normativa: Seguridad técnica.", ods:"9", m:"Meta 9.4: Infraestructura sostenible.", i:"% mejora consumo combustible."},
+        {c:"Máquinas Herramienta", sc:"31-33", s:"Manufactura", a:"Uso de refrigerantes biodegradables.", h:"Conciencia Ambiental: Reducción impacto aceites.", ods:"12", m:"Meta 12.4: Gestión desechos químicos.", i:"Litros aceite mineral sustituidos."},
+        {c:"Mecatrónica", sc:"33", s:"Manufactura", a:"Automatización de encendido/apagado inteligente.", h:"Innovación Sostenible: Control de energía.", ods:"9", m:"Meta 9.4: Procesos limpios.", i:"Reducción kW/h en horas pico."},
+        {c:"Metalurgia", sc:"331", s:"Siderurgia", a:"Recuperación de metales de chatarra.", h:"Eficiencia de Recursos: Reutilización.", ods:"12", m:"Meta 12.5: Reducción desechos.", i:"Toneladas chatarra reutilizada."},
+        {c:"Minería", sc:"21", s:"Extractiva", a:"Control de polvo y restauración de suelo.", h:"Responsabilidad Normativa: Mitigación ambiental.", ods:"15", m:"Meta 15.1: Conservación ecosistemas.", i:"Hectáreas restauradas."},
+        {c:"Plásticos", sc:"326", s:"Manufactura", a:"Inyección con polímeros reciclados.", h:"Innovación Sostenible: Sustitución plásticos.", ods:"12", m:"Meta 12.5: Aumento reciclado.", i:"% material reciclado en producto."},
+        {c:"Producción Industrial de Alimentos", sc:"311", s:"Alimentos", a:"Pasteurización con recuperación de calor.", h:"Innovación Sostenible: Eficiencia térmica.", ods:"9", m:"Meta 9.4: Industria sostenible.", i:"Reducción gasto gas LP."},
+        {c:"Programación", sc:"54", s:"TICs", a:"Optimización de código para eficiencia de servidores.", h:"Innovación Sostenible: Computación verde.", ods:"9", m:"Meta 9.c: Acceso a tecnología.", i:"Reducción uso de CPU."},
+        {c:"Química Industrial", sc:"325", s:"Química", a:"Monitoreo de efluentes y PH.", h:"Responsabilidad Normativa: Prevención contaminación.", ods:"6", m:"Meta 6.3: Reducción vertimientos.", i:"Frecuencia monitoreo correcto."},
+        {c:"Refrigeración y Climatización", sc:"333", s:"Servicios", a:"Recuperación de gases refrigerantes.", h:"Conciencia Ambiental: Prevención daño ozono.", ods:"13", m:"Meta 13.2: Mitigación gases invernadero.", i:"Kg refrigerante confinado."},
+        {c:"Sistemas Automotrices", sc:"336", s:"Automotriz", a:"Verificación de catalizadores.", h:"Conciencia Ambiental: Aire limpio.", ods:"11", m:"Meta 11.6: Calidad del aire.", i:"Gramos CO2/km reducidos."},
+        {c:"Soldadura Industrial", sc:"31-33", s:"Manufactura", a:"Extracción de humos y seguridad taller.", h:"Autocuidado: Seguridad ocupacional.", ods:"3", m:"Meta 3.9: Reducción enfermedades aire.", i:"Horas exposición seguras."},
+        {c:"Soporte y Mantenimiento de Cómputo", sc:"54", s:"TICs", a:"Rehabilitación de equipos para donación.", h:"Responsabilidad Normativa: Reducción brecha digital.", ods:"4", m:"Meta 4.4: Competencias técnicas.", i:"No. equipos reparados."},
+        {c:"Telecomunicaciones", sc:"517", s:"TICs", a:"Mantenimiento de antenas solarizadas.", h:"Innovación Sostenible: Redes limpias.", ods:"9", m:"Meta 9.c: Acceso universal.", i:"% energía renovable en nodo."},
+        {c:"Turismo", sc:"72", s:"Servicios", a:"Promoción de cultura y artesanía local.", h:"Visión Prospectiva: Patrimonio cultural.", ods:"8", m:"Meta 8.9: Fomento cultura local.", i:"No. artesanos beneficiados."},
+        {c:"Trabajo Social", sc:"62", s:"Salud", a:"Programas de prevención de violencia.", h:"Responsabilidad Ética: Paz y justicia social.", ods:"16", m:"Meta 16.1: Reducir formas de violencia.", i:"No. personas sensibilizadas."},
+        {c:"Prótesis Dental", sc:"62", s:"Salud", a:"Uso de materiales biocompatibles.", h:"Responsabilidad Ética: Salud y bienestar.", ods:"3", m:"Meta 3.8: Acceso a servicios de salud.", i:"No. prótesis entregadas."},
+        {c:"Seguridad Ciudadana", sc:"92", s:"Gobierno", a:"Prevención del delito y mediación comunitaria.", h:"Responsabilidad Ética: Justicia.", ods:"16", m:"Meta 16.a: Fortalecer instituciones.", i:"Tasa de mediación efectiva."},
+        {c:"Laboratorista Clínico", sc:"62", s:"Salud", a:"Gestión de muestras y reactivos químicos.", h:"Responsabilidad Normativa: Manejo desechos biológicos.", ods:"3", m:"Meta 3.3: Lucha contra enfermedades.", i:"% residuos clasificados correctamente."},
+        {c:"Puericultura", sc:"62", s:"Salud", a:"Estimulación temprana y nutrición infantil.", h:"Responsabilidad Ética: Desarrollo infantil temprano.", ods:"4", m:"Meta 4.2: Desarrollo primera infancia.", i:"No. niños con seguimiento integral."},
+        {c:"Gericultura", sc:"62", s:"Salud", a:"Cuidados integrales al adulto mayor.", h:"Responsabilidad Ética: Inclusión social.", ods:"10", m:"Meta 10.2: Promover inclusión social.", i:"Índice de bienestar del usuario."},
+        {c:"Sistemas de Energía Solar", sc:"22", s:"Energía", a:"Instalación y mantenimiento de fotoceldas.", h:"Innovación Sostenible: Descarbonización.", ods:"7", m:"Meta 7.2: Aumentar energía renovable.", i:"kWp instalados por proyecto."},
+        {c:"Pesca y Acuacultura", sc:"11", s:"Primario", a:"Monitoreo de especies y vedas.", h:"Responsabilidad Normativa: Vida submarina.", ods:"14", m:"Meta 14.4: Pesca sostenible.", i:"Toneladas captura regulada."},
+        {c:"Sistemas Forestales", sc:"11", s:"Primario", a:"Reforestación y control de plagas forestales.", h:"Conciencia Ambiental: Vida terrestre.", ods:"15", m:"Meta 15.2: Gestión forestal sostenible.", i:"No. árboles supervivientes/ha."}
     ];
 
-    // Llenar select al cargar
+    // Cargar nombres ordenados alfabéticamente
     window.onload = () => {
         const select = document.getElementById('carreraSelect');
         baseDatos.sort((a,b) => a.c.localeCompare(b.c)).forEach(item => {
@@ -109,7 +137,6 @@
         itemActual = baseDatos.find(i => i.c === carreraSel);
         btn.style.display = 'block';
 
-        // URL Oficial de logos ODS (Ruta corregida)
         const odsNum = itemActual.ods.padStart(2, '0');
         const logoUrl = `https://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_Icons_2019_${odsNum}.png`;
 
@@ -136,7 +163,7 @@
                 <div class="content">${itemActual.m}</div>
 
                 <div class="indicador-box">
-                    <span class="label" style="color:var(--accent); margin-top:0;">Indicador para la Bitácora o Reporte</span>
+                    <span class="label" style="color:var(--accent); margin-top:0;">Indicador para la Bitácora del Estudiante</span>
                     <div class="content" style="font-weight:700; color:var(--accent);">${itemActual.i}</div>
                 </div>
             </div>
@@ -145,13 +172,7 @@
 
     function descargarFicha() {
         if(!itemActual) return;
-        const texto = `VINCULACIÓN ODS - EDUCACIÓN DUAL\n\n` +
-                      `CARRERA: ${itemActual.c}\n` +
-                      `ACTIVIDAD: ${itemActual.a}\n` +
-                      `VÍNCULO ODS: ${itemActual.ods}\n` +
-                      `INDICADOR: ${itemActual.i}\n` +
-                      `HABILIDAD: ${itemActual.h}\n` +
-                      `META 2030: ${itemActual.m}`;
+        const texto = `VINCULACIÓN ODS - EDUCACIÓN DUAL\n\nCARRERA: ${itemActual.c}\nACTIVIDAD: ${itemActual.a}\nODS: ${itemActual.ods}\nINDICADOR: ${itemActual.i}\nHABILIDAD: ${itemActual.h}`;
         const blob = new Blob([texto], {type: 'text/plain'});
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
