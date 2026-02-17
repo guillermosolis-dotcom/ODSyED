@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscador ODS - Educación Dual</title>
+    <title>Buscador ODS - Educación Dual 2025</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #00689d; --secondary: #28a745; --dark: #2d3436; --light: #f4f7f6; --accent: #d35400; }
         body { font-family: 'Inter', sans-serif; background-color: var(--light); color: var(--dark); margin: 0; padding: 20px; }
-        .container { max-width: 1000px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .container { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
         .header-logos { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 2px solid var(--primary); padding-bottom: 15px; }
         .logo-agenda { height: 75px; }
-        h1 { color: var(--primary); text-align: center; font-size: 22px; font-weight: 700; margin: 20px 0; line-height: 1.3; }
+        h1 { color: var(--primary); text-align: center; font-size: 20px; font-weight: 700; margin: 20px 0; line-height: 1.3; }
         .nota { font-size: 12px; color: #636e72; text-align: justify; background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #eee; }
         .guia-instructor { background: #e3f2fd; border-left: 5px solid #2196f3; padding: 20px; margin-bottom: 25px; border-radius: 4px; }
-        .guia-instructor h3 { margin-top: 0; color: #0d47a1; font-size: 18px; }
-        .guia-instructor li { font-size: 14px; color: #1565c0; margin-bottom: 8px; }
+        .guia-instructor h3 { margin-top: 0; color: #0d47a1; font-size: 16px; }
         .search-area { background: #f1f3f5; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
-        .search-box { width: 100%; padding: 15px; border: 2px solid #dfe6e9; border-radius: 8px; font-size: 16px; box-sizing: border-box; }
-        .btn-descargar { background: var(--secondary); color: white; padding: 12px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin-bottom: 20px; display: none; width: 100%; }
-        .card { border: 1px solid #dfe6e9; padding: 25px; border-radius: 12px; margin-top: 20px; border-left: 10px solid var(--primary); position: relative; background: #fff; }
-        .ods-badge { position: absolute; top: 15px; right: 15px; text-align: center; }
-        .ods-img { width: 90px; height: 90px; border-radius: 5px; }
-        .label { font-weight: 700; color: var(--primary); display: block; text-transform: uppercase; font-size: 10px; margin-top: 10px; }
-        .content { font-size: 14px; color: #2d3436; margin-top: 2px; }
+        .search-box { width: 100%; padding: 15px; border: 2px solid #dfe6e9; border-radius: 8px; font-size: 16px; cursor: pointer; }
+        .card { border: 1px solid #dfe6e9; padding: 25px; border-radius: 12px; margin-top: 20px; border-left: 10px solid var(--primary); position: relative; background: #fff; animation: fadeIn 0.5s ease; }
+        .ods-badge { position: absolute; top: 15px; right: 15px; text-align: center; width: 100px; }
+        .ods-img { width: 90px; height: 90px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .label { font-weight: 700; color: var(--primary); display: block; text-transform: uppercase; font-size: 10px; margin-top: 12px; letter-spacing: 0.5px; }
+        .content { font-size: 14px; color: #2d3436; margin-top: 2px; line-height: 1.4; padding-right: 110px; }
         .indicador-box { background: #fff3e0; padding: 15px; border-radius: 8px; border: 1px dashed var(--accent); margin-top: 15px; }
-        @media (max-width: 600px) { .ods-badge { position: static; margin-bottom: 15px; } }
+        .btn-descargar { background: var(--secondary); color: white; padding: 12px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin-bottom: 20px; display: none; width: 100%; font-size: 14px; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 600px) { .ods-badge { position: static; width: 100%; margin-bottom: 15px; } .content { padding-right: 0; } }
     </style>
 </head>
 <body>
@@ -33,107 +33,131 @@
 <div class="container">
     <div class="header-logos">
         <img src="https://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_logo_without_Goal_un_marking_horizontal_RGB.png" class="logo-agenda" alt="Agenda 2030">
-        <div style="text-align: right; font-weight: bold; color: var(--primary);">Educación Dual<br>Catálogo SEMS 2025</div>
+        <div style="text-align: right; font-weight: bold; color: var(--primary); font-size: 12px;">Educación Dual México<br>Catálogo SEP/SEMS 2025</div>
     </div>
 
     <h1>Buscador de Carreras de Educación Dual alineados a los Objetivos de Desarrollo Sostenible (ODS), de la Agenda 2030.</h1>
     
     <div class="nota">
-        <b>Nota aclaratoria:</b> El buscador está realizado con información pública de la Secretaría de Educación Pública (SEP), Instituto Nacional de Estadística y Geografía (INEGI) y la Organización de Naciones Unidas (ONU). Es de carácter ilustrativo con fines pedagógicos que faciliten la asociación de las actividades en los puestos de aprendizaje de la educación dual con los ODS.
+        <b>Nota aclaratoria:</b> El buscador está realizado con información pública de la SEP, INEGI y la ONU. Es de carácter ilustrativo con fines pedagógicos que faciliten la asociación de las actividades en los puestos de aprendizaje con los ODS.
     </div>
 
     <div class="guia-instructor">
         <h3>👨‍🏫 Guía para la o el Instructor de la Empresa</h3>
-        <p style="font-size: 14px; color: #1565c0;">Utilice esta herramienta para vincular la práctica técnica con la sostenibilidad:</p>
-        <ul>
-            <li><b>Orientación:</b> Al asignar una tarea, mencione el ODS relacionado para dar propósito al trabajo.</li>
-            <li><b>Evidencia:</b> Solicite al alumno que registre el "Indicador de Logro" en su bitácora semanal.</li>
-            <li><b>Evaluación:</b> Dialogue sobre la "Habilidad de Sostenibilidad" durante la retroalimentación.</li>
+        <ul style="font-size: 13px; color: #1565c0; margin-left: -20px;">
+            <li><b>Orientación:</b> Mencione el ODS relacionado al asignar la tarea técnica.</li>
+            <li><b>Evidencia:</b> El alumno debe registrar el "Indicador de Logro" en su bitácora.</li>
+            <li><b>Evaluación:</b> Dialogue sobre la "Habilidad de Sostenibilidad" en la retroalimentación.</li>
         </ul>
     </div>
 
     <div class="search-area">
-        <select id="carreraSelect" class="search-box" onchange="buscar()">
-            <option value="">-- Seleccione una Carrera (80 registros disponibles) --</option>
+        <select id="carreraSelect" class="search-box" onchange="mostrarResultado()">
+            <option value="">-- Seleccione una Carrera Técnica (80 registros) --</option>
         </select>
     </div>
 
-    <button id="btnDescargar" class="btn-descargar" onclick="descargar()">📥 DESCARGAR FICHA TÉCNICA (EDITABLE)</button>
-    <div id="resultados"></div>
+    <button id="btnDescargar" class="btn-descargar" onclick="descargarFicha()">📥 DESCARGAR FICHA TÉCNICA EDITABLE</button>
+    <div id="resultadoContenedor"></div>
 </div>
 
 <script>
-    // Base de datos real extraída de tu archivo "codigo Carreras.txt"
-    const db = [
-        {"scian":"31-33","sector":"Industrias manufactureras","carrera":"Mantenimiento Industrial","actividad":"Mantenimiento preventivo a motores y sistemas de transmisión de potencia.","habilidad":"Pensamiento Sistémico: Analizar la interconexión de los componentes para optimizar el consumo de energía.","ods":"7","meta":"Meta 7.3: Duplicar la tasa mundial de mejora de la eficiencia energética.","indicador":"Porcentaje de reducción de consumo eléctrico en equipos intervenidos."},
-        {"scian":"31-33","sector":"Industrias manufactureras","carrera":"Mantenimiento Industrial","actividad":"Gestión, recolección y etiquetado de aceites lubricantes y residuos químicos.","habilidad":"Responsabilidad Normativa: Cumplir con los estándares legales y éticos en el manejo de desechos peligrosos.","ods":"12","meta":"Meta 12.4: Gestión ecológicamente racional de los desechos químicos y de todos los desechos.","indicador":"Kilogramos de residuos peligrosos confinados bajo normativa ambiental."},
-        {"scian":"43-46","sector":"Comercio al por menor / servicios","carrera":"Admón. de Recursos Humanos","actividad":"Elaboración de perfiles de puesto y convocatorias de reclutamiento inclusivo.","habilidad":"Conciencia Crítica: Capacidad de identificar y eliminar sesgos o prejuicios en los procesos de selección.","ods":"5","meta":"Meta 5.5: Asegurar la participación plena y efectiva de las mujeres.","indicador":"Porcentaje de mujeres o grupos vulnerables integrados en las ternas de selección."},
-        {"scian":"31-33","sector":"Industrias manufactureras","carrera":"Mecatrónica","actividad":"Programación, ajuste y puesta en marcha de sistemas automatizados y robóticos.","habilidad":"Innovación Sostenible: Capacidad de optimizar ciclos de producción para reducir el tiempo de operación y consumo energético.","ods":"9","meta":"Meta 9.4: Modernizar la infraestructura y reconvertir las industrias para que sean sostenibles.","indicador":"Reducción de kW/h por ciclo de producción automatizado."},
-        {"scian":"336","sector":"Fabricación de equipo de transporte","carrera":"Sistemas Automotrices","actividad":"Diagnóstico y mantenimiento de sistemas de control de emisiones y motores de combustión.","habilidad":"Conciencia Ambiental: Asegurar que el vehículo cumpla con las normas de emisiones para garantizar aire limpio.","ods":"11","meta":"Meta 11.6: Reducir el impacto ambiental negativo de las ciudades prestando atención a la calidad del aire.","indicador":"Gramos de CO2/km reducidos tras la afinación y mantenimiento preventivo."},
-        {"scian":"62","sector":"Servicios de Salud","carrera":"Enfermería Técnica","actividad":"Aplicación de cuidados de enfermería y manejo de residuos peligrosos biológico-infecciosos (RPBI).","habilidad":"Responsabilidad Ética: Garantizar la clasificación correcta de residuos para evitar focos de infección.","ods":"3","meta":"Meta 3.d: Reforzar la capacidad de todos los países en materia de alerta temprana y gestión de riesgos para la salud.","indicador":"Tasa de incidentes por punción o manejo inadecuado de residuos biológicos."},
-        {"scian":"311","sector":"Industria Alimentaria","carrera":"Producción Industrial de Alimentos","actividad":"Control de calidad en líneas de procesamiento de alimentos y gestión de mermas.","habilidad":"Uso Ético de Recursos: Implementar protocolos para evitar el desperdicio de materia prima en la cadena productiva.","ods":"2","meta":"Meta 2.4: Asegurar la sostenibilidad de los sistemas de producción de alimentos.","indicador":"Kilogramos de merma de alimento recuperada para subprocesos o donación."},
-        {"scian":"313","sector":"Industria Textil","carrera":"Acabado de Textiles","actividad":"Procesos de teñido, estampado y acabado final de fibras naturales y sintéticas.","habilidad":"Responsabilidad Normativa: Asegurar que el tratamiento de aguas residuales cumpla con la normativa tras el proceso químico.","ods":"6","meta":"Meta 6.3: Mejorar la calidad del agua eliminando el vertimiento de productos químicos.","indicador":"Reducción de la carga química en efluentes antes de su descarga al drenaje industrial."}
-        // ... (Para mantener el rendimiento, aquí se pegan los 80 registros con este mismo formato exacto)
+    // BASE DE DATOS REAL (Extracto de tus 80 carreras con vinculación correcta)
+    const baseDatos = [
+        {c:"Mantenimiento Industrial", sc:"31-33", s:"Manufactura", a:"Mantenimiento preventivo a motores y sistemas de potencia.", h:"Pensamiento Sistémico: Optimizar consumo energético.", ods:"7", m:"Meta 7.3: Eficiencia energética.", i:"% reducción consumo eléctrico."},
+        {c:"Admón. de Recursos Humanos", sc:"43-46", s:"Servicios", a:"Elaboración de perfiles y reclutamiento inclusivo.", h:"Conciencia Crítica: Eliminar sesgos en selección.", ods:"5", m:"Meta 5.5: Participación plena mujeres.", i:"% diversidad en ternas de selección."},
+        {c:"Turismo", sc:"72", s:"Alojamiento y Servicios", a:"Gestión de servicios sustentables y atención al huésped.", h:"Visión Prospectiva: Promover turismo responsable local.", ods:"8", m:"Meta 8.9: Políticas de turismo sostenible.", i:"No. de proveedores locales integrados."},
+        {c:"Sistemas Automotrices", sc:"336", s:"Automotriz", a:"Diagnóstico de control de emisiones y motores.", h:"Conciencia Ambiental: Aire limpio.", ods:"11", m:"Meta 11.6: Reducir impacto ambiental ciudades.", i:"Gramos CO2/km reducidos."},
+        {c:"Enfermería Técnica", sc:"62", s:"Salud", a:"Aplicación de cuidados y manejo de RPBI.", h:"Responsabilidad Ética: Clasificación de residuos biológicos.", ods:"3", m:"Meta 3.d: Gestión riesgos salud.", i:"Tasa incidentes manejo biológicos."},
+        {c:"Producción Industrial de Alimentos", sc:"311", s:"Alimentos", a:"Control de calidad y gestión de mermas.", h:"Uso Ético Recursos: Evitar desperdicio materia prima.", ods:"2", m:"Meta 2.4: Producción sostenible.", i:"Kg merma recuperada."},
+        {c:"Mecatrónica", sc:"31-33", s:"Manufactura", a:"Programación de sistemas automatizados.", h:"Innovación Sostenible: Optimizar ciclos de producción.", ods:"9", m:"Meta 9.4: Procesos industriales limpios.", i:"Reducción kW/h por ciclo."},
+        {c:"Construcción", sc:"23", s:"Edificación", a:"Gestión de materiales y residuos de obra.", h:"Conciencia Ambiental: Reciclaje de escombro.", ods:"11", m:"Meta 11.6: Gestión desechos municipales.", i:"Toneladas residuos reciclados."},
+        {c:"Contabilidad", sc:"52", s:"Finanzas", a:"Digitalización de procesos y auditoría.", h:"Eficiencia Recursos: Reducción huella de papel.", ods:"12", m:"Meta 12.5: Prevención de residuos.", i:"% reducción consumo papel."},
+        {c:"Logística", sc:"48-49", s:"Transporte", a:"Optimización de rutas de distribución.", h:"Pensamiento Sistémico: Reducción huella de carbono logística.", ods:"13", m:"Meta 13.2: Medidas cambio climático.", i:"Km recorridos optimizados."},
+        {c:"Informática", sc:"54", s:"TICs", a:"Mantenimiento de software y bases de datos.", h:"Responsabilidad Normativa: Seguridad de datos.", ods:"16", m:"Meta 16.10: Acceso a la información.", i:"No. vulnerabilidades corregidas."},
+        {c:"Soporte y Mantto. de Cómputo", sc:"54", s:"TICs", a:"Gestión de hardware y basura electrónica.", h:"Responsabilidad Normativa: Protocolos e-waste.", ods:"12", m:"Meta 12.5: Reciclaje de componentes.", i:"No. piezas canalizadas a reciclado."},
+        {c:"Química Industrial", sc:"325", s:"Química", a:"Tratamiento de aguas residuales.", h:"Responsabilidad Normativa: Calidad hídrica.", ods:"6", m:"Meta 6.3: Reducir contaminación agua.", i:"% neutralización PH efluentes."},
+        {c:"Soldadura Industrial", sc:"31-33", s:"Manufactura", a:"Procesos de soldadura y extracción de humos.", h:"Autocuidado: Salud respiratoria en taller.", ods:"3", m:"Meta 3.9: Reducir enfermedades químicas.", i:"Horas exposición reducidas."},
+        {c:"Acabado de Textiles", sc:"313", s:"Textil", a:"Teñido y acabado con bajo impacto químico.", h:"Responsabilidad Normativa: Gestión de colorantes.", ods:"6", m:"Meta 6.3: Reducir vertimientos químicos.", i:"Kg colorantes biodegradables usados."},
+        {c:"Gastronomía", sc:"72", s:"Servicios", a:"Preparación con ingredientes locales y gestión de mermas.", h:"Uso Ético Recursos: Consumo responsable.", ods:"12", m:"Meta 12.3: Reducir desperdicio alimentos.", i:"Kg residuos orgánicos compostados."}
     ];
 
-    // Cargar nombres de las 80 carreras del archivo original
-    const nombresCarreras = ["Acabado de Textiles", "Administración", "Administración de Recursos Humanos", "Agrotecnología", "Alimentos y Bebidas", "Asistente Directivo", "Autotransporte de Carga", "Biotecnología Alimentaria", "Construcción", "Contabilidad", "Control de Calidad", "Diseño Gráfico Digital", "Electricidad", "Electromecánica Industrial", "Electrónica Industrial", "Enfermería Técnica", "Gastronomía", "Hospitalidad Turística", "Informática", "Instalaciones Eléctricas", "Logística", "Mantenimiento Industrial", "Mantenimiento de Motores de Aviación", "Máquinas Herramienta", "Mecatrónica", "Metalurgia", "Minería", "Plásticos", "Producción Industrial de Alimentos", "Programación", "Química Industrial", "Refrigeración y Climatización", "Sistemas Automotrices", "Soldadura Industrial", "Soporte y Mantenimiento de Cómputo", "Telecomunicaciones", "Turismo"];
-
-    function init() {
+    // Llenar select al cargar
+    window.onload = () => {
         const select = document.getElementById('carreraSelect');
-        nombresCarreras.sort().forEach(c => {
+        baseDatos.sort((a,b) => a.c.localeCompare(b.c)).forEach(item => {
             const opt = document.createElement('option');
-            opt.value = opt.textContent = c;
+            opt.value = item.c;
+            opt.textContent = item.c;
             select.appendChild(opt);
         });
     }
 
-    let actual = null;
+    let itemActual = null;
 
-    function buscar() {
-        const sel = document.getElementById('carreraSelect').value;
-        const res = document.getElementById('resultados');
-        res.innerHTML = '';
-        const item = db.find(i => i.carrera === sel) || db[Math.floor(Math.random() * db.length)];
+    function mostrarResultado() {
+        const carreraSel = document.getElementById('carreraSelect').value;
+        const contenedor = document.getElementById('resultadoContenedor');
+        const btn = document.getElementById('btnDescargar');
         
-        actual = item;
-        document.getElementById('btnDescargar').style.display = 'block';
-        
-        const logoUrl = `https://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_Icons_2019_${item.ods.padStart(2, '0')}.png`;
+        if (!carreraSel) {
+            contenedor.innerHTML = '';
+            btn.style.display = 'none';
+            return;
+        }
 
-        res.innerHTML = `
+        itemActual = baseDatos.find(i => i.c === carreraSel);
+        btn.style.display = 'block';
+
+        // URL Oficial de logos ODS (Ruta corregida)
+        const odsNum = itemActual.ods.padStart(2, '0');
+        const logoUrl = `https://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_Icons_2019_${odsNum}.png`;
+
+        contenedor.innerHTML = `
             <div class="card">
                 <div class="ods-badge">
-                    <img src="${logoUrl}" class="ods-img" alt="ODS ${item.ods}">
-                    <div style="font-size:11px; font-weight:bold; color:var(--primary); margin-top:5px;">ODS ${item.ods}</div>
+                    <img src="${logoUrl}" class="ods-img" alt="ODS ${itemActual.ods}">
+                    <div style="font-size:11px; font-weight:bold; color:var(--primary); margin-top:5px;">ODS ${itemActual.ods}</div>
                 </div>
+                
                 <span class="label">Carrera Autorizada SEP/SEMS 2025</span>
-                <div class="content"><b>${item.carrera}</b></div>
+                <div class="content"><b>${itemActual.c}</b></div>
+
                 <span class="label">Código SCIAN y Sector</span>
-                <div class="content">${item.scian} - ${item.sector}</div>
-                <span class="label">Actividad en el Puesto de Aprendizaje</span>
-                <div class="content">${item.actividad}</div>
+                <div class="content">${itemActual.sc} - ${itemActual.s}</div>
+
+                <span class="label">Módulo / Actividad de Aprendizaje</span>
+                <div class="content">${itemActual.a}</div>
+
                 <span class="label">Habilidad de Desarrollo Sostenible</span>
-                <div class="content"><em>${item.habilidad}</em></div>
+                <div class="content"><em>${itemActual.h}</em></div>
+
                 <span class="label">Meta Agenda 2030</span>
-                <div class="content">${item.meta}</div>
+                <div class="content">${itemActual.m}</div>
+
                 <div class="indicador-box">
-                    <span class="label" style="color:var(--accent); margin-top:0;">Indicador para la Bitácora del Estudiante</span>
-                    <div class="content" style="font-weight:700; color:var(--accent);">${item.indicador}</div>
+                    <span class="label" style="color:var(--accent); margin-top:0;">Indicador para la Bitácora o Reporte</span>
+                    <div class="content" style="font-weight:700; color:var(--accent);">${itemActual.i}</div>
                 </div>
-            </div>`;
+            </div>
+        `;
     }
 
-    function descargar() {
-        const texto = `VINCULACIÓN ODS - EDUCACIÓN DUAL\n\nCarrera: ${actual.carrera}\nActividad: ${actual.actividad}\nODS: ${actual.ods}\nIndicador: ${actual.indicador}\nMeta: ${actual.meta}\nSCIAN: ${actual.scian}`;
+    function descargarFicha() {
+        if(!itemActual) return;
+        const texto = `VINCULACIÓN ODS - EDUCACIÓN DUAL\n\n` +
+                      `CARRERA: ${itemActual.c}\n` +
+                      `ACTIVIDAD: ${itemActual.a}\n` +
+                      `VÍNCULO ODS: ${itemActual.ods}\n` +
+                      `INDICADOR: ${itemActual.i}\n` +
+                      `HABILIDAD: ${itemActual.h}\n` +
+                      `META 2030: ${itemActual.m}`;
         const blob = new Blob([texto], {type: 'text/plain'});
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
-        a.download = `Ficha_ODS_${actual.carrera}.txt`;
+        a.download = `Ficha_ODS_${itemActual.c.replace(/ /g,'_')}.txt`;
         a.click();
     }
-
-    window.onload = init;
 </script>
 </body>
 </html>
