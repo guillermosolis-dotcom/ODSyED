@@ -6,61 +6,50 @@
     <title>Buscador ODS - Educación Dual</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #1a5cad; --secondary: #28a745; --dark: #2d3436; --light: #f4f7f6; }
+        :root { --primary: #1a5cad; --secondary: #28a745; --dark: #2d3436; --light: #f4f7f6; --accent: #d35400; }
         body { font-family: 'Inter', sans-serif; background-color: var(--light); color: var(--dark); margin: 0; padding: 20px; }
         .container { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
-        h1 { color: var(--primary); text-align: center; font-size: 24px; margin-bottom: 10px; line-height: 1.3; }
+        h1 { color: var(--primary); text-align: center; font-size: 22px; margin-bottom: 15px; line-height: 1.3; font-weight: 700; }
         
         .fuentes-nota { 
-            background: #f8f9fa; 
-            border: 1px solid #e9ecef; 
-            padding: 15px; 
-            border-radius: 8px; 
-            font-size: 13px; 
-            color: #636e72; 
-            margin-bottom: 25px; 
-            line-height: 1.4;
-            text-align: center;
+            background: #f8f9fa; border: 1px solid #e9ecef; padding: 15px; border-radius: 8px; 
+            font-size: 13px; color: #636e72; margin-bottom: 20px; text-align: center;
         }
 
+        .instrucciones-instructor {
+            background: #fff3e0; border-left: 5px solid #ff9800; padding: 18px; 
+            margin-bottom: 25px; border-radius: 4px;
+        }
+        .instrucciones-instructor h3 { margin: 0 0 10px 0; color: #e65100; font-size: 17px; }
+        .instrucciones-instructor ol { margin: 0; font-size: 13.5px; padding-left: 20px; color: #444; }
+        .instrucciones-instructor li { margin-bottom: 6px; }
+
         .search-area { 
-            background: #f1f3f5; 
-            padding: 20px; 
-            border-radius: 8px; 
-            margin-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+            background: #f1f3f5; padding: 20px; border-radius: 8px; margin-bottom: 20px;
+            display: flex; flex-direction: column; gap: 12px;
         }
 
         .search-box { 
-            width: 100%; 
-            padding: 12px; 
-            border: 2px solid #dfe6e9; 
-            border-radius: 8px; 
-            font-size: 16px; 
-            box-sizing: border-box;
-            background: white;
+            width: 100%; padding: 12px; border: 2px solid #dfe6e9; 
+            border-radius: 8px; font-size: 15px; box-sizing: border-box;
         }
 
         .btn-buscar { 
-            width: 100%;
-            padding: 15px; 
-            background: var(--primary); 
-            color: white; 
-            border: none; 
-            border-radius: 8px; 
-            cursor: pointer; 
-            font-weight: bold;
-            font-size: 16px;
+            width: 100%; padding: 14px; background: var(--primary); 
+            color: white; border: none; border-radius: 8px; 
+            cursor: pointer; font-weight: bold; font-size: 15px;
         }
         
-        .btn-buscar:hover { background: #154a8a; }
+        .btn-download {
+            background: var(--secondary); color: white; padding: 12px; border: none;
+            border-radius: 6px; cursor: pointer; font-weight: bold;
+            margin-top: 10px; display: none; text-align: center; font-size: 14px;
+        }
 
-        .result-card { border: 1px solid #dfe6e9; padding: 20px; border-radius: 12px; margin-top: 15px; border-left: 8px solid var(--primary); background: #fff; }
-        .ods-tag { display: inline-block; background: var(--secondary); color: white; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; margin-bottom: 10px; }
-        .label { font-weight: 700; color: var(--primary); display: block; margin-top: 12px; text-transform: uppercase; font-size: 10px; letter-spacing: 0.5px; }
-        .content { font-size: 14px; line-height: 1.5; margin-top: 4px; color: #2d3436; }
+        .result-card { border: 1px solid #dfe6e9; padding: 20px; border-radius: 12px; margin-top: 15px; border-left: 8px solid var(--primary); background: #fff; position: relative; }
+        .ods-tag { display: inline-block; background: var(--secondary); color: white; padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: bold; margin-bottom: 10px; }
+        .label { font-weight: 700; color: var(--primary); display: block; margin-top: 10px; text-transform: uppercase; font-size: 9px; letter-spacing: 0.5px; }
+        .content { font-size: 14px; line-height: 1.4; margin-top: 3px; color: #2d3436; }
     </style>
 </head>
 <body>
@@ -69,888 +58,72 @@
     <h1>Buscador de Carreras de Educación Dual alineados a los Objetivos de Desarrollo Sostenible de la Agenda 2030</h1>
     
     <div class="fuentes-nota">
-        <strong>Nota aclaratoria:</strong> La información presentada en este buscador ha sido integrada y alineada utilizando fuentes oficiales de la <strong>Secretaría de Educación Pública (SEP)</strong> para los perfiles de carrera, el <strong>Sistema de Clasificación Industrial de América del Norte (SCIAN) del INEGI</strong> para la vinculación sectorial, y las metas de la <strong>Agenda 2030 de la Organización de las Naciones Unidas (ONU)</strong>.
+        <strong>Nota aclaratoria:</strong> Información oficial integrada y alineada con fuentes de la <strong>SEP</strong>, <strong>INEGI (SCIAN)</strong> y la <strong>ONU</strong>.
+    </div>
+
+    <div class="instrucciones-instructor">
+        <h3>👨‍🏫 Guía para el Instructor en la Empresa</h3>
+        <ol>
+            <li><strong>Selecciona:</strong> La carrera del estudiante en el menú desplegable.</li>
+            <li><strong>Busca:</strong> Escribe una palabra clave de la tarea que está realizando (ej: "motores", "ventas", "limpieza").</li>
+            <li><strong>Vincula:</strong> Usa el "Indicador para Bitácora" para calificar su impacto semanal.</li>
+            <li><strong>Descarga:</strong> Guarda el ejemplo para integrarlo a tu plan de rotación.</li>
+        </ol>
     </div>
     
     <div class="search-area">
-        <label for="carreraSelect" style="font-size: 14px; font-weight: bold;">Selecciona una carrera:</label>
+        <label style="font-size: 13px; font-weight: bold;">1. Carrera Técnica:</label>
         <select id="carreraSelect" class="search-box" onchange="seleccionarCarrera()">
-            <option value="">Cargando listado...</option>
+            <option value="">Cargando catálogo completo...</option>
         </select>
         
-        <input type="text" id="searchInput" class="search-box" placeholder="O escribe una palabra clave (ej. Agua, Energía)...">
-        <button class="btn-buscar" onclick="searchData()">BUSCAR</button>
+        <label style="font-size: 13px; font-weight: bold;">2. Actividad o palabra clave:</label>
+        <input type="text" id="searchInput" class="search-box" placeholder="Ej. mantenimiento, procesos, calidad...">
+        <button class="btn-buscar" onclick="searchData()">GENERAR ALINEACIÓN ODS</button>
+        
+        <button id="downloadBtn" class="btn-download" onclick="downloadExample()">📥 DESCARGAR PLANTILLA PARA EL INSTRUCTOR</button>
     </div>
     
     <div id="resultsArea"></div>
 </div>
 
 <script>
-    // BASE DE DATOS COMPLETA (80 REGISTROS)
+    // BASE DE DATOS COMPLETA: 80 REGISTROS
     const data = [
-  {
-    "Código SCIAN ": "31-33",
-    "Sector Industrial ": "Industrias manufactureras",
-    "Carrera COSAC 2025 ": "Mantenimiento Industrial",
-    "Módulo / Actividad de Aprendizaje ": "Mantenimiento preventivo a motores y sistemas de transmisión de potencia.",
-    "Habilidad de Desarrollo Sostenible": "Pensamiento Sistémico: Analizar la interconexión de los componentes para optimizar el consumo de energía.",
-    "ODS Vinculado": "ODS 7: Energía asequible y no contaminante",
-    "Meta Agenda 2030 ": "Meta 7.3: Duplicar la tasa mundial de mejora de la eficiencia energética.",
-    "Indicador de Logro ": "Porcentaje de reducción de consumo eléctrico en equipos intervenidos."
-  },
-  {
-    "Código SCIAN ": "31-33",
-    "Sector Industrial ": "Industrias manufactureras",
-    "Carrera COSAC 2025 ": "Mantenimiento Industrial",
-    "Módulo / Actividad de Aprendizaje ": "Gestión, recolección y etiquetado de aceites lubricantes y residuos químicos.",
-    "Habilidad de Desarrollo Sostenible": "Responsabilidad Normativa: Cumplir con los estándares legales y éticos en el manejo de desechos peligrosos.",
-    "ODS Vinculado": "ODS 12: Producción y consumo responsables",
-    "Meta Agenda 2030 ": "Meta 12.4: Gestión ecológicamente racional de los desechos químicos y de todos los desechos.",
-    "Indicador de Logro ": "Kilogramos de residuos peligrosos confinados bajo normativa ambiental."
-  },
-  {
-    "Código SCIAN ": "22",
-    "Sector Industrial ": "Generación, transmisión y distribución de energía eléctrica, agua y gas",
-    "Carrera COSAC 2025 ": "Mantenimiento Industrial",
-    "Módulo / Actividad de Aprendizaje ": "Detección y corrección de fugas en sistemas de tuberías de aire comprimido o vapor.",
-    "Habilidad de Desarrollo Sostenible": "Pensamiento Crítico: Evaluar las pérdidas de recursos y proponer mejoras para evitar el desperdicio.",
-    "ODS Vinculado": "ODS 9: Industria, innovación e infraestructura",
-    "Meta Agenda 2030 ": "Meta 9.4: Modernizar la infraestructura y reconvertir las industrias para que sean sostenibles.",
-    "Indicador de Logro ": "Metros cúbicos de recurso (aire/vapor/gas) recuperados por reparación."
-  },
-  {
-    "Código SCIAN ": "31-33",
-    "Sector Industrial ": "Industrias manufactureras",
-    "Carrera COSAC 2025 ": "Mantenimiento Industrial",
-    "Módulo / Actividad de Aprendizaje ": "Instalación y calibración de sensores para la automatización de sistemas de iluminación y clima.",
-    "Habilidad de Desarrollo Sostenible": "Conciencia Ambiental: Valorar el impacto de la tecnología en la preservación del entorno natural.",
-    "ODS Vinculado": "ODS 13: Acción por el clima",
-    "Meta Agenda 2030 ": "Meta 13.3: Mejorar la educación, la sensibilización y la capacidad humana respecto a la mitigación del cambio climático.",
-    "Indicador de Logro ": "Toneladas de CO2 evitadas mediante optimización del encendido automático."
-  },
-  {
-    "Código SCIAN ": "31-33",
-    "Sector Industrial ": "Industrias manufactureras",
-    "Carrera COSAC 2025 ": "Mantenimiento Industrial",
-    "Módulo / Actividad de Aprendizaje ": "Inspección de guardas de seguridad y dispositivos de paro de emergencia en maquinaria.",
-    "Habilidad de Desarrollo Sostenible": "Autocuidado y Prevención: Priorizar la seguridad humana como base del desarrollo social sostenible.",
-    "ODS Vinculado": "ODS 8: Trabajo decente y crecimiento económico",
-    "Meta Agenda 2030 ": "Meta 8.8: Proteger los derechos laborales y promover un entorno de trabajo seguro y sin riesgos.",
-    "Indicador de Logro ": "Número de actos inseguros detectados y corregidos en el área de trabajo."
-  },
-  {
-    "Código SCIAN ": "43-46",
-    "Sector Industrial ": "Comercio al por menor / servicios",
-    "Carrera COSAC 2025 ": "Admón. de Recursos Humanos",
-    "Módulo / Actividad de Aprendizaje ": "Elaboración de perfiles de puesto y convocatorias de reclutamiento inclusivo.",
-    "Habilidad de Desarrollo Sostenible": "Conciencia Crítica: Capacidad de identificar y eliminar sesgos o prejuicios en los procesos de selección.",
-    "ODS Vinculado": "ODS 5: Igualdad de Género",
-    "Meta Agenda 2030 ": "Meta 5.5: Asegurar la participación plena y efectiva de las mujeres y la igualdad de oportunidades de liderazgo.",
-    "Indicador de Logro ": "Porcentaje de mujeres o grupos vulnerables integrados en las ternas de selección."
-  },
-  {
-    "Código SCIAN ": "31-33",
-    "Sector Industrial ": "Industrias manufactureras",
-    "Carrera COSAC 2025 ": "Admón. de Recursos Humanos",
-    "Módulo / Actividad de Aprendizaje ": "Gestión de nóminas, prestaciones y verificación de contratos laborales legales.",
-    "Habilidad de Desarrollo Sostenible": "Responsabilidad Normativa: Garantizar que todos los procesos administrativos cumplan con los derechos humanos y laborales.",
-    "ODS Vinculado": "ODS 8: Trabajo decente y crecimiento económico",
-    "Meta Agenda 2030 ": "Meta 8.5: Lograr el empleo pleno y productivo y el trabajo decente para todas las mujeres y los hombres.",
-    "Indicador de Logro ": "Índice de cumplimiento de prestaciones de ley y equidad salarial (mismo nivel, mismo sueldo)."
-  },
-  {
-    "Código SCIAN ": "93",
-    "Sector Industrial ": "Actividades de gobierno y organismos",
-    "Carrera COSAC 2025 ": "Admón. de Recursos Humanos",
-    "Módulo / Actividad de Aprendizaje ": "Diseño y ejecución de planes de capacitación técnica y desarrollo humano.",
-    "Habilidad de Desarrollo Sostenible": "Visión Prospectiva: Planificar la formación del personal anticipando las necesidades futuras de la sociedad.",
-    "ODS Vinculado": "ODS 4: Educación de calidad",
-    "Meta Agenda 2030 ": "Meta 4.4: Aumentar el número de jóvenes y adultos que tienen las competencias necesarias para acceder al empleo.",
-    "Indicador de Logro ": "Promedio de horas de capacitación técnica recibidas por trabajador al año."
-  },
-  {
-    "Código SCIAN ": "43-46",
-    "Sector Industrial ": "Comercio al por menor / servicios",
-    "Carrera COSAC 2025 ": "Admón. de Recursos Humanos",
-    "Módulo / Actividad de Aprendizaje ": "Implementación de programas de bienestar, clima organizacional y salud mental.",
-    "Habilidad de Desarrollo Sostenible": "Autocuidado y Prevención: Promover entornos de trabajo que protejan la salud física y psicológica del colaborador.",
-    "ODS Vinculado": "ODS 3: Salud y Bienestar",
-    "Meta Agenda 2030 ": "Meta 3.4: Reducir la mortalidad prematura y promover la salud mental y el bienestar.",
-    "Indicador de Logro ": "Porcentaje de reducción de rotación de personal o niveles de estrés laboral reportados."
-  },
-  {
-    "Código SCIAN ": "31-33",
-    "Sector Industrial ": "Industrias manufactureras",
-    "Carrera COSAC 2025 ": "Admón. de Recursos Humanos",
-    "Módulo / Actividad de Aprendizaje ": "Comunicación interna sobre políticas de ética, anticorrupción y valores empresariales.",
-    "Habilidad de Desarrollo Sostenible": "Uso Ético de la Información: Manejar con transparencia y honestidad la comunicación oficial de la organización.",
-    "ODS Vinculado": "ODS 16: Paz, justicia e instituciones sólidas",
-    "Meta Agenda 2030 ": "Meta 16.5: Reducir considerablemente la corrupción y el soborno en todas sus formas.",
-    "Indicador de Logro ": "Número de empleados capacitados en el código de ética y denuncias recibidas/atendidas."
-  },
-  {
-    "Código SCIAN ": "31-33",
-    "Sector Industrial ": "Industrias manufactureras",
-    "Carrera COSAC 2025 ": "Mecatrónica",
-    "Módulo / Actividad de Aprendizaje ": "Programación y ajuste de sistemas automatizados y robóticos.",
-    "Habilidad de Desarrollo Sostenible": "Innovación Sostenible: Optimizar ciclos de producción para reducir el tiempo de operación y consumo energético.",
-    "ODS Vinculado": "ODS 9: Industria e Innovación",
-    "Meta Agenda 2030 ": "Meta 9.4: Reconvertir industrias para que sean sostenibles con procesos limpios.",
-    "Indicador de Logro ": "Reducción de kW/h por ciclo de producción automatizado."
-  },
-  {
-    "Código SCIAN ": "23",
-    "Sector Industrial ": "Construcción",
-    "Carrera COSAC 2025 ": "Construcción",
-    "Módulo / Actividad de Aprendizaje ": "Supervisión de obra y manejo de materiales de construcción.",
-    "Habilidad de Desarrollo Sostenible": "Conciencia Ambiental: Gestionar la disposición de escombro y promover el uso de materiales de bajo impacto.",
-    "ODS Vinculado": "ODS 11: Ciudades Sostenibles",
-    "Meta Agenda 2030 ": "Meta 11.6: Reducir el impacto ambiental negativo de las ciudades (gestión de desechos).",
-    "Indicador de Logro ": "Toneladas de residuos de construcción reciclados o reutilizados."
-  },
-  {
-    "Código SCIAN ": "31-33",
-    "Sector Industrial ": "Industrias manufactureras",
-    "Carrera COSAC 2025 ": "Producción Industrial de Alimentos",
-    "Módulo / Actividad de Aprendizaje ": "Control de calidad en líneas de procesamiento de alimentos.",
-    "Habilidad de Desarrollo Sostenible": "Uso Ético de Recursos: Implementar protocolos para evitar el desperdicio de materia prima alimentaria.",
-    "ODS Vinculado": "ODS 2: Hambre Cero",
-    "Meta Agenda 2030 ": "Meta 2.4: Asegurar la sostenibilidad de los sistemas de producción de alimentos.",
-    "Indicador de Logro ": "Kg de merma de alimento recuperada para subprocesos."
-  },
-  {
-    "Código SCIAN ": "54",
-    "Sector Industrial ": "Servicios Profesionales",
-    "Carrera COSAC 2025 ": "Soporte y Mantenimiento de Cómputo",
-    "Módulo / Actividad de Aprendizaje ": "Mantenimiento preventivo de hardware y gestión de equipos obsoletos.",
-    "Habilidad de Desarrollo Sostenible": "Responsabilidad Normativa: Aplicar protocolos de disposición de basura electrónica (e-waste).",
-    "ODS Vinculado": "ODS 12: Producción y Consumo",
-    "Meta Agenda 2030 ": "Meta 12.5: Reducir la generación de desechos mediante el reciclado y la reutilización.",
-    "Indicador de Logro ": "Número de componentes electrónicos donados o reciclados correctamente."
-  },
-  {
-    "Código SCIAN ": "31-33",
-    "Sector Industrial ": "Industrias manufactureras",
-    "Carrera COSAC 2025 ": "Electricidad",
-    "Módulo / Actividad de Aprendizaje ": "Instalación y mantenimiento de tableros de control y alumbrado.",
-    "Habilidad de Desarrollo Sostenible": "Pensamiento Crítico: Proponer el cambio a tecnologías LED y sistemas de control de iluminación eficiente.",
-    "ODS Vinculado": "ODS 7: Energía Asequible",
-    "Meta Agenda 2030 ": "Meta 7.3: Duplicar la tasa de mejora de la eficiencia energética.",
-    "Indicador de Logro ": "% de ahorro en la factura eléctrica del área intervenida."
-  },
-  {
-    "Código SCIAN ": "323",
-    "Sector Industrial ": "Impresión e Industrias Conexas",
-    "Carrera COSAC 2025 ": "Diseño Gráfico / Impresión",
-    "Módulo / Actividad de Aprendizaje ": "Preparación de archivos para impresión y selección de sustratos.",
-    "Habilidad de Desarrollo Sostenible": "Pensamiento Sistémico: Evaluar el impacto ambiental de tintas y tipos de papel (certificaciones forestales).",
-    "ODS Vinculado": "ODS 12: Producción y Consumo",
-    "Meta Agenda 2030 ": "Meta 12.2: Lograr la gestión sostenible y el uso eficiente de los recursos naturales.",
-    "Indicador de Logro ": "% de uso de papeles reciclados o tintas base agua/soya."
-  },
-  {
-    "Código SCIAN ": "72",
-    "Sector Industrial ": "Servicios de Alojamiento y Alimentos",
-    "Carrera COSAC 2025 ": "Turismo / Hospitalidad",
-    "Módulo / Actividad de Aprendizaje ": "Atención al huésped y servicios locales.",
-    "Habilidad de Desarrollo Sostenible": "Visión Prospectiva: Promover el turismo responsable que respete la cultura local.",
-    "ODS Vinculado": "ODS 8: Trabajo Decente",
-    "Meta Agenda 2030 ": "Meta 8.9: Promover un turismo sostenible que cree puestos de trabajo.",
-    "Indicador de Logro ": "Número de proveedores locales integrados en servicios turísticos."
-  },
-  {
-    "Código SCIAN ": "31-33",
-    "Sector Industrial ": "Industrias manufactureras",
-    "Carrera COSAC 2025 ": "Soldadura Industrial",
-    "Módulo / Actividad de Aprendizaje ": "Aplicación de procesos de soldadura en estructuras metálicas.",
-    "Habilidad de Desarrollo Sostenible": "Autocuidado y Prevención: Uso estricto de EPP y sistemas de extracción de humos.",
-    "ODS Vinculado": "ODS 3: Salud y Bienestar",
-    "Meta Agenda 2030 ": "Meta 3.9: Reducir enfermedades producidas por productos químicos y contaminación.",
-    "Indicador de Logro ": "Horas de exposición a humos metálicos reducidas por ventilación."
-  },
-  {
-    "Código SCIAN ": "31-33",
-    "Sector Industrial ": "Industrias manufactureras",
-    "Carrera COSAC 2025 ": "Electrónica",
-    "Módulo / Actividad de Aprendizaje ": "Diagnóstico y reparación de tarjetas y componentes electrónicos.",
-    "Habilidad de Desarrollo Sostenible": "Pensamiento Crítico: Fomentar la cultura de la reparación sobre el reemplazo (economía circular).",
-    "ODS Vinculado": "ODS 9: Industria e Innovación",
-    "Meta Agenda 2030 ": "Meta 9.b: Apoyar el desarrollo de tecnologías y la investigación.",
-    "Indicador de Logro ": "Aumento en el tiempo de vida útil (años) del equipo reparado."
-  },
-  {
-    "Código SCIAN ": "62",
-    "Sector Industrial ": "Servicios de Salud",
-    "Carrera COSAC 2025 ": "Enfermería Técnica",
-    "Módulo / Actividad de Aprendizaje ": "Aplicación de cuidados de enfermería y manejo de RPBI.",
-    "Habilidad de Desarrollo Sostenible": "Responsabilidad Ética: Clasificación correcta de residuos peligrosos biológico-infecciosos.",
-    "ODS Vinculado": "ODS 3: Salud y Bienestar",
-    "Meta Agenda 2030 ": "Meta 3.d: Reforzar la gestión de riesgos para la salud.",
-    "Indicador de Logro ": "Tasa de incidentes por punción o manejo inadecuado de residuos biológicos."
-  },
-  {
-    "Código SCIAN ": "336",
-    "Sector Industrial ": "Fabricación de equipo de transporte",
-    "Carrera COSAC 2025 ": "Sistemas Automotrices",
-    "Módulo / Actividad de Aprendizaje ": "Diagnóstico y mantenimiento de sistemas de control de emisiones y motores.",
-    "Habilidad de Desarrollo Sostenible": "Conciencia Ambiental: Asegurar que el vehículo cumpla con normas de emisiones.",
-    "ODS Vinculado": "ODS 11: Ciudades Sostenibles",
-    "Meta Agenda 2030 ": "Meta 11.6: Reducir el impacto ambiental negativo prestando atención a la calidad del aire.",
-    "Indicador de Logro ": "Gramos de CO2/km reducidos tras la afinación y mantenimiento."
-  },
-  {
-    "Código SCIAN ": "325",
-    "Sector Industrial ": "Industria Química",
-    "Carrera COSAC 2025 ": "Química Industrial",
-    "Módulo / Actividad de Aprendizaje ": "Análisis de muestras y control de procesos en reactores químicos.",
-    "Habilidad de Desarrollo Sostenible": "Responsabilidad Normativa: Garantizar el tratamiento de aguas residuales.",
-    "ODS Vinculado": "ODS 6: Agua limpia y saneamiento",
-    "Meta Agenda 2030 ": "Meta 6.3: Mejorar la calidad del agua reduciendo la contaminación.",
-    "Indicador de Logro ": "Porcentaje de neutralización de PH en efluentes antes de descarga."
-  },
-  {
-    "Código SCIAN ": "326",
-    "Sector Industrial ": "Industria del plástico y hule",
-    "Carrera COSAC 2025 ": "Transformación de Plásticos",
-    "Módulo / Actividad de Aprendizaje ": "Configuración de máquinas de inyección y soplado de polímeros.",
-    "Habilidad de Desarrollo Sostenible": "Innovación Sostenible: Optimizar el uso de resinas recicladas y reducir el scrap.",
-    "ODS Vinculado": "ODS 12: Producción y Consumo",
-    "Meta Agenda 2030 ": "Meta 12.5: Reducir la generación de desechos mediante el reciclado.",
-    "Indicador de Logro ": "Porcentaje de material recuperado y reincorporado al ciclo."
-  },
-  {
-    "Código SCIAN ": "541",
-    "Sector Industrial ": "Servicios profesionales",
-    "Carrera COSAC 2025 ": "Administración de Empresas",
-    "Módulo / Actividad de Aprendizaje ": "Gestión operativa y optimización de recursos.",
-    "Habilidad de Desarrollo Sostenible": "Pensamiento Crítico: Evaluar la cadena de suministro para elegir proveedores éticos.",
-    "ODS Vinculado": "ODS 8: Trabajo Decente",
-    "Meta Agenda 2030 ": "Meta 8.3: Promover políticas que apoyen las actividades productivas y PyMEs.",
-    "Indicador de Logro ": "Número de proveedores locales o con distintivos sociales integrados."
-  },
-  {
-    "Código SCIAN ": "311",
-    "Sector Industrial ": "Industria alimentaria",
-    "Carrera COSAC 2025 ": "Conservación de Alimentos",
-    "Módulo / Actividad de Aprendizaje ": "Aplicación de métodos de conservación.",
-    "Habilidad de Desarrollo Sostenible": "Visión Prospectiva: Extender la vida útil para reducir pérdida de alimentos.",
-    "ODS Vinculado": "ODS 2: Hambre Cero",
-    "Meta Agenda 2030 ": "Meta 2.c: Adoptar medidas para el buen funcionamiento de mercados alimentarios.",
-    "Indicador de Logro ": "Días de vida de anaquel ganados mediante procesos eficientes."
-  },
-  {
-    "Código SCIAN ": "237",
-    "Sector Industrial ": "Construcción de obras de ingeniería",
-    "Carrera COSAC 2025 ": "Topografía",
-    "Módulo / Actividad de Aprendizaje ": "Levantamiento de terrenos para proyectos de infraestructura.",
-    "Habilidad de Desarrollo Sostenible": "Conciencia Crítica: Identificar zonas de riesgo ambiental o mantos acuíferos.",
-    "ODS Vinculado": "ODS 15: Vida de ecosistemas terrestres",
-    "Meta Agenda 2030 ": "Meta 15.1: Asegurar la conservación y uso sostenible de ecosistemas terrestres.",
-    "Indicador de Logro ": "Hectáreas de zonas de preservación identificadas en planos."
-  },
-  {
-    "Código SCIAN ": "332",
-    "Sector Industrial ": "Fabricación de productos metálicos",
-    "Carrera COSAC 2025 ": "Máquinas Herramienta",
-    "Módulo / Actividad de Aprendizaje ": "Mecanizado de piezas por fresado o CNC.",
-    "Habilidad de Desarrollo Sostenible": "Pensamiento Sistémico: Recuperación de viruta metálica y fluidos de corte.",
-    "ODS Vinculado": "ODS 12: Producción y Consumo",
-    "Meta Agenda 2030 ": "Meta 12.4: Lograr gestión racional de desechos químicos y sólidos.",
-    "Indicador de Logro ": "Kilogramos de rebaba metálica enviada a reciclaje."
-  },
-  {
-    "Código SCIAN ": "522",
-    "Sector Industrial ": "Instituciones financieras",
-    "Carrera COSAC 2025 ": "Banca y Finanzas",
-    "Módulo / Actividad de Aprendizaje ": "Gestión de servicios financieros y atención a clientes.",
-    "Habilidad de Desarrollo Sostenible": "Uso Ético de la Información: Asegurar transparencia y prevención de fraudes.",
-    "ODS Vinculado": "ODS 16: Paz y Justicia",
-    "Meta Agenda 2030 ": "Meta 16.5: Reducir considerablemente la corrupción y el soborno.",
-    "Indicador de Logro ": "Tasa de resolución de quejas por falta de transparencia."
-  },
-  {
-    "Código SCIAN ": "313",
-    "Sector Industrial ": "Industria Textil",
-    "Carrera COSAC 2025 ": "Industria del Vestido",
-    "Módulo / Actividad de Aprendizaje ": "Corte, confección y diseño de prendas.",
-    "Habilidad de Desarrollo Sostenible": "Conciencia Ambiental: Aprovechamiento máximo de lienzos para reducir desperdicio.",
-    "ODS Vinculado": "ODS 12: Producción y Consumo",
-    "Meta Agenda 2030 ": "Meta 12.2: Lograr gestión sostenible y uso eficiente de recursos naturales.",
-    "Indicador de Logro ": "Metros lineales de desperdicio textil reducidos por patronaje optimizado."
-  },
-  {
-    "Código SCIAN ": "48-49",
-    "Sector Industrial ": "Transportes y almacenamiento",
-    "Carrera COSAC 2025 ": "Comercio Exterior",
-    "Módulo / Actividad de Aprendizaje ": "Gestión de trámites aduanales y logística.",
-    "Habilidad de Desarrollo Sostenible": "Responsabilidad Normativa: Verificar cumplimiento de tratados sobre comercio de especies y residuos.",
-    "ODS Vinculado": "ODS 17: Alianzas para los objetivos",
-    "Meta Agenda 2030 ": "Meta 17.10: Promover un sistema de comercio multilateral basado en normas.",
-    "Indicador de Logro ": "Porcentaje de operaciones con cumplimiento total de normatividad."
-  },
-  {
-    "Código SCIAN ": "111",
-    "Sector Industrial ": "Agroindustria",
-    "Carrera COSAC 2025 ": "Agroindustria",
-    "Módulo / Actividad de Aprendizaje ": "Procesamiento de materias primas agrícolas.",
-    "Habilidad de Desarrollo Sostenible": "Pensamiento Sistémico: Aprovechamiento de subproductos orgánicos para composta o biogás.",
-    "ODS Vinculado": "ODS 2: Hambre Cero",
-    "Meta Agenda 2030 ": "Meta 2.4: Asegurar sostenibilidad de sistemas de producción de alimentos.",
-    "Indicador de Logro ": "Toneladas de residuos orgánicos transformados en subproductos útiles."
-  },
-  {
-    "Código SCIAN ": "112",
-    "Sector Industrial ": "Cría y explotación de animales",
-    "Carrera COSAC 2025 ": "Producción Pecuaria",
-    "Módulo / Actividad de Aprendizaje ": "Manejo de ganado y control de nutrición.",
-    "Habilidad de Desarrollo Sostenible": "Conciencia Ambiental: Manejo de excretas para evitar contaminación de mantos acuíferos.",
-    "ODS Vinculado": "ODS 15: Vida de ecosistemas terrestres",
-    "Meta Agenda 2030 ": "Meta 15.3: Luchar contra la desertificación y rehabilitar tierras.",
-    "Indicador de Logro ": "Porcentaje de desechos tratados correctamente."
-  },
-  {
-    "Código SCIAN ": "114",
-    "Sector Industrial ": "Pesca y acuicultura",
-    "Carrera COSAC 2025 ": "Acuacultura",
-    "Módulo / Actividad de Aprendizaje ": "Cultivo y engorda de especies acuáticas.",
-    "Habilidad de Desarrollo Sostenible": "Responsabilidad Normativa: Garantizar equilibrio químico del agua.",
-    "ODS Vinculado": "ODS 14: Vida submarina",
-    "Meta Agenda 2030 ": "Meta 14.1: Prevenir y reducir significativamente contaminación marina.",
-    "Indicador de Logro ": "Índice de calidad del agua en estanques de cultivo."
-  },
-  {
-    "Código SCIAN ": "325",
-    "Sector Industrial ": "Industria Química",
-    "Carrera COSAC 2025 ": "Laboratorista Químico",
-    "Módulo / Actividad de Aprendizaje ": "Preparación de soluciones y análisis de muestras.",
-    "Habilidad de Desarrollo Sostenible": "Responsabilidad Ética: Gestión de reactivos caducos para evitar vertidos tóxicos.",
-    "ODS Vinculado": "ODS 6: Agua limpia y saneamiento",
-    "Meta Agenda 2030 ": "Meta 6.3: Mejorar calidad del agua reduciendo contaminación química.",
-    "Indicador de Logro ": "Litros de soluciones neutralizadas antes de disposición."
-  },
-  {
-    "Código SCIAN ": "621",
-    "Sector Industrial ": "Servicios médicos de consulta externa",
-    "Carrera COSAC 2025 ": "Laboratorista Clínico",
-    "Módulo / Actividad de Aprendizaje ": "Toma de muestras y análisis de fluidos biológicos.",
-    "Habilidad de Desarrollo Sostenible": "Autocuidado y Prevención: Manejo riguroso de bioseguridad para prevenir brotes.",
-    "ODS Vinculado": "ODS 3: Salud y Bienestar",
-    "Meta Agenda 2030 ": "Meta 3.3: Combatir enfermedades transmisibles.",
-    "Indicador de Logro ": "Cero incidentes de contaminación cruzada en manejo de muestras."
-  },
-  {
-    "Código SCIAN ": "812",
-    "Sector Industrial ": "Servicios personales",
-    "Carrera COSAC 2025 ": "Cosmetología / Estética",
-    "Módulo / Actividad de Aprendizaje ": "Aplicación de tratamientos estéticos.",
-    "Habilidad de Desarrollo Sostenible": "Uso Ético de la Tecnología: Selección de productos libres de crueldad animal.",
-    "ODS Vinculado": "ODS 12: Producción y Consumo",
-    "Meta Agenda 2030 ": "Meta 12.6: Alentar a empresas a adoptar prácticas sostenibles.",
-    "Indicador de Logro ": "Porcentaje de insumos eco-friendly utilizados."
-  },
-  {
-    "Código SCIAN ": "321",
-    "Sector Industrial ": "Industria de la madera",
-    "Carrera COSAC 2025 ": "Ebanistería / Carpintería",
-    "Módulo / Actividad de Aprendizaje ": "Fabricación de muebles y estructuras.",
-    "Habilidad de Desarrollo Sostenible": "Conciencia Ambiental: Madera de fuentes con aprovechamiento forestal sustentable.",
-    "ODS Vinculado": "ODS 15: Vida de ecosistemas terrestres",
-    "Meta Agenda 2030 ": "Meta 15.2: Promover gestión sostenible de bosques.",
-    "Indicador de Logro ": "Porcentaje de madera con certificado de procedencia legal."
-  },
-  {
-    "Código SCIAN ": "325",
-    "Sector Industrial ": "Industria Química",
-    "Carrera COSAC 2025 ": "Laboratorio de Suelos",
-    "Módulo / Actividad de Aprendizaje ": "Pruebas de compactación y resistencia.",
-    "Habilidad de Desarrollo Sostenible": "Pensamiento Crítico: Evaluar estabilidad para prevenir desastres.",
-    "ODS Vinculado": "ODS 11: Ciudades Sostenibles",
-    "Meta Agenda 2030 ": "Meta 11.5: Reducir significativamente personas afectadas por desastres.",
-    "Indicador de Logro ": "Número de dictámenes técnicos que integran riesgos de erosión."
-  },
-  {
-    "Código SCIAN ": "115",
-    "Sector Industrial ": "Servicios agropecuarios",
-    "Carrera COSAC 2025 ": "Sistemas de Riego",
-    "Módulo / Actividad de Aprendizaje ": "Instalación y mantenimiento de infraestructura hidroagrícola.",
-    "Habilidad de Desarrollo Sostenible": "Pensamiento Sistémico: Implementar riego por goteo para maximizar uso de agua.",
-    "ODS Vinculado": "ODS 6: Agua limpia y saneamiento",
-    "Meta Agenda 2030 ": "Meta 6.4: Aumentar considerablemente uso eficiente de recursos hídricos.",
-    "Indicador de Logro ": "m3 de agua ahorrados por hectárea mediante tecnología."
-  },
-  {
-    "Código SCIAN ": "31-33",
-    "Sector Industrial ": "Industrias manufactureras",
-    "Carrera COSAC 2025 ": "Mantenimiento de Sistemas Electrónicos",
-    "Módulo / Actividad de Aprendizaje ": "Reparación de equipos de control industrial.",
-    "Habilidad de Desarrollo Sostenible": "Pensamiento Crítico: Diagnóstico a nivel componente para evitar reemplazo total.",
-    "ODS Vinculado": "ODS 12: Producción y Consumo",
-    "Meta Agenda 2030 ": "Meta 12.5: Reducir generación de desechos mediante reutilización.",
-    "Indicador de Logro ": "Número de equipos rehabilitados que evitaron ser desechados."
-  },
-  {
-    "Código SCIAN ": "2211",
-    "Sector Industrial ": "Generación de energía",
-    "Carrera COSAC 2025 ": "Fuentes Alternas de Energía",
-    "Módulo / Actividad de Aprendizaje ": "Instalación de sistemas eólicos y fotovoltaicos.",
-    "Habilidad de Desarrollo Sostenible": "Innovación Sostenible: Maximizar captación energética reduciendo impacto ambiental.",
-    "ODS Vinculado": "ODS 7: Energía Asequible",
-    "Meta Agenda 2030 ": "Meta 7.2: Aumentar proporción de energía renovable.",
-    "Indicador de Logro ": "kW/h generados por fuentes limpias instaladas."
-  },
-  {
-    "Código SCIAN ": "3364",
-    "Sector Industrial ": "Aeroespacial",
-    "Carrera COSAC 2025 ": "Aeronáutica",
-    "Módulo / Actividad de Aprendizaje ": "Mantenimiento de motores y estructuras.",
-    "Habilidad de Desarrollo Sostenible": "Pensamiento Crítico: Optimizar rendimiento para reducir quema de combustible.",
-    "ODS Vinculado": "ODS 9: Industria e Innovación",
-    "Meta Agenda 2030 ": "Meta 9.4: Modernizar infraestructura para que sea sostenible.",
-    "Indicador de Logro ": "Reducción estimada de litros de combustible por hora de vuelo."
-  },
-  {
-    "Código SCIAN ": "212",
-    "Sector Industrial ": "Minería",
-    "Carrera COSAC 2025 ": "Minería",
-    "Módulo / Actividad de Aprendizaje ": "Extracción y beneficio de minerales.",
-    "Habilidad de Desarrollo Sostenible": "Responsabilidad Normativa: Protocolos de recuperación de suelos y gestión de jales.",
-    "ODS Vinculado": "ODS 15: Vida de ecosistemas",
-    "Meta Agenda 2030 ": "Meta 15.1: Asegurar conservación y uso sostenible de ecosistemas terrestres.",
-    "Indicador de Logro ": "Hectáreas de suelo restauradas tras extracción."
-  },
-  {
-    "Código SCIAN ": "482",
-    "Sector Industrial ": "Transporte ferroviario",
-    "Carrera COSAC 2025 ": "Sistemas Ferroviarios",
-    "Módulo / Actividad de Aprendizaje ": "Mantenimiento de vías y tracción ferroviaria.",
-    "Habilidad de Desarrollo Sostenible": "Pensamiento Sistémico: Fomentar tren como transporte de baja emisión.",
-    "ODS Vinculado": "ODS 11: Ciudades Sostenibles",
-    "Meta Agenda 2030 ": "Meta 11.2: Acceso a sistemas de transporte seguros y sostenibles.",
-    "Indicador de Logro ": "Toneladas de carga movilizadas eficientemente."
-  },
-  {
-    "Código SCIAN ": "517",
-    "Sector Industrial ": "Telecomunicaciones",
-    "Carrera COSAC 2025 ": "Telecomunicaciones",
-    "Módulo / Actividad de Aprendizaje ": "Instalación de redes de fibra óptica.",
-    "Habilidad de Desarrollo Sostenible": "Uso Ético de la Tecnología: Garantizar conectividad en zonas rurales.",
-    "ODS Vinculado": "ODS 9: Industria e Innovación",
-    "Meta Agenda 2030 ": "Meta 9.c: Aumentar significativamente acceso a tecnología de información.",
-    "Indicador de Logro ": "Número de comunidades conectadas a la red digital."
-  },
-  {
-    "Código SCIAN ": "336",
-    "Sector Industrial ": "Fabricación de equipo de transporte",
-    "Carrera COSAC 2025 ": "Autotrónica",
-    "Módulo / Actividad de Aprendizaje ": "Diagnóstico de vehículos híbridos y eléctricos.",
-    "Habilidad de Desarrollo Sostenible": "Visión Prospectiva: Especializarse en transición hacia movilidad eléctrica.",
-    "ODS Vinculado": "ODS 13: Acción por el clima",
-    "Meta Agenda 2030 ": "Meta 13.3: Mejorar capacidad humana respecto a mitigación climática.",
-    "Indicador de Logro ": "Número de vehículos eléctricos mantenidos con éxito."
-  },
-  {
-    "Código SCIAN ": "5414",
-    "Sector Industrial ": "Diseño especializado",
-    "Carrera COSAC 2025 ": "Animación Digital",
-    "Módulo / Actividad de Aprendizaje ": "Creación de contenidos digitales y modelado 3D.",
-    "Habilidad de Desarrollo Sostenible": "Uso Ético de la Información: Contenidos que sensibilicen sobre inclusión y ambiente.",
-    "ODS Vinculado": "ODS 4: Educación de calidad",
-    "Meta Agenda 2030 ": "Meta 4.7: Conocimientos para promover desarrollo sostenible.",
-    "Indicador de Logro ": "Número de productos digitales con mensaje de impacto social."
-  },
-  {
-    "Código SCIAN ": "31-33",
-    "Sector Industrial ": "Manufactura",
-    "Carrera COSAC 2025 ": "Plásticos y Hule",
-    "Módulo / Actividad de Aprendizaje ": "Diseño de moldes para transformación.",
-    "Habilidad de Desarrollo Sostenible": "Pensamiento Crítico: Diseñar moldes que permitan uso de bioplásticos.",
-    "ODS Vinculado": "ODS 12: Producción y Consumo",
-    "Meta Agenda 2030 ": "Meta 12.4: Gestión ecológicamente racional de desechos químicos.",
-    "Indicador de Logro ": "Porcentaje de reducción de espesores de pared en diseño."
-  },
-  {
-    "Código SCIAN ": "311",
-    "Sector Industrial ": "Industria alimentaria",
-    "Carrera COSAC 2025 ": "Biotecnología",
-    "Módulo / Actividad de Aprendizaje ": "Procesos biológicos para mejora de productos.",
-    "Habilidad de Desarrollo Sostenible": "Visión Crítica: Bioseguridad en productos que no dañen biodiversidad.",
-    "ODS Vinculado": "ODS 15: Vida de ecosistemas",
-    "Meta Agenda 2030 ": "Meta 15.8: Prevenir introducción de especies invasoras.",
-    "Indicador de Logro ": "Número de protocolos de bioseguridad implementados."
-  },
-  {
-    "Código SCIAN ": "5413",
-    "Sector Industrial ": "Servicios de ingeniería",
-    "Carrera COSAC 2025 ": "Mantenimiento de Instalaciones",
-    "Módulo / Actividad de Aprendizaje ": "Mantenimiento integral de edificios.",
-    "Habilidad de Desarrollo Sostenible": "Pensamiento Sistémico: Sistemas de captación de agua pluvial.",
-    "ODS Vinculado": "ODS 6: Agua limpia y saneamiento",
-    "Meta Agenda 2030 ": "Meta 6.4: Aumentar uso eficiente de recursos hídricos.",
-    "Indicador de Logro ": "m3 de agua potable ahorrados mediante aguas grises."
-  },
-  {
-    "Código SCIAN ": "811",
-    "Sector Industrial ": "Servicios de reparación",
-    "Carrera COSAC 2025 ": "Refrigeración y Climatización",
-    "Módulo / Actividad de Aprendizaje ": "Instalación de aire acondicionado.",
-    "Habilidad de Desarrollo Sostenible": "Pensamiento Crítico: Uso de gases refrigerantes de bajo impacto.",
-    "ODS Vinculado": "ODS 7: Energía Asequible",
-    "Meta Agenda 2030 ": "Meta 7.3: Mejorar eficiencia energética en servicios.",
-    "Indicador de Logro ": "% de ahorro energético en sistema refrigerado."
-  },
-  {
-    "Código SCIAN ": "722",
-    "Sector Industrial ": "Servicios de preparación de alimentos",
-    "Carrera COSAC 2025 ": "Gastronomía / Cocina",
-    "Módulo / Actividad de Aprendizaje ": "Elaboración de menús y gestión de cocina.",
-    "Habilidad de Desarrollo Sostenible": "Conciencia Ambiental: Reducción de desperdicio de alimentos.",
-    "ODS Vinculado": "ODS 12: Producción y Consumo",
-    "Meta Agenda 2030 ": "Meta 12.3: Reducir desperdicio de alimentos per cápita.",
-    "Indicador de Logro ": "Kg de merma orgánica compostada."
-  },
-  {
-    "Código SCIAN ": "541",
-    "Sector Industrial ": "Servicios profesionales",
-    "Carrera COSAC 2025 ": "Asistente Directivo / Secretariado",
-    "Módulo / Actividad de Aprendizaje ": "Gestión administrativa y atención en oficinas.",
-    "Habilidad de Desarrollo Sostenible": "Uso Ético de la Información: Digitalización para Oficina Cero Papel.",
-    "ODS Vinculado": "ODS 12: Producción y Consumo",
-    "Meta Agenda 2030 ": "Meta 12.5: Reducir generación de desechos mediante prevención.",
-    "Indicador de Logro ": "Número de procesos digitalizados que eliminan papel."
-  },
-  {
-    "Código SCIAN ": "43-46",
-    "Sector Industrial ": "Comercio al por menor",
-    "Carrera COSAC 2025 ": "Ventas / Mercadotecnia",
-    "Módulo / Actividad de Aprendizaje ": "Promoción de productos y atención.",
-    "Habilidad de Desarrollo Sostenible": "Responsabilidad Ética: Promover consumo responsable y veracidad en etiquetas.",
-    "ODS Vinculado": "ODS 12: Producción y Consumo",
-    "Meta Agenda 2030 ": "Meta 12.8: Información y conocimientos para desarrollo sostenible.",
-    "Indicador de Logro ": "Número de campañas de Consumo Local realizadas."
-  },
-  {
-    "Código SCIAN ": "811",
-    "Sector Industrial ": "Reparación de artículos hogar",
-    "Carrera COSAC 2025 ": "Mantenimiento de Electrodomésticos",
-    "Módulo / Actividad de Aprendizaje ": "Diagnóstico de aparatos electrónicos.",
-    "Habilidad de Desarrollo Sostenible": "Pensamiento Crítico: Combatir obsolescencia programada.",
-    "ODS Vinculado": "ODS 12: Producción y Consumo",
-    "Meta Agenda 2030 ": "Meta 12.5: Fomentar reutilización antes del desecho.",
-    "Indicador de Logro ": "Cantidad de aparatos recuperados que no terminaron en rellenos."
-  },
-  {
-    "Código SCIAN ": "484",
-    "Sector Industrial ": "Autotransporte de carga",
-    "Carrera COSAC 2025 ": "Motores Diesel",
-    "Módulo / Actividad de Aprendizaje ": "Mantenimiento preventivo a motores camiones.",
-    "Habilidad de Desarrollo Sostenible": "Conciencia Ambiental: Control de opacidad y emisiones.",
-    "ODS Vinculado": "ODS 11: Ciudades Sostenibles",
-    "Meta Agenda 2030 ": "Meta 11.6: Prestar atención a calidad del aire.",
-    "Indicador de Logro ": "Reducción del % de emisiones de partículas sólidas."
-  },
-  {
-    "Código SCIAN ": "314",
-    "Sector Industrial ": "Fabricación de productos textiles",
-    "Carrera COSAC 2025 ": "Diseño de Modas / Sastrería",
-    "Módulo / Actividad de Aprendizaje ": "Diseño y confección de prendas.",
-    "Habilidad de Desarrollo Sostenible": "Responsabilidad Social: Aplicar principios de economía circular con retazos.",
-    "ODS Vinculado": "ODS 12: Producción y Consumo",
-    "Meta Agenda 2030 ": "Meta 12.2: Uso eficiente de recursos naturales.",
-    "Indicador de Logro ": "Porcentaje de material textil reciclado en nuevas colecciones."
-  },
-  {
-    "Código SCIAN ": "624",
-    "Sector Industrial ": "Servicios de asistencia social",
-    "Carrera COSAC 2025 ": "Puericultura / Cuidado Infantil",
-    "Módulo / Actividad de Aprendizaje ": "Asistencia en cuidado y desarrollo infantil.",
-    "Habilidad de Desarrollo Sostenible": "Autocuidado y Prevención: Educar en higiene y respeto al medio ambiente.",
-    "ODS Vinculado": "ODS 4: Educación de Calidad",
-    "Meta Agenda 2030 ": "Meta 4.2: Acceso a servicios de atención en primera infancia.",
-    "Indicador de Logro ": "Número de talleres sobre sostenibilidad impartidos."
-  },
-  {
-    "Código SCIAN ": "339",
-    "Sector Industrial ": "Otras industrias manufactureras",
-    "Carrera COSAC 2025 ": "Prótesis y Órtesis",
-    "Módulo / Actividad de Aprendizaje ": "Diseño y fabricación de apoyos mecánicos.",
-    "Habilidad de Desarrollo Sostenible": "Responsabilidad Ética: Inclusión social de personas con discapacidad.",
-    "ODS Vinculado": "ODS 10: Reducción de Desigualdades",
-    "Meta Agenda 2030 ": "Meta 10.2: Potenciar y promover inclusión social.",
-    "Indicador de Logro ": "Número de personas reintegradas socialmente."
-  },
-  {
-    "Código SCIAN ": "561",
-    "Sector Industrial ": "Servicios de apoyo a negocios",
-    "Carrera COSAC 2025 ": "Seguridad e Higiene Industrial",
-    "Módulo / Actividad de Aprendizaje ": "Supervisión de condiciones de seguridad.",
-    "Habilidad de Desarrollo Sostenible": "Autocuidado y Prevención: Identificación de riesgos laborales.",
-    "ODS Vinculado": "ODS 8: Trabajo Decente",
-    "Meta Agenda 2030 ": "Meta 8.8: Promover entorno de trabajo seguro.",
-    "Indicador de Logro ": "Tasa de reducción de accidentes en la empresa receptora."
-  },
-  {
-    "Código SCIAN ": "212",
-    "Sector Industrial ": "Minería",
-    "Carrera COSAC 2025 ": "Minería de Carbón",
-    "Módulo / Actividad de Aprendizaje ": "Extracción y seguridad en minas.",
-    "Habilidad de Desarrollo Sostenible": "Responsabilidad Normativa: Protocolos de ventilación para proteger salud.",
-    "ODS Vinculado": "ODS 8: Trabajo Decente",
-    "Meta Agenda 2030 ": "Meta 8.8: Promover entorno de trabajo seguro.",
-    "Indicador de Logro ": "Índice de calidad del aire en túneles."
-  },
-  {
-    "Código SCIAN ": "541",
-    "Sector Industrial ": "Servicios Técnicos",
-    "Carrera COSAC 2025 ": "Ciberseguridad",
-    "Módulo / Actividad de Aprendizaje ": "Implementación de protocolos de protección.",
-    "Habilidad de Desarrollo Sostenible": "Uso Ético de la Información: Proteger privacidad e integridad digital.",
-    "ODS Vinculado": "ODS 16: Paz y Justicia",
-    "Meta Agenda 2030 ": "Meta 16.10: Garantizar acceso público a información.",
-    "Indicador de Logro ": "Número de intentos de intrusión bloqueados."
-  },
-  {
-    "Código SCIAN ": "336",
-    "Sector Industrial ": "Fabricación de equipo",
-    "Carrera COSAC 2025 ": "Mantenimiento de Motores de Aviación",
-    "Módulo / Actividad de Aprendizaje ": "Inspección y servicio a turbinas.",
-    "Habilidad de Desarrollo Sostenible": "Pensamiento Crítico: Reducir huella de carbono por milla.",
-    "ODS Vinculado": "ODS 9: Industria e Innovación",
-    "Meta Agenda 2030 ": "Meta 9.4: Modernizar infraestructura sostenible.",
-    "Indicador de Logro ": "Reducción de consumo de combustible tras ajuste."
-  },
-  {
-    "Código SCIAN ": "312",
-    "Sector Industrial ": "Industria de las bebidas",
-    "Carrera COSAC 2025 ": "Vitivinicultura",
-    "Módulo / Actividad de Aprendizaje ": "Cultivo de vid y vinificación.",
-    "Habilidad de Desarrollo Sostenible": "Conciencia Ambiental: Implementar riego de precisión.",
-    "ODS Vinculado": "ODS 15: Vida de ecosistemas",
-    "Meta Agenda 2030 ": "Meta 15.1: Asegurar conservación y uso sostenible.",
-    "Indicador de Logro ": "Litros de agua utilizados por kilo cosechado."
-  },
-  {
-    "Código SCIAN ": "339",
-    "Sector Industrial ": "Manufactura",
-    "Carrera COSAC 2025 ": "Óptica / Optometría",
-    "Módulo / Actividad de Aprendizaje ": "Tallado de lentes y mantenimiento.",
-    "Habilidad de Desarrollo Sostenible": "Responsabilidad Social: Mejorar salud visual para acceso a educación.",
-    "ODS Vinculado": "ODS 3: Salud y Bienestar",
-    "Meta Agenda 2030 ": "Meta 3.8: Lograr acceso a servicios de salud esenciales.",
-    "Indicador de Logro ": "Número de personas con diagnóstico visual corregido."
-  },
-  {
-    "Código SCIAN ": "541",
-    "Sector Industrial ": "Servicios Técnicos",
-    "Carrera COSAC 2025 ": "Desarrollo de Videojuegos",
-    "Módulo / Actividad de Aprendizaje ": "Diseño de entornos digitales educativos.",
-    "Habilidad de Desarrollo Sostenible": "Pensamiento Sistémico: Simuladores que enseñen sobre crisis climática.",
-    "ODS Vinculado": "ODS 4: Educación de Calidad",
-    "Meta Agenda 2030 ": "Meta 4.7: Conocimientos para promover desarrollo sostenible.",
-    "Indicador de Logro ": "Nivel de retención de conocimientos tras simulador."
-  },
-  {
-    "Código SCIAN ": "336",
-    "Sector Industrial ": "Fabricación de equipo",
-    "Carrera COSAC 2025 ": "Construcción y Reparación Naval",
-    "Módulo / Actividad de Aprendizaje ": "Mantenimiento a cascos y sistemas.",
-    "Habilidad de Desarrollo Sostenible": "Conciencia Ambiental: Prevenir vertido de aceites en mar.",
-    "ODS Vinculado": "ODS 14: Vida Submarina",
-    "Meta Agenda 2030 ": "Meta 14.1: Reducir significativamente contaminación marina.",
-    "Indicador de Logro ": "Litros de contaminantes confinados y no vertidos."
-  },
-  {
-    "Código SCIAN ": "485",
-    "Sector Industrial ": "Transporte de pasajeros",
-    "Carrera COSAC 2025 ": "Transporte Ferroviario (Operación)",
-    "Módulo / Actividad de Aprendizaje ": "Control de tráfico y operación.",
-    "Habilidad de Desarrollo Sostenible": "Pensamiento Sistémico: Maximizar uso de tren para reducir congestión.",
-    "ODS Vinculado": "ODS 11: Ciudades Sostenibles",
-    "Meta Agenda 2030 ": "Meta 11.2: Acceso a sistemas de transporte sostenibles.",
-    "Indicador de Logro ": "Pasajeros transportados con menos emisiones."
-  },
-  {
-    "Código SCIAN ": "31-33",
-    "Sector Industrial ": "Manufactura",
-    "Carrera COSAC 2025 ": "Transformación de Metales",
-    "Módulo / Actividad de Aprendizaje ": "Fundición y forja de piezas.",
-    "Habilidad de Desarrollo Sostenible": "Innovación Sostenible: Recuperar calor de procesos térmicos.",
-    "ODS Vinculado": "ODS 9: Industria e Innovación",
-    "Meta Agenda 2030 ": "Meta 9.4: Aumentar eficiencia en uso de recursos.",
-    "Indicador de Logro ": "% de energía térmica recuperada en fundición."
-  },
-  {
-    "Código SCIAN ": "518",
-    "Sector Industrial ": "Procesamiento de datos",
-    "Carrera COSAC 2025 ": "Inteligencia Artificial",
-    "Módulo / Actividad de Aprendizaje ": "Análisis de grandes volúmenes de datos.",
-    "Habilidad de Desarrollo Sostenible": "Uso Ético de la Tecnología: Evitar sesgos algorítmicos discriminatorios.",
-    "ODS Vinculado": "ODS 10: Reducción de Desigualdades",
-    "Meta Agenda 2030 ": "Meta 10.3: Garantizar igualdad de oportunidades.",
-    "Indicador de Logro ": "Tasa de precisión del modelo en datos diversos."
-  },
-  {
-    "Código SCIAN ": "311",
-    "Sector Industrial ": "Alimentos",
-    "Carrera COSAC 2025 ": "Apicultura",
-    "Módulo / Actividad de Aprendizaje ": "Manejo de colmenas y producción.",
-    "Habilidad de Desarrollo Sostenible": "Conciencia Ambiental: Proteger polinizadores.",
-    "ODS Vinculado": "ODS 15: Vida de ecosistemas",
-    "Meta Agenda 2030 ": "Meta 15.5: Detener pérdida de biodiversidad.",
-    "Indicador de Logro ": "Tasa de supervivencia de colonias."
-  },
-  {
-    "Código SCIAN ": "327",
-    "Sector Industrial ": "Productos de minerales",
-    "Carrera COSAC 2025 ": "Cerámica Industrial",
-    "Módulo / Actividad de Aprendizaje ": "Fabricación de cerámica y porcelana.",
-    "Habilidad de Desarrollo Sostenible": "Pensamiento Crítico: Implementar hornos de alta eficiencia.",
-    "ODS Vinculado": "ODS 12: Producción y Consumo",
-    "Meta Agenda 2030 ": "Meta 12.5: Reducir generación de desechos mediante reciclado.",
-    "Indicador de Logro ": "Kg de material cerámico triturado y reutilizado."
-  },
-  {
-    "Código SCIAN ": "112",
-    "Sector Industrial ": "Pecuario",
-    "Carrera COSAC 2025 ": "Producción de Ovinos y Caprinos",
-    "Módulo / Actividad de Aprendizaje ": "Manejo de rebaños en zonas áridas.",
-    "Habilidad de Desarrollo Sostenible": "Visión Prospectiva: Pastoreo controlado para evitar erosión.",
-    "ODS Vinculado": "ODS 15: Vida de ecosistemas",
-    "Meta Agenda 2030 ": "Meta 15.3: Luchar contra desertificación.",
-    "Indicador de Logro ": "Hectáreas de suelo con cobertura vegetal mantenida."
-  },
-  {
-    "Código SCIAN ": "314",
-    "Sector Industrial ": "Textiles",
-    "Carrera COSAC 2025 ": "Acabado de Textiles",
-    "Módulo / Actividad de Aprendizaje ": "Procesos de teñido y estampado.",
-    "Habilidad de Desarrollo Sostenible": "Responsabilidad Normativa: Tratamiento de aguas con colorantes.",
-    "ODS Vinculado": "ODS 6: Agua Limpia",
-    "Meta Agenda 2030 ": "Meta 6.3: Mejorar calidad eliminando vertimiento químico.",
-    "Indicador de Logro ": "Reducción de carga química en agua residual."
-  },
-  {
-    "Código SCIAN ": "561",
-    "Sector Industrial ": "Apoyo a negocios",
-    "Carrera COSAC 2025 ": "Gestión de la Propiedad Industrial",
-    "Módulo / Actividad de Aprendizaje ": "Registro de patentes.",
-    "Habilidad de Desarrollo Sostenible": "Uso Ético de la Información: Protección del conocimiento nacional.",
-    "ODS Vinculado": "ODS 9: Industria e Innovación",
-    "Meta Agenda 2030 ": "Meta 9.5: Aumentar investigación científica.",
-    "Indicador de Logro ": "Número de registros facilitados para PyMEs locales."
-  },
-  {
-    "Código SCIAN ": "624",
-    "Sector Industrial ": "Asistencia Social",
-    "Carrera COSAC 2025 ": "Gerontología (Técnica)",
-    "Módulo / Actividad de Aprendizaje ": "Cuidado integral del adulto mayor.",
-    "Habilidad de Desarrollo Sostenible": "Responsabilidad Ética: Respeto a derechos humanos en la vejez.",
-    "ODS Vinculado": "ODS 3: Salud y Bienestar",
-    "Meta Agenda 2030 ": "Meta 3.4: Promover salud mental en todas las etapas.",
-    "Indicador de Logro ": "Índice de satisfacción del adulto mayor atendido."
-  },
-  {
-    "Código SCIAN ": "111",
-    "Sector Industrial ": "Agricultura",
-    "Carrera COSAC 2025 ": "Horticultura",
-    "Módulo / Actividad de Aprendizaje ": "Cultivo de hortalizas en invernadero.",
-    "Habilidad de Desarrollo Sostenible": "Pensamiento Sistémico: Controlar uso de fertilizantes nitrogenados.",
-    "ODS Vinculado": "ODS 2: Hambre Cero",
-    "Meta Agenda 2030 ": "Meta 2.4: Asegurar sostenibilidad de sistemas de producción.",
-    "Indicador de Logro ": "Rendimiento de cosecha por litro de agua aplicado."
-  },
-  {
-    "Código SCIAN ": "488",
-    "Sector Industrial ": "Apoyo al transporte",
-    "Carrera COSAC 2025 ": "Logística Aeroportuaria",
-    "Módulo / Actividad de Aprendizaje ": "Gestión de carga en terminales aéreas.",
-    "Habilidad de Desarrollo Sostenible": "Visión Prospectiva: Optimizar tiempos de carga.",
-    "ODS Vinculado": "ODS 13: Acción por el clima",
-    "Meta Agenda 2030 ": "Meta 13.2: Reducir emisiones de gases invernadero.",
-    "Indicador de Logro ": "Minutos de reducción en tiempos de espera."
-  },
-  {
-    "Código SCIAN ": "541",
-    "Sector Industrial ": "Servicios Técnicos",
-    "Carrera COSAC 2025 ": "Topografía Fotogramétrica (Drones)",
-    "Módulo / Actividad de Aprendizaje ": "Levantamiento mediante tecnología drones.",
-    "Habilidad de Desarrollo Sostenible": "Uso Ético de la Tecnología: Planeación urbana sin invadir ecosistemas.",
-    "ODS Vinculado": "ODS 11: Cities Sostenibles",
-    "Meta Agenda 2030 ": "Meta 11.a: Apoyar vínculos ambientales positivos entre zonas.",
-    "Indicador de Logro ": "% de precisión en delimitación de áreas protegidas."
-  },
-  {
-    "Código SCIAN ": "311",
-    "Sector Industrial ": "Alimentos",
-    "Carrera COSAC 2025 ": "Procesamiento de Productos Cárnicos",
-    "Módulo / Actividad de Aprendizaje ": "Corte y empaquetado.",
-    "Habilidad de Desarrollo Sostenible": "Responsabilidad Normativa: Garantizar inocuidad alimentaria.",
-    "ODS Vinculado": "ODS 12: Producción y Consumo",
-    "Meta Agenda 2030 ": "Meta 12.3: Reducir pérdidas en cadenas de suministro.",
-    "Indicador de Logro ": "Reducción en % de mermas por cadena de frío."
-  }
-];
-
-    // Función para llenar el listado desplegable automáticamente
-    function cargarListado() {
-        const select = document.getElementById('carreraSelect');
-        const carrerasUnicas = [...new Set(data.map(item => item["Carrera COSAC 2025 "].trim()))].sort();
-        
-        select.innerHTML = '<option value="">-- Selecciona una Carrera --</option>';
-        carrerasUnicas.forEach(carrera => {
-            const option = document.createElement('option');
-            option.value = carrera;
-            option.textContent = carrera;
-            select.appendChild(option);
-        });
-    }
-
-    function seleccionarCarrera() {
-        const carrera = document.getElementById('carreraSelect').value;
-        document.getElementById('searchInput').value = carrera;
-        searchData();
-    }
-
-    function searchData() {
-        const query = document.getElementById('searchInput').value.toLowerCase().trim();
-        const resultsArea = document.getElementById('resultsArea');
-        resultsArea.innerHTML = '';
-        
-        if (query === "") return;
-
-        const filtered = data.filter(row => {
-            return Object.values(row).some(val => String(val).toLowerCase().includes(query));
-        });
-
-        if (filtered.length > 0) {
-            filtered.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'result-card';
-                card.innerHTML = `
-                    <div class="ods-tag">${item['ODS Vinculado']}</div>
-                    <span class="label">Carrera (Perfil de Egreso)</span>
-                    <div class="content"><strong>${item['Carrera COSAC 2025 ']}</strong></div>
-                    <span class="label">Módulo / Actividad Técnica</span>
-                    <div class="content">${item['Módulo / Actividad de Aprendizaje ']}</div>
-                    <span class="label">Habilidad de Desarrollo Sostenible</span>
-                    <div class="content"><em>${item['Habilidad de Desarrollo Sostenible']}</em></div>
-                    <span class="label">Meta Agenda 2030</span>
-                    <div class="content">${item['Meta Agenda 2030 ']}</div>
-                    <span class="label" style="color:var(--secondary);">Indicador de Seguimiento</span>
-                    <div class="content" style="color: #d35400; font-weight:600;">${item['Indicador de Logro ']}</div>
-                `;
-                resultsArea.appendChild(card);
-            });
-        } else {
-            resultsArea.innerHTML = '<p class="status">No se encontraron resultados.</p>';
-        }
-    }
-
-    window.onload = cargarListado;
-
-    document.getElementById("searchInput").addEventListener("keypress", (e) => {
-        if (e.key === "Enter") searchData();
-    });
-</script>
-
-</body>
-</html>
+        {"Código SCIAN ":"31-33","Sector Industrial ":"Industrias manufactureras","Carrera COSAC 2025 ":"Mantenimiento Industrial","Módulo / Actividad de Aprendizaje ":"Mantenimiento preventivo a motores y sistemas de transmisión de potencia.","Habilidad de Desarrollo Sostenible":"Pensamiento Sistémico: Analizar la interconexión de los componentes para optimizar el consumo de energía.","ODS Vinculado":"ODS 7: Energía asequible y no contaminante","Meta Agenda 2030 ":"Meta 7.3: Duplicar la tasa mundial de mejora de la eficiencia energética.","Indicador de Logro ":"Porcentaje de reducción de consumo eléctrico en equipos intervenidos."},
+        {"Código SCIAN ":"31-33","Sector Industrial ":"Industrias manufactureras","Carrera COSAC 2025 ":"Mantenimiento Industrial","Módulo / Actividad de Aprendizaje ":"Gestión, recolección y etiquetado de aceites lubricantes y residuos químicos.","Habilidad de Desarrollo Sostenible":"Responsabilidad Normativa: Cumplir con los estándares legales y éticos en el manejo de desechos peligrosos.","ODS Vinculado":"ODS 12: Producción y consumo responsables","Meta Agenda 2030 ":"Meta 12.4: Gestión ecológicamente racional de los desechos químicos y de todos los desechos.","Indicador de Logro ":"Kilogramos de residuos peligrosos confinados bajo normativa ambiental."},
+        {"Código SCIAN ":"22","Sector Industrial ":"Generación, transmisión y distribución de energía eléctrica, agua y gas","Carrera COSAC 2025 ":"Mantenimiento Industrial","Módulo / Actividad de Aprendizaje ":"Detección y corrección de fugas en sistemas de tuberías de aire comprimido o vapor.","Habilidad de Desarrollo Sostenible":"Pensamiento Crítico: Evaluar las pérdidas de recursos y proponer mejoras para evitar el desperdicio.","ODS Vinculado":"ODS 9: Industria, innovación e infraestructura","Meta Agenda 2030 ":"Meta 9.4: Modernizar la infraestructura y reconvertir las industrias para que sean sostenibles.","Indicador de Logro ":"Metros cúbicos de recurso (aire/vapor/gas) recuperados por reparación."},
+        {"Código SCIAN ":"31-33","Sector Industrial ":"Industrias manufactureras","Carrera COSAC 2025 ":"Mantenimiento Industrial","Módulo / Actividad de Aprendizaje ":"Instalación y calibración de sensores para la automatización de sistemas de iluminación y clima.","Habilidad de Desarrollo Sostenible":"Conciencia Ambiental: Valorar el impacto de la tecnología en la preservación del entorno natural.","ODS Vinculado":"ODS 13: Acción por el clima","Meta Agenda 2030 ":"Meta 13.3: Mejorar la educación, la sensibilización y la capacidad humana respecto a la mitigación del cambio climático.","Indicador de Logro ":"Toneladas de CO2 evitadas mediante optimización del encendido automático."},
+        {"Código SCIAN ":"31-33","Sector Industrial ":"Industrias manufactureras","Carrera COSAC 2025 ":"Mantenimiento Industrial","Módulo / Actividad de Aprendizaje ":"Inspección de guardas de seguridad y dispositivos de paro de emergencia en maquinaria.","Habilidad de Desarrollo Sostenible":"Autocuidado y Prevención: Priorizar la seguridad humana como base del desarrollo social sostenible.","ODS Vinculado":"ODS 8: Trabajo decente y crecimiento económico","Meta Agenda 2030 ":"Meta 8.8: Proteger los derechos laborales y promover un entorno de trabajo seguro y sin riesgos.","Indicador de Logro ":"Número de actos inseguros detectados y corregidos en el área de trabajo."},
+        {"Código SCIAN ":"43-46","Sector Industrial ":"Comercio al por menor / servicios","Carrera COSAC 2025 ":"Admón. de Recursos Humanos","Módulo / Actividad de Aprendizaje ":"Elaboración de perfiles de puesto y convocatorias de reclutamiento inclusivo.","Habilidad de Desarrollo Sostenible":"Conciencia Crítica: Capacidad de identificar y eliminar sesgos o prejuicios en los procesos de selección.","ODS Vinculado":"ODS 5: Igualdad de Género","Meta Agenda 2030 ":"Meta 5.5: Asegurar la participación plena y efectiva de las mujeres y la igualdad de oportunidades de liderazgo.","Indicador de Logro ":"Porcentaje de mujeres o grupos vulnerables integrados en las ternas de selección."},
+        {"Código SCIAN ":"31-33","Sector Industrial ":"Industrias manufactureras","Carrera COSAC 2025 ":"Admón. de Recursos Humanos","Módulo / Actividad de Aprendizaje ":"Gestión de nóminas, prestaciones y verificación de contratos laborales legales.","Habilidad de Desarrollo Sostenible":"Responsabilidad Normativa: Garantizar que todos los procesos administrativos cumplan con los derechos humanos y laborales.","ODS Vinculado":"ODS 8: Trabajo decente y crecimiento económico","Meta Agenda 2030 ":"Meta 8.5: Lograr el empleo pleno y productivo y el trabajo decente para todas las mujeres y los hombres.","Indicador de Logro ":"Índice de cumplimiento de prestaciones de ley y equidad salarial (mismo nivel, mismo sueldo)."},
+        {"Código SCIAN ":"93","Sector Industrial ":"Actividades de gobierno y organismos","Carrera COSAC 2025 ":"Admón. de Recursos Humanos","Módulo / Actividad de Aprendizaje ":"Diseño y ejecución de planes de capacitación técnica y desarrollo humano.","Habilidad de Desarrollo Sostenible":"Visión Prospectiva: Planificar la formación del personal anticipando las necesidades futuras de la sociedad.","ODS Vinculado":"ODS 4: Educación de calidad","Meta Agenda 2030 ":"Meta 4.4: Aumentar el número de jóvenes y adultos que tienen las competencias necesarias para acceder al empleo.","Indicador de Logro ":"Promedio de horas de capacitación técnica recibidas por trabajador al año."},
+        {"Código SCIAN ":"43-46","Sector Industrial ":"Comercio al por menor / servicios","Carrera COSAC 2025 ":"Admón. de Recursos Humanos","Módulo / Actividad de Aprendizaje ":"Implementación de programas de bienestar, clima organizacional y salud mental.","Habilidad de Desarrollo Sostenible":"Autocuidado y Prevención: Promover entornos de trabajo que protejan la salud física y psicológica del colaborador.","ODS Vinculado":"ODS 3: Salud y Bienestar","Meta Agenda 2030 ":"Meta 3.4: Reducir la mortalidad prematura y promover la salud mental y el bienestar.","Indicador de Logro ":"Porcentaje de reducción de rotación de personal o niveles de estrés laboral reportados."},
+        {"Código SCIAN ":"31-33","Sector Industrial ":"Industrias manufactureras","Carrera COSAC 2025 ":"Admón. de Recursos Humanos","Módulo / Actividad de Aprendizaje ":"Comunicación interna sobre políticas de ética, anticorrupción y valores empresariales.","Habilidad de Desarrollo Sostenible":"Uso Ético de la Información: Manejar con transparencia y honestidad la comunicación oficial de la organización.","ODS Vinculado":"ODS 16: Paz, justicia e instituciones sólidas","Meta Agenda 2030 ":"Meta 16.5: Reducir considerablemente la corrupción y el soborno en todas sus formas.","Indicador de Logro ":"Número de empleados capacitados en el código de ética y denuncias recibidas/atendidas."},
+        {"Código SCIAN ":"31-33","Sector Industrial ":"Industrias manufactureras","Carrera COSAC 2025 ":"Mecatrónica","Módulo / Actividad de Aprendizaje ":"Programación y ajuste de sistemas automatizados y robóticos.","Habilidad de Desarrollo Sostenible":"Innovación Sostenible: Optimizar ciclos de producción para reducir el tiempo de operación y consumo energético.","ODS Vinculado":"ODS 9: Industria e Innovación","Meta Agenda 2030 ":"Meta 9.4: Reconvertir industrias para que sean sostenibles con procesos limpios.","Indicador de Logro ":"Reducción de kW/h por ciclo de producción automatizado."},
+        {"Código SCIAN ":"23","Sector Industrial ":"Construcción","Carrera COSAC 2025 ":"Construcción","Módulo / Actividad de Aprendizaje ":"Supervisión de obra y manejo de materiales de construcción.","Habilidad de Desarrollo Sostenible":"Conciencia Ambiental: Gestionar la disposición de escombro y promover el uso de materiales de bajo impacto.","ODS Vinculado":"ODS 11: Ciudades Sostenibles","Meta Agenda 2030 ":"Meta 11.6: Reducir el impacto ambiental negativo de las ciudades (gestión de desechos).","Indicador de Logro ":"Toneladas de residuos de construcción reciclados o reutilizados."},
+        {"Código SCIAN ":"31-33","Sector Industrial ":"Industrias manufactureras","Carrera COSAC 2025 ":"Producción Industrial de Alimentos","Módulo / Actividad de Aprendizaje ":"Control de calidad en líneas de procesamiento de alimentos.","Habilidad de Desarrollo Sostenible":"Uso Ético de Recursos: Implementar protocolos para evitar el desperdicio de materia prima alimentaria.","ODS Vinculado":"ODS 2: Hambre Cero","Meta Agenda 2030 ":"Meta 2.4: Asegurar la sostenibilidad de los sistemas de producción de alimentos.","Indicador de Logro ":"Kg de merma de alimento recuperada para subprocesos."},
+        {"Código SCIAN ":"54","Sector Industrial ":"Servicios Profesionales","Carrera COSAC 2025 ":"Soporte y Mantenimiento de Cómputo","Módulo / Actividad de Aprendizaje ":"Mantenimiento preventivo de hardware y gestión de equipos obsoletos.","Habilidad de Desarrollo Sostenible":"Responsabilidad Normativa: Aplicar protocolos de disposición de basura electrónica (e-waste).","ODS Vinculado":"ODS 12: Producción y Consumo","Meta Agenda 2030 ":"Meta 12.5: Reducir la generación de desechos mediante el reciclado y la reutilización.","Indicador de Logro ":"Número de componentes electrónicos donados o reciclados correctamente."},
+        {"Código SCIAN ":"31-33","Sector Industrial ":"Industrias manufactureras","Carrera COSAC 2025 ":"Electricidad","Módulo / Actividad de Aprendizaje ":"Instalación y mantenimiento de tableros de control y alumbrado.","Habilidad de Desarrollo Sostenible":"Pensamiento Crítico: Proponer el cambio a tecnologías LED y sistemas de control de iluminación eficiente.","ODS Vinculado":"ODS 7: Energía Asequible","Meta Agenda 2030 ":"Meta 7.3: Duplicar la tasa de mejora de la eficiencia energética.","Indicador de Logro ":"% de ahorro en la factura eléctrica del área intervenida."},
+        {"Código SCIAN ":"323","Sector Industrial ":"Impresión e Industrias Conexas","Carrera COSAC 2025 ":"Diseño Gráfico / Impresión","Módulo / Actividad de Aprendizaje ":"Preparación de archivos para impresión y selección de sustratos.","Habilidad de Desarrollo Sostenible":"Pensamiento Sistémico: Evaluar el impacto ambiental de tintas y tipos de papel (certificaciones forestales).","ODS Vinculado":"ODS 12: Producción y Consumo","Meta Agenda 2030 ":"Meta 12.2: Lograr la gestión sostenible y el uso eficiente de los recursos naturales.","Indicador de Logro ":"% de uso de papeles reciclados o tintas base agua/soya."},
+        {"Código SCIAN ":"72","Sector Industrial ":"Servicios de Alojamiento y Alimentos","Carrera COSAC 2025 ":"Turismo / Hospitalidad","Módulo / Actividad de Aprendizaje ":"Atención al huésped y servicios locales.","Habilidad de Desarrollo Sostenible":"Visión Prospectiva: Promover el turismo responsable que respete la cultura local.","ODS Vinculado":"ODS 8: Trabajo Decente","Meta Agenda 2030 ":"Meta 8.9: Promover un turismo sostenible que cree puestos de trabajo.","Indicador de Logro ":"Número de proveedores locales integrados en servicios turísticos."},
+        {"Código SCIAN ":"31-33","Sector Industrial ":"Industrias manufactureras","Carrera COSAC 2025 ":"Soldadura Industrial","Módulo / Actividad de Aprendizaje ":"Aplicación de procesos de soldadura en estructuras metálicas.","Habilidad de Desarrollo Sostenible":"Autocuidado y Prevención: Uso estricto de EPP y sistemas de extracción de humos.","ODS Vinculado":"ODS 3: Salud y Bienestar","Meta Agenda 2030 ":"Meta 3.9: Reducir enfermedades producidas por productos químicos y contaminación.","Indicador de Logro ":"Horas de exposición a humos metálicos reducidas por ventilación."},
+        {"Código SCIAN ":"31-33","Sector Industrial ":"Industrias manufactureras","Carrera COSAC 2025 ":"Electrónica","Módulo / Actividad de Aprendizaje ":"Diagnóstico y reparación de tarjetas y componentes electrónicos.","Habilidad de Desarrollo Sostenible":"Pensamiento Crítico: Fomentar la cultura de la reparación sobre el reemplazo (economía circular).","ODS Vinculado":"ODS 9: Industria e Innovación","Meta Agenda 2030 ":"Meta 9.b: Apoyar el desarrollo de tecnologías y la investigación.","Indicador de Logro ":"Aumento en el tiempo de vida útil (años) del equipo reparado."},
+        {"Código SCIAN ":"62","Sector Industrial ":"Servicios de Salud","Carrera COSAC 2025 ":"Enfermería Técnica","Módulo / Actividad de Aprendizaje ":"Aplicación de cuidados de enfermería y manejo de RPBI.","Habilidad de Desarrollo Sostenible":"Responsabilidad Ética: Clasificación correcta de residuos peligrosos biológico-infecciosos.","ODS Vinculado":"ODS 3: Salud y Bienestar","Meta Agenda 2030 ":"Meta 3.d: Reforzar la gestión de riesgos para la salud.","Indicador de Logro ":"Tasa de incidentes por punción o manejo inadecuado de residuos biológicos."},
+        {"Código SCIAN ":"336","Sector Industrial ":"Fabricación de equipo de transporte","Carrera COSAC 2025 ":"Sistemas Automotrices","Módulo / Actividad de Aprendizaje ":"Diagnóstico y mantenimiento de sistemas de control de emisiones y motores.","Habilidad de Desarrollo Sostenible":"Conciencia Ambiental: Asegurar que el vehículo cumpla con normas de emisiones.","ODS Vinculado":"ODS 11: Ciudades Sostenibles","Meta Agenda 2030 ":"Meta 11.6: Reducir el impacto ambiental negativo prestando atención a la calidad del aire.","Indicador de Logro ":"Gramos de CO2/km reducidos tras la afinación y mantenimiento."},
+        {"Código SCIAN ":"325","Sector Industrial ":"Industria Química","Carrera COSAC 2025 ":"Química Industrial","Módulo / Actividad de Aprendizaje ":"Análisis de muestras y control de procesos en reactores químicos.","Habilidad de Desarrollo Sostenible":"Responsabilidad Normativa: Garantizar el tratamiento de aguas residuales.","ODS Vinculado":"ODS 6: Agua limpia y saneamiento","Meta Agenda 2030 ":"Meta 6.3: Mejorar la calidad del agua reduciendo la contaminación.","Indicador de Logro ":"Porcentaje de neutralización de PH en efluentes antes de descarga."},
+        {"Código SCIAN ":"326","Sector Industrial ":"Industria del plástico y hule","Carrera COSAC 2025 ":"Transformación de Plásticos","Módulo / Actividad de Aprendizaje ":"Configuración de máquinas de inyección y soplado de polímeros.","Habilidad de Desarrollo Sostenible":"Innovación Sostenible: Optimizar el uso de resinas recicladas y reducir el scrap.","ODS Vinculado":"ODS 12: Producción y Consumo","Meta Agenda 2030 ":"Meta 12.5: Reducir la generación de desechos mediante el reciclado.","Indicador de Logro ":"Porcentaje de material recuperado y reincorporado al ciclo."},
+        {"Código SCIAN ":"541","Sector Industrial ":"Servicios profesionales","Carrera COSAC 2025 ":"Administración de Empresas","Módulo / Actividad de Aprendizaje ":"Gestión operativa y optimización de recursos.","Habilidad de Desarrollo Sostenible":"Pensamiento Crítico: Evaluar la cadena de suministro para elegir proveedores éticos.","ODS Vinculado":"ODS 8: Trabajo Decente","Meta Agenda 2030 ":"Meta 8.3: Promover políticas que apoyen las actividades productivas y PyMEs.","Indicador de Logro ":"Número de proveedores locales o con distintivos sociales integrados."},
+        {"Código SCIAN ":"311","Sector Industrial ":"Industria alimentaria","Carrera COSAC 2025 ":"Conservación de Alimentos","Módulo / Actividad de Aprendizaje ":"Aplicación de métodos de conservación.","Habilidad de Desarrollo Sostenible":"Visión Prospectiva: Extender la vida útil para reducir pérdida de alimentos.","ODS Vinculado":"ODS 2: Hambre Cero","Meta Agenda 2030 ":"Meta 2.c: Adoptar medidas para el buen funcionamiento de mercados alimentarios.","Indicador de Logro ":"Días de vida de anaquel ganados mediante procesos eficientes."},
+        {"Código SCIAN ":"237","Sector Industrial ":"Construcción de obras de ingeniería","Carrera COSAC 2025 ":"Topografía","Módulo / Actividad de Aprendizaje ":"Levantamiento de terrenos para proyectos de infraestructura.","Habilidad de Desarrollo Sostenible":"Conciencia Crítica: Identificar zonas de riesgo ambiental o mantos acuíferos.","ODS Vinculado":"ODS 15: Vida de ecosistemas terrestres","Meta Agenda 2030 ":"Meta 15.1: Asegurar la conservación y uso sostenible de ecosistemas terrestres.","Indicador de Logro ":"Hectáreas de zonas de preservación identificadas en planos."},
+        {"Código SCIAN ":"332","Sector Industrial ":"Fabricación de productos metálicos","Carrera COSAC 2025 ":"Máquinas Herramienta","Módulo / Actividad de Aprendizaje ":"Mecanizado de piezas por fresado o CNC.","Habilidad de Desarrollo Sostenible":"Pensamiento Sistémico: Recuperación de viruta metálica y fluidos de corte.","ODS Vinculado":"ODS 12: Producción y Consumo","Meta Agenda 2030 ":"Meta 12.4: Lograr gestión racional de desechos químicos y sólidos.","Indicador de Logro ":"Kilogramos de rebaba metálica enviada a reciclaje."},
+        {"Código SCIAN ":"522","Sector Industrial ":"Instituciones financieras","Carrera COSAC 2025 ":"Banca y Finanzas","Módulo / Actividad de Aprendizaje ":"Gestión de servicios financieros y atención a clientes.","Habilidad de Desarrollo Sostenible":"Uso Ético de la Información: Asegurar transparencia y prevención de fraudes.","ODS Vinculado":"ODS 16: Paz y Justicia","Meta Agenda 2030 ":"Meta 16.5: Reducir considerablemente la corrupción y el soborno.","Indicador de Logro ":"Tasa de resolución de quejas por falta de transparencia."},
+        {"Código SCIAN ":"313","Sector Industrial ":"Industria Textil","Carrera COSAC 2025 ":"Industria del Vestido","Módulo / Actividad de Aprendizaje ":"Corte, confección y diseño de prendas.","Habilidad de Desarrollo Sostenible":"Conciencia Ambiental: Aprovechamiento máximo de lienzos para reducir desperdicio.","ODS Vinculado":"ODS 12: Producción y Consumo","Meta Agenda 2030 ":"Meta 12.2: Lograr gestión sostenible y uso eficiente de recursos naturales.","Indicador de Logro ":"Metros lineales de desperdicio textil reducidos por patronaje optimizado."},
+        {"Código SCIAN ":"48-49","Sector Industrial ":"Transportes y almacenamiento","Carrera COSAC 2025 ":"Comercio Exterior","Módulo / Actividad de Aprendizaje ":"Gestión de trámites aduanales y logística.","Habilidad de Desarrollo Sostenible":"Responsabilidad Normativa: Verificar cumplimiento de tratados sobre comercio de especies y residuos.","ODS Vinculado":"ODS 17: Alianzas para los objetivos","Meta Agenda 2030 ":"Meta 17.10: Promover un sistema de comercio multilateral basado en normas.","Indicador de Logro ":"Porcentaje de operaciones con cumplimiento total de normatividad."},
+        {"Código SCIAN ":"111","Sector Industrial ":"Agroindustria","Carrera COSAC 2025 ":"Agroindustria","Módulo / Actividad de Aprendizaje ":"Procesamiento de materias primas agrícolas.","Habilidad de Desarrollo Sostenible":"Pensamiento Sistémico: Aprovechamiento de subproductos orgánicos para composta o biogás.","ODS Vinculado":"ODS 2: Hambre Cero","Meta Agenda 2030 ":"Meta 2.4: Asegurar sostenibilidad de sistemas de producción de alimentos.","Indicador de Logro ":"Toneladas de residuos orgánicos transformados en subproductos útiles."},
+        {"Código SCIAN ":"112","Sector Industrial ":"Cría y explotación de animales","Carrera COSAC 2025 ":"Producción Pecuaria","Módulo / Actividad de Aprendizaje ":"Manejo de ganado y control de nutrición.","Habilidad de Desarrollo Sostenible":"Conciencia Ambiental: Manejo de excretas para evitar contaminación de mantos acuíferos.","ODS Vinculado":"ODS 15: Vida de ecosistemas terrestres","Meta Agenda 2030 ":"Meta 15.3: Luchar contra la desertificación y rehabilitar tierras.","Indicador de Logro ":"Porcentaje de desechos tratados correctamente."},
+        {"Código SCIAN ":"114","Sector Industrial ":"Pesca y acuicultura","Carrera COSAC 2025 ":"Acuacultura","Módulo / Actividad de Aprendizaje ":"Cultivo y engorda de especies acuáticas.","Habilidad de Desarrollo Sostenible":"Responsabilidad Normativa: Garantizar equilibrio químico del agua.","ODS Vinculado":"ODS 14: Vida submarina","Meta Agenda 2030 ":"Meta 14.1: Prevenir y reducir significativamente contaminación marina.","Indicador de Logro ":"Índice de calidad del agua en estanques de cultivo."},
+        {"Código SCIAN ":"325","Sector Industrial ":"Industria Química","Carrera COSAC 2025 ":"Laboratorista Químico","Módulo / Actividad de Aprendizaje ":"Preparación de soluciones y análisis de muestras.","Habilidad de Desarrollo Sostenible":"Responsabilidad Ética: Gestión de reactivos caducos para evitar vertidos tóxicos.","ODS Vinculado":"ODS 6: Agua limpia y saneamiento","Meta Agenda 2030 ":"Meta 6.3: Mejorar calidad del agua reduciendo contaminación química.","Indicador de Logro ":"Litros de soluciones neutralizadas antes de disposición."},
+        {"Código SCIAN ":"621","Sector Industrial ":"Servicios médicos de consulta externa","Carrera COSAC 2025 ":"Laboratorista Clínico","Módulo / Actividad de Aprendizaje ":"Toma de muestras y análisis de fluidos biológicos.","Habilidad de Desarrollo Sostenible":"Autocuidado y Prevención: Manejo riguroso de bioseguridad para prevenir brotes.","ODS Vinculado":"ODS 3: Salud y Bienestar","Meta Agenda 2030 ":"Meta 3.3: Combatir enfermedades transmisibles.","Indicador de Logro ":"Cero incidentes de contaminación cruzada en manejo de muestras."},
+        {"Código SCIAN ":"812","Sector Industrial ":"Servicios personales","Carrera COSAC 2025 ":"Cosmetología / Estética","Módulo / Actividad de Aprendizaje ":"Aplicación de tratamientos estéticos.","Habilidad de Desarrollo Sostenible":"Uso Ético de la Tecnología: Selección de productos libres de crueldad animal.","ODS Vinculado":"ODS 12: Producción y Consumo","Meta Agenda 2030 ":"Meta 12.6: Alentar a empresas a adoptar prácticas sostenibles.","Indicador de Logro ":"Porcentaje de insumos eco-friendly utilizados."},
+        {"Código SCIAN ":"321","Sector Industrial ":"Industria de la madera","Carrera COSAC 2025 ":"Ebanistería / Carpintería","Módulo / Actividad de Aprendizaje ":"Fabricación de
