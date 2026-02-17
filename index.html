@@ -2,136 +2,36 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sostenibilidad Dual - COSAC 2025</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>PRUEBA RÁPIDA</title>
     <style>
-        :root { --primary: #1a5cad; --secondary: #28a745; --dark: #2d3436; --light: #f4f7f6; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--light); color: var(--dark); margin: 0; padding: 20px; }
-        .container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
-        h1 { color: var(--primary); text-align: center; font-size: 24px; }
-        .search-container { display: flex; gap: 10px; margin-bottom: 20px; }
-        .search-box { flex-grow: 1; padding: 12px; border: 2px solid #dfe6e9; border-radius: 8px; font-size: 16px; }
-        button { padding: 12px 20px; background: var(--primary); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
-        button:hover { background: #144a8e; }
-        .result-card { border: 1px solid #dfe6e9; padding: 20px; border-radius: 8px; margin-top: 15px; border-left: 6px solid var(--primary); background: #fff; animation: fadeIn 0.3s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .ods-tag { display: inline-block; background: var(--secondary); color: white; padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; margin-bottom: 8px; }
-        .label { font-weight: 700; color: var(--primary); display: block; margin-top: 12px; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; }
-        .content { font-size: 15px; line-height: 1.4; margin-top: 4px; color: #2d3436; }
-        .status { text-align: center; color: #636e72; font-size: 14px; margin-bottom: 10px; }
+        body { font-family: sans-serif; padding: 20px; }
+        .card { border: 1px solid #ccc; padding: 15px; margin-top: 10px; border-left: 5px solid blue; }
     </style>
 </head>
 <body>
+    <h1>Prueba de Buscador</h1>
+    <input type="text" id="searchInput" placeholder="Escribe Mecatronica...">
+    <button onclick="searchData()">BUSCAR</button>
+    <div id="results"></div>
 
-<div class="container">
-    <h1>Buscador de Sostenibilidad Dual</h1>
-    <p class="status">✅ Base de datos local cargada correctamente</p>
-    
-    <div class="search-container">
-        <input type="text" id="searchInput" class="search-box" placeholder="Ej: Mecatrónica, Contabilidad, Soldadura...">
-        <button onclick="searchData()">BUSCAR</button>
-    </div>
-    
-    <div id="resultsArea"></div>
-</div>
+    <script>
+        const data = [
+            { "Carrera": "Mecatrónica", "ODS": "ODS 9", "Meta": "9.4" },
+            { "Carrera": "Contabilidad", "ODS": "ODS 16", "Meta": "16.5" },
+            { "Carrera": "Enfermería", "ODS": "ODS 3", "Meta": "3.3" }
+        ];
 
-<script>
-    // Tu base de datos completa integrada directamente
-    const data = [
-  {
-    "Código SCIAN ": "31-33",
-    "Sector Industrial ": "Industrias manufactureras",
-    "Carrera COSAC 2025 ": "Mantenimiento Industrial",
-    "Módulo / Actividad de Aprendizaje ": "Mantenimiento preventivo a motores y sistemas de transmisión de potencia.",
-    "Habilidad de Desarrollo Sostenible": "Pensamiento Sistémico: Analizar la interconexión de los componentes para optimizar el consumo de energía.",
-    "ODS Vinculado": "ODS 7: Energía asequible y no contaminante",
-    "Meta Agenda 2030 ": "Meta 7.3: Duplicar la tasa mundial de mejora de la eficiencia energética.",
-    "Indicador de Logro ": "Porcentaje de reducción de consumo eléctrico en equipos intervenidos."
-  },
-  {
-    "Código SCIAN ": "31-33",
-    "Sector Industrial ": "Industrias manufactureras",
-    "Carrera COSAC 2025 ": "Mantenimiento Industrial",
-    "Módulo / Actividad de Aprendizaje ": "Gestión, recolección y etiquetado de aceites lubricantes y residuos químicos.",
-    "Habilidad de Desarrollo Sostenible": "Responsabilidad Normativa: Cumplir con los estándares legales y éticos en el manejo de desechos peligrosos.",
-    "ODS Vinculado": "ODS 12: Producción y consumo responsables",
-    "Meta Agenda 2030 ": "Meta 12.4: Gestión ecológicamente racional de los desechos químicos y de todos los desechos.",
-    "Indicador de Logro ": "Kilogramos de residuos peligrosos confinados bajo normativa ambiental."
-  },
-  {
-    "Código SCIAN ": "22",
-    "Sector Industrial ": "Generación, transmisión y distribución de energía eléctrica, agua y gas",
-    "Carrera COSAC 2025 ": "Mantenimiento Industrial",
-    "Módulo / Actividad de Aprendizaje ": "Detección y corrección de fugas en sistemas de tuberías de aire comprimido o vapor.",
-    "Habilidad de Desarrollo Sostenible": "Pensamiento Crítico: Evaluar las pérdidas de recursos y proponer mejoras para evitar el desperdicio.",
-    "ODS Vinculado": "ODS 9: Industria, innovación e infraestructura",
-    "Meta Agenda 2030 ": "Meta 9.4: Modernizar la infraestructura y reconvertir las industrias para que sean sostenibles.",
-    "Indicador de Logro ": "Metros cúbicos de recurso (aire/vapor/gas) recuperados por reparación."
-  },
-  {
-    "Código SCIAN ": "31-33",
-    "Sector Industrial ": "Industrias manufactureras",
-    "Carrera COSAC 2025 ": "Mantenimiento Industrial",
-    "Módulo / Actividad de Aprendizaje ": "Instalación y calibración de sensores para la automatización de sistemas de iluminación y clima.",
-    "Habilidad de Desarrollo Sostenible": "Conciencia Ambiental: Valorar el impacto de la tecnología en la preservación del entorno natural.",
-    "ODS Vinculado": "ODS 13: Acción por el clima",
-    "Meta Agenda 2030 ": "Meta 13.3: Mejorar la educación, la sensibilización y la capacidad humana respecto a la mitigación del cambio climático.",
-    "Indicador de Logro ": "Toneladas de CO2 evitadas mediante optimización del encendido automático."
-  },
-  {
-    "Código SCIAN ": "31-33",
-    "Sector Industrial ": "Industrias manufactureras",
-    "Carrera COSAC 2025 ": "Mantenimiento Industrial",
-    "Módulo / Actividad de Aprendizaje ": "Inspección de guardas de seguridad y dispositivos de paro de emergencia en maquinaria.",
-    "Habilidad de Desarrollo Sostenible": "Autocuidado y Prevención: Priorizar la seguridad humana como base del desarrollo social sostenible.",
-    "ODS Vinculado": "ODS 8: Trabajo decente y crecimiento económico",
-    "Meta Agenda 2030 ": "Meta 8.8: Proteger los derechos laborales y promover un entorno de trabajo seguro y sin riesgos.",
-    "Indicador de Logro ": "Número de actos inseguros detectados y corregidos en el área de trabajo."
-  },
-  {
-    "Código SCIAN ": "43-46",
-    "Sector Industrial ": "Comercio al por menor / servicios",
-    "Carrera COSAC 2025 ": "Admón. de Recursos Humanos",
-    "Módulo / Actividad de Aprendizaje ": "Elaboración de perfiles de puesto y convocatorias de reclutamiento inclusivo.",
-    "Habilidad de Desarrollo Sostenible": "Conciencia Crítica: Capacidad de identificar y eliminar sesgos o prejuicios en los procesos de selección.",
-    "ODS Vinculado": "ODS 5: Igualdad de Género",
-    "Meta Agenda 2030 ": "Meta 5.5: Asegurar la participación plena y efectiva de las mujeres y la igualdad de oportunidades de liderazgo.",
-    "Indicador de Logro ": "Porcentaje de mujeres o grupos vulnerables integrados en las ternas de selección."
-  },
-  {
-    "Código SCIAN ": "31-33",
-    "Sector Industrial ": "Industrias manufactureras",
-    "Carrera COSAC 2025 ": "Admón. de Recursos Humanos",
-    "Módulo / Actividad de Aprendizaje ": "Gestión de nóminas, prestaciones y verificación de contratos laborales legales.",
-    "Habilidad de Desarrollo Sostenible": "Responsabilidad Normativa: Garantizar que todos los procesos administrativos cumplan con los derechos humanos y laborales.",
-    "ODS Vinculado": "ODS 8: Trabajo decente y crecimiento económico",
-    "Meta Agenda 2030 ": "Meta 8.5: Lograr el empleo pleno y productivo y el trabajo decente para todas las mujeres y los hombres.",
-    "Indicador de Logro ": "Índice de cumplimiento de prestaciones de ley y equidad salarial (mismo nivel, mismo sueldo)."
-  },
-  {
-    "Código SCIAN ": "93",
-    "Sector Industrial ": "Actividades de gobierno y organismos",
-    "Carrera COSAC 2025 ": "Admón. de Recursos Humanos",
-    "Módulo / Actividad de Aprendizaje ": "Diseño y ejecución de planes de capacitación técnica y desarrollo humano.",
-    "Habilidad de Desarrollo Sostenible": "Visión Prospectiva: Planificar la formación del personal anticipando las necesidades futuras de la sociedad.",
-    "ODS Vinculado": "ODS 4: Educación de calidad",
-    "Meta Agenda 2030 ": "Meta 4.4: Aumentar el número de jóvenes y adultos que tienen las competencias necesarias para acceder al empleo.",
-    "Indicador de Logro ": "Promedio de horas de capacitación técnica recibidas por trabajador al año."
-  },
-  {
-    "Código SCIAN ": "43-46",
-    "Sector Industrial ": "Comercio al por menor / servicios",
-    "Carrera COSAC 2025 ": "Admón. de Recursos Humanos",
-    "Módulo / Actividad de Aprendizaje ": "Implementación de programas de bienestar, clima organizacional y salud mental.",
-    "Habilidad de Desarrollo Sostenible": "Autocuidado y Prevención: Promover entornos de trabajo que protejan la salud física y psicológica del colaborador.",
-    "ODS Vinculado": "ODS 3: Salud y Bienestar",
-    "Meta Agenda 2030 ": "Meta 3.4: Reducir la mortalidad prematura y promover la salud mental y el bienestar.",
-    "Indicador de Logro ": "Porcentaje de reducción de rotación de personal o niveles de estrés laboral reportados."
-  },
-  {
-    "Código SCIAN ": "31-33",
-    "Sector Industrial ": "Industrias manufactureras",
-    "Carrera COSAC 2025 ": "Admón. de Recursos Humanos",
-    "Módulo / Actividad de Aprendizaje ": "Comunicación interna sobre políticas de ética, anticorrupción y valores empresariales.",
-    "Habilidad de Desarrollo Sostenible": "Uso Ético de la Información: Manejar con transparencia y honestidad la comunicación oficial de la organización.",
+        function searchData() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+            const filtered = data.filter(row => row.Carrera.toLowerCase().includes(query));
+            
+            filtered.forEach(item => {
+                resultsDiv.innerHTML += `<div class="card"><strong>${item.Carrera}</strong><br>${item.ODS} - ${item.Meta}</div>`;
+            });
+            if(filtered.length === 0) resultsDiv.innerHTML = 'No hay resultados';
+        }
+    </script>
+</body>
+</html>
