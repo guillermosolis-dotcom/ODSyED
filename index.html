@@ -3,96 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plataforma de Sostenibilidad - Educación Dual</title>
+    <title>Sostenibilidad Dual - COSAC 2025</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #1a5cad;
-            --secondary: #28a745;
-            --dark: #2d3436;
-            --light: #f4f7f6;
-        }
+        :root { --primary: #1a5cad; --secondary: #28a745; --dark: #2d3436; --light: #f4f7f6; }
         body { font-family: 'Inter', sans-serif; background-color: var(--light); color: var(--dark); margin: 0; padding: 20px; }
-        .container { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-        h1 { color: var(--primary); text-align: center; margin-bottom: 10px; }
-        p.subtitle { text-align: center; color: #636e72; margin-bottom: 30px; }
-        .search-box { width: 100%; padding: 15px; font-size: 18px; border: 2px solid #dfe6e9; border-radius: 8px; margin-bottom: 20px; box-sizing: border-box; }
-        .result-card { border: 1px solid #dfe6e9; padding: 20px; border-radius: 8px; margin-top: 20px; display: none; background: #fff; border-left: 5px solid var(--primary); }
-        .ods-tag { display: inline-block; background: var(--secondary); color: white; padding: 5px 12px; border-radius: 20px; font-size: 14px; font-weight: bold; margin-bottom: 10px; }
-        .label { font-weight: 700; color: var(--primary); display: block; margin-top: 15px; text-transform: uppercase; font-size: 12px; }
-        .content { font-size: 16px; line-height: 1.5; margin-top: 5px; }
-        .no-results { text-align: center; color: #b2bec3; margin-top: 20px; }
-        footer { text-align: center; margin-top: 40px; font-size: 12px; color: #b2bec3; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        h1 { color: var(--primary); text-align: center; font-size: 24px; }
+        .search-container { display: flex; gap: 10px; margin-bottom: 20px; }
+        .search-box { flex-grow: 1; padding: 12px; border: 2px solid #dfe6e9; border-radius: 8px; font-size: 16px; }
+        button { padding: 12px 20px; background: var(--primary); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        button:hover { background: #144a8e; }
+        .result-card { border: 1px solid #dfe6e9; padding: 20px; border-radius: 8px; margin-top: 15px; border-left: 6px solid var(--primary); background: #fff; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .ods-tag { display: inline-block; background: var(--secondary); color: white; padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; margin-bottom: 8px; }
+        .label { font-weight: 700; color: var(--primary); display: block; margin-top: 12px; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; }
+        .content { font-size: 15px; line-height: 1.4; margin-top: 4px; color: #2d3436; }
+        .status { text-align: center; color: #636e72; font-size: 14px; margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Matriz de Sostenibilidad Dual</h1>
-    <p class="subtitle">Busca tu carrera o competencia para obtener la correspondencia con ODS (COSAC 2025)</p>
+    <h1>Buscador de Sostenibilidad Dual</h1>
+    <p class="status" id="loadStatus">Cargando base de datos...</p>
     
-    <input type="text" id="searchInput" class="search-box" placeholder="Escribe tu carrera (ej. Mecatrónica, Contabilidad...)" onkeyup="searchData()">
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-box" placeholder="Ej: Mecatrónica, Contabilidad, Soldadura...">
+        <button onclick="searchData()">BUSCAR</button>
+    </div>
     
     <div id="resultsArea"></div>
-    <div id="noResults" class="no-results" style="display:none;">No se encontraron coincidencias. Intenta con otra palabra clave.</div>
 </div>
-
-<footer>Impulsando la Educación Dual Sostenible en México</footer>
 
 <script>
     const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTwxmq9nAMVFnoKkfkbWOPxmDmNg5H9CyOxcCXThM70yfG5Y6MwMGdzmNFo5PPNCG9I_BwhkLtn9Esf/pub?gid=0&single=true&output=csv';
     let data = [];
 
-    // Cargar datos desde Google Sheets
+    // Carga de datos con manejo de errores
     Papa.parse(csvUrl, {
         download: true,
         header: true,
+        skipEmptyLines: true,
         complete: function(results) {
             data = results.data;
-            console.log("Datos cargados:", data);
+            document.getElementById('loadStatus').innerText = "✅ Base de datos lista (" + data.length + " registros)";
+            console.log("Columnas detectadas:", Object.keys(data[0]));
+        },
+        error: function() {
+            document.getElementById('loadStatus').innerText = "❌ Error al conectar con Google Sheets.";
         }
     });
 
     function searchData() {
-        const query = document.getElementById('searchInput').value.toLowerCase();
+        const query = document.getElementById('searchInput').value.toLowerCase().trim();
         const resultsArea = document.getElementById('resultsArea');
-        const noResults = document.getElementById('noResults');
         resultsArea.innerHTML = '';
         
-        if (query.length < 2) {
-            noResults.style.display = 'none';
-            return;
-        }
+        if (query === "") return;
 
+        // Buscamos coincidencias en cualquier columna
         const filtered = data.filter(row => {
-            return (row['Carrera (COSAC 2025)'] && row['Carrera (COSAC 2025)'].toLowerCase().includes(query)) ||
-                   (row['Módulo / Actividad'] && row['Módulo / Actividad'].toLowerCase().includes(query));
+            return Object.values(row).some(val => 
+                String(val).toLowerCase().includes(query)
+            );
         });
 
         if (filtered.length > 0) {
-            noResults.style.display = 'none';
             filtered.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'result-card';
-                card.style.display = 'block';
+                // Usamos nombres dinámicos de columnas para evitar errores si cambian
+                const carrera = item['Carrera (COSAC 2025)'] || item['Carrera'] || 'No especificado';
+                const modulo = item['Módulo / Actividad'] || item['Actividad'] || 'No especificado';
+                const ods = item['ODS'] || 'No definido';
+                const meta = item['Meta'] || 'No definida';
+                const indicador = item['Indicador'] || 'No definido';
+
                 card.innerHTML = `
-                    <div class="ods-tag">${item['ODS'] || 'ODS no definido'}</div>
+                    <div class="ods-tag">${ods}</div>
                     <span class="label">Carrera</span>
-                    <div class="content"><strong>${item['Carrera (COSAC 2025)']}</strong></div>
-                    <span class="label">Competencia / Actividad</span>
-                    <div class="content">${item['Módulo / Actividad']}</div>
-                    <span class="label">Meta ODS</span>
-                    <div class="content">${item['Meta']}</div>
-                    <span class="label">Indicador de Logro</span>
-                    <div class="content" style="color:#e67e22; font-weight:bold;">${item['Indicador']}</div>
+                    <div class="content"><strong>${carrera}</strong></div>
+                    <span class="label">Competencia de Aprendizaje</span>
+                    <div class="content">${modulo}</div>
+                    <span class="label">Meta ODS Relacionada</span>
+                    <div class="content">${meta}</div>
+                    <span class="label">Indicador de Seguimiento</span>
+                    <div class="content" style="color:#d35400; font-weight:600;">${indicador}</div>
                 `;
                 resultsArea.appendChild(card);
             });
         } else {
-            noResults.style.display = 'block';
+            resultsArea.innerHTML = '<p class="status">No se encontraron coincidencias. Intenta con otra palabra clave.</p>';
         }
     }
+
+    // Permitir buscar al presionar Enter
+    document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            searchData();
+        }
+    });
 </script>
 
 </body>
