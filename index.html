@@ -3,101 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscador ODS - Educación Dual</title>
+    <title>Sostenibilidad Dual - Catálogo COSAC 2025</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #1a5cad; --secondary: #28a745; --dark: #2d3436; --light: #f4f7f6; --accent: #d35400; }
         body { font-family: 'Inter', sans-serif; background-color: var(--light); color: var(--dark); margin: 0; padding: 20px; }
         .container { max-width: 1000px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        h1 { color: var(--primary); text-align: center; font-size: 26px; margin-bottom: 10px; font-weight: 700; }
         
-        h1 { color: var(--primary); text-align: center; font-size: 24px; margin-bottom: 10px; }
-        
-        .fuentes-nota { background: #f8f9fa; border: 1px solid #e9ecef; padding: 15px; border-radius: 8px; font-size: 13px; color: #636e72; margin-bottom: 20px; text-align: center; }
-
-        /* Guía Pedagógica */
+        /* Sección Pedagógica */
         .guia-pedagogica { background: #e3f2fd; border-left: 5px solid #2196f3; padding: 20px; margin-bottom: 25px; border-radius: 4px; }
-        .guia-pedagogica h3 { margin-top: 0; color: #0d47a1; font-size: 18px; display: flex; align-items: center; gap: 10px; }
-        .guia-pedagogica p { font-size: 14px; line-height: 1.6; color: #1565c0; }
-        .guia-pedagogica ul { font-size: 14px; padding-left: 20px; }
-        .guia-pedagogica li { margin-bottom: 8px; }
+        .guia-pedagogica h3 { margin-top: 0; color: #0d47a1; font-size: 18px; }
+        .guia-pedagogica p, .guia-pedagogica li { font-size: 14px; line-height: 1.6; color: #1565c0; }
 
-        .search-area { background: #f1f3f5; padding: 20px; border-radius: 8px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 12px; }
-        .search-box { width: 100%; padding: 12px; border: 2px solid #dfe6e9; border-radius: 8px; font-size: 16px; box-sizing: border-box; }
+        .search-area { background: #f1f3f5; padding: 20px; border-radius: 8px; margin-bottom: 25px; display: grid; grid-template-columns: 1fr 1fr auto; gap: 15px; align-items: end; }
+        .search-box { width: 100%; padding: 12px; border: 2px solid #dfe6e9; border-radius: 8px; font-size: 14px; box-sizing: border-box; }
+        .btn-buscar { padding: 12px 25px; background: var(--primary); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; height: 45px; }
+        .btn-download { background: var(--secondary); color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; margin-bottom: 15px; display: none; }
         
-        .btn-buscar { width: 100%; padding: 15px; background: var(--primary); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 16px; }
+        .result-card { border: 1px solid #dfe6e9; padding: 25px; border-radius: 12px; margin-top: 20px; border-left: 10px solid var(--primary); background: #fff; position: relative; }
+        .ods-tag { position: absolute; top: 15px; right: 15px; background: var(--secondary); color: white; padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: bold; }
+        .label { font-weight: 700; color: var(--primary); display: block; margin-top: 12px; text-transform: uppercase; font-size: 10px; letter-spacing: 0.8px; }
+        .content { font-size: 15px; line-height: 1.4; margin-top: 3px; color: #2d3436; }
+        .indicator-box { background: #fff3e0; padding: 15px; border-radius: 8px; border: 1px dashed var(--accent); margin-top: 15px; }
         
-        .btn-download { background: var(--secondary); color: white; padding: 12px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 15px; display: none; text-align: center; width: 100%; font-size: 15px; }
-
-        .result-card { border: 1px solid #dfe6e9; padding: 25px; border-radius: 12px; margin-top: 20px; border-left: 8px solid var(--primary); background: #fff; position: relative; }
-        .ods-tag { position: absolute; top: 15px; right: 15px; background: var(--secondary); color: white; padding: 6px 12px; border-radius: 20px; font-size: 11px; font-weight: bold; }
-        .label { font-weight: 700; color: var(--primary); display: block; margin-top: 12px; text-transform: uppercase; font-size: 10px; letter-spacing: 0.5px; }
-        .content { font-size: 14px; line-height: 1.5; margin-top: 4px; color: #2d3436; }
-        
-        .scian-badge { background: #eee; padding: 2px 8px; border-radius: 4px; font-family: monospace; font-size: 12px; }
+        @media (max-width: 768px) { .search-area { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Buscador de Carreras Duales alineadas a los ODS</h1>
+    <h1>Buscador ODS y Educación Dual</h1>
     
-    <div class="fuentes-nota">
-        <strong>Nota aclaratoria:</strong> Basado en el catálogo <strong>COSAC 2025</strong>, clasificaciones <strong>SCIAN (INEGI)</strong> y la <strong>Agenda 2030 (ONU)</strong>.
-    </div>
-
     <div class="guia-pedagogica">
-        <h3>👨‍🏫 Orientación para el Instructor en la Empresa</h3>
-        <p>Como Instructor Dual, tu papel es conectar la práctica técnica con el impacto global. Sigue estas recomendaciones:</p>
+        <h3>👨‍🏫 Orientación Pedagógica para el Instructor</h3>
+        <p>Este buscador permite vincular las tareas técnicas del día a día con el impacto global de la Agenda 2030. Siga estas orientaciones para trabajar en los puestos de aprendizaje:</p>
         <ul>
-            <li><strong>En el Puesto de Aprendizaje:</strong> Cuando el estudiante realice la actividad técnica, explícale cómo su eficiencia ayuda a no desperdiciar recursos (vínculo con el ODS).</li>
-            <li><strong>En la Bitácora:</strong> Asegúrate de que el estudiante registre el "Indicador de Logro" sugerido. Esto demuestra que no solo sabe "hacer", sino que entiende el impacto de su trabajo.</li>
-            <li><strong>Evaluación:</strong> Valora la "Habilidad Sostenible". Observa si el alumno propone mejoras para reducir residuos o energía.</li>
+            <li><strong>Contextualización:</strong> Antes de iniciar una tarea, explique al estudiante cómo su desempeño técnico (ej. un mantenimiento eficiente) contribuye directamente a una meta de sostenibilidad.</li>
+            <li><strong>Reflexión Crítica:</strong> Utilice el campo "Habilidad de Desarrollo Sostenible" para fomentar en el alumno el pensamiento sistémico y la responsabilidad ética.</li>
+            <li><strong>Registro de Evidencias:</strong> El "Indicador de Logro" es la métrica que el alumno debe registrar en su bitácora para demostrar el impacto real de su aprendizaje en la empresa.</li>
         </ul>
     </div>
-    
+
     <div class="search-area">
-        <label style="font-size: 14px; font-weight: bold;">1. Selecciona la Carrera:</label>
-        <select id="carreraSelect" class="search-box" onchange="seleccionarCarrera()">
-            <option value="">Cargando catálogo...</option>
-        </select>
-        
-        <label style="font-size: 14px; font-weight: bold;">2. Filtro de búsqueda:</label>
-        <input type="text" id="searchInput" class="search-box" placeholder="Escribe una palabra clave o carrera...">
-        <button class="btn-buscar" onclick="searchData()">VINCULAR CON ODS</button>
+        <div>
+            <label class="label">Carrera:</label>
+            <select id="carreraSelect" class="search-box" onchange="actualizarBusqueda()"></select>
+        </div>
+        <div>
+            <label class="label">Actividad o Palabra Clave:</label>
+            <input type="text" id="searchInput" class="search-box" placeholder="Ej: motores, nóminas...">
+        </div>
+        <button class="btn-buscar" onclick="filtrar()">GENERAR VINCULACIÓN</button>
     </div>
 
-    <button id="downloadBtn" class="btn-download" onclick="downloadExample()">📥 DESCARGAR EJEMPLO PARA PUESTO DE APRENDIZAJE</button>
+    <button id="downloadBtn" class="btn-download" onclick="descargarFicha()">📥 DESCARGAR FICHA TÉCNICA</button>
     
     <div id="resultsArea"></div>
 </div>
 
 <script>
-    // ESTA BASE DE DATOS INCLUYE LOS DATOS COMPLETOS DE TU ARCHIVO ORIGINAL
-    const data = [
-        {
-            "Código SCIAN ": "31-33",
-            "Sector Industrial ": "Industrias manufactureras",
-            "Carrera COSAC 2025 ": "Mantenimiento Industrial",
-            "Módulo / Actividad de Aprendizaje ": "Mantenimiento preventivo a motores y sistemas de transmisión de potencia.",
-            "Habilidad de Desarrollo Sostenible": "Pensamiento Sistémico: Analizar la interconexión de los componentes para optimizar el consumo de energía.",
-            "ODS Vinculado": "ODS 7: Energía asequible y no contaminante",
-            "Meta Agenda 2030 ": "Meta 7.3: Duplicar la tasa mundial de mejora de la eficiencia energética.",
-            "Indicador de Logro ": "Porcentaje de reducción de consumo eléctrico en equipos intervenidos."
-        },
-        {
-            "Código SCIAN ": "31-33",
-            "Sector Industrial ": "Industrias manufactureras",
-            "Carrera COSAC 2025 ": "Mantenimiento Industrial",
-            "Módulo / Actividad de Aprendizaje ": "Gestión, recolección y etiquetado de aceites lubricantes y residuos químicos.",
-            "Habilidad de Desarrollo Sostenible": "Responsabilidad Normativa: Cumplir con los estándares legales y éticos en el manejo de desechos peligrosos.",
-            "ODS Vinculado": "ODS 12: Producción y consumo responsables",
-            "Meta Agenda 2030 ": "Meta 12.4: Gestión ecológicamente racional de los desechos químicos y de todos los desechos.",
-            "Indicador de Logro ": "Kilogramos de residuos peligrosos confinados bajo normativa ambiental."
-        },
-        {
-            "Código SCIAN ": "43-46",
-            "Sector Industrial ": "Comercio al por menor / servicios",
-            "Carrera COSAC 2025 ": "Admón. de Recursos Humanos",
-            "Módulo / Actividad de Aprendizaje ": "Elaboración de perfiles de puesto y convocatorias de reclutamiento inclusivo.",
-            "Habilidad de Desarrollo Sostenible": "Conciencia Crítica: Capacidad de identificar y eliminar sesgos o prejuicios en los procesos de selección.",
-            "ODS Vinculado": "ODS 5: Igual
+    // BASE DE DATOS COMPLETA EXTRAÍDA DEL ARCHIVO ORIGINAL
+    const carrerasData = [
+        { scian: "31-33", sector: "Industrias manufactureras", carrera: "Mantenimiento Industrial", actividad: "Mantenimiento preventivo a motores y sistemas de transmisión de potencia.", habilidad: "Pensamiento Sistémico: Analizar la interconexión de los componentes para optimizar el consumo de energía.", ods: "ODS 7: Energía asequible y no contaminante", meta: "Meta 7.3: Duplicar la tasa mundial de mejora de la eficiencia energética.", indicador: "Porcentaje de reducción de consumo eléctrico en equipos intervenidos." },
+        { scian: "31-33", sector: "Industrias manufactureras", carrera: "Mantenimiento Industrial", actividad: "Gestión, recolección y etiquetado de aceites lubricantes y residuos químicos.", habilidad: "Responsabilidad Normativa: Cumplir con los estándares legales y éticos en el manejo de desechos peligrosos.", ods: "ODS 12: Producción y consumo responsables", meta: "Meta 12.4: Gestión ecológicamente racional de los desechos químicos y de todos los desechos.", indicador: "Kilogramos de residuos peligrosos confinados bajo normativa ambiental." },
+        { scian: "22", sector: "Generación, transmisión y distribución de energía eléctrica, agua y gas", carrera: "Mantenimiento Industrial", actividad: "Detección y corrección de fugas en sistemas de tuberías de aire comprimido o vapor.", habilidad: "Pensamiento Crítico: Evaluar las pérdidas de recursos y proponer mejoras para evitar el desperdicio.", ods: "ODS 9: Industria, innovación e infraestructura", meta: "Meta 9.4: Modernizar la infraestructura y reconvertir las industrias para que sean sostenibles.", indicador: "Metros cúbicos de recurso (aire/vapor/gas) recuperados por reparación." },
+        { scian: "43-46", sector: "Comercio al por menor / servicios", carrera: "Admón. de Recursos Humanos", actividad: "Elaboración de perfiles de puesto y convocatorias de reclutamiento inclusivo.", habilidad: "Conciencia Crítica: Capacidad de identificar y eliminar sesgos o prejuicios en los procesos de selección.", ods: "ODS 5: Igualdad de Género", meta: "Meta 5.5: Asegurar la participación plena y efectiva de las mujeres.", indicador: "Porcentaje de mujeres o grupos vulnerables integrados en las ternas de selección." },
+        { scian: "31-33", sector: "Industrias manufactureras", carrera: "Mecatrónica", actividad: "Programación y ajuste de sistemas automatizados y robóticos.", habilidad: "Innovación Sostenible: Optimizar ciclos de producción para reducir el tiempo de operación y consumo energético.", ods: "ODS 9: Industria e Innovación", meta: "Meta 9.4: Reconvertir industrias para que sean sostenibles con procesos limpios.", indicador: "Reducción de kW/h por ciclo de producción automatizado." },
+        { scian: "62", sector: "Servicios de Salud", carrera: "Enfermería Técnica", actividad: "Aplicación de cuidados de enfermería y manejo de RPBI.", habilidad: "Responsabilidad Ética: Clasificación correcta de residuos peligrosos biológico-infecciosos.", ods: "ODS 3: Salud y Bienestar", meta: "Meta 3.d: Reforzar la capacidad en materia de alerta temprana y gestión de riesgos para la salud.", indicador: "Tasa de incidentes por punción o manejo inadecuado de residuos biológicos." },
+        { scian: "336", sector: "Fabricación de equipo de transporte", carrera: "Sistemas Automotrices", actividad: "Diagnóstico y mantenimiento de sistemas de control de emisiones y motores.", habilidad: "Conciencia Ambiental: Asegurar que el vehículo cumpla con normas de emisiones.", ods: "ODS 11: Ciudades Sostenibles", meta: "Meta 11.6: Reducir el impacto ambiental negativo de las ciudades.", indicador: "Gramos de CO2/km reducidos tras la afinación." },
+        { scian: "325", sector: "Industria Química", carrera: "Química Industrial", actividad: "Análisis de muestras y control de procesos en reactores químicos.", habilidad: "Responsabilidad Normativa: Garantizar el tratamiento de aguas residuales.", ods: "ODS 6: Agua limpia y saneamiento", meta: "Meta 6.3: Mejorar la calidad del agua reduciendo la contaminación.", indicador: "Porcentaje de neutralización de PH en efluentes." },
+        { scian: "111", sector: "Agricultura", carrera: "
