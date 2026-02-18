@@ -18,17 +18,15 @@
             overflow: hidden; border: 1px solid #cbd5e1;
         }
 
-        /* Encabezado con Logos desde GitHub */
         .header-ods {
             display: flex; justify-content: space-between; align-items: center;
             padding: 30px 50px; background: white; border-bottom: 5px solid var(--primary);
         }
-        .logo-rueda { height: 100px; width: auto; object-fit: contain; }
-        .logo-frase { height: 80px; width: auto; object-fit: contain; }
+        .logo-rueda { height: 100px; width: auto; }
+        .logo-frase { height: 80px; width: auto; }
 
-        /* Títulos y Objetivo Oficial */
         .seccion-titulo { padding: 30px 50px; text-align: center; background: #f8fafc; }
-        .seccion-titulo h1 { color: var(--primary); margin: 0; font-size: 28px; font-weight: 800; line-height: 1.2; }
+        .seccion-titulo h1 { color: var(--primary); margin: 0; font-size: 28px; font-weight: 800; }
         .objetivo-texto { 
             margin: 15px auto 0; max-width: 900px; font-size: 14px; 
             color: #64748b; line-height: 1.6; font-style: italic;
@@ -38,7 +36,7 @@
         .main-select {
             width: 100%; max-width: 800px; padding: 15px; border: 2px solid #cbd5e1;
             border-radius: 12px; font-size: 17px; font-weight: 600; color: var(--primary);
-            background: white; cursor: pointer;
+            background: white;
         }
 
         .ficha-body { padding: 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -47,31 +45,44 @@
 
         .card { background: white; border: 1px solid #e2e8f0; border-radius: 15px; padding: 25px; }
         .card-label { font-size: 11px; font-weight: 800; text-transform: uppercase; color: #64748b; margin-bottom: 10px; display: block; }
-        .card-content { font-size: 16px; color: #334155; line-height: 1.4; }
+        .card-content { font-size: 16px; color: #334155; }
 
         .card-highlight { border-top: 6px solid var(--secondary); background: #f0fff4; }
         .card-scian { border-left: 6px solid var(--scian); }
         .card-ods { border: none; background: #ebf8ff; text-align: center; }
-        .card-dark { background: var(--primary); color: white; border: none; }
-        .card-dark .card-label { color: rgba(255,255,255,0.6); }
+        
+        /* Ajuste Sinergia Sistémica (Fondo Negro / Texto Blanco) */
+        .card-dark { background: #111827; color: #ffffff !important; border: none; }
+        .card-dark .card-label { color: rgba(255,255,255,0.7); }
+        .card-dark .card-content { color: #ffffff !important; font-weight: 400; }
 
-        /* Estilo para las Orientaciones Pedagógicas */
+        .sinergia-logos { display: flex; align-items: center; gap: 10px; margin-top: 15px; }
+        .mini-ods { 
+            background: var(--ods-blue); color: white; padding: 5px 10px; 
+            border-radius: 5px; font-weight: 800; font-size: 14px; 
+        }
+
         .instrucciones-box {
             background: #fffbeb; border: 2px dashed #f59e0b; padding: 25px; border-radius: 15px;
         }
-        .instrucciones-box h4 { margin: 0 0 10px 0; color: #b45309; font-size: 16px; font-weight: 800; }
+        .instrucciones-box h4 { margin: 0 0 10px 0; color: #b45309; }
 
-        .ods-img-large { width: 120px; height: 120px; margin-top: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .ods-img-large { width: 120px; height: 120px; margin-top: 10px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         
         .btn-print {
             display: block; width: calc(100% - 100px); margin: 0 50px 40px; padding: 18px;
             background: var(--secondary); color: white; border: none; border-radius: 10px;
-            font-size: 16px; font-weight: 800; cursor: pointer; transition: 0.3s;
+            font-size: 16px; font-weight: 800; cursor: pointer;
         }
-        .btn-print:hover { background: #218838; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .animated { animation: fadeIn 0.5s ease-out; }
+        
+        @media print {
+            .search-container, .btn-print, .header-ods { display: none; }
+            body { background: white; padding: 0; }
+            .expediente-master { box-shadow: none; border: none; }
+        }
     </style>
 </head>
 <body>
@@ -100,7 +111,6 @@
 </div>
 
 <script>
-    // Base de Datos ejemplo (Aquí se sumarán las 80+)
     const db = [
         {
             c: "Programación (DGETI)",
@@ -110,23 +120,23 @@
             a: "Creación de interfaces de usuario con protocolos de accesibilidad (WCAG) para personas con discapacidad.",
             h: "Inclusión Digital y Ética Tecnológica",
             o1: "9", o1_t: "Industria, Innovación e Infraestructura",
-            o2: "10",
+            o2: "10", o2_t: "Reducción de las Desigualdades",
             i: "Audit score de accesibilidad > 90%",
-            d: "La innovación técnica (9) debe servir como puente para eliminar las barreras de desigualdad (10) en el acceso a la información.",
-            orientacion: "Instructor(a): Verifique que el estudiante aplique etiquetas ARIA en el código. No se trata solo de que la web funcione, sino de que sea operable para todos, cumpliendo con la meta de no dejar a nadie atrás."
+            d: "La innovación técnica permite que el software sea un puente de inclusión, eliminando barreras de acceso para grupos vulnerables.",
+            orientacion: "Instructor(a): Verifique que el estudiante aplique etiquetas ARIA en el código. No se trata solo de que la web funcione, sino de que sea operable para todos."
         },
         {
-            c: "Soporte y Mantenimiento de Equipo de Cómputo (CECYTE)",
-            s: "811211",
-            sec: "Reparación y mantenimiento de equipo de cómputo y comunicación",
-            m: "Módulo II: Mantenimiento de hardware y software",
-            a: "Implementación de planes de recuperación de componentes y disposición final de residuos electrónicos (e-waste).",
-            h: "Gestión de Residuos Electrónicos (E-waste)",
-            o1: "12", o1_t: "Producción y Consumo Responsables",
-            o2: "11",
-            i: "Porcentaje de componentes reutilizados por equipo",
-            d: "Reducir el desperdicio tecnológico (12) es fundamental para la sostenibilidad de las ciudades modernas (11).",
-            orientacion: "Instructor(a): Fomente el análisis de ciclo de vida. El estudiante debe identificar qué piezas pueden tener una segunda vida antes de considerar el reciclaje final, reduciendo la huella de carbono del plantel."
+            c: "Mecatrónica (DGETI)",
+            s: "333999",
+            sec: "Fabricación de maquinaria y equipo",
+            m: "Módulo II: Mantiene sistemas de control por PLC",
+            a: "Optimización de secuencias lógicas para reducción de consumo energético en líneas de ensamble.",
+            h: "Eficiencia Energética Industrial",
+            o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+            o2: "12", o2_t: "Producción y Consumo Responsables",
+            i: "Reducción de kW/h por ciclo optimizado",
+            d: "La automatización inteligente reduce el desperdicio de recursos energéticos en la manufactura a gran escala.",
+            orientacion: "Instructor(a): Solicite al alumno un reporte de ahorro energético tras la optimización del código del PLC."
         }
     ];
 
@@ -141,14 +151,14 @@
 
         area.innerHTML = `
             <div class="ficha-body animated">
-                <div class="col-span-3 card card-dark">
-                    <span class="card-label">Carrera Técnica Seleccionada</span>
+                <div class="col-span-3 card" style="background:var(--primary); color:white;">
+                    <span class="card-label" style="color:rgba(255,255,255,0.6)">Carrera Técnica</span>
                     <h2 style="margin:0; font-size:26px;">${d.c}</h2>
                 </div>
 
                 <div class="card card-scian">
                     <span class="card-label">Referente SCIAN (INEGI)</span>
-                    <div class="card-content"><b>Código:</b> ${d.s}<br><b>Sector:</b> ${d.sec}</div>
+                    <div class="card-content"><b>${d.s}</b><br>${d.sec}</div>
                 </div>
 
                 <div class="col-span-2 card card-highlight">
@@ -160,8 +170,8 @@
                 </div>
 
                 <div class="card card-ods">
-                    <span class="card-label">Impacto Agenda 2030 (ONU)</span>
-                    <div style="font-size:32px; font-weight:800; color:var(--ods-blue); line-height:1;">${d.o1}</div>
+                    <span class="card-label">Impacto Agenda 2030</span>
+                    <div style="font-size:32px; font-weight:800; color:var(--ods-blue);">${d.o1}</div>
                     <div class="card-content" style="font-weight:700; font-size:13px; margin-bottom:10px;">${d.o1_t}</div>
                     <img src="https://guillermosolis-dotcom.github.io/ODSyED/${d.o1}.png" class="ods-img-large" onerror="this.src='https://placehold.co/120x120?text=ODS+${d.o1}'">
                 </div>
@@ -174,9 +184,17 @@
                     </div>
                 </div>
 
-                <div class="card card-dark" style="background:#2c3e50;">
+                <div class="card card-dark">
                     <span class="card-label">Sinergia Sistémica</span>
-                    <div class="card-content" style="font-style:italic; font-size:14px; opacity:0.9;">"${d.d}"</div>
+                    <div class="card-content">"${d.d}"</div>
+                    <div class="sinergia-logos">
+                        <span class="mini-ods">ODS ${d.o1}</span>
+                        <span style="font-weight:800;">+</span>
+                        <span class="mini-ods">ODS ${d.o2}</span>
+                    </div>
+                    <div style="font-size:11px; margin-top:10px; opacity:0.8;">
+                        Vinculación entre ${d.o1_t} y ${d.o2_t}.
+                    </div>
                 </div>
 
                 <div class="col-span-3 instrucciones-box">
@@ -187,7 +205,6 @@
         `;
     }
 
-    // Ordenar y cargar el selector al iniciar
     window.onload = () => {
         const sel = document.getElementById('mainSelector');
         db.sort((a,b) => a.c.localeCompare(b.c)).forEach(item => {
