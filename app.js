@@ -19,7 +19,8 @@ function subsistemaClass(s) {
         'DGETI': 'dgeti',
         'CONALEP': 'conalep',
         'CECyTE': 'cecyte',
-        'DGETAyCM': 'dgetaycm'
+        'DGETAyCM': 'dgetaycm',
+        'BTED': 'bted'
     };
     return map[s] || 'dgeti';
 }
