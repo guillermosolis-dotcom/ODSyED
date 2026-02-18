@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Educación Dual y Objetivos de Desarrollo Sostenible</title>
+    <title>Educación Dual y Objetivos de Desarrollo Sostenible, de la Agenda 2030</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -18,19 +18,19 @@
             overflow: hidden; border: 1px solid #cbd5e1;
         }
 
-        /* Nuevo Encabezado con Logos Solicitados */
+        /* Encabezado con Logos desde GitHub */
         .header-ods {
             display: flex; justify-content: space-between; align-items: center;
             padding: 30px 50px; background: white; border-bottom: 5px solid var(--primary);
         }
-        .logo-rueda { height: 100px; width: auto; }
-        .logo-frase { height: 80px; width: auto; }
+        .logo-rueda { height: 100px; width: auto; object-fit: contain; }
+        .logo-frase { height: 80px; width: auto; object-fit: contain; }
 
-        /* Títulos y Objetivo */
+        /* Títulos y Objetivo Oficial */
         .seccion-titulo { padding: 30px 50px; text-align: center; background: #f8fafc; }
-        .seccion-titulo h1 { color: var(--primary); margin: 0; font-size: 28px; font-weight: 800; }
+        .seccion-titulo h1 { color: var(--primary); margin: 0; font-size: 28px; font-weight: 800; line-height: 1.2; }
         .objetivo-texto { 
-            margin: 15px auto 0; max-width: 850px; font-size: 14px; 
+            margin: 15px auto 0; max-width: 900px; font-size: 14px; 
             color: #64748b; line-height: 1.6; font-style: italic;
         }
 
@@ -38,15 +38,16 @@
         .main-select {
             width: 100%; max-width: 800px; padding: 15px; border: 2px solid #cbd5e1;
             border-radius: 12px; font-size: 17px; font-weight: 600; color: var(--primary);
+            background: white; cursor: pointer;
         }
 
         .ficha-body { padding: 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .col-span-2 { grid-column: span 2; }
         .col-span-3 { grid-column: span 3; }
 
-        .card { background: white; border: 1px solid #e2e8f0; border-radius: 15px; padding: 25px; transition: 0.3s; }
+        .card { background: white; border: 1px solid #e2e8f0; border-radius: 15px; padding: 25px; }
         .card-label { font-size: 11px; font-weight: 800; text-transform: uppercase; color: #64748b; margin-bottom: 10px; display: block; }
-        .card-content { font-size: 16px; color: #334155; }
+        .card-content { font-size: 16px; color: #334155; line-height: 1.4; }
 
         .card-highlight { border-top: 6px solid var(--secondary); background: #f0fff4; }
         .card-scian { border-left: 6px solid var(--scian); }
@@ -54,28 +55,31 @@
         .card-dark { background: var(--primary); color: white; border: none; }
         .card-dark .card-label { color: rgba(255,255,255,0.6); }
 
+        /* Estilo para las Orientaciones Pedagógicas */
         .instrucciones-box {
             background: #fffbeb; border: 2px dashed #f59e0b; padding: 25px; border-radius: 15px;
         }
-        .instrucciones-box h4 { margin: 0 0 10px 0; color: #b45309; }
+        .instrucciones-box h4 { margin: 0 0 10px 0; color: #b45309; font-size: 16px; font-weight: 800; }
 
-        .ods-img-large { width: 120px; height: 120px; margin-top: 10px; border-radius: 10px; border: 3px solid white; }
+        .ods-img-large { width: 120px; height: 120px; margin-top: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        
         .btn-print {
             display: block; width: calc(100% - 100px); margin: 0 50px 40px; padding: 18px;
             background: var(--secondary); color: white; border: none; border-radius: 10px;
-            font-size: 16px; font-weight: 800; cursor: pointer;
+            font-size: 16px; font-weight: 800; cursor: pointer; transition: 0.3s;
         }
+        .btn-print:hover { background: #218838; }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .animated { animation: fadeIn 0.6s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animated { animation: fadeIn 0.5s ease-out; }
     </style>
 </head>
 <body>
 
 <div class="expediente-master">
     <header class="header-ods">
-        <img src="ODSyED/rueda-ods.png" alt="Rueda ODS" class="logo-rueda" onerror="this.src='https://placehold.co/100x100?text=Rueda+ODS'">
-        <img src="ODSyED/logo-ods-frase.jpg" alt="ODS Frase" class="logo-frase" onerror="this.src='https://placehold.co/300x80?text=Logo+ODS+Frase'">
+        <img src="https://guillermosolis-dotcom.github.io/ODSyED/rueda-ods.png" alt="Rueda ODS" class="logo-rueda">
+        <img src="https://guillermosolis-dotcom.github.io/ODSyED/logo-ods-frase.jpg" alt="ODS Frase" class="logo-frase">
     </header>
 
     <section class="seccion-titulo">
@@ -96,6 +100,7 @@
 </div>
 
 <script>
+    // Base de Datos ejemplo (Aquí se sumarán las 80+)
     const db = [
         {
             c: "Programación (DGETI)",
@@ -137,51 +142,52 @@
         area.innerHTML = `
             <div class="ficha-body animated">
                 <div class="col-span-3 card card-dark">
-                    <span class="card-label">Carrera Técnica</span>
-                    <h2 style="margin:0; font-size:28px;">${d.c}</h2>
+                    <span class="card-label">Carrera Técnica Seleccionada</span>
+                    <h2 style="margin:0; font-size:26px;">${d.c}</h2>
                 </div>
 
                 <div class="card card-scian">
                     <span class="card-label">Referente SCIAN (INEGI)</span>
-                    <div class="card-content"><b>${d.s}</b><br>${d.sec}</div>
+                    <div class="card-content"><b>Código:</b> ${d.s}<br><b>Sector:</b> ${d.sec}</div>
                 </div>
 
                 <div class="col-span-2 card card-highlight">
                     <span class="card-label">Módulo Profesional (SEP/MCCEMS)</span>
-                    <div class="card-content" style="font-weight:700;">${d.m}</div>
-                    <hr style="margin:10px 0; border:0; border-top:1px solid #eee;">
-                    <span class="card-label">Actividad Dual sugerida</span>
+                    <div class="card-content" style="font-weight:700; color:var(--primary);">${d.m}</div>
+                    <hr style="margin:12px 0; border:0; border-top:1px solid #eee;">
+                    <span class="card-label">Propuesta de Actividad Dual</span>
                     <div class="card-content">${d.a}</div>
                 </div>
 
                 <div class="card card-ods">
-                    <span class="card-label">Impacto ODS (ONU)</span>
-                    <span style="font-size:32px; font-weight:800; color:var(--ods-blue);">${d.o1}</span>
-                    <div class="card-content" style="font-weight:700; font-size:13px;">${d.o1_t}</div>
-                    <img src="ODSyED/${d.o1}.png" class="ods-img-large" onerror="this.src='https://placehold.co/120x120?text=ODS+${d.o1}'">
+                    <span class="card-label">Impacto Agenda 2030 (ONU)</span>
+                    <div style="font-size:32px; font-weight:800; color:var(--ods-blue); line-height:1;">${d.o1}</div>
+                    <div class="card-content" style="font-weight:700; font-size:13px; margin-bottom:10px;">${d.o1_t}</div>
+                    <img src="https://guillermosolis-dotcom.github.io/ODSyED/${d.o1}.png" class="ods-img-large" onerror="this.src='https://placehold.co/120x120?text=ODS+${d.o1}'">
                 </div>
 
                 <div class="card">
                     <span class="card-label">Habilidad Sostenible</span>
                     <div class="card-content" style="font-weight:700;">${d.h}</div>
-                    <div style="margin-top:15px; background:var(--primary); color:white; padding:10px; border-radius:8px; font-size:13px;">
+                    <div style="margin-top:15px; background:var(--primary); color:white; padding:10px; border-radius:8px; font-size:13px; font-weight:800; text-align:center;">
                         📊 INDICADOR: ${d.i}
                     </div>
                 </div>
 
                 <div class="card card-dark" style="background:#2c3e50;">
-                    <span class="card-label">Sinergia de Metas</span>
-                    <div class="card-content" style="font-style:italic; font-size:14px;">"${d.d}"</div>
+                    <span class="card-label">Sinergia Sistémica</span>
+                    <div class="card-content" style="font-style:italic; font-size:14px; opacity:0.9;">"${d.d}"</div>
                 </div>
 
                 <div class="col-span-3 instrucciones-box">
                     <h4>💡 ORIENTACIONES PARA LA O EL INSTRUCTOR</h4>
-                    <p class="card-content" style="font-size:15px; color:#92400e;">${d.orientacion}</p>
+                    <p class="card-content" style="font-size:15px; color:#92400e; font-weight:500;">${d.orientacion}</p>
                 </div>
             </div>
         `;
     }
 
+    // Ordenar y cargar el selector al iniciar
     window.onload = () => {
         const sel = document.getElementById('mainSelector');
         db.sort((a,b) => a.c.localeCompare(b.c)).forEach(item => {
