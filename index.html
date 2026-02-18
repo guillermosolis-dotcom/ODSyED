@@ -3,91 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Educación Dual y Objetivos de Desarrollo Sostenible, de la Agenda 2030</title>
+    <title>Educación Dual y ODS - Agenda 2030</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #1a2a44; --secondary: #28a745; --ods-blue: #00aed9; --scian: #d35400;
-            --light: #f8fafc; --white: #ffffff;
-        }
-        body { font-family: 'Inter', sans-serif; background-color: #e2e8f0; margin: 0; padding: 20px; color: #1e293b; }
-        
-        .expediente-master {
-            max-width: 1100px; margin: auto; background: var(--white);
-            border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-            overflow: hidden; border: 1px solid #cbd5e1;
-        }
-
-        .header-ods {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 30px 50px; background: white; border-bottom: 5px solid var(--primary);
-        }
-        .logo-rueda { height: 100px; width: auto; }
-        .logo-frase { height: 80px; width: auto; }
-
-        .seccion-titulo { padding: 30px 50px; text-align: center; background: #f8fafc; }
-        .seccion-titulo h1 { color: var(--primary); margin: 0; font-size: 28px; font-weight: 800; }
-        .objetivo-texto { 
-            margin: 15px auto 0; max-width: 900px; font-size: 14px; 
-            color: #64748b; line-height: 1.6; font-style: italic;
-        }
-
-        .search-container { padding: 20px 50px; background: #f1f5f9; border-bottom: 1px solid #e2e8f0; text-align: center; }
-        .main-select {
-            width: 100%; max-width: 800px; padding: 15px; border: 2px solid #cbd5e1;
-            border-radius: 12px; font-size: 17px; font-weight: 600; color: var(--primary);
-            background: white; cursor: pointer;
-        }
-
-        .ficha-body { padding: 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .col-span-2 { grid-column: span 2; }
-        .col-span-3 { grid-column: span 3; }
-
-        .card { background: white; border: 1px solid #e2e8f0; border-radius: 15px; padding: 25px; }
-        .card-label { font-size: 11px; font-weight: 800; text-transform: uppercase; color: #64748b; margin-bottom: 10px; display: block; }
-        .card-content { font-size: 16px; color: #334155; line-height: 1.5; }
-
-        .card-highlight { border-top: 6px solid var(--secondary); background: #f0fff4; }
-        .card-scian { border-left: 6px solid var(--scian); }
-        .card-ods { border: none; background: #ebf8ff; text-align: center; }
-        
-        /* Estilo Sinergia Sistémica (Fondo Oscuro / Texto Blanco) */
-        .card-dark { background: #111827; color: #ffffff !important; border: none; }
-        .card-dark .card-label { color: rgba(255,255,255,0.7); }
-        .card-dark .card-content { color: #ffffff !important; font-weight: 400; font-style: italic; }
-
-        .sinergia-logos { display: flex; align-items: center; gap: 10px; margin-top: 15px; }
-        .mini-ods { 
-            background: var(--ods-blue); color: white; padding: 5px 10px; 
-            border-radius: 5px; font-weight: 800; font-size: 14px; 
-        }
-
-        .instrucciones-box {
-            background: #fffbeb; border: 2px dashed #f59e0b; padding: 25px; border-radius: 15px;
-        }
-        .instrucciones-box h4 { margin: 0 0 10px 0; color: #b45309; font-weight: 800; }
-
-        .ods-img-large { width: 120px; height: 120px; margin-top: 10px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        
-        .btn-print {
-            display: block; width: calc(100% - 100px); margin: 0 50px 40px; padding: 18px;
-            background: var(--secondary); color: white; border: none; border-radius: 10px;
-            font-size: 16px; font-weight: 800; cursor: pointer;
-        }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .animated { animation: fadeIn 0.5s ease-out; }
-
-        @media print {
-            .search-container, .btn-print, .header-ods { display: none; }
-            body { background: white; padding: 0; }
-            .expediente-master { box-shadow: none; border: none; }
-        }
+        :root { --p: #1a2a44; --s: #28a745; --blue: #00aed9; --sc: #d35400; }
+        body { font-family: 'Inter', sans-serif; background: #e2e8f0; margin: 0; padding: 20px; }
+        .master { max-width: 1100px; margin: auto; background: #fff; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); overflow: hidden; }
+        .header { display: flex; justify-content: space-between; padding: 30px 50px; border-bottom: 5px solid var(--p); }
+        .logo { height: 80px; }
+        .titulo { padding: 30px; text-align: center; background: #f8fafc; }
+        .search-box { padding: 20px; background: #f1f5f9; text-align: center; }
+        .sel { width: 80%; padding: 15px; border-radius: 12px; border: 2px solid #cbd5e1; font-size: 16px; font-weight: 600; }
+        .grid { padding: 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .card { padding: 25px; border-radius: 15px; border: 1px solid #e2e8f0; }
+        .c-dark { background: #111827; color: #fff !important; }
+        .c-dark * { color: #fff !important; font-style: italic; }
+        .label { font-size: 11px; font-weight: 800; text-transform: uppercase; color: #64748b; margin-bottom: 10px; display: block; }
+        .scian-n { font-family: monospace; font-size: 22px; font-weight: 800; color: var(--sc); letter-spacing: 3px; }
+        .mini { background: var(--blue); color: #fff; padding: 4px 8px; border-radius: 4px; font-weight: 800; font-size: 13px; }
+        .ins-box { background: #fffbeb; border: 2px dashed #f59e0b; padding: 25px; border-radius: 15px; grid-column: span 3; }
+        .ods-img { width: 120px; height: 120px; margin-top: 10px; border-radius: 10px; }
+        .btn { display: block; width: 90%; margin: 0 auto 40px; padding: 18px; background: var(--s); color: #fff; border: none; border-radius: 10px; font-weight: 800; cursor: pointer; }
+        @media print { .search-box, .btn, .header { display: none; } }
     </style>
 </head>
 <body>
+<div class="master">
+    <header class="header">
+        <img src="https://guillermosolis-dotcom.github.io/ODSyED/rueda-ods.png" class="logo">
+        <img src="https://guillermosolis-dotcom.github.io/ODSyED/logo-ods-frase.jpg" class="logo">
+    </header>
+    <div class="titulo">
+        <h1>Educación Dual y Objetivos de Desarrollo Sostenible</h1>
+        <p style="font-style:italic; color:#64748b; font-size:14px;">Basado en datos oficiales SEP, INEGI y ONU.</p>
+    </div>
+    <div class="search-box">
+        <select id="sel" class="sel" onchange="draw()"><option value="">-- Seleccione Carrera --</option></select>
+    </div>
+    <div id="view"></div>
+    <button class="btn" id="pb" style="display:none;" onclick="window.print()">📥 GENERAR REPORTE PDF</button>
+</div>
+<script>
+const db = [
+    {
+        c: "Programación (DGETI)", s: "541512", sec: "Desarrollo de software",
+        m: "Módulo IV: Aplicaciones Web",
+        a: ["Accesibilidad WCAG para inclusión","Cifrado de datos sensibles","Módulos de transparencia pública","Optimización de recursos (Green IT)","Pruebas para adultos mayores"],
+        h: "Inclusión Digital", o1: "9", o1_t: "Industria e Innovación", o2: "10", o2_t: "Reducción de Desigualdades",
+        i: "Score > 90%", d: "La tecnología como puente de inclusión social.",
+        or: "Instructor(a): Verifique etiquetas ARIA para garantizar que 'nadie se quede atrás'."
+    },
+    {
+        c: "Mecatrónica (DGETI)", s: "333999", sec: "Fabricación de equipo",
+        m: "Módulo II: Sistemas PLC",
+        a: ["Optimización energética en motores","Configuración de paros de seguridad","Sensores para iluminación inteligente","Mantenimiento preventivo de refacciones","Sincronización para cero mermas"],
+        h: "Eficiencia Industrial", o1: "9", o1_t: "Industria e Innovación", o2: "12", o2_t: "Consumo Responsable",
+        i: "Ahorro kW/h", d: "Automatización inteligente para reducir el desperdicio.",
+        or: "Instructor(a): Solicite reporte de ahorro energético tras optimizar el PLC."
+    }
+];
 
-<div class="expediente-master">
-    <header class="header-ods">
-        <img src="https://guillermosolis-dotcom.github.io/ODSyED/rueda-ods.png" alt="Rueda ODS" class="logo-rueda">
-        <img src="
+const sel = document.getElementById('sel');
+db.sort((a,b)=>a.c.localeCompare(b.c)).forEach(d=>{
+    let o=document.createElement('option'); o.value=d.c; o.textContent=d.c; sel.appendChild(o);
+});
+
+function draw(){
+    const d=db.find(x=>x.c===sel.value); const v=document.getElementById('view'); const p=document.getElementById('pb');
+    if(!d){v.innerHTML=''; p.style.display='none'; return;}
+    p.style.display='block';
+    v.innerHTML=`<div class="grid">
+        <div class="card" style="grid-column:span 3; background:var(--p); color:#fff;"><span class="label" style="color:#ccc;">Carrera</span><h2 style="margin:0;">${d.c}</h2></div>
+        <div class="card"><span class="label">SCIAN</span><span class="scian-n">${d.s}</span><br>${d.sec}</div>
+        <div class="card" style="grid-column:span 2; border-top:6px solid var(--s); background:#f0fff4;">
+            <span class="label">Módulo y Actividades Duales</span><b>${d.m}</b>
+            <ul>${d.a.map(x=>`<li>${x}</li>`).join('')}</ul>
+        </div>
+        <div class="card" style="text-align:center; background:#ebf8ff; border:none;">
+            <span class="label">Impacto ODS</span><b style="font-size:30px; color:var(--blue);">${d.o1}</b><br><small>${d.o1_t}</small>
