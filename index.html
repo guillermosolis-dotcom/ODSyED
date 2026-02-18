@@ -56,7 +56,7 @@
         <p>
             <strong>Nota técnica:</strong> El contenido de esta plataforma es de carácter <strong>ilustrativo y pedagógico</strong>. 
             Los módulos y actividades se presentan como referentes técnicos para ejemplificar la vinculación con los ODS. 
-            Para una planeación formal, el personal docente deberá consultar el programa de estudios específico y vigente 
+            Para una planeación formal, el personal docente con las y los instructores deberán consultar el programa de estudios específico y vigente 
             de su subsistema (DGETI, DGETAyCM, CECyTE o CONALEP). La información aquí presentada es de carácter público
             obtenida de la Secretaría de Educación Pública (SEP), el Instituto Nacional de Estadística y Geografía (INEGI) y
             la Organización de las Naciones Unidas (ONU). 
@@ -80,633 +80,66 @@
     const db = [
         {
             
-            c: "Mecatrónica (DGETI, CECyTE, CONALEP)",
-            s: "333999",
-            sec: "Fabricación de maquinaria y equipo",
-            m: "Módulo II: Mantiene sistemas de control por PLC",
-            a: [
-                "Optimización de secuencias lógicas en PLC para la reducción del consumo energético de los motores industriales.",
-                "Configuración y validación de protocolos de paros de emergencia para garantizar la seguridad total del operador.",
-                "Instalación de sensores de presencia y actuadores para la gestión eficiente de la iluminación en la planta.",
-                "Ejecución de programas de mantenimiento preventivo para prolongar la vida útil de los componentes.",
-                "Sincronización de sistemas robóticos para maximizar la precisión de los procesos y lograr cero mermas de material."
-            ],
-            h: "Eficiencia Energética Industrial",
-            o1: "9", o1_t: "Industria, Innovación e Infraestructura",
-            o2: "12", o2_t: "Producción y Consumo Responsables",
-            i: "Reducción de kW/h por ciclo optimizado",
-            d: "La automatización inteligente reduce el desperdicio de recursos energéticos en la manufactura a gran escala.",
-            orientacion: "Instructor(a): Solicite al alumno un reporte de ahorro energético tras la optimización del código del PLC."
-        },
-        {
-            c: "Contabilidad (DGETI, DGETAyCM , CECyTE) Contaduría (CONALEP",
-            s: "541211",
-            sec: "Servicios de contabilidad y auditoría",
-            m: "Módulo IV: Determina las contribuciones fiscales de personas físicas y morales",
-            a: [
-                "Auditoría de cumplimiento en Responsabilidad Social Empresarial (RSE) y transparencia en reportes fiscales.",
-                "Análisis de transparencia en el reporte de estados financieros públicos para fortalecer la rendición de cuentas.",
-                "Gestión de incentivos fiscales para empresas que invierten en tecnologías limpias.",
-                "Implementación de sistemas de control interno contable para prevenir la corrupción y asegurar la gobernanza financiera.",
-                "Asesoría contable para el fortalecimiento de alianzas estratégicas sostenibles mediante reportes de impacto económico."
-            ],
-            h: "Ética Financiera y Gobernanza",
-            o1: "16", o1_t: "Paz, Justicia e Instituciones Sólidas",
-            o2: "17", o2_t: "Alianzas para lograr los Objetivos",
-            i: "Índice de transparencia en reportes",
-            d: "La rendición de cuentas clara fortalece la confianza para generar alianzas público-privadas sostenibles.",
-            orientacion: "Instructor(a): Oriente al alumno sobre cómo la transparencia contable contribuye a la justicia social pública."
-        },
-        {
-            c: "Soporte y Mantenimiento de Equipo de Cómputo (DGETI)",
-            s: "811211",
-            sec: "Reparación y mantenimiento de equipo de cómputo y equipo de comunicación",
-            m: "Módulo I: Ensambla y configura equipo de cómputo de acuerdo a las especificaciones del fabricante",
-            a: [
-                "Implementación de planes de mantenimiento preventivo para prolongar la vida útil del hardware y reducir la generación de residuos electrónicos (e-waste).",
-                "Configuración de esquemas de ahorro de energía y gestión de potencia en BIOS y Sistemas Operativos para optimizar el consumo eléctrico.",
-                "Diagnóstico y recuperación de componentes funcionales de equipos en desuso para su reintegración en estaciones de trabajo académicas.",
-                "Gestión y confinamiento responsable de residuos químicos (solventes y pastas térmicas) utilizados en los procesos de limpieza técnica.",
-                "Instalación de software de código abierto (Open Source) para fomentar la soberanía tecnológica y reducir brechas de licenciamiento."
-            ],
-            h: "Gestión de Ciclo de Vida Tecnológico",
-            o1: "12", o1_t: "Producción y Consumo Responsables",
-            o2: "9", o2_t: "Industria, Innovación e Infraestructura",
-            i: "Porcentaje de componentes recuperados y reutilizados",
-            d: "El mantenimiento profesional extiende la vida de la infraestructura, reduciendo la huella de carbono y el desperdicio tecnológico.",
-            orientacion: "Instructor(a): Verifique que el alumno no solo repare el equipo, sino que documente el ahorro estimado de residuos al evitar el desecho prematuro."
-        },
-        {
-            
-            c: "Electricidad (DGETI)",
-            s: "238210",
-            sec: "Instalaciones eléctricas en construcciones",
-            m: "Módulo III: Mantiene máquinas eléctricas de corriente alterna y directa",
-            a: [
-                "Realización de diagnósticos de eficiencia energética en motores para identificar fugas de corriente y caídas de tensión.",
-                "Instalación y mantenimiento de tableros de control que incorporen dispositivos de protección para evitar sobrecargas y riesgos de incendio.",
-                "Propuesta de sustitución de luminarias tradicionales por tecnología LED con sistemas de control automatizado por sensores.",
-                "Medición de parámetros eléctricos para asegurar que los equipos operen en su punto óptimo de bajo consumo.",
-                "Aplicación de protocolos de seguridad eléctrica (bloqueo y etiquetado) para prevenir accidentes laborales durante el mantenimiento."
-            ],
-            h: "Optimización Energética y Seguridad Eléctrica",
-            o1: "7", o1_t: "Energía Asequible y No Contaminante",
-            o2: "9", o2_t: "Industria, Innovación e Infraestructura",
-            i: "Factor de potencia optimizado en equipos intervenidos",
-            d: "La eficiencia en sistemas eléctricos es la base para una industria moderna que consuma menos energía y sea más segura.",
-            orientacion: "Instructor(a): Evalúe la capacidad del alumno para proponer soluciones que reduzcan el consumo de energía eléctrica en el taller o empresa."
-        },
-        {
-            c: "Electrónica (DGETI)",
-            s: "334410",
-            sec: "Fabricación de componentes electrónicos",
-            m: "Módulo IV: Mantiene sistemas electrónicos de potencia",
-            a: [
-                "Diagnóstico y reparación de fuentes conmutadas para maximizar la eficiencia en la conversión de energía.",
-                "Implementación de sistemas de control de temperatura para prevenir el sobrecalentamiento y extender la vida útil de semiconductores.",
-                "Sustitución de componentes analógicos por dispositivos de estado sólido de bajo consumo energético.",
-                "Recuperación de metales preciosos y componentes críticos de tarjetas electrónicas dañadas bajo normas ambientales.",
-                "Diseño de prototipos con microcontroladores para la automatización de procesos con enfoque en ahorro de energía."
-            ],
-            h: "Eficiencia en Sistemas de Potencia",
-            o1: "9", o1_t: "Industria, Innovación e Infraestructura",
-            o2: "12", o2_t: "Producción y Consumo Responsables",
-            i: "Reducción de disipación térmica en sistemas",
-            d: "La electrónica de potencia eficiente es fundamental para reducir la pérdida de energía en la industria moderna.",
-            orientacion: "Instructor(a): Verifique que el alumno utilice el multímetro y osciloscopio para comprobar la eficiencia real de los circuitos intervenidos."
-        },
-        {
-            c: "Logística (DGETI)",
-            s: "488511",
-            sec: "Servicios de almacenamiento y guarda de bienes",
-            m: "Módulo II: Organiza el transporte de mercancías",
-            a: [
-                "Diseño de rutas críticas para la reducción de emisiones de CO2 mediante la optimización de trayectos de entrega.",
-                "Implementación de sistemas de inventario 'Justo a Tiempo' para minimizar el almacenamiento innecesario y desperdicios.",
-                "Supervisión de protocolos de embalaje utilizando materiales biodegradables o reutilizables en la cadena de suministro.",
-                "Coordinación de logística inversa para el retorno y reciclaje de envases y embalajes post-consumo.",
-                "Análisis de carga para asegurar el uso máximo de la capacidad de los vehículos, reduciendo el número de viajes."
-            ],
-            h: "Logística Verde y Cadena de Suministro",
-            o1: "13", o1_t: "Acción por el Clima",
-            o2: "12", o2_t: "Producción y Consumo Responsables",
-            i: "Reducción de huella de carbono por tonelada transportada",
-            d: "Una logística optimizada disminuye drásticamente el impacto ambiental del comercio y la distribución.",
-            orientacion: "Instructor(a): Solicite al alumno un comparativo de ahorro en combustible tras la planeación de una ruta optimizada."
-        },
-        {
-            c: "Administración de Recursos Humanos (DGETI / DGETAyCM / CECyTE / CONALEP)",
-            s: "541611",
-            sec: "Servicios de consultoría en administración de recursos humanos",
-            m: "Módulo IV: Controla los procesos de trabajo y el capital humano",
-            a: [
-                "Desarrollo de manuales de inducción con enfoque en diversidad, equidad de género e inclusión laboral.",
-                "Implementación de programas de capacitación en seguridad e higiene para prevenir riesgos y accidentes laborales.",
-                "Auditoría de nómina para garantizar la igualdad salarial entre hombres y mujeres en puestos similares.",
-                "Creación de planes de bienestar laboral que fomenten la salud mental y el equilibrio entre vida personal y trabajo.",
-                "Promoción de políticas internas de ética profesional y mecanismos de denuncia contra el acoso y la discriminación."
-            ],
-            h: "Gestión de Capital Humano Ético y Diverso",
-            o1: "8", o1_t: "Trabajo Decente y Crecimiento Económico",
-            o2: "5", o2_t: "Igualdad de Género",
-            i: "Índice de equidad salarial y clima laboral",
-            d: "El trabajo decente y la igualdad son los pilares de una empresa productiva y socialmente responsable.",
-            orientacion: "Instructor(a): Oriente al alumno sobre cómo los procesos administrativos pueden eliminar sesgos de discriminación desde el reclutamiento."
-        },
-        {
-            c: "Arquitectura (DGETI)",
-            s: "541310",
-            sec: "Servicios de arquitectura",
-            m: "Módulo I: Realiza dibujos de planos arquitectónicos con equipo convencional y software",
-            a: [
-                "Diseño de planos que incorporen ecotecnias como celdas solares y sistemas de tratamiento de aguas grises.",
-                "Especificación de materiales de construcción con baja huella de carbono y alta durabilidad.",
-                "Cálculo de vanos y ventanas para garantizar una ventilación cruzada que elimine el uso de aire acondicionado.",
-                "Uso de software BIM para cuantificar materiales con precisión y evitar la compra excesiva y desperdicio.",
-                "Planificación de espacios que respeten las áreas verdes existentes y promuevan la biodiversidad urbana."
-            ],
-            h: "Diseño Bioclimático y Arquitectura Sostenible",
-            o1: "11", o1_t: "Ciudades y Comunidades Sostenibles",
-            o2: "7", o2_t: "Energía Asequible y No Contaminante",
-            i: "Porcentaje de iluminación y ventilación natural en el diseño",
-            d: "El diseño arquitectónico inteligente permite crear hábitats humanos que consumen menos energía.",
-            orientacion: "Instructor(a): Fomente en el estudiante la idea de que un buen diseño debe ser estético y energéticamente eficiente."
-        },
-        {
-            c: "Enfermería General (DGETI /CECyTE /CONALEP)",
-            s: "622110",
-            sec: "Hospitales generales del sector público y privado",
-            m: "Módulo III: Aplica cuidados de enfermería en la salud reproductiva y del niño",
-            a: [
-                "Promoción de la lactancia materna como estrategia de nutrición sostenible y prevención de enfermedades neonatales.",
-                "Educación a la comunidad sobre métodos de planificación familiar para el ejercicio de derechos reproductivos.",
-                "Gestión segura de punzocortantes y desechos hospitalarios para evitar riesgos sanitarios en la comunidad.",
-                "Participación en campañas de vacunación para el fortalecimiento de la inmunidad colectiva y bienestar social.",
-                "Implementación de cuidados con enfoque de interculturalidad para garantizar el acceso equitativo a la salud."
-            ],
-            h: "Salud Integral y Prevención Comunitaria",
-            o1: "3", o1_t: "Salud y Bienestar",
-            o2: "5", o2_t: "Igualdad de Género",
-            i: "Cobertura de orientación en salud preventiva por paciente",
-            d: "La enfermería es el pilar para garantizar vidas saludables y promover el bienestar en todas las edades.",
-            orientacion: "Instructor(a): Refuerce la importancia de la calidez humana y la ética profesional en la atención de grupos vulnerables."
-        },
-        {
-            c: "Agricultura Sustentable (DGETAyCM)",
-            s: "111110",
-            sec: "Cultivo de granos y semillas",
-            m: "Módulo III: Produce cultivos bajo condiciones sustentables",
-            a: [
-                "Implementación de técnicas de labranza de conservación para prevenir la erosión del suelo y retener humedad.",
-                "Aplicación de métodos de control biológico de plagas para reducir la dependencia de agroquímicos sintéticos.",
-                "Instalación y manejo de sistemas de riego por goteo para optimizar el uso del agua en zonas de cultivo.",
-                "Elaboración y aplicación de biofertilizantes orgánicos a partir de la gestión de residuos de cosecha.",
-                "Uso de semillas criollas y rotación de cultivos para preservar la biodiversidad genética y la salud del ecosistema."
-            ],
-            h: "Producción Agroecológica",
-            o1: "2", o1_t: "Hambre Cero",
-            o2: "15", o2_t: "Vida de Ecosistemas Terrestres",
-            i: "Hectáreas convertidas a manejo sustentable",
-            d: "La agricultura sustentable asegura la producción de alimentos sin degradar la biodiversidad de los suelos.",
-            orientacion: "Instructor(a): Evalúe la capacidad del alumno para proponer alternativas biológicas en sustitución de fertilizantes químicos."
-        },
-        {
-            c: "Ofimática (DGETI / DGETAyCM)",
-            s: "561110",
-            sec: "Servicios de apoyo a los negocios y oficinas",
-            m: "Módulo II: Gestiona información mediante el uso de software de aplicación",
-            a: [
-                "Digitalización de procesos para la eliminación de archivos físicos y reducción de la huella de carbono de oficina.",
-                "Uso de hojas de cálculo para el monitoreo de indicadores de consumo de agua y energía en la organización.",
-                "Gestión de información en la nube para fomentar el teletrabajo y reducir la movilidad urbana.",
-                "Creación de bases de datos para el control de inventarios críticos, evitando la sobrecompra y el desperdicio.",
-                "Desarrollo de documentos digitales con estándares de accesibilidad para la inclusión de personas con discapacidad visual."
-            ],
-            h: "Gestión Administrativa Sostenible",
-            o1: "9", o1_t: "Industria, Innovación e Infraestructura",
-            o2: "12", o2_t: "Producción y Consumo Responsables",
-            i: "Porcentaje de trámites digitalizados / Cero Papel",
-            d: "La eficiencia administrativa digital es la base para infraestructuras institucionales modernas y bajas en emisiones.",
-            orientacion: "Instructor(a): Enfatice el uso de herramientas colaborativas para reducir la necesidad de insumos físicos y traslados."
-        },
-        {
-            c: "Comercialización (DGETAyCM) / Ventas (DGETI)",
-            s: "461110",
-            sec: "Comercio al por menor",
-            m: "Módulo I: Auxilia en el proceso de venta de productos y servicios",
-            a: [
-                "Promoción de productos locales y de temporada para fortalecer la economía regional y reducir la huella de carbono.",
-                "Asesoría al cliente sobre productos con distintivos de sustentabilidad o etiquetas ecológicas.",
-                "Implementación de estrategias de empaque con materiales biodegradables o sistemas de cero residuos.",
-                "Coordinación de logística inversa para el retorno y aprovechamiento de envases post-consumo.",
-                "Aplicación de técnicas de venta ética que prioricen el consumo responsable y la satisfacción de necesidades reales."
-            ],
-            h: "Comercio Ético y Consumo Responsable",
-            o1: "12", o1_t: "Producción y Consumo Responsables",
-            o2: "8", o2_t: "Trabajo Decente y Crecimiento Económico",
-            i: "Porcentaje de ventas de productos de origen local/sustentable",
-            d: "La comercialización ética transforma los hábitos de consumo y dinamiza las economías locales.",
-            orientacion: "Instructor(a): Oriente al alumno sobre cómo la transparencia en el origen del producto genera confianza y valor social."
-        },
-        {
-            c: "Administración (DGETI / DGETAyCM)",
-            s: "541611",
-            sec: "Servicios de consultoría en administración",
-            m: "Módulo I: Auxilia en la administración de áreas funcionales de la organización",
-            a: [
-                "Diseño de flujogramas de procesos que integren criterios de eficiencia de recursos y reducción de desperdicios.",
-                "Implementación de bitácoras de control para el uso racional de energía y agua en las instalaciones.",
-                "Apoyo en la gestión de proveedores que cumplan con estándares de responsabilidad social y ambiental.",
-                "Organización de archivos digitales para minimizar el uso de insumos de oficina y optimizar el tiempo laboral.",
-                "Asistencia en la elaboración de reportes de impacto social para la toma de decisiones directivas."
-            ],
-            h: "Gestión Organizacional Sostenible",
-            o1: "9", o1_t: "Industria, Innovación e Infraestructura",
-            o2: "12", o2_t: "Producción y Consumo Responsables",
-            i: "Eficiencia en el uso de insumos administrativos",
-            d: "Una administración eficiente es el corazón de una organización resiliente y comprometida con su entorno.",
-            orientacion: "Instructor(a): Evalúe la capacidad del alumno para identificar áreas de oportunidad en el ahorro de recursos operativos."
-        },
-        {
-            c: "Turismo (DGETI / DGETAyCM / CECyTE / CONALEP)",
-            s: "721110",
-            sec: "Hoteles con otros servicios integrados",
-            m: "Módulo II: Propone estrategias de hospitalidad sustentable",
-            a: [
-                "Implementación de programas de ahorro de agua en áreas de huéspedes y servicios de lavandería.",
-                "Sustitución de plásticos de un solo uso por alternativas compostables en amenidades y restaurantes.",
-                "Promoción de la gastronomía local y artesanal para reducir la huella de carbono de los insumos.",
-                "Gestión de residuos sólidos mediante la separación en origen y convenios con centros de reciclaje.",
-                "Capacitación al personal en protocolos de inclusión y respeto a la diversidad cultural del viajero."
-            ],
-            h: "Hospitalidad Sostenible",
-            o1: "8", o1_t: "Trabajo Decente y Crecimiento Económico",
-            o2: "12", o2_t: "Producción y Consumo Responsables",
-            i: "Reducción de residuos por huésped / noche",
-            d: "El turismo debe ser un motor de desarrollo que proteja el patrimonio natural y cultural de México.",
-            orientacion: "Instructor(a): Verifique que el alumno diseñe experiencias turísticas que respeten la capacidad de carga del destino."
-        },
-        {
-            c: "Mantenimiento Automotriz (DGETI / CECyTE) / Autotrónica (CONALEP)",
-            s: "811111",
-            sec: "Reparación mecánica y eléctrica de automóviles y camionetas",
-            m: "Módulo III: Mantiene los sistemas de encendido y enfriamiento del motor",
-            a: [
-                "Ajuste de sistemas de inyección electrónica para garantizar una combustión completa y baja en emisiones.",
-                "Gestión técnica de aceites lubricantes usados para evitar el vertido en alcantarillados y suelos.",
-                "Diagnóstico de convertidores catalíticos para asegurar el cumplimiento de las normas de calidad del aire.",
-                "Promoción del uso de componentes remanufacturados certificados para reducir la huella de fabricación.",
-                "Capacitación al cliente en técnicas de conducción ecológica para optimizar el rendimiento de combustible."
-            ],
-            h: "Eco-Mantenimiento Vehicular",
-            o1: "13", o1_t: "Acción por el Clima",
-            o2: "11", o2_t: "Ciudades y Comunidades Sostenibles",
-            i: "Reducción porcentual de emisiones tras afinación técnica",
-            d: "Un parque vehicular bien mantenido es vital para mejorar la salud respiratoria en nuestras zonas urbanas.",
-            orientacion: "Instructor(a): Enfatice el impacto que tiene un motor mal afinado en el aumento de gases de efecto invernadero."
-        },
-        {
-            c: "Producción Industrial de Alimentos (DGETI / DGETAyCM / CECyTE / CONALEP)",
-            s: "311999",
-            sec: "Otras industrias alimentarias",
-            m: "Módulo II: Realiza procesos de transformación de productos cárnicos y lácteos",
-            a: [
-                "Optimización de los procesos de limpieza (CIP) para minimizar el consumo de agua y productos químicos.",
-                "Implementación de cadenas de frío eficientes con gases refrigerantes de bajo impacto ambiental.",
-                "Aprovechamiento de sueros y subproductos lácteos para la creación de nuevos alimentos o suplementos.",
-                "Uso de empaques con tecnología de atmósfera modificada para extender la vida de anaquel y reducir desperdicios.",
-                "Verificación de trazabilidad del producto para garantizar la inocuidad y salud del consumidor final."
-            ],
-            h: "Inocuidad y Eficiencia Alimentaria",
-            o1: "2", o1_t: "Hambre Cero",
-            o2: "12", o2_t: "Producción y Consumo Responsables",
-            i: "Kilogramos de subproducto aprovechado / lote",
-            d: "La industria alimentaria es clave para asegurar la nutrición de la población mediante procesos limpios y éticos.",
-            orientacion: "Instructor(a): Evalúe propuestas de reducción de mermas en la línea de transformación para maximizar la seguridad alimentaria."
-        },
-        {
-            c: "Servicios de Hotelería (DGETI / CECyTE) / Hospitalidad Turística (CONALEP)",
-            s: "721110",
-            sec: "Servicios de alojamiento temporal",
-            m: "Módulo I: Coordina la limpieza de habitaciones y áreas públicas",
-            a: [
-                "Implementación de técnicas de limpieza 'Green Housekeeping' mediante el uso de detergentes biodegradables.",
-                "Gestión de programas de reutilización de blancos (toallas y sábanas) para el ahorro masivo de agua y energía.",
-                "Separación de residuos desde la habitación para facilitar el reciclaje de materiales aprovechables.",
-                "Optimización del uso de amenidades para reducir la generación de plásticos de un solo uso.",
-                "Control de inventarios de insumos de limpieza para evitar el desperdicio y la sobrecompra de químicos."
-            ],
-            h: "Gestión de Alojamiento Sostenible",
-            o1: "12", o1_t: "Producción y Consumo Responsables",
-            o2: "6", o2_t: "Agua Limpia y Saneamiento",
-            i: "Litros de agua ahorrados por habitación/día",
-            d: "La hotelería moderna debe equilibrar el confort del huésped con un uso estrictamente responsable de los recursos naturales.",
-            orientacion: "Instructor(a): Evalúe cómo el alumno propone estrategias de comunicación para sensibilizar al huésped sobre el ahorro de agua."
-        },
-        {
-            c: "Preparación de Alimentos y Bebidas (DGETI / DGETAyCM / CECyTE / CONALEP)",
-            s: "722511",
-            sec: "Servicios de preparación de alimentos y bebidas",
-            m: "Módulo IV: Prepara bebidas y cocteles",
-            a: [
-                "Uso de insumos de temporada y de origen local para reducir la huella de carbono por transporte de mercancías.",
-                "Implementación de técnicas de aprovechamiento total de ingredientes (Zero Waste) en la elaboración de garnituras y jarabes.",
-                "Gestión de residuos orgánicos mediante compostaje para su reintegración en huertos urbanos o escolares.",
-                "Reducción del uso de desechables no biodegradables (popotes, mezcladores) en el servicio de barra.",
-                "Mantenimiento preventivo a equipos de refrigeración para optimizar el consumo eléctrico del establecimiento."
-            ],
-            h: "Gastronomía Sostenible",
-            o1: "12", o1_t: "Producción y Consumo Responsables",
-            o2: "2", o2_t: "Hambre Cero",
-            i: "Porcentaje de merma orgánica aprovechada en el proceso",
-            d: "El sector de alimentos y bebidas tiene un papel crucial en la transformación hacia un sistema alimentario más justo y ecológico.",
-            orientacion: "Instructor(a): Verifique que el alumno integre criterios de estacionalidad y comercio justo en la selección de sus ingredientes."
-        },
-        {
-            c: "Producción Industrial (DGETI / CECyTE) / Productividad Industrial (CONALEP)",
-            s: "339999",
-            sec: "Otras industrias manufactureras",
-            m: "Módulo I: Emplea técnicas de control de calidad",
-            a: [
-                "Aplicación de metodologías Lean para identificar y eliminar desperdicios de materia prima en la línea de producción.",
-                "Monitoreo de indicadores de eficiencia energética para detectar picos de consumo innecesarios.",
-                "Diseño de planes de mejora continua que integren la reducción de la huella hídrica del proceso productivo.",
-                "Supervisión del cumplimiento de normas de seguridad industrial para garantizar la integridad física de los trabajadores.",
-                "Implementación de auditorías de residuos para asegurar su correcta disposición y potencial reciclaje."
-            ],
-            h: "Productividad y Manufactura Esbelta",
-            o1: "9", o1_t: "Industria, Innovación e Infraestructura",
-            o2: "8", o2_t: "Trabajo Decente y Crecimiento Económico",
-            i: "Índice de reducción de defectos y desperdicios de material",
-            d: "La verdadera productividad industrial ocurre cuando se maximiza la producción minimizando el impacto ambiental y humano.",
-            orientacion: "Instructor(a): Fomente en el alumno la visión de 'Cero Defectos' como una estrategia de ahorro de recursos naturales."
-        },
-        {
-            c: "Laboratorista Químico (DGETI / CECyTE / DGETAyCM) / Análisis de la Práctica Farmacéutica (CONALEP)",
-            s: "541380",
-            sec: "Laboratorios de pruebas",
-            m: "Módulo III: Ejecuta métodos de análisis cuantitativos químicos y microbiológicos",
-            a: [
-                "Análisis de potabilidad del agua en comunidades para asegurar el consumo humano seguro y prevenir enfermedades.",
-                "Implementación de técnicas de micro-escala para reducir drásticamente el uso de reactivos y la generación de residuos.",
-                "Monitoreo de contaminantes en alimentos y suelo para asegurar la salud pública y la seguridad alimentaria.",
-                "Gestión ética de reactivos y residuos químicos peligrosos bajo estrictas normas de bioseguridad ambiental.",
-                "Uso de equipos de precisión para optimizar el rendimiento de las sustancias analizadas y evitar desperdicios."
-            ],
-            h: "Análisis Químico Responsable",
-            o1: "6", o1_t: "Agua Limpia y Saneamiento",
-            o2: "3", o2_t: "Salud y Bienestar",
-            i: "Reducción de residuos químicos generados en el laboratorio",
-            d: "El control químico preciso garantiza agua, alimentos y medicamentos seguros, pilares del bienestar social.",
-            orientacion: "Instructor(a): Verifique que el alumno aplique rigurosamente la NOM-052-SEMARNAT para el manejo de residuos."
-        },
-        {
-            c: "Construcción (DGETI / CECyTE / CONALEP)",
-            s: "236111",
-            sec: "Edificación residencial",
-            m: "Módulo II: Dibuja planos arquitectónicos y constructivos con software",
-            a: [
-                "Diseño de planos que incorporen sistemas de captación de agua pluvial y aprovechamiento de luz natural.",
-                "Selección de materiales de construcción con baja huella de carbono y proveedores de la región.",
-                "Planificación de espacios bajo criterios de accesibilidad universal para la inclusión social.",
-                "Cálculo de volúmenes de obra para minimizar el desperdicio de materiales y escombros en sitio.",
-                "Integración de azoteas verdes o superficies permeables para mitigar las islas de calor urbanas."
-            ],
-            h: "Edificación Sostenible y Urbanismo",
-            o1: "11", o1_t: "Ciudades y Comunidades Sostenibles",
-            o2: "9", o2_t: "Industria, Innovación e Infraestructura",
-            i: "Porcentaje de áreas verdes y eficiencia energética en el diseño",
-            d: "La construcción sostenible es la base para ciudades más resilientes y respetuosas con el medio ambiente.",
-            orientacion: "Instructor(a): Fomente en el alumno el uso de normativas de eco-tecnologías en sus proyectos de dibujo técnico."
-        },
-        {
-            c: "Sistemas de Impresión / Diseño Gráfico (DGETI / CECyTE / CONALEP)",
-            s: "323119",
-            sec: "Industrias de las artes gráficas",
-            m: "Módulo III: Produce salidas gráficas en diversos sistemas de impresión",
-            a: [
-                "Uso de tintas de base vegetal o biodegradables para reducir la emisión de compuestos orgánicos volátiles.",
-                "Optimización de los sustratos mediante software de imposición para minimizar el desperdicio de papel.",
-                "Promoción de soportes de impresión reciclados o con certificación de gestión forestal sostenible (FSC).",
-                "Gestión de residuos de pre-prensa y químicos de revelado para evitar su vertido al drenaje.",
-                "Desarrollo de empaques funcionales que requieran menos material y sean 100% reciclables."
-            ],
-            h: "Comunicación Visual y Eco-diseño",
-            o1: "12", o1_t: "Producción y Consumo Responsables",
-            o2: "15", o2_t: "Vida de Ecosistemas Terrestres",
-            i: "Porcentaje de merma de papel recuperada para reciclaje",
-            d: "El diseño y la impresión son aliados del planeta si se enfocan en la reducción de residuos y el uso de materiales limpios.",
-            orientacion: "Instructor(a): Oriente al alumno sobre la importancia del ecodiseño desde la concepción del producto gráfico."
-        },
-        {
-            c: "Producción de Prendas de Vestir (DGETI / CECyTE) / Industria del Vestido (CONALEP)",
-            s: "315220",
-            sec: "Fabricación de prendas de vestir",
-            m: "Módulo I: Confecciona prendas de vestir",
-            a: [
-                "Aprovechamiento de retacería para la creación de accesorios, reduciendo el desecho textil en vertederos.",
-                "Uso de fibras naturales o textiles reciclados para fomentar la moda circular y ética.",
-                "Mantenimiento preventivo a máquinas de coser para optimizar el consumo eléctrico y prolongar su vida útil.",
-                "Implementación de técnicas de corte de alta precisión para maximizar el uso del lienzo textil.",
-                "Promoción de condiciones de trabajo seguras y ergonómicas en los talleres de confección."
-            ],
-            h: "Moda Sostenible y Ética",
-            o1: "12", o1_t: "Producción y Consumo Responsables",
-            o2: "8", o2_t: "Trabajo Decente y Crecimiento Económico",
-            i: "Tasa de aprovechamiento de insumos textiles",
-            d: "La industria del vestido debe transitar hacia un modelo circular que valore tanto el recurso como el trabajo humano.",
-            orientacion: "Instructor(a): Fomente en el alumno el análisis del impacto del 'fast fashion' frente a la producción local."
-        },
-        {
-            c: "Acuacultura (DGETAyCM / CECyTE)",
-            s: "112511",
-            sec: "Acuacultura de animales",
-            m: "Módulo II: Produce organismos acuáticos mediante sistemas de cultivo",
-            a: [
-                "Implementación de sistemas de recirculación de agua (RAS) para minimizar el consumo de recursos hídricos.",
-                "Monitoreo constante de la calidad del agua para prevenir enfermedades sin abuso de químicos.",
-                "Uso de alimentos balanceados con ingredientes vegetales para reducir la presión sobre la pesca de captura.",
-                "Manejo de lodos y residuos orgánicos para su uso como biofertilizantes agrícolas.",
-                "Fomento del cultivo de especies nativas para preservar la biodiversidad acuática local."
-            ],
-            h: "Acuacultura Regenerativa",
-            o1: "14", o1_t: "Vida Submarina",
-            o2: "2", o2_t: "Hambre Cero",
-            i: "Eficiencia de conversión alimenticia y ahorro de agua",
-            d: "La acuacultura responsable es clave para la seguridad alimentaria global y la protección de los mares.",
-            orientacion: "Instructor(a): Evalúe cómo la gestión del agua en los estanques impacta en la salud del ecosistema circundante."
-        },
-        {
-            c: "Programación (DGETI / DGETAyCM / CECyTE) / Informática (CONALEP)",
-            s: "541512",
-            sec: "Desarrollo de software y servicios relacionados",
-            m: "Módulo V: Administra y configura plataformas de e-learning",
-            a: [
-                "Desarrollo de interfaces accesibles para personas con discapacidades, promoviendo la inclusión digital.",
-                "Optimización de código y bases de datos para reducir el consumo energético de los servidores (Green IT).",
-                "Implementación de protocolos de ciberseguridad para proteger la privacidad de los datos de los usuarios.",
-                "Uso de tecnologías de código abierto para democratizar el acceso al conocimiento tecnológico.",
-                "Configuración de plataformas educativas que faciliten el aprendizaje remoto y reduzcan la brecha educativa."
-            ],
-            h: "Desarrollo Tecnológico Inclusivo",
-            o1: "4", o1_t: "Educación de Calidad",
-            o2: "10", o2_t: "Reducción de las Desigualdades",
-            i: "Nivel de accesibilidad web y eficiencia de procesamiento",
-            d: "El software es la herramienta más poderosa para democratizar la educación y conectar al mundo de forma equitativa.",
-            orientacion: "Instructor(a): Verifique que los proyectos cumplan con los estándares internacionales de accesibilidad (WCAG)."
-        },
-        {
-            c: "Mantenimiento Industrial (DGETI / CECyTE) / Mantenimiento de Sistemas Automáticos (CONALEP)",
-            s: "811312",
-            sec: "Mantenimiento y reparación de maquinaria y equipo industrial",
-            m: "Módulo II: Mantiene sistemas de enfriamiento y aire acondicionado",
-            a: [
-                "Sustitución de refrigerantes por opciones de bajo potencial de calentamiento global (GWP).",
-                "Mantenimiento a condensadores para maximizar la eficiencia térmica y reducir el gasto eléctrico.",
-                "Recuperación y reciclaje de gases refrigerantes según los protocolos de protección de la capa de ozono.",
-                "Implementación de aislamientos térmicos para reducir la carga de trabajo de los sistemas de enfriamiento.",
-                "Ajuste de termostatos para operar solo bajo demanda real de temperatura."
-            ],
-            h: "Climatización Sostenible e Industrial",
-            o1: "13", o1_t: "Acción por el Clima",
-            o2: "7", o2_t: "Energía Asequible y No Contaminante",
-            i: "Reducción de emisiones de gases y optimización de KWh",
-            d: "Un mantenimiento industrial responsable es la primera línea de defensa contra el cambio climático en las fábricas.",
-            orientacion: "Instructor(a): Verifique que el alumno aplique protocolos de cero fugas en sistemas de refrigeración."
-        },
-        {
-            c: "Sistemas de Producción Agrícola (DGETAyCM / CECyTE) / Agrotecnología (CONALEP)",
-            s: "111199",
-            sec: "Otros cultivos agrícolas",
-            m: "Módulo IV: Establece procesos de producción de cultivos agrícolas",
-            a: [
-                "Implementación de riego por goteo o microaspersión para la optimización del recurso hídrico.",
-                "Uso de biofertilizantes y control biológico de plagas para reducir la dependencia de agroquímicos.",
-                "Práctica de agricultura de conservación para mantener la salud del suelo y capturar carbono.",
-                "Selección de semillas nativas y adaptadas para preservar la biodiversidad local.",
-                "Manejo de post-cosecha eficiente para reducir las mermas de alimentos en el campo."
-            ],
-            h: "Agricultura Climáticamente Inteligente",
-            o1: "2", o1_t: "Hambre Cero",
-            o2: "15", o2_t: "Vida de Ecosistemas Terrestres",
-            i: "Litros de agua ahorrados por tonelada de cosecha producida",
-            d: "La agricultura del futuro debe alimentar al mundo regenerando la tierra y optimizando el agua dulce.",
-            orientacion: "Instructor(a): Fomente el uso de tecnologías de monitoreo de humedad para evitar el sobre-riego."
-        },
-        {
-            c: "Energías Renovables (DGETI / CECyTE) / Conservación de Energía y Medio Ambiente (CONALEP)",
-            s: "221118",
-            sec: "Generación de electricidad renovable",
-            m: "Módulo II: Instala y mantiene sistemas solares térmicos",
-            a: [
-                "Dimensionamiento de sistemas de calentamiento solar para reducir el uso de combustibles fósiles.",
-                "Mantenimiento a colectores solares para garantizar la máxima eficiencia en la captación térmica.",
-                "Instalación de sistemas fotovoltaicos interconectados para fomentar la generación de energía limpia.",
-                "Promoción de una cultura de eficiencia energética entre los usuarios finales de la tecnología.",
-                "Gestión responsable de baterías al final de su vida útil en sistemas aislados."
-            ],
-            h: "Transición Energética Justa",
-            o1: "7", o1_t: "Energía Asequible y No Contaminante",
-            o2: "13", o2_t: "Acción por el Clima",
-            i: "Toneladas de CO2 evitadas por sistema solar instalado",
-            d: "La democratización de la energía limpia es clave para reducir la brecha de desigualdad y combatir el cambio climático.",
-            orientacion: "Instructor(a): Verifique que el alumno realice cálculos de ahorro de emisiones comparado con fuentes fósiles."
-        },
-        {
-            c: "Aeronáutica (DGETI) / Mantenimiento de Motores y Planeadores (CONALEP)",
-            s: "488111",
-            sec: "Servicios relacionados con el transporte aéreo",
-            m: "Módulo IV: Mantiene los sistemas de propulsión de las aeronaves",
-            a: [
-                "Mantenimiento preventivo de motores para optimizar el consumo de turbosina.",
-                "Gestión de residuos peligrosos (aceites y solventes) bajo normas internacionales de protección ambiental.",
-                "Uso de materiales compuestos avanzados para reducir el peso de las aeronaves y bajar emisiones.",
-                "Recuperación y reciclaje de componentes metálicos de grado aeronáutico.",
-                "Implementación de auditorías de seguridad para prevenir incidentes y contaminación del entorno."
-            ],
-            h: "Eficiencia Aeronáutica y Seguridad",
-            o1: "9", o1_t: "Industria, Innovación e Infraestructura",
-            o2: "12", o2_t: "Producción y Consumo Responsables",
-            i: "Reducción de residuos químicos y eficiencia de combustible",
-            d: "La aeronáutica técnica moderna busca equilibrar la conectividad global con la reducción del impacto ambiental.",
-            orientacion: "Instructor(a): Verifique el cumplimiento de las normativas de disposición de lubricantes usados."
-        },
-        {
-            c: "Biotecnología (DGETI / CECyTE)",
-            s: "541711",
-            sec: "Servicios de investigación científica y tecnológica",
-            m: "Módulo III: Aplica técnicas de análisis citológico y microbiológico",
-            a: [
-                "Desarrollo de bioplásticos a partir de desechos orgánicos para sustituir polímeros derivados del petróleo.",
-                "Uso de microorganismos para la biorremediación de suelos y cuerpos de agua contaminados.",
-                "Optimización de procesos de fermentación para la producción de biocombustibles.",
-                "Aplicación de protocolos de bioseguridad para el manejo ético de organismos modificados.",
-                "Investigación de extractos naturales para la creación de pesticidas biodegradables."
-            ],
-            h: "Innovación Biotecnológica Sostenible",
-            o1: "3", o1_t: "Salud y Bienestar",
-            o2: "13", o2_t: "Acción por el Clima",
-            i: "Sustitución de procesos químicos por biotecnológicos",
-            d: "La biotecnología es la clave para una industria circular que utilice la naturaleza para sanar al planeta.",
-            orientacion: "Instructor(a): Fomente proyectos que utilicen recursos locales para crear bio-soluciones."
-        },
-        {
-            c: "Suelo y Agua (DGETAyCM / CECyTE)",
-            s: "115110",
-            sec: "Servicios relacionados con la agricultura",
-            m: "Módulo III: Aplica técnicas de conservación de suelo y agua",
-            a: [
-                "Construcción de terrazas y curvas de nivel para evitar la erosión hídrica y eólica.",
-                "Implementación de sistemas de captación de agua de lluvia para riego de auxilio.",
-                "Análisis de suelos para evitar la sobre-fertilización y la contaminación de mantos freáticos.",
-                "Uso de coberturas vegetales para mantener la humedad y biodiversidad del suelo.",
-                "Promoción de la labranza mínima para la captura de carbono orgánico."
-            ],
-            h: "Gestión de Recursos Naturales",
-            o1: "15", o1_t: "Vida de Ecosistemas Terrestres",
-            o2: "6", o2_t: "Agua Limpia y Saneamiento",
-            i: "Hectáreas de suelo recuperadas o conservadas",
-            d: "El manejo técnico del suelo y el agua es la base de la supervivencia alimentaria y ambiental.",
-            orientacion: "Instructor(a): Evalúe el diseño de planes de recuperación de suelos degradados."
-        },
-        {
-            c: "Minería (CECyTE / CONALEP)",
-            s: "212230",
-            sec: "Minería de metales",
-            m: "Módulo II: Realiza el control de la extracción de minerales",
-            a: [
-                "Monitoreo de la estabilidad de taludes para garantizar la seguridad de los trabajadores.",
-                "Implementación de sistemas de recirculación de agua en el proceso de beneficio de minerales.",
-                "Gestión responsable de jales mineros para prevenir filtraciones de metales pesados.",
-                "Uso de tecnologías de ventilación eficiente para reducir el consumo eléctrico en minas.",
-                "Planificación de la restauración del paisaje posterior a la actividad minera."
-            ],
-            h: "Minería Responsable y Seguridad",
-            o1: "8", o1_t: "Trabajo Decente y Crecimiento Económico",
-            o2: "12", o2_t: "Producción y Consumo Responsables",
-            i: "Porcentaje de agua reciclada en el proceso minero",
-            d: "La minería técnica debe evolucionar hacia la extracción segura con responsabilidad social.",
-            orientacion: "Instructor(a): Verifique protocolos de seguridad y cierre de mina sustentable."
-        },
-        {
-            c: "Refrigeración y Climatización (DGETI / DGETAyCM / CECyTE / CONALEP)",
-            s: "333412",
-            sec: "Fabricación de equipo de refrigeración",
-            m: "Módulo III: Mantiene sistemas de refrigeración industrial (Cadena de Frío)",
-            a: [
-                "Sustitución de refrigerantes por gases ecológicos de bajo potencial de calentamiento global.",
-                "Mantenimiento a sistemas de refrigeración agrícola para reducir la pérdida de alimentos post-cosecha.",
-                "Optimización de ciclos de refrigeración para reducir el consumo energético en plantas procesadoras.",
-                "Recuperación y reciclaje de gases refrigerantes para evitar su liberación a la atmósfera.",
-                "Instalación de cámaras frías con aislamiento térmico eficiente para conservar recursos."
-            ],
-            h: "Cadena de Frío y Eficiencia Atmosférica",
-            o1: "13", o1_t: "Acción por el Clima",
-            o2: "2", o2_t: "Hambre Cero",
-            i: "Reducción de mermas alimentarias por fallas de refrigeración",
-            d: "El técnico es guardián de la atmósfera y la alimentación al gestionar gases y energía con precisión.",
-            orientacion: "Instructor(a): Enfatice el impacto de la cadena de frío en la seguridad alimentaria nacional."
-        }
+            // BLOQUE 1: REVISIÓN ESTRICTA (Carreras 1-3)
+const db = [
+    {
+        c: "Programación (DGETI / CECyTE / DGETAyCM) / Informática (CONALEP)",
+        s: "541512",
+        sec: "Desarrollo de software y servicios relacionados",
+        m: "Módulo IV: Desarrolla aplicaciones web con conexión a bases de datos",
+        a: [
+            "Creación de interfaces de usuario con protocolos de accesibilidad (WCAG) para asegurar la inclusión de personas con discapacidad.",
+            "Implementación de esquemas de seguridad y cifrado en bases de datos para la protección de datos sensibles.",
+            "Desarrollo de módulos de transparencia que permitan el acceso ciudadano a la información pública.",
+            "Optimización de scripts y algoritmos para reducir el consumo de recursos en servidores (Green IT).",
+            "Realización de pruebas de usabilidad y experiencia de usuario centradas en la inclusión de adultos mayores."
+        ],
+        h: "Inclusión Digital y Ética Tecnológica",
+        o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+        o2: "10", o2_t: "Reducción de las Desigualdades",
+        i: "Audit score de accesibilidad > 90%",
+        d: "La tecnología permite que el software sea un puente de inclusión, eliminando barreras de acceso para grupos vulnerables.",
+        orientacion: "Instructor(a): Verifique que el estudiante aplique etiquetas ARIA en el código. No se trata solo de que la web funcione, sino de que sea operable para todos."
+    },
+    {
+        c: "Mecatrónica (DGETI / CECyTE) / Mecatrónica Industrial (CONALEP)",
+        s: "333999",
+        sec: "Fabricación de maquinaria y equipo",
+        m: "Módulo II: Mantiene sistemas de control por PLC",
+        a: [
+            "Optimización de secuencias lógicas en PLC para la reducción del consumo energético de los motores industriales.",
+            "Configuración y validación de protocolos de paros de emergencia para garantizar la seguridad total del operador.",
+            "Instalación de sensores de presencia y actuadores para la gestión eficiente de la iluminación en la planta.",
+            "Ejecución de programas de mantenimiento preventivo para prolongar la vida útil de los componentes.",
+            "Sincronización de sistemas robóticos para maximizar la precisión de los procesos y lograr cero mermas de material."
+        ],
+        h: "Eficiencia Energética Industrial",
+        o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+        o2: "12", o2_t: "Producción y Consumo Responsables",
+        i: "Reducción de kW/h por ciclo optimizado",
+        d: "La automatización inteligente reduce el desperdicio de recursos energéticos en la manufactura a gran escala.",
+        orientacion: "Instructor(a): Solicite al alumno un reporte de ahorro energético tras la optimización del código del PLC."
+    },
+    {
+        c: "Contabilidad (DGETI / CECyTE / CONALEP / DGETAyCM)",
+        s: "541211",
+        sec: "Servicios de contabilidad y auditoría",
+        m: "Módulo IV: Determina las contribuciones fiscales de personas físicas y morales",
+        a: [
+            "Auditoría de cumplimiento en Responsabilidad Social Empresarial (RSE) y transparencia en reportes fiscales.",
+            "Análisis de transparencia en el reporte de estados financieros públicos para fortalecer la rendición de cuentas.",
+            "Gestión de incentivos fiscales para empresas que invierten en tecnologías limpias.",
+            "Implementación de sistemas de control interno contable para prevenir la corrupción y asegurar la gobernanza financiera.",
+            "Asesoría contable para el fortalecimiento de alianzas estratégicas sostenibles mediante reportes de impacto económico."
+        ],
+        h: "Ética Financiera y Gobernanza",
+        o1: "16", o1_t: "Paz, Justicia e Instituciones Sólidas",
+        o2: "17", o2_t: "Alianzas para lograr los Objetivos",
+        i: "Índice de transparencia en reportes",
+        d: "La rendición de cuentas clara fortalece la confianza para generar alianzas público-privadas sostenibles.",
+        orientacion: "Instructor(a): Oriente al alumno sobre cómo la transparencia contable contribuye a la justicia social pública."
+    }
+];
     ];
 
     function renderFicha() {
