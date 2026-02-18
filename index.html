@@ -3,115 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plataforma Maestra de Vinculación Sistémica 2026</title>
+    <title>Educación Dual y Objetivos de Desarrollo Sostenible</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --dgeti: #004a7c; --conalep: #003833; --cecyte: #a51d1d; --dgetaycm: #144618;
             --primary: #1a2a44; --secondary: #28a745; --ods-blue: #00aed9; --scian: #d35400;
             --light: #f8fafc; --white: #ffffff;
         }
-        body { font-family: 'Inter', sans-serif; background-color: #e2e8f0; margin: 0; padding: 40px; color: #1e293b; }
+        body { font-family: 'Inter', sans-serif; background-color: #e2e8f0; margin: 0; padding: 20px; color: #1e293b; }
         
-        /* Contenedor Principal Estilo Expediente */
         .expediente-master {
             max-width: 1100px; margin: auto; background: var(--white);
             border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.2);
             overflow: hidden; border: 1px solid #cbd5e1;
         }
 
-        /* Encabezado Institucional Premium */
-        .header-institucional {
+        /* Nuevo Encabezado con Logos Solicitados */
+        .header-ods {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 40px; background: linear-gradient(135deg, var(--primary) 0%, #2c3e50 100%);
-            color: white; border-bottom: 8px solid var(--secondary);
+            padding: 30px 50px; background: white; border-bottom: 5px solid var(--primary);
         }
-        .logos-box { display: flex; gap: 20px; align-items: center; }
-        .logo-placeholder { width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px; text-align: center; }
-        
-        .titulo-central { text-align: right; }
-        .titulo-central h1 { margin: 0; font-size: 26px; letter-spacing: -1px; }
-        .titulo-central p { margin: 5px 0 0; opacity: 0.8; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; }
+        .logo-rueda { height: 100px; width: auto; }
+        .logo-frase { height: 80px; width: auto; }
 
-        /* Buscador */
-        .search-container { padding: 30px 40px; background: #f1f5f9; border-bottom: 1px solid #e2e8f0; text-align: center; }
+        /* Títulos y Objetivo */
+        .seccion-titulo { padding: 30px 50px; text-align: center; background: #f8fafc; }
+        .seccion-titulo h1 { color: var(--primary); margin: 0; font-size: 28px; font-weight: 800; }
+        .objetivo-texto { 
+            margin: 15px auto 0; max-width: 850px; font-size: 14px; 
+            color: #64748b; line-height: 1.6; font-style: italic;
+        }
+
+        .search-container { padding: 20px 50px; background: #f1f5f9; border-bottom: 1px solid #e2e8f0; text-align: center; }
         .main-select {
-            width: 100%; max-width: 800px; padding: 18px; border: 2px solid #cbd5e1;
-            border-radius: 12px; font-size: 18px; font-weight: 600; color: var(--primary);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05); cursor: pointer;
+            width: 100%; max-width: 800px; padding: 15px; border: 2px solid #cbd5e1;
+            border-radius: 12px; font-size: 17px; font-weight: 600; color: var(--primary);
         }
 
-        /* Grid de la Ficha */
-        .ficha-body { padding: 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+        .ficha-body { padding: 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .col-span-2 { grid-column: span 2; }
         .col-span-3 { grid-column: span 3; }
 
-        /* Estilo de Tarjetas */
-        .card { background: white; border: 1px solid #e2e8f0; border-radius: 15px; padding: 25px; position: relative; transition: 0.3s; }
-        .card-label { font-size: 11px; font-weight: 800; text-transform: uppercase; color: #64748b; letter-spacing: 1.5px; margin-bottom: 12px; display: block; }
-        .card-content { font-size: 16px; font-weight: 500; line-height: 1.5; color: #334155; }
+        .card { background: white; border: 1px solid #e2e8f0; border-radius: 15px; padding: 25px; transition: 0.3s; }
+        .card-label { font-size: 11px; font-weight: 800; text-transform: uppercase; color: #64748b; margin-bottom: 10px; display: block; }
+        .card-content { font-size: 16px; color: #334155; }
 
-        /* Variantes de Tarjetas */
         .card-highlight { border-top: 6px solid var(--secondary); background: #f0fff4; }
         .card-scian { border-left: 6px solid var(--scian); }
-        .card-ods { border: none; background: #ebf8ff; text-align: center; display: flex; flex-direction: column; align-items: center; }
+        .card-ods { border: none; background: #ebf8ff; text-align: center; }
         .card-dark { background: var(--primary); color: white; border: none; }
         .card-dark .card-label { color: rgba(255,255,255,0.6); }
-        .card-dark .card-content { color: white; }
 
-        /* Orientaciones para el Instructor */
         .instrucciones-box {
             background: #fffbeb; border: 2px dashed #f59e0b; padding: 25px; border-radius: 15px;
-            margin-top: 10px;
         }
-        .instrucciones-box h4 { margin: 0 0 10px 0; color: #b45309; display: flex; align-items: center; gap: 10px; }
+        .instrucciones-box h4 { margin: 0 0 10px 0; color: #b45309; }
 
-        /* Imagen ODS */
-        .ods-img-large { width: 140px; height: 140px; margin-top: 15px; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); border: 4px solid white; }
-
+        .ods-img-large { width: 120px; height: 120px; margin-top: 10px; border-radius: 10px; border: 3px solid white; }
         .btn-print {
-            display: block; width: calc(100% - 80px); margin: 0 40px 40px; padding: 20px;
-            background: var(--secondary); color: white; border: none; border-radius: 12px;
-            font-size: 18px; font-weight: 800; cursor: pointer; text-transform: uppercase;
+            display: block; width: calc(100% - 100px); margin: 0 50px 40px; padding: 18px;
+            background: var(--secondary); color: white; border: none; border-radius: 10px;
+            font-size: 16px; font-weight: 800; cursor: pointer;
         }
 
-        @keyframes slideIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .animated { animation: slideIn 0.5s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .animated { animation: fadeIn 0.6s ease-in; }
     </style>
 </head>
 <body>
 
 <div class="expediente-master">
-    <header class="header-institucional">
-        <div class="logos-box">
-            <div class="logo-placeholder">DGETI</div>
-            <div class="logo-placeholder">CONALEP</div>
-            <div class="logo-placeholder">CECYTE</div>
-            <div class="logo-placeholder">DGETAyCM</div>
-        </div>
-        <div class="titulo-central">
-            <h1>EXPEDIENTE TÉCNICO DE VINCULACIÓN</h1>
-            <p>Modelo Dual Sistémico • Ciclo Escolar 2026</p>
-        </div>
+    <header class="header-ods">
+        <img src="ODSyED/rueda-ods.png" alt="Rueda ODS" class="logo-rueda" onerror="this.src='https://placehold.co/100x100?text=Rueda+ODS'">
+        <img src="ODSyED/logo-ods-frase.jpg" alt="ODS Frase" class="logo-frase" onerror="this.src='https://placehold.co/300x80?text=Logo+ODS+Frase'">
     </header>
+
+    <section class="seccion-titulo">
+        <h1>Educación Dual y Objetivos de Desarrollo Sostenible, de la Agenda 2030</h1>
+        <p class="objetivo-texto">
+            El objetivo de esta herramienta es de carácter ilustrativo y pedagógico, está elaborada con datos públicos de la Secretaría de Educación Pública (SEP), el Instituto Nacional de Estadística y Geografía (INEGI), y la Organización de las Naciones Unidas (ONU).
+        </p>
+    </section>
 
     <section class="search-container">
         <select id="mainSelector" class="main-select" onchange="renderFicha()">
-            <option value="">-- Seleccione Carrera Técnica para desplegar Orientaciones --</option>
+            <option value="">-- Seleccione una Carrera Técnica --</option>
         </select>
     </section>
 
     <div id="renderArea"></div>
-
-    <button class="btn-print" id="btnPrint" style="display:none;" onclick="window.print()">📥 DESCARGAR EXPEDIENTE PDF</button>
+    <button class="btn-print" id="btnPrint" style="display:none;" onclick="window.print()">📥 GENERAR REPORTE TÉCNICO PDF</button>
 </div>
 
 <script>
     const db = [
         {
             c: "Programación (DGETI)",
-            sub: "DGETI",
-            clr: "var(--dgeti)",
             s: "541512",
             sec: "Desarrollo de software y servicios relacionados",
             m: "Módulo IV: Desarrolla aplicaciones web con conexión a bases de datos",
@@ -119,26 +106,23 @@
             h: "Inclusión Digital y Ética Tecnológica",
             o1: "9", o1_t: "Industria, Innovación e Infraestructura",
             o2: "10",
-            i: "Índice de accesibilidad en la interfaz (Audit score > 90%)",
+            i: "Audit score de accesibilidad > 90%",
             d: "La innovación técnica (9) debe servir como puente para eliminar las barreras de desigualdad (10) en el acceso a la información.",
-            orientacion: "Instructor(a): Asegure que el estudiante no solo programe, sino que documente cómo su código permite que un lector de pantalla interprete los datos. Es la transición de 'hacer código' a 'crear impacto social'."
+            orientacion: "Instructor(a): Verifique que el estudiante aplique etiquetas ARIA en el código. No se trata solo de que la web funcione, sino de que sea operable para todos, cumpliendo con la meta de no dejar a nadie atrás."
         },
         {
-            c: "Electromovilidad (CONALEP)",
-            sub: "CONALEP",
-            clr: "var(--conalep)",
-            s: "336111",
-            sec: "Fabricación de automóviles y camionetas",
-            m: "Módulo III: Mantenimiento de sistemas de propulsión eléctrica",
-            a: "Diagnóstico de degradación de celdas en bancos de baterías y configuración de inversores de corriente.",
-            h: "Transición Energética y Descarbonización",
-            o1: "13", o1_t: "Acción por el Clima",
-            o2: "7",
-            i: "Eficiencia de recuperación energética (Wh/km)",
-            d: "El mantenimiento preventivo en movilidad eléctrica (13) garantiza el uso eficiente de energías limpias (7) en el transporte masivo.",
-            orientacion: "Instructor(a): Enfatice el manejo de alto voltaje y la responsabilidad ambiental del confinamiento de litio. El técnico es el primer respondiente ante la crisis climática desde el taller."
+            c: "Soporte y Mantenimiento de Equipo de Cómputo (CECYTE)",
+            s: "811211",
+            sec: "Reparación y mantenimiento de equipo de cómputo y comunicación",
+            m: "Módulo II: Mantenimiento de hardware y software",
+            a: "Implementación de planes de recuperación de componentes y disposición final de residuos electrónicos (e-waste).",
+            h: "Gestión de Residuos Electrónicos (E-waste)",
+            o1: "12", o1_t: "Producción y Consumo Responsables",
+            o2: "11",
+            i: "Porcentaje de componentes reutilizados por equipo",
+            d: "Reducir el desperdicio tecnológico (12) es fundamental para la sostenibilidad de las ciudades modernas (11).",
+            orientacion: "Instructor(a): Fomente el análisis de ciclo de vida. El estudiante debe identificar qué piezas pueden tener una segunda vida antes de considerar el reciclaje final, reduciendo la huella de carbono del plantel."
         }
-        // Aquí se integrarán las 80+ carreras con este mismo nivel de detalle.
     ];
 
     function renderFicha() {
@@ -152,48 +136,42 @@
 
         area.innerHTML = `
             <div class="ficha-body animated">
-                <div class="col-span-3 card card-dark" style="background:${d.clr}">
-                    <span class="card-label">Carrera Técnica Seleccionada</span>
-                    <h2 style="margin:0; font-size:32px;">${d.c}</h2>
-                    <p style="margin:10px 0 0; opacity:0.8; font-weight:700;">Subsistema: ${d.sub}</p>
+                <div class="col-span-3 card card-dark">
+                    <span class="card-label">Carrera Técnica</span>
+                    <h2 style="margin:0; font-size:28px;">${d.c}</h2>
                 </div>
 
                 <div class="card card-scian">
-                    <span class="card-label">Clasificación SCIAN 2026</span>
-                    <div class="card-content">
-                        <b>Código:</b> ${d.s}<br>
-                        <b>Sector:</b> ${d.sec}
-                    </div>
+                    <span class="card-label">Referente SCIAN (INEGI)</span>
+                    <div class="card-content"><b>${d.s}</b><br>${d.sec}</div>
                 </div>
 
                 <div class="col-span-2 card card-highlight">
-                    <span class="card-label">Módulo Profesional (MCCEMS)</span>
-                    <div class="card-content" style="font-size:18px; font-weight:700; color:var(--primary);">
-                        ${d.m}
-                    </div>
-                    <hr style="margin:15px 0; border:0; border-top:1px solid #cbd5e1;">
-                    <span class="card-label">Actividad en Entorno Dual</span>
+                    <span class="card-label">Módulo Profesional (SEP/MCCEMS)</span>
+                    <div class="card-content" style="font-weight:700;">${d.m}</div>
+                    <hr style="margin:10px 0; border:0; border-top:1px solid #eee;">
+                    <span class="card-label">Actividad Dual sugerida</span>
                     <div class="card-content">${d.a}</div>
                 </div>
 
                 <div class="card card-ods">
-                    <span class="card-label">ODS Impactado</span>
-                    <span style="font-size:40px; font-weight:800; color:var(--ods-blue); line-height:1;">${d.o1}</span>
-                    <div class="card-content" style="font-weight:700;">${d.o1_t}</div>
-                    <img src="${d.o1}.png" class="ods-img-large" onerror="this.src='https://placehold.co/140x140?text=ODS+${d.o1}'">
+                    <span class="card-label">Impacto ODS (ONU)</span>
+                    <span style="font-size:32px; font-weight:800; color:var(--ods-blue);">${d.o1}</span>
+                    <div class="card-content" style="font-weight:700; font-size:13px;">${d.o1_t}</div>
+                    <img src="ODSyED/${d.o1}.png" class="ods-img-large" onerror="this.src='https://placehold.co/120x120?text=ODS+${d.o1}'">
                 </div>
 
                 <div class="card">
                     <span class="card-label">Habilidad Sostenible</span>
                     <div class="card-content" style="font-weight:700;">${d.h}</div>
-                    <div style="margin-top:20px; background:var(--primary); color:white; padding:12px; border-radius:8px; font-weight:800; font-size:14px;">
+                    <div style="margin-top:15px; background:var(--primary); color:white; padding:10px; border-radius:8px; font-size:13px;">
                         📊 INDICADOR: ${d.i}
                     </div>
                 </div>
 
-                <div class="card card-dark">
-                    <span class="card-label">Sinergia Sistémica (ODS ${d.o1} + ${d.o2})</span>
-                    <div class="card-content" style="font-style:italic;">"${d.d}"</div>
+                <div class="card card-dark" style="background:#2c3e50;">
+                    <span class="card-label">Sinergia de Metas</span>
+                    <div class="card-content" style="font-style:italic; font-size:14px;">"${d.d}"</div>
                 </div>
 
                 <div class="col-span-3 instrucciones-box">
@@ -204,7 +182,6 @@
         `;
     }
 
-    // Carga inicial de opciones
     window.onload = () => {
         const sel = document.getElementById('mainSelector');
         db.sort((a,b) => a.c.localeCompare(b.c)).forEach(item => {
