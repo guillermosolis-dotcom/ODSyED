@@ -36,7 +36,7 @@
         .main-select {
             width: 100%; max-width: 800px; padding: 15px; border: 2px solid #cbd5e1;
             border-radius: 12px; font-size: 17px; font-weight: 600; color: var(--primary);
-            background: white;
+            background: white; cursor: pointer;
         }
 
         .ficha-body { padding: 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -45,16 +45,16 @@
 
         .card { background: white; border: 1px solid #e2e8f0; border-radius: 15px; padding: 25px; }
         .card-label { font-size: 11px; font-weight: 800; text-transform: uppercase; color: #64748b; margin-bottom: 10px; display: block; }
-        .card-content { font-size: 16px; color: #334155; }
+        .card-content { font-size: 16px; color: #334155; line-height: 1.5; }
 
         .card-highlight { border-top: 6px solid var(--secondary); background: #f0fff4; }
         .card-scian { border-left: 6px solid var(--scian); }
         .card-ods { border: none; background: #ebf8ff; text-align: center; }
         
-        /* Ajuste Sinergia Sistémica (Fondo Negro / Texto Blanco) */
+        /* Estilo Sinergia Sistémica (Fondo Oscuro / Texto Blanco) */
         .card-dark { background: #111827; color: #ffffff !important; border: none; }
         .card-dark .card-label { color: rgba(255,255,255,0.7); }
-        .card-dark .card-content { color: #ffffff !important; font-weight: 400; }
+        .card-dark .card-content { color: #ffffff !important; font-weight: 400; font-style: italic; }
 
         .sinergia-logos { display: flex; align-items: center; gap: 10px; margin-top: 15px; }
         .mini-ods { 
@@ -65,7 +65,7 @@
         .instrucciones-box {
             background: #fffbeb; border: 2px dashed #f59e0b; padding: 25px; border-radius: 15px;
         }
-        .instrucciones-box h4 { margin: 0 0 10px 0; color: #b45309; }
+        .instrucciones-box h4 { margin: 0 0 10px 0; color: #b45309; font-weight: 800; }
 
         .ods-img-large { width: 120px; height: 120px; margin-top: 10px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         
@@ -77,7 +77,7 @@
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .animated { animation: fadeIn 0.5s ease-out; }
-        
+
         @media print {
             .search-container, .btn-print, .header-ods { display: none; }
             body { background: white; padding: 0; }
@@ -90,130 +90,4 @@
 <div class="expediente-master">
     <header class="header-ods">
         <img src="https://guillermosolis-dotcom.github.io/ODSyED/rueda-ods.png" alt="Rueda ODS" class="logo-rueda">
-        <img src="https://guillermosolis-dotcom.github.io/ODSyED/logo-ods-frase.jpg" alt="ODS Frase" class="logo-frase">
-    </header>
-
-    <section class="seccion-titulo">
-        <h1>Educación Dual y Objetivos de Desarrollo Sostenible, de la Agenda 2030</h1>
-        <p class="objetivo-texto">
-            El objetivo de esta herramienta es de carácter ilustrativo y pedagógico, está elaborada con datos públicos de la Secretaría de Educación Pública (SEP), el Instituto Nacional de Estadística y Geografía (INEGI), y la Organización de las Naciones Unidas (ONU).
-        </p>
-    </section>
-
-    <section class="search-container">
-        <select id="mainSelector" class="main-select" onchange="renderFicha()">
-            <option value="">-- Seleccione una Carrera Técnica --</option>
-        </select>
-    </section>
-
-    <div id="renderArea"></div>
-    <button class="btn-print" id="btnPrint" style="display:none;" onclick="window.print()">📥 GENERAR REPORTE TÉCNICO PDF</button>
-</div>
-
-<script>
-    const db = [
-        {
-            c: "Programación (DGETI)",
-            s: "541512",
-            sec: "Desarrollo de software y servicios relacionados",
-            m: "Módulo IV: Desarrolla aplicaciones web con conexión a bases de datos",
-            a: "Creación de interfaces de usuario con protocolos de accesibilidad (WCAG) para personas con discapacidad.",
-            h: "Inclusión Digital y Ética Tecnológica",
-            o1: "9", o1_t: "Industria, Innovación e Infraestructura",
-            o2: "10", o2_t: "Reducción de las Desigualdades",
-            i: "Audit score de accesibilidad > 90%",
-            d: "La innovación técnica permite que el software sea un puente de inclusión, eliminando barreras de acceso para grupos vulnerables.",
-            orientacion: "Instructor(a): Verifique que el estudiante aplique etiquetas ARIA en el código. No se trata solo de que la web funcione, sino de que sea operable para todos."
-        },
-        {
-            c: "Mecatrónica (DGETI)",
-            s: "333999",
-            sec: "Fabricación de maquinaria y equipo",
-            m: "Módulo II: Mantiene sistemas de control por PLC",
-            a: "Optimización de secuencias lógicas para reducción de consumo energético en líneas de ensamble.",
-            h: "Eficiencia Energética Industrial",
-            o1: "9", o1_t: "Industria, Innovación e Infraestructura",
-            o2: "12", o2_t: "Producción y Consumo Responsables",
-            i: "Reducción de kW/h por ciclo optimizado",
-            d: "La automatización inteligente reduce el desperdicio de recursos energéticos en la manufactura a gran escala.",
-            orientacion: "Instructor(a): Solicite al alumno un reporte de ahorro energético tras la optimización del código del PLC."
-        }
-    ];
-
-    function renderFicha() {
-        const val = document.getElementById('mainSelector').value;
-        const area = document.getElementById('renderArea');
-        const btn = document.getElementById('btnPrint');
-        if(!val) { area.innerHTML = ''; btn.style.display = 'none'; return; }
-        
-        const d = db.find(x => x.c === val);
-        btn.style.display = 'block';
-
-        area.innerHTML = `
-            <div class="ficha-body animated">
-                <div class="col-span-3 card" style="background:var(--primary); color:white;">
-                    <span class="card-label" style="color:rgba(255,255,255,0.6)">Carrera Técnica</span>
-                    <h2 style="margin:0; font-size:26px;">${d.c}</h2>
-                </div>
-
-                <div class="card card-scian">
-                    <span class="card-label">Referente SCIAN (INEGI)</span>
-                    <div class="card-content"><b>${d.s}</b><br>${d.sec}</div>
-                </div>
-
-                <div class="col-span-2 card card-highlight">
-                    <span class="card-label">Módulo Profesional (SEP/MCCEMS)</span>
-                    <div class="card-content" style="font-weight:700; color:var(--primary);">${d.m}</div>
-                    <hr style="margin:12px 0; border:0; border-top:1px solid #eee;">
-                    <span class="card-label">Propuesta de Actividad Dual</span>
-                    <div class="card-content">${d.a}</div>
-                </div>
-
-                <div class="card card-ods">
-                    <span class="card-label">Impacto Agenda 2030</span>
-                    <div style="font-size:32px; font-weight:800; color:var(--ods-blue);">${d.o1}</div>
-                    <div class="card-content" style="font-weight:700; font-size:13px; margin-bottom:10px;">${d.o1_t}</div>
-                    <img src="https://guillermosolis-dotcom.github.io/ODSyED/${d.o1}.png" class="ods-img-large" onerror="this.src='https://placehold.co/120x120?text=ODS+${d.o1}'">
-                </div>
-
-                <div class="card">
-                    <span class="card-label">Habilidad Sostenible</span>
-                    <div class="card-content" style="font-weight:700;">${d.h}</div>
-                    <div style="margin-top:15px; background:var(--primary); color:white; padding:10px; border-radius:8px; font-size:13px; font-weight:800; text-align:center;">
-                        📊 INDICADOR: ${d.i}
-                    </div>
-                </div>
-
-                <div class="card card-dark">
-                    <span class="card-label">Sinergia Sistémica</span>
-                    <div class="card-content">"${d.d}"</div>
-                    <div class="sinergia-logos">
-                        <span class="mini-ods">ODS ${d.o1}</span>
-                        <span style="font-weight:800;">+</span>
-                        <span class="mini-ods">ODS ${d.o2}</span>
-                    </div>
-                    <div style="font-size:11px; margin-top:10px; opacity:0.8;">
-                        Vinculación entre ${d.o1_t} y ${d.o2_t}.
-                    </div>
-                </div>
-
-                <div class="col-span-3 instrucciones-box">
-                    <h4>💡 ORIENTACIONES PARA LA O EL INSTRUCTOR</h4>
-                    <p class="card-content" style="font-size:15px; color:#92400e; font-weight:500;">${d.orientacion}</p>
-                </div>
-            </div>
-        `;
-    }
-
-    window.onload = () => {
-        const sel = document.getElementById('mainSelector');
-        db.sort((a,b) => a.c.localeCompare(b.c)).forEach(item => {
-            let opt = document.createElement('option');
-            opt.value = item.c; opt.textContent = item.c;
-            sel.appendChild(opt);
-        });
-    }
-</script>
-
-</body>
-</html>
+        <img src="
