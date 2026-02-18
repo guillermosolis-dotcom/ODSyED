@@ -3,202 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema Integral de Vinculación Dual ODS-SCIAN 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Sistema de Vinculación Dual ODS-SCIAN 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --dgeti: #00689d; --conalep: #004a44; --cecyte: #d32f2f; --dgetaycm: #1b5e20;
-            --primary: #1a2a44; --secondary: #28a745; --ods-blue: #00aed9; --scian: #d35400;
-            --light: #f4f7f6; --white: #ffffff;
-        }
-        body { font-family: 'Inter', sans-serif; background-color: var(--light); color: #2d3436; margin: 0; padding: 20px; line-height: 1.5; }
-        .container { max-width: 1200px; margin: auto; background: var(--white); padding: 40px; border-radius: 15px; box-shadow: 0 15px 50px rgba(0,0,0,0.1); border-top: 10px solid var(--primary); }
-        
-        /* Header Institucional */
-        .header-box { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #edf2f7; padding-bottom: 25px; margin-bottom: 30px; }
-        .logo-main { height: 75px; }
-        .inst-info { text-align: right; }
-        .inst-info h2 { margin: 0; color: var(--primary); font-size: 24px; font-weight: 700; }
-        .inst-info p { margin: 5px 0 0; color: #718096; font-size: 14px; }
-
-        /* Buscador */
-        .search-container { background: #f8fafc; padding: 35px; border-radius: 15px; border: 1px solid #e2e8f0; margin-bottom: 40px; text-align: center; }
-        .search-container h3 { margin-top: 0; color: var(--primary); margin-bottom: 20px; }
-        .main-select { width: 100%; max-width: 900px; padding: 18px; border: 2px solid #cbd5e0; border-radius: 12px; font-size: 18px; font-weight: 500; cursor: pointer; transition: 0.3s; }
-        .main-select:focus { border-color: var(--ods-blue); outline: none; box-shadow: 0 0 15px rgba(0,174,217,0.2); }
-
-        /* Ficha Técnica Estructurada */
-        .ficha-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; animation: fadeIn 0.6s ease-out; }
-        .span-2 { grid-column: span 2; }
-        .card { background: var(--white); border: 1px solid #e2e8f0; border-radius: 12px; padding: 25px; position: relative; overflow: hidden; }
-        
-        /* Decoradores de Sección */
-        .card-scian { border-left: 8px solid var(--scian); background: #fffaf5; }
-        .card-dual { border-left: 8px solid var(--secondary); background: #f0fff4; }
-        .card-ods { border-left: 8px solid var(--ods-blue); background: #ebf8ff; text-align: center; }
-        .card-impacto { background: #1a2a44; color: white; }
-
-        .tag-subsistema { display: inline-block; padding: 5px 15px; border-radius: 20px; color: white; font-size: 12px; font-weight: 700; margin-bottom: 15px; text-transform: uppercase; }
-        .label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #718096; margin-bottom: 10px; display: block; }
-        .content { font-size: 16px; color: #2d3748; }
-        .highlight { font-weight: 700; color: #1a202c; }
-
-        .ods-icon { width: 130px; height: 130px; margin: 15px 0; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
-        .ods-def { font-size: 13px; font-style: italic; color: #4a5568; background: rgba(255,255,255,0.7); padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #bee3f8; }
-
-        .badge-indicador { background: #ebf4ff; color: #2b6cb0; padding: 10px 15px; border-radius: 8px; border: 1px solid #bee3f8; font-weight: 700; display: inline-block; margin-top: 10px; }
-
-        /* Botón Descarga */
-        .btn-export { background: var(--secondary); color: white; padding: 20px 40px; border: none; border-radius: 12px; font-size: 18px; font-weight: 700; width: 100%; margin-top: 30px; cursor: pointer; display: none; transition: 0.3s; box-shadow: 0 4px 14px rgba(40,167,69,0.4); }
-        .btn-export:hover { background: #218838; transform: translateY(-3px); }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @media (max-width: 850px) { .ficha-grid { grid-template-columns: 1fr; } .span-2 { grid-column: span 1; } }
+        :root { --dgeti: #004a7c; --conalep: #003833; --cecyte: #a51d1d; --dgetaycm: #144618; --primary: #1a2a44; --secondary: #28a745; --ods: #00aed9; --scian: #d35400; --light: #f4f7f6; }
+        body { font-family: 'Inter', sans-serif; background: var(--light); margin: 0; padding: 20px; color: #2d3436; }
+        .container { max-width: 1100px; margin: auto; background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 8px solid var(--primary); }
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; margin-bottom: 25px; padding-bottom: 20px; }
+        .search-box { background: #f8fafc; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 25px; text-align: center; }
+        .main-select { width: 100%; padding: 15px; border-radius: 8px; border: 2px solid #cbd5e0; font-size: 16px; font-weight: 600; cursor: pointer; }
+        .ficha { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; animation: fadeIn 0.4s ease; }
+        .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 20px; }
+        .full { grid-column: span 2; }
+        .h-card { color: #fff; padding: 20px; border-radius: 10px; margin-bottom: 5px; }
+        .c-scian { border-left: 6px solid var(--scian); background: #fffaf5; }
+        .c-dual { border-left: 6px solid var(--secondary); background: #f0fff4; }
+        .c-ods { border-left: 6px solid var(--ods); background: #ebf8ff; text-align: center; }
+        .c-logica { background: var(--primary); color: #fff; }
+        .label { font-size: 10px; font-weight: 800; text-transform: uppercase; color: #718096; margin-bottom: 5px; display: block; }
+        .content { font-size: 15px; font-weight: 500; }
+        .ods-num { font-size: 24px; font-weight: 800; color: var(--ods); display: block; }
+        .badge { background: var(--primary); color: #fff; padding: 8px 12px; border-radius: 5px; font-size: 13px; font-weight: 700; display: inline-block; margin-top: 10px; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
-
 <div class="container">
-    <div class="header-box">
-        <img src="https://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_logo_without_UN_emblem_horizontal_RGB.png" alt="Logo ONU ODS" class="logo-main">
-        <div class="inst-info">
-            <h2>Catálogo Nacional de Vinculación Dual</h2>
-            <p>Alineación Curricular EMS 2026: SCIAN + ODS + MCCEMS</p>
-        </div>
+    <div class="header">
+        <div style="font-weight: 800; font-size: 20px; color: var(--primary);">ESTRATEGIA DUAL 2026</div>
+        <div style="text-align: right; font-size: 12px; font-weight: 600;">MCCEMS + SCIAN + AGENDA 2030</div>
     </div>
-
-    <div class="search-container">
-        <h3>Estructura Sistémica por Subsistema y Carrera</h3>
-        <select id="masterSelect" class="main-select" onchange="actualizarFicha()">
-            <option value="">-- Busque una carrera (DGETI, CONALEP, CECYTE, DGETAyCM) --</option>
-        </select>
+    <div class="search-box">
+        <select id="selCarrera" class="main-select" onchange="render()"><option value="">-- SELECCIONE CARRERA TÉCNICA --</option></select>
     </div>
-
-    <div id="visorFicha"></div>
-    <button id="btnDescarga" class="btn-export" onclick="generarTxt()">📥 EXPORTAR EXPEDIENTE TÉCNICO DE VINCULACIÓN</button>
+    <div id="visor"></div>
 </div>
 
 <script>
-    const odsInfo = {
-        "1": "Fin de la pobreza: Poner fin a la pobreza en todas sus formas.",
-        "2": "Hambre Cero: Lograr la seguridad alimentaria y agricultura sostenible.",
-        "3": "Salud y Bienestar: Garantizar una vida sana y promover el bienestar.",
-        "4": "Educación de Calidad: Garantizar educación inclusiva y equitativa.",
-        "5": "Igualdad de Género: Empoderar a todas las mujeres y las niñas.",
-        "6": "Agua Limpia: Garantizar disponibilidad y gestión sostenible del agua.",
-        "7": "Energía Asequible: Energía segura, sostenible y moderna.",
-        "8": "Trabajo Decente: Crecimiento económico inclusivo y empleo pleno.",
-        "9": "Industria e Innovación: Infraestructura resiliente y fomento a la innovación.",
-        "10": "Reducción de Desigualdades: Reducir brechas sociales y económicas.",
-        "11": "Ciudades Sostenibles: Ciudades seguras, resilientes y sostenibles.",
-        "12": "Consumo Responsable: Modalidades de consumo y producción sostenibles.",
-        "13": "Acción por el Clima: Medidas urgentes contra el cambio climático.",
-        "14": "Vida Submarina: Conservar océanos, mares y recursos marinos.",
-        "15": "Vida Terrestre: Gestionar bosques y detener la pérdida de biodiversidad.",
-        "16": "Paz y Justicia: Sociedades pacíficas e instituciones sólidas.",
-        "17": "Alianzas: Fortalecer la Alianza Mundial para el Desarrollo."
-    };
+const odsT = {"1":"Fin de Pobreza","2":"Hambre Cero","3":"Salud","4":"Educación","5":"Género","6":"Agua","7":"Energía","8":"Trabajo","9":"Industria","10":"Desigualdad","11":"Ciudades","12":"Producción","13":"Clima","14":"Vida Submarina","15":"Vida Terrestre","16":"Paz","17":"Alianzas"};
 
-    const database = [
-        // DGETI
-        {c:"Programación (DGETI)", sub:"DGETI", clr:"var(--dgeti)", s:"5415", sec:"Desarrollo de Software", m:"Módulo IV: Desarrolla aplicaciones web con conexión a bases de datos", a:"Implementación de protocolos de seguridad y accesibilidad web.", h:"Inclusión digital y ética de datos.", o1:"9", o2:"10", i:"% de cumplimiento en normas de accesibilidad web (WCAG)", d:"La innovación tecnológica (9) reduce las brechas de acceso a la información (10)."},
-        {c:"Mecatrónica (DGETI)", sub:"DGETI", clr:"var(--dgeti)", s:"3339", sec:"Fabricación de Maquinaria y Equipo", m:"Módulo II: Sistemas de control por PLC", a:"Programación de procesos automatizados de bajo consumo.", h:"Eficiencia energética industrial.", o1:"9", o2:"12", i:"Índice de ahorro energético por ciclo automatizado", d:"Industria moderna (9) que optimiza el uso de recursos naturales (12)."},
-        
-        // CONALEP
-        {c:"Electromovilidad (CONALEP)", sub:"CONALEP", clr:"var(--conalep)", s:"3361", sec:"Industria Automotriz", m:"Módulo III: Mantenimiento de propulsión eléctrica", a:"Diagnóstico y reparación de celdas de batería y motores AC.", h:"Acción climática y descarbonización.", o1:"13", o2:"7", i:"Toneladas de CO2 evitadas por unidad mantenida", d:"La descarbonización (13) impulsa el uso de energía limpia (7)."},
-        {c:"Hospitalidad Turística (CONALEP)", sub:"CONALEP", clr:"var(--conalep)", s:"7211", sec:"Servicios de Alojamiento", m:"Módulo IV: Gestión de servicios sustentables", a:"Implementación de sistemas de ahorro de agua y energía.", h:"Turismo responsable y economía local.", o1:"8", o2:"12", i:"Litros de agua ahorrados por habitación", d:"Trabajo decente (8) mediante el consumo responsable de recursos (12)."},
+// BASE DE DATOS MAESTRA (Densidad Máxima)
+const db = [
+    {c:"Programación (DGETI)", sub:"DGETI", clr:"var(--dgeti)", s:"5415", sec:"Sistemas", m:"M4: Desarrollo Web", a:"Accesibilidad WCAG", h:"Inclusión Digital", o1:"9", o2:"10", i:"% Accesibilidad", d:"Innovación para reducir brecha digital."},
+    {c:"Mecatrónica (DGETI)", sub:"DGETI", clr:"var(--dgeti)", s:"3339", sec:"Fabricación", m:"M2: PLC/Control", a:"Ahorro Energético", h:"Eficiencia Energética", o1:"9", o2:"12", i:"kW/h ahorro", d:"Industria inteligente y responsable."},
+    {c:"Contabilidad (DGETI)", sub:"DGETI", clr:"var(--dgeti)", s:"5412", sec:"Serv. Contables", m:"M4: Fiscal", a:"RSE y Transparencia", h:"Ética Financiera", o1:"16", o2:"17", i:"Índice Ético", d:"Instituciones sólidas y alianzas."},
+    {c:"Logística (CECYTE)", sub:"CECYTE", clr:"var(--cecyte)", s:"4885", sec:"Transporte", m:"M3: Almacenes", a:"Rutas Críticas", h:"Logística Verde", o1:"11", o2:"13", i:"Km Reducción", d:"Ciudades sostenibles y clima."},
+    {c:"Enfermería (CONALEP)", sub:"CONALEP", clr:"var(--conalep)", s:"6211", sec:"Salud", m:"M3: Salud Pública", a:"Prevención", h:"Equidad en Salud", o1:"3", o2:"10", i:"Cobertura Hab.", d:"Salud para reducir desigualdad social."},
+    {c:"Electromovilidad (CONALEP)", sub:"CONALEP", clr:"var(--conalep)", s:"3361", sec:"Automotriz", m:"M3: Motores Eléc", a:"Eficiencia Baterías", h:"Descarbonización", o1:"13", o2:"7", i:"CO2 evitado", d:"Acción climática y energía limpia."},
+    {c:"Alimentos y Bebidas (CONALEP)", sub:"CONALEP", clr:"var(--conalep)", s:"7225", sec:"Turismo/Alim", m:"M3: Cocina Prof.", a:"Insumos Km 0", h:"Gastronomía Sust.", o1:"2", o2:"12", i:"% Desperdicio", d:"Hambre cero y producción responsable."},
+    {c:"Soporte Técnico (CECYTE)", sub:"CECYTE", clr:"var(--cecyte)", s:"8112", sec:"Electrónica", m:"M2: Hardware", a:"Gestión e-waste", h:"Econ. Circular", o1:"12", o2:"11", i:"Kg RECUP.", d:"Producción responsable urbana."},
+    {c:"Construcción (DGETI)", sub:"DGETI", clr:"var(--dgeti)", s:"2361", sec:"Edificación", m:"M2: Supervisión", a:"Reciclaje Áridos", h:"Urbanismo Resiliente", o1:"11", o2:"9", i:"% Escombro", d:"Ciudades e Innovación técnica."},
+    {c:"Arquitectura (CECYTE)", sub:"CECYTE", clr:"var(--cecyte)", s:"5413", sec:"Diseño", m:"M4: Bioclimática", a:"Luz Natural", h:"Eficiencia Pasiva", o1:"11", o2:"7", i:"Ahorro Luz %", d:"Ciudades y energía asequible."},
+    {c:"Agropecuario (DGETAyCM)", sub:"DGETAyCM", clr:"var(--dgetaycm)", s:"1111", sec:"Agricultura", m:"M4: Suelos", a:"Biofertilización", h:"Soberanía Alim", o1:"2", o2:"15", i:"Ha. Orgánicas", d:"Hambre cero y vida terrestre."},
+    {c:"Acuacultura (DGETAyCM)", sub:"DGETAyCM", clr:"var(--dgetaycm)", s:"1125", sec:"Pesca/Cría", m:"M3: Control Agua", a:"Calidad Nitritos", h:"Vida Marina", o1:"14", o2:"2", i:"Biomasa Salud", d:"Vida submarina y nutrición."},
+    {c:"Recursos Humanos (CONALEP)", sub:"CONALEP", clr:"var(--conalep)", s:"5611", sec:"Admin", m:"M2: Selección", a:"Inclusión Diversa", h:"Equidad Laboral", o1:"5", o2:"8", i:"% Paridad", d:"Género y trabajo decente."},
+    {c:"Laboratorio Químico (DGETI)", sub:"DGETI", clr:"var(--dgeti)", s:"3251", sec:"Química", m:"M5: Análisis", a:"Gestión Ph", h:"Control Químico", o1:"12", o2:"6", i:"Ph Vertido", d:"Producción y agua limpia."},
+    {c:"Electricidad (CECYTE)", sub:"CECYTE", clr:"var(--cecyte)", s:"2211", sec:"Energía", m:"M4: Redes", a:"Factor Potencia", h:"Eficiencia Red", o1:"7", o2:"13", i:"Cos Phi", d:"Energía y acción climática."},
+    {c:"Soldadura (CONALEP)", sub:"CONALEP", clr:"var(--conalep)", s:"3323", sec:"Metalurgia", m:"M2: SMAW/TIG", a:"Filtros Emisión", h:"Seguridad Lab", o1:"3", o2:"12", i:"Calidad Aire", d:"Salud y producción responsable."},
+    {c:"Ofimática (CECYTE)", sub:"CECYTE", clr:"var(--cecyte)", s:"5614", sec:"Servicios", m:"M3: Gestión Dig", a:"Paperless", h:"Eficiencia Dig", o1:"15", o2:"12", i:"Hojas Ahorro", d:"Vida terrestre y gestión digital."}
+];
 
-        // CECYTE
-        {c:"Energías Renovables (CECYTE)", sub:"CECYTE", clr:"var(--cecyte)", s:"2211", sec:"Generación de Electricidad", m:"Módulo I: Instalación de sistemas fotovoltaicos", a:"Montaje y conexión de paneles solares residenciales.", h:"Transición energética y sostenibilidad.", o1:"7", o2:"13", i:"kW/h generados mediante fuentes renovables", d:"Energía asequible (7) como pilar fundamental de la acción climática (13)."},
-        {c:"Logística (CECYTE)", sub:"CECYTE", clr:"var(--cecyte)", s:"4885", sec:"Servicios de Mensajería", m:"Módulo III: Optimización de cadenas de suministro", a:"Diseño de rutas eficientes para reducción de huella de carbono.", h:"Logística verde y ciudades inteligentes.", o1:"11", o2:"9", i:"Kilómetros optimizados / Reducción de emisiones", d:"Ciudades sostenibles (11) mediante infraestructura logística moderna (9)."},
+window.onload = () => {
+    const s = document.getElementById('selCarrera');
+    db.sort((a,b)=>a.c.localeCompare(b.c)).forEach(x => {
+        let o = document.createElement('option'); o.value=x.c; o.textContent=x.c; s.appendChild(o);
+    });
+}
 
-        // DGETAyCM
-        {c:"Agropecuario (DGETAyCM)", sub:"DGETAyCM", clr:"var(--dgetaycm)", s:"1111", sec:"Cultivo de Granos y Semillas", m:"Módulo IV: Producción agrícola sustentable", a:"Aplicación de biofertilizantes y control biológico de plagas.", h:"Soberanía alimentaria y salud del suelo.", o1:"2", o2:"15", i:"Hectáreas recuperadas mediante manejo orgánico", d:"Hambre cero (2) protegiendo la vida de los ecosistemas terrestres (15)."},
-        {c:"Sistemas de Producción Acuícola (DGETAyCM)", sub:"DGETAyCM", clr:"var(--dgetaycm)", s:"1125", sec:"Acuicultura", m:"Módulo II: Crianza de especies continentales", a:"Monitoreo de calidad de agua y nutrición de especies.", h:"Protección de vida submarina y nutrición.", o1:"14", o2:"2", i:"Biomasa producida / Índice de calidad del agua", d:"Gestión de vida submarina (14) para asegurar seguridad alimentaria (2)."}
-    ];
-
-    window.onload = () => {
-        const sel = document.getElementById('masterSelect');
-        database.sort((a,b) => a.c.localeCompare(b.c)).forEach(item => {
-            let opt = document.createElement('option');
-            opt.value = item.c; opt.textContent = item.c;
-            sel.appendChild(opt);
-        });
-    }
-
-    let actual = null;
-
-    function actualizarFicha() {
-        const val = document.getElementById('masterSelect').value;
-        const res = document.getElementById('visorFicha');
-        const btn = document.getElementById('btnDescarga');
-        if(!val) { res.innerHTML = ''; btn.style.display = 'none'; return; }
-        actual = database.find(x => x.c === val);
-        btn.style.display = 'block';
-
-        res.innerHTML = `
-            <div class="ficha-grid">
-                <div class="span-2 card" style="background:${actual.clr}; color:white; border:none;">
-                    <span class="tag-subsistema" style="background:rgba(255,255,255,0.2)">${actual.sub}</span>
-                    <h2 style="margin:0; font-size:28px;">${actual.c}</h2>
-                </div>
-
-                <div class="card card-scian">
-                    <span class="label">Identificador Industrial (SCIAN)</span>
-                    <div class="content"><b>Código:</b> ${actual.s}</div>
-                    <div class="content"><b>Sector Económico:</b> ${actual.sec}</div>
-                </div>
-
-                <div class="card card-ods">
-                    <span class="label">Objetivo de Desarrollo Sostenible</span>
-                    <img src="https://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_Goals_Icons-0${actual.o1}.jpg" class="ods-icon" alt="ODS">
-                    <div class="content highlight">Objetivo ${actual.o1}: ${odsInfo[actual.o1].split(':')[0]}</div>
-                    <div class="ods-def">${odsInfo[actual.o1]}</div>
-                </div>
-
-                <div class="span-2 card card-dual">
-                    <span class="label">Competencia y Aprendizaje (Modelo Dual)</span>
-                    <div class="content" style="font-size:18px; color:var(--conalep); font-weight:700; margin-bottom:10px;">${actual.m}</div>
-                    <div class="content"><b>Actividad Profesional:</b> ${actual.a}</div>
-                </div>
-
-                <div class="card">
-                    <span class="label">Habilidad Sostenible Desarrollada</span>
-                    <div class="content">${actual.h}</div>
-                </div>
-
-                <div class="card">
-                    <span class="label">Indicador de Logro Técnico</span>
-                    <div class="badge-indicador">📊 ${actual.i}</div>
-                </div>
-
-                <div class="span-2 card card-impacto">
-                    <span class="label" style="color:rgba(255,255,255,0.7)">Lógica Sistémica de Impacto</span>
-                    <div class="content" style="font-size:17px;"><b>Sinergia ODS ${actual.o1} + ODS ${actual.o2}:</b> ${actual.d}</div>
-                </div>
+function render() {
+    const v = document.getElementById('visor'); const c = document.getElementById('selCarrera').value;
+    if(!c){v.innerHTML=''; return;} const d = db.find(x=>x.c===c);
+    v.innerHTML = `
+        <div class="ficha">
+            <div class="full h-card" style="background:${d.clr}">
+                <span class="label" style="color:#fff; opacity:0.8">SUBSISTEMA: ${d.sub}</span>
+                <h2 style="margin:0">${d.c}</h2>
             </div>
-        `;
-    }
-
-    function generarTxt() {
-        if(!actual) return;
-        const body = `EXPEDIENTE DE VINCULACIÓN SISTÉMICA 2026\n` +
-                     `SUBSISTEMA: ${actual.sub}\nCARRERA: ${actual.c}\n` +
-                     `--------------------------------------------------\n` +
-                     `SCIAN: ${actual.s} - ${actual.sec}\n` +
-                     `MÓDULO DUAL: ${actual.m}\n` +
-                     `ACTIVIDAD: ${actual.a}\n` +
-                     `ODS IMPACTADO: ${actual.o1} (${odsInfo[actual.o1]})\n` +
-                     `INDICADOR: ${actual.i}\n` +
-                     `SINERGIA: ${actual.d}\n` +
-                     `--------------------------------------------------\n` +
-                     `Generado para fines de evaluación Dual.`;
-        const blob = new Blob([body], {type: 'text/plain'});
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = `Ficha_Vinculacion_${actual.c.replace(/ /g,'_')}.txt`;
-        a.click();
-    }
+            <div class="card c-scian"><span class="label">SCIAN</span><div class="content"><b>${d.s}</b> - ${d.sec}</div></div>
+            <div class="card c-ods">
+                <span class="label">OBJETIVO ODS</span><span class="ods-num">${d.o1}</span>
+                <div class="content">${odsT[d.o1]}</div>
+            </div>
+            <div class="full card c-dual">
+                <span class="label">MÓDULO Y ACTIVIDAD DUAL (MCCEMS)</span>
+                <div class="content"><b>${d.m}</b></div>
+                <div class="content" style="margin-top:5px; color:#4a5568;">${d.a}</div>
+            </div>
+            <div class="card">
+                <span class="label">HABILIDAD SOSTENIBLE</span><div class="content">${d.h}</div>
+                <div class="badge">📊 ${d.i}</div>
+            </div>
+            <div class="full card c-logica">
+                <span class="label" style="color:rgba(255,255,255,0.7)">SINERGIA SISTÉMICA ODS ${d.o1}+${d.o2}</span>
+                <div class="content">${d.d}</div>
+            </div>
+        </div>`;
+}
 </script>
 </body>
 </html>
