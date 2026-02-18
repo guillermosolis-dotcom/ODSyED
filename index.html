@@ -3,266 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscador Maestro ODS-SCIAN 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Sistema Integral de Vinculación Dual ODS-SCIAN 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #00689d; --secondary: #28a745; --dark: #2d3436; --light: #f4f7f6; --accent: #d35400; --ods-blue: #00aed9; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--light); color: var(--dark); margin: 0; padding: 20px; line-height: 1.6; }
-        .container { max-width: 1100px; margin: auto; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .header-logos { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 2px solid #eee; padding-bottom: 20px; }
-        .logo-rueda { height: 80px; }
-        .main-title { color: var(--primary); text-align: center; font-size: 26px; font-weight: 700; margin: 20px 0; border-left: 5px solid var(--primary); padding-left: 15px; }
-        .search-area { background: #f8f9fa; padding: 30px; border-radius: 12px; text-align: center; border: 1px solid #e9ecef; margin-bottom: 30px; }
-        .search-box { width: 100%; max-width: 800px; padding: 15px; border: 2px solid #ced4da; border-radius: 8px; font-size: 16px; cursor: pointer; }
+        :root {
+            --dgeti: #00689d; --conalep: #004a44; --cecyte: #d32f2f; --dgetaycm: #1b5e20;
+            --primary: #1a2a44; --secondary: #28a745; --ods-blue: #00aed9; --scian: #d35400;
+            --light: #f4f7f6; --white: #ffffff;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: var(--light); color: #2d3436; margin: 0; padding: 20px; line-height: 1.5; }
+        .container { max-width: 1200px; margin: auto; background: var(--white); padding: 40px; border-radius: 15px; box-shadow: 0 15px 50px rgba(0,0,0,0.1); border-top: 10px solid var(--primary); }
         
-        /* Ficha Técnica */
-        .card { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; animation: fadeIn 0.5s ease; }
-        .full-width { grid-column: 1 / -1; }
-        .section-box { border: 1px solid #e9ecef; padding: 20px; border-radius: 10px; background: #fff; position: relative; }
-        .ods-header { background: #f0f7fa; border-top: 5px solid var(--ods-blue); }
-        .scian-header { background: #fff3e0; border-top: 5px solid var(--accent); }
-        .dual-header { background: #f4fdf4; border-top: 5px solid var(--secondary); }
+        /* Header Institucional */
+        .header-box { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #edf2f7; padding-bottom: 25px; margin-bottom: 30px; }
+        .logo-main { height: 75px; }
+        .inst-info { text-align: right; }
+        .inst-info h2 { margin: 0; color: var(--primary); font-size: 24px; font-weight: 700; }
+        .inst-info p { margin: 5px 0 0; color: #718096; font-size: 14px; }
+
+        /* Buscador */
+        .search-container { background: #f8fafc; padding: 35px; border-radius: 15px; border: 1px solid #e2e8f0; margin-bottom: 40px; text-align: center; }
+        .search-container h3 { margin-top: 0; color: var(--primary); margin-bottom: 20px; }
+        .main-select { width: 100%; max-width: 900px; padding: 18px; border: 2px solid #cbd5e0; border-radius: 12px; font-size: 18px; font-weight: 500; cursor: pointer; transition: 0.3s; }
+        .main-select:focus { border-color: var(--ods-blue); outline: none; box-shadow: 0 0 15px rgba(0,174,217,0.2); }
+
+        /* Ficha Técnica Estructurada */
+        .ficha-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; animation: fadeIn 0.6s ease-out; }
+        .span-2 { grid-column: span 2; }
+        .card { background: var(--white); border: 1px solid #e2e8f0; border-radius: 12px; padding: 25px; position: relative; overflow: hidden; }
         
-        .label { font-weight: 700; color: var(--primary); text-transform: uppercase; font-size: 11px; letter-spacing: 1px; margin-bottom: 8px; display: block; }
-        .content { font-size: 14px; color: #333; }
-        .def-ods { font-size: 13px; font-style: italic; color: #555; background: #fff; padding: 12px; border-radius: 5px; margin-top: 10px; border-left: 3px solid var(--ods-blue); box-shadow: inset 0 0 5px rgba(0,0,0,0.05); }
-        .highlight { font-weight: 700; color: #000; }
-        
-        .btn-descargar { background: var(--secondary); color: white; padding: 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; font-size: 16px; margin-top: 30px; display: none; transition: all 0.3s; }
-        .btn-descargar:hover { background: #218838; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-        
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        @media (max-width: 768px) { .card { grid-template-columns: 1fr; } }
+        /* Decoradores de Sección */
+        .card-scian { border-left: 8px solid var(--scian); background: #fffaf5; }
+        .card-dual { border-left: 8px solid var(--secondary); background: #f0fff4; }
+        .card-ods { border-left: 8px solid var(--ods-blue); background: #ebf8ff; text-align: center; }
+        .card-impacto { background: #1a2a44; color: white; }
+
+        .tag-subsistema { display: inline-block; padding: 5px 15px; border-radius: 20px; color: white; font-size: 12px; font-weight: 700; margin-bottom: 15px; text-transform: uppercase; }
+        .label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #718096; margin-bottom: 10px; display: block; }
+        .content { font-size: 16px; color: #2d3748; }
+        .highlight { font-weight: 700; color: #1a202c; }
+
+        .ods-icon { width: 130px; height: 130px; margin: 15px 0; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+        .ods-def { font-size: 13px; font-style: italic; color: #4a5568; background: rgba(255,255,255,0.7); padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #bee3f8; }
+
+        .badge-indicador { background: #ebf4ff; color: #2b6cb0; padding: 10px 15px; border-radius: 8px; border: 1px solid #bee3f8; font-weight: 700; display: inline-block; margin-top: 10px; }
+
+        /* Botón Descarga */
+        .btn-export { background: var(--secondary); color: white; padding: 20px 40px; border: none; border-radius: 12px; font-size: 18px; font-weight: 700; width: 100%; margin-top: 30px; cursor: pointer; display: none; transition: 0.3s; box-shadow: 0 4px 14px rgba(40,167,69,0.4); }
+        .btn-export:hover { background: #218838; transform: translateY(-3px); }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 850px) { .ficha-grid { grid-template-columns: 1fr; } .span-2 { grid-column: span 1; } }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="header-logos">
-        <img src="rueda-ods.png" alt="Logo ODS" class="logo-rueda" onerror="this.src='https://placehold.co/80x80?text=ODS'">
-        <div style="text-align: right;"><h2 style="margin:0; color: #444;">Educación Dual México 2026</h2><small>Catálogo de Vinculación Técnica e Industrial</small></div>
+    <div class="header-box">
+        <img src="https://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_logo_without_UN_emblem_horizontal_RGB.png" alt="Logo ONU ODS" class="logo-main">
+        <div class="inst-info">
+            <h2>Catálogo Nacional de Vinculación Dual</h2>
+            <p>Alineación Curricular EMS 2026: SCIAN + ODS + MCCEMS</p>
+        </div>
     </div>
 
-    <h1 class="main-title">Generador de Fichas de Vinculación Sistémica (SCIAN-ODS)</h1>
-
-    <div class="search-area">
-        <select id="carreraSelect" class="search-box" onchange="mostrarResultado()">
-            <option value="">-- Seleccione una de las 95 Carreras Técnicas --</option>
+    <div class="search-container">
+        <h3>Estructura Sistémica por Subsistema y Carrera</h3>
+        <select id="masterSelect" class="main-select" onchange="actualizarFicha()">
+            <option value="">-- Busque una carrera (DGETI, CONALEP, CECYTE, DGETAyCM) --</option>
         </select>
     </div>
 
-    <div id="resultadoContenedor"></div>
-    <button id="btnDescargar" class="btn-descargar" onclick="descargarFicha()">📥 DESCARGAR FICHA TÉCNICA INTEGRAL (PDF/TEXTO)</button>
+    <div id="visorFicha"></div>
+    <button id="btnDescarga" class="btn-export" onclick="generarTxt()">📥 EXPORTAR EXPEDIENTE TÉCNICO DE VINCULACIÓN</button>
 </div>
 
 <script>
-    const defODS = {
-        "1": "Fin de la pobreza: Poner fin a la pobreza en todas sus formas en todo el mundo.",
-        "2": "Hambre Cero: Lograr la seguridad alimentaria y promover la agricultura sostenible.",
-        "3": "Salud y Bienestar: Garantizar una vida sana y promover el bienestar para todos.",
-        "4": "Educación de Calidad: Garantizar una educación inclusiva, equitativa y de calidad.",
-        "5": "Igualdad de Género: Lograr la igualdad entre los géneros y empoderar a todas las mujeres.",
-        "6": "Agua Limpia y Saneamiento: Garantizar la disponibilidad de agua y su gestión sostenible.",
-        "7": "Energía Asequible: Garantizar el acceso a una energía segura, sostenible y moderna.",
-        "8": "Trabajo Decente: Promover el crecimiento económico inclusivo y el empleo pleno.",
-        "9": "Industria e Innovación: Construir infraestructuras resilientes y fomentar la innovación.",
-        "10": "Reducción de Desigualdades: Reducir la desigualdad en y entre los países.",
-        "11": "Ciudades Sostenibles: Lograr que las ciudades sean inclusivas, seguras y resilientes.",
-        "12": "Producción Responsable: Garantizar modalidades de consumo y producción sostenibles.",
-        "13": "Acción por el Clima: Adoptar medidas urgentes para combatir el cambio climático.",
-        "14": "Vida Submarina: Conservar y utilizar sosteniblemente los océanos y recursos marinos.",
-        "15": "Vida Terrestre: Gestionar sosteniblemente los bosques y detener la pérdida de biodiversidad.",
-        "16": "Paz y Justicia: Promover sociedades justas e instituciones eficaces y responsables.",
-        "17": "Alianzas: Fortalecer la Alianza Mundial para el Desarrollo Sostenible."
+    const odsInfo = {
+        "1": "Fin de la pobreza: Poner fin a la pobreza en todas sus formas.",
+        "2": "Hambre Cero: Lograr la seguridad alimentaria y agricultura sostenible.",
+        "3": "Salud y Bienestar: Garantizar una vida sana y promover el bienestar.",
+        "4": "Educación de Calidad: Garantizar educación inclusiva y equitativa.",
+        "5": "Igualdad de Género: Empoderar a todas las mujeres y las niñas.",
+        "6": "Agua Limpia: Garantizar disponibilidad y gestión sostenible del agua.",
+        "7": "Energía Asequible: Energía segura, sostenible y moderna.",
+        "8": "Trabajo Decente: Crecimiento económico inclusivo y empleo pleno.",
+        "9": "Industria e Innovación: Infraestructura resiliente y fomento a la innovación.",
+        "10": "Reducción de Desigualdades: Reducir brechas sociales y económicas.",
+        "11": "Ciudades Sostenibles: Ciudades seguras, resilientes y sostenibles.",
+        "12": "Consumo Responsable: Modalidades de consumo y producción sostenibles.",
+        "13": "Acción por el Clima: Medidas urgentes contra el cambio climático.",
+        "14": "Vida Submarina: Conservar océanos, mares y recursos marinos.",
+        "15": "Vida Terrestre: Gestionar bosques y detener la pérdida de biodiversidad.",
+        "16": "Paz y Justicia: Sociedades pacíficas e instituciones sólidas.",
+        "17": "Alianzas: Fortalecer la Alianza Mundial para el Desarrollo."
     };
 
-    const baseDatos = [
-        // --- VANGUARDIA (15) ---
-        {c:"Semiconductores", s:"3344", sec:"Fabricación de Componentes Electrónicos", m:"Módulo IV: Control de Procesos Litográficos", a:"Pruebas de conductividad y fotolitografía de precisión.", h:"Gestión de recursos críticos y materiales de alta pureza.", o1:"9", o2:"8", i:"Tasa de rendimiento (Yield) / Cero defectos en oblea.", d:"La innovación tecnológica (9) impulsa empleos de alta productividad y soberanía (8)."},
-        {c:"Inteligencia Artificial y Ciencia de Datos", s:"5415", sec:"Servicios de Diseño de Sistemas de Cómputo", m:"Módulo V: Modelado Predictivo y Algoritmos", a:"Programación de modelos de optimización para recursos energéticos.", h:"Pensamiento sistémico y ética de la información.", o1:"9", o2:"4", i:"Precisión del modelo predictivo / Eficiencia de procesamiento.", d:"La digitalización avanzada (9) requiere una formación técnica de vanguardia (4)."},
-        {c:"Ciberseguridad", s:"5415", sec:"Servicios de Seguridad Informática", m:"Módulo III: Protección de Infraestructura Crítica", a:"Auditoría de vulnerabilidades y cifrado de datos industriales.", h:"Resiliencia digital y gobernanza de datos.", o1:"16", o2:"9", i:"Tasa de incidentes mitigados / Tiempo de respuesta.", d:"La seguridad y justicia digital (16) protegen la infraestructura productiva (9)."},
-        {c:"Electromovilidad", s:"3361", sec:"Fabricación de Vehículos Eléctricos", m:"Módulo III: Sistemas de Propulsión y Almacenamiento", a:"Mantenimiento de packs de baterías y motores síncronos.", h:"Acción climática y transición energética.", o1:"13", o2:"11", i:"Toneladas de CO2 evitadas / Disponibilidad de flota eléctrica.", d:"La descarbonización del transporte (13) crea ciudades más saludables y sostenibles (11)."},
-        {c:"Robótica y Automatización", s:"3339", sec:"Fabricación de Maquinaria Industrial", m:"Módulo IV: Integración de Sistemas Robóticos", a:"Programación y calibración de brazos robóticos y sensores.", h:"Eficiencia operativa e innovación técnica.", o1:"9", o2:"12", i:"Efectividad Global de Equipos (OEE) / Ahorro de kW/h.", d:"La automatización inteligente (9) optimiza el consumo de recursos en la producción (12)."},
-        {c:"Biotecnología Industrial", s:"3254", sec:"Fabricación de Productos Biotecnológicos", m:"Módulo II: Procesos de Biomanufactura", a:"Control de biorreactores para producción de biocombustibles.", h:"Economía circular y bioética.", o1:"12", o2:"9", i:"Rendimiento de biomasa / Reducción de subproductos tóxicos.", d:"La producción biológica responsable (12) transforma la industria química (9)."},
-        {c:"Agrotecnología Digital", s:"1151", sec:"Servicios de Apoyo a la Agricultura", m:"Módulo III: Agricultura de Precisión con IA", a:"Operación de drones y sensores para optimización de riego.", h:"Soberanía alimentaria y eficiencia hídrica.", o1:"2", o2:"15", i:"Ahorro de fertilizantes por Ha / Rendimiento de cosecha.", d:"La tecnología aplicada al hambre cero (2) protege la biodiversidad del suelo (15)."},
-        {c:"Energía Hidrógeno Verde", s:"3251", sec:"Fabricación de Gases Industriales", m:"Módulo IV: Sistemas de Electrólisis y Almacenamiento", a:"Operación de plantas de electrólisis y control de hidrógeno.", h:"Descarbonización profunda y nuevas energías.", o1:"7", o2:"13", i:"kg de H2 producido con renovables / Reducción de emisiones.", d:"La energía moderna (7) es el pilar de la acción climática global (13)."},
-        {c:"Impresión 3D y Manufactura Aditiva", s:"3332", sec:"Fabricación de Maquinaria para Industrias", m:"Módulo II: Diseño y Fabricación Aditiva", a:"Modelado y prototipado directo de piezas industriales.", h:"Reducción de residuos y personalización masiva.", o1:"9", o2:"12", i:"% de material ahorrado vs manufactura tradicional.", d:"La innovación en manufactura (9) minimiza el desperdicio de materia prima (12)."},
-        {c:"Sistemas de Vuelo Autónomo", s:"3364", sec:"Fabricación de Equipo Aeroespacial", m:"Módulo III: Navegación y Control de UAV", a:"Mantenimiento y vuelo de drones para logística de última milla.", h:"Logística resiliente y conectividad.", o1:"9", o2:"11", i:"Tiempo de entrega optimizado / Eficiencia energética.", d:"La infraestructura de vuelo (9) moderniza el transporte en ciudades (11)."},
-        {c:"Nanotecnología", s:"5417", sec:"Servicios de Investigación y Desarrollo", m:"Módulo IV: Caracterización de Materiales", a:"Síntesis de nanopartículas para filtrado de agua.", h:"Innovación en materiales sustentables.", o1:"6", o2:"9", i:"Litros de agua purificada / Eficiencia de filtrado.", d:"El saneamiento avanzado (6) surge de la investigación de vanguardia (9)."},
-        {c:"Internet de las Cosas (IoT) Industrial", s:"5415", sec:"Servicios de Conectividad Industrial", m:"Módulo III: Redes de Sensores y Monitoreo", a:"Instalación de dispositivos IIoT para mantenimiento predictivo.", h:"Optimización de recursos y monitoreo remoto.", o1:"9", o2:"7", i:"Reducción de paros de planta / Ahorro energético.", d:"La conectividad industrial (9) permite un uso energético más eficiente (7)."},
-        {c:"Computación en la Nube", s:"5182", sec:"Procesamiento de Datos y Hospedaje", m:"Módulo II: Administración de Arquitecturas Cloud", a:"Gestión de servidores virtuales y bases de datos.", h:"Eficiencia digital y desmaterialización.", o1:"9", o2:"12", i:"Consumo de energía por servidor / Disponibilidad.", d:"La infraestructura digital (9) reduce el consumo físico de materiales (12)."},
-        {c:"Desarrollo de Software Sustentable", s:"5415", sec:"Desarrollo de Software", m:"Módulo IV: Optimización de Código y Energía", a:"Refactorización de software para bajo consumo en dispositivos.", h:"Diseño responsable y eficiencia.", o1:"9", o2:"13", i:"Ahorro de batería en usuario final / Optimización de CPU.", d:"La industria del software (9) contribuye a la eficiencia climática (13)."},
-        {c:"Realidad Virtual para Capacitación", s:"5415", sec:"Servicios de Diseño de Sistemas", m:"Módulo III: Simulación de Procesos Industriales", a:"Creación de entornos seguros para prácticas de riesgo.", h:"Educación inclusiva y seguridad laboral.", o1:"4", o2:"8", i:"Reducción de accidentes en capacitación / Tasa de aprendizaje.", d:"La educación de calidad (4) garantiza un trabajo seguro y decente (8)."},
-
-        // --- INDUSTRIAL (RESTO) ---
-        {c:"Mecatrónica", s:"3339", sec:"Fabricación de Maquinaria y Equipo", m:"Módulo II: Sistemas Automatizados de Control", a:"Programación de PLC y mantenimiento de servomotores.", h:"Innovación técnica y eficiencia de recursos.", o1:"9", o2:"12", i:"Efectividad Global (OEE) / kW/h por ciclo.", d:"La automatización (9) es clave para reducir el desperdicio industrial (12)."},
-        {c:"Electromecánica Industrial", s:"3329", sec:"Fabricación de Productos Metálicos", m:"Módulo III: Reparación de Sistemas Eléctricos y Mecánicos", a:"Diagnóstico y bobinado de motores de inducción.", h:"Economía circular y recuperación de activos.", o1:"12", o2:"9", i:"Índice de piezas recuperadas / Vida útil extendida.", d:"La reutilización de maquinaria (12) fortalece la industria nacional (9)."},
-        {c:"Mantenimiento Industrial", s:"8113", sec:"Mantenimiento de Maquinaria Pesada", m:"Módulo IV: Mantenimiento Preventivo y Predictivo", a:"Análisis de vibraciones y lubricación de equipos.", h:"Producción responsable y prevención.", o1:"12", o2:"9", i:"Disminución de fallas críticas / Ahorro en refacciones.", d:"La gestión responsable de equipos (12) estabiliza la infraestructura (9)."},
-        {c:"Soldadura Industrial", s:"3323", sec:"Fabricación de Estructuras Metálicas", m:"Módulo III: Procesos de Soldadura Especializada", a:"Aplicación de soldadura TIG/MIG en estructuras.", h:"Manufactura limpia y seguridad laboral.", o1:"9", o2:"3", i:"Eficiencia de material de aporte / Calidad del aire.", d:"La infraestructura resiliente (9) protege la salud de los trabajadores (3)."},
-        {c:"Electricidad Industrial", s:"2382", sec:"Instalaciones Eléctricas en Construcción", m:"Módulo II: Instalaciones Eléctricas de Fuerza", a:"Instalación de centros de carga y corrección de factor de potencia.", h:"Eficiencia energética y ahorro.", o1:"7", o2:"9", i:"kW/h ahorrados / Mejora en factor de potencia.", d:"El acceso a energía eficiente (7) moderniza la infraestructura (9)."},
-        {c:"Sistemas Automotrices", s:"8111", sec:"Reparación de Automóviles", m:"Módulo III: Diagnóstico de Sistemas de Control de Emisiones", a:"Afinación electrónica y monitoreo de gases.", h:"Movilidad urbana sustentable.", o1:"11", o2:"13", i:"Gramos de CO2 reducidos por vehículo / Estado de flota.", d:"El transporte eficiente (11) es una medida directa de acción climática (13)."},
-        {c:"Refrigeración y Aire Acondicionado", s:"3334", sec:"Fabricación de Equipo de Aire Acondicionado", m:"Módulo IV: Gestión de Gases Refrigerantes", a:"Recuperación y reciclaje de gases R-134a/R-410a.", h:"Protección de la capa de ozono y clima.", o1:"13", o2:"7", i:"kg de refrigerante recuperado / Eficiencia térmica.", d:"Mitigar emisiones de gases (13) mejora la eficiencia energética (7)."},
-        {c:"Máquinas Herramienta", s:"3335", sec:"Fabricación de Moldes y Dados", m:"Módulo II: Maquinado de Piezas por CNC", a:"Programación de tornos y fresadoras para piezas de precisión.", h:"Gestión de materiales y reuso.", o1:"12", o2:"9", i:"% de rebaba reciclada / Precisión dimensional.", d:"La producción responsable (12) mejora la competitividad industrial (9)."},
-        {c:"Electrónica", s:"3344", sec:"Fabricación de Componentes Electrónicos", m:"Módulo III: Reparación de Tarjetas Electrónicas", a:"Soldadura de componentes SMD y diagnóstico de circuitos.", h:"Reducción de desechos electrónicos (e-waste).", o1:"12", o2:"9", i:"Tarjetas rehabilitadas / Reuso de componentes.", d:"La gestión de residuos electrónicos (12) es vital para la innovación (9)."},
-        {c:"Química Industrial", s:"3251", sec:"Industria Química Básica", m:"Módulo V: Análisis y Tratamiento de Aguas Residuales", a:"Neutralización de PH y remoción de metales pesados.", h:"Prevención de contaminación hídrica.", o1:"6", o2:"12", i:"PH del efluente / Carga contaminante removida.", d:"El saneamiento del agua (6) permite una producción responsable (12)."},
+    const database = [
+        // DGETI
+        {c:"Programación (DGETI)", sub:"DGETI", clr:"var(--dgeti)", s:"5415", sec:"Desarrollo de Software", m:"Módulo IV: Desarrolla aplicaciones web con conexión a bases de datos", a:"Implementación de protocolos de seguridad y accesibilidad web.", h:"Inclusión digital y ética de datos.", o1:"9", o2:"10", i:"% de cumplimiento en normas de accesibilidad web (WCAG)", d:"La innovación tecnológica (9) reduce las brechas de acceso a la información (10)."},
+        {c:"Mecatrónica (DGETI)", sub:"DGETI", clr:"var(--dgeti)", s:"3339", sec:"Fabricación de Maquinaria y Equipo", m:"Módulo II: Sistemas de control por PLC", a:"Programación de procesos automatizados de bajo consumo.", h:"Eficiencia energética industrial.", o1:"9", o2:"12", i:"Índice de ahorro energético por ciclo automatizado", d:"Industria moderna (9) que optimiza el uso de recursos naturales (12)."},
         
-        // --- AGROPECUARIO (15) ---
-        {c:"Agropecuario", s:"1111", sec:"Cultivo de Semillas y Granos", m:"Módulo IV: Técnicas de Cultivo Sustentable", a:"Implementación de rotación de cultivos y abonos verdes.", h:"Soberanía alimentaria y salud del suelo.", o1:"2", o2:"15", i:"Rendimiento por Hectárea / Índice de materia orgánica.", d:"La agricultura sostenible (2) protege la biodiversidad terrestre (15)."},
-        {c:"Agroindustria", s:"3119", sec:"Otras Industrias Alimentarias", m:"Módulo III: Procesamiento de Frutas y Hortalizas", a:"Control de calidad y envasado al vacío sin mermas.", h:"Consumo responsable y aprovechamiento.", o1:"12", o2:"9", i:"% de merma aprovechada / Insumos regionales.", d:"Reducir las pérdidas de alimentos (12) fortalece la industria rural (9)."},
-        {c:"Técnico Forestal", s:"1132", sec:"Viveros Forestales y Recolección", m:"Módulo II: Reforestación y Manejo de Bosques", a:"Mantenimiento de viveros y plantación selectiva.", h:"Gestión de ecosistemas y captura de CO2.", o1:"15", o2:"13", i:"Tasa de supervivencia de árboles / Has reforestadas.", d:"Gestionar los bosques (15) es una acción directa contra el cambio climático (13)."},
-        {c:"Explotación Ganadera", s:"1121", sec:"Cría de Ganado Bovino", m:"Módulo III: Alimentación y Sanidad Pecuaria", a:"Formulación de dietas y pastoreo rotativo.", h:"Producción de proteína sustentable.", o1:"2", o2:"15", i:"Tasa de conversión alimenticia / Salud de agostaderos.", d:"La seguridad alimentaria (2) depende de suelos terrestres sanos (15)."},
-        {c:"Sistemas de Producción Agrícola", s:"1151", sec:"Servicios de Apoyo a la Agricultura", m:"Módulo IV: Manejo Integrado de Plagas", a:"Uso de control biológico y reducción de pesticidas.", h:"Producción limpia y protección de biodiversidad.", o1:"2", o2:"6", i:"Litros de químicos evitados / Calidad de agua freática.", d:"Producir alimentos sanos (2) previene la contaminación del agua (6)."},
-        {c:"Apicultura", s:"1129", sec:"Otros Animales (Abejas)", m:"Módulo I: Manejo de Apiarios y Sanidad", a:"Control de varroasis y cosecha de miel orgánica.", h:"Protección de polinizadores y biodiversidad.", o1:"15", o2:"2", i:"Número de colmenas activas / Rendimiento de polinización.", d:"Proteger a las abejas (15) garantiza la producción de alimentos (2)."},
-        {c:"Riego y Drenaje", s:"2371", sec:"Construcción de Obras de Ingeniería Hidráulica", m:"Módulo III: Sistemas de Riego por Goteo", a:"Instalación y mantenimiento de líneas de riego tecnificado.", h:"Eficiencia hídrica y productividad.", o1:"6", o2:"2", i:"m3 de agua ahorrados / Cosecha obtenida.", d:"La gestión eficiente del agua (6) es el motor del hambre cero (2)."},
-        {c:"Horticultura", s:"1112", sec:"Cultivo de Hortalizas", m:"Módulo IV: Producción en Invernaderos", a:"Control hidropónico y monitoreo de nutrientes.", h:"Producción intensiva responsable.", o1:"2", o2:"12", i:"Kg producidos por m2 / Uso de recursos.", d:"Maximizar la producción (2) reduce la huella de tierra (12)."},
-        {c:"Vitivinicultura", s:"3121", sec:"Industria de las Bebidas (Vino)", m:"Módulo III: Vinificación y Control de Calidad", a:"Análisis de mostos y gestión de fermentación.", h:"Consumo responsable y valor agregado regional.", o1:"12", o2:"6", i:"Litros producidos por m3 de agua / Calidad.", d:"La producción vinícola (12) debe cuidar el recurso hídrico local (6)."},
-        {c:"Sistemas de Producción Pecuaria", s:"1123", sec:"Explotación de Aves", m:"Módulo II: Manejo Avícola Sustentable", a:"Control de ambiente y bioseguridad en casetas.", h:"Bienestar animal y seguridad alimentaria.", o1:"2", o2:"12", i:"Índice de mortalidad / Eficiencia de insumos.", d:"La proteína asequible (2) requiere procesos productivos responsables (12)."},
-        {c:"Acuacultura", s:"1125", sec:"Acuicultura", m:"Módulo III: Crianza de Especies en Aguas Continentales", a:"Control de oxigenación y alimentación de tilapias.", h:"Vida submarina y nutrición.", o1:"14", o2:"2", i:"Biomasa producida / Calidad del agua.", d:"Gestionar el recurso acuático (14) combate el hambre (2)."},
-        {c:"Manejo de Suelos y Agua", s:"1151", sec:"Servicios de Apoyo Agrícola", m:"Módulo I: Conservación de Suelos", a:"Trazo de curvas de nivel y prevención de erosión.", h:"Resiliencia terrestre.", o1:"15", o2:"6", i:"Materia orgánica en suelo / Retención de humedad.", d:"La salud del suelo (15) es clave para el ciclo del agua (6)."},
-        {c:"Maquinaria Agrícola", s:"8113", sec:"Reparación de Maquinaria Agropecuaria", m:"Módulo IV: Mantenimiento de Tractores e Implementos", a:"Calibración de sembradoras y motores diesel.", h:"Eficiencia en la producción rural.", o1:"9", o2:"2", i:"Disminución de consumo de diesel / Tiempo de labor.", d:"La tecnología mecánica (9) sustenta la producción de alimentos (2)."},
-        {c:"Producción de Forrajes", s:"1119", sec:"Otros Cultivos", m:"Módulo II: Cultivo y Conservación de Forraje", a:"Ensilaje y henificado de alfalfa y maíz.", h:"Resiliencia ganadera.", o1:"2", o2:"15", i:"Toneladas por Ha / Proteína cruda.", d:"Alimentar al ganado (2) requiere gestionar el suelo terrestre (15)."},
-        {c:"Administración de Agronegocios", s:"5416", sec:"Servicios de Consultoría Administrativa", m:"Módulo IV: Comercialización y Exportación Agrícola", a:"Desarrollo de planes de negocio para cooperativas.", h:"Crecimiento económico rural e inclusión.", o1:"8", o2:"2", i:"Nuevos mercados abiertos / Rentabilidad.", d:"El trabajo decente rural (8) erradica el hambre local (2)."},
+        // CONALEP
+        {c:"Electromovilidad (CONALEP)", sub:"CONALEP", clr:"var(--conalep)", s:"3361", sec:"Industria Automotriz", m:"Módulo III: Mantenimiento de propulsión eléctrica", a:"Diagnóstico y reparación de celdas de batería y motores AC.", h:"Acción climática y descarbonización.", o1:"13", o2:"7", i:"Toneladas de CO2 evitadas por unidad mantenida", d:"La descarbonización (13) impulsa el uso de energía limpia (7)."},
+        {c:"Hospitalidad Turística (CONALEP)", sub:"CONALEP", clr:"var(--conalep)", s:"7211", sec:"Servicios de Alojamiento", m:"Módulo IV: Gestión de servicios sustentables", a:"Implementación de sistemas de ahorro de agua y energía.", h:"Turismo responsable y economía local.", o1:"8", o2:"12", i:"Litros de agua ahorrados por habitación", d:"Trabajo decente (8) mediante el consumo responsable de recursos (12)."},
 
-        // --- SALUD Y SERVICIOS (15) ---
-        {c:"Enfermería Técnica", s:"6211", sec:"Consultorios Médicos", m:"Módulo I: Cuidados de Salud Comunitaria", a:"Brigadas de vacunación y toma de signos vitales.", h:"Salud, bienestar y equidad social.", o1:"3", o2:"5", i:"Número de atenciones / Cobertura en grupos vulnerables.", d:"La salud integral (3) es el primer paso para la igualdad de género (5)."},
-        {c:"Laboratorio Clínico", s:"6215", sec:"Laboratorios Médicos y de Diagnóstico", m:"Módulo III: Análisis Hematológicos y Microbiológicos", a:"Toma de muestras y gestión de residuos biológicos (RPBI).", h:"Bioseguridad y diagnóstico preventivo.", o1:"3", o2:"6", i:"Pruebas realizadas / Cero incidentes de contaminación hídrica.", d:"Prevenir enfermedades (3) evita la contaminación de recursos hídricos (6)."},
-        {c:"Puericultura", s:"6244", sec:"Guarderías", m:"Módulo II: Desarrollo Integral del Infante", a:"Estimulación temprana y planeación pedagógica.", h:"Educación inclusiva y equitativa.", o1:"4", o2:"10", i:"Alumnos atendidos / Índice de desarrollo infantil.", d:"La educación de calidad desde la infancia (4) reduce las desigualdades futuras (10)."},
-        {c:"Gericultura", s:"6231", sec:"Residencias de Retiro", m:"Módulo III: Cuidado Integral del Adulto Mayor", a:"Terapia ocupacional y acompañamiento geriátrico.", h:"Inclusión y derechos humanos.", o1:"10", o2:"3", i:"Nivel de bienestar percibido / Atenciones diarias.", d:"Reducir la desigualdad generacional (10) garantiza salud y bienestar (3)."},
-        {c:"Radiología", s:"6215", sec:"Servicios de Diagnóstico por Imagen", m:"Módulo IV: Aplicación de Técnicas Radiográficas", a:"Toma de placas y control de dosis de radiación.", h:"Salud pública y tecnología segura.", o1:"3", o2:"9", i:"Diagnósticos precisos / Seguridad radiológica.", d:"La salud pública (3) se beneficia de la innovación tecnológica (9)."},
-        {c:"Rehabilitación Física", s:"6213", sec:"Otros Consultorios (Fisioterapia)", m:"Módulo II: Técnicas de Terapia Física", a:"Aplicación de ejercicios y agentes físicos para movilidad.", h:"Igualdad y autonomía funcional.", o1:"10", o2:"3", i:"Pacientes rehabilitados / Grado de movilidad recuperada.", d:"La igualdad de oportunidades (10) nace de una salud física recuperada (3)."},
-        {c:"Trabajo Social", s:"6241", sec:"Servicios de Orientación Social", m:"Módulo IV: Intervención Comunitaria y Mediación", a:"Estudios socioeconómicos y gestión de apoyos públicos.", h:"Paz, justicia e inclusión institucional.", o1:"16", o2:"10", i:"Casos resueltos / Familias vinculadas a programas.", d:"La paz y justicia social (16) son herramientas para reducir desigualdades (10)."},
-        {c:"Laboratorista Químico", s:"5413", sec:"Servicios de Pruebas y Análisis", m:"Módulo II: Análisis Químico Cuantitativo", a:"Valoración de reactivos y control de efluentes.", h:"Agua limpia y seguridad química.", o1:"6", o2:"12", i:"PH del agua tratada / Cumplimiento de normas.", d:"El saneamiento del agua (6) es requisito para una producción responsable (12)."},
-        {c:"Prótesis Dental", s:"3391", sec:"Fabricación de Equipo Médico y Dental", m:"Módulo III: Diseño y Elaboración de Prótesis", a:"Modelado de coronas y puentes en materiales biocompatibles.", h:"Salud bucodental y tecnología médica.", o1:"3", o2:"10", i:"Piezas entregadas / Satisfacción del paciente.", d:"El bienestar físico (3) mejora la inclusión social de la persona (10)."},
-        {c:"Salud Pública", s:"9231", sec:"Administración Pública de Salud", m:"Módulo I: Epidemiología y Vigilancia", a:"Mapeo de riesgos sanitarios en zonas urbanas.", h:"Prevención y resiliencia comunitaria.", o1:"3", o2:"11", i:"Riesgos detectados / Planes de acción ejecutados.", d:"La salud pública (3) fortalece la resiliencia de las ciudades (11)."},
-        {c:"Nutrición", s:"6213", sec:"Consultorios de Nutriólogos", m:"Módulo II: Planificación de Dietas Sustentables", a:"Asesoría nutricional basada en productos locales.", h:"Hambre cero y bienestar.", o1:"2", o2:"3", i:"Mejora en indicadores de masa corporal / Consumo local.", d:"Combatir la mala nutrición (2) es la base de una vida sana (3)."},
-        {c:"Farmacia Técnica", s:"4641", sec:"Farmacias", m:"Módulo III: Gestión y Dispensación de Medicamentos", a:"Control de caducidades y atención al cliente.", h:"Acceso a medicamentos y salud.", o1:"3", o2:"12", i:"Cero desperdicio por caducidad / Atenciones.", d:"La salud garantizada (3) requiere una gestión de insumos responsable (12)."},
-        {c:"Paramédico", s:"6219", sec:"Servicios de Ambulancia", m:"Módulo IV: Atención Prehospitalaria de Urgencias", a:"Estabilización de pacientes en situaciones críticas.", h:"Resiliencia y bienestar inmediato.", o1:"3", o2:"11", i:"Tiempo de respuesta / Vidas salvadas.", d:"La salud de emergencia (3) es vital en ciudades seguras (11)."},
-        {c:"Óptica", s:"4641", sec:"Ópticas", m:"Módulo II: Refracción y Adaptación de Lentes", a:"Exámenes de vista y ajuste de armazones.", h:"Inclusión y salud visual.", o1:"3", o2:"4", i:"Pacientes con visión corregida / Alumnos beneficiados.", d:"La salud visual (3) es fundamental para el desempeño educativo (4)."},
-        {c:"Citología", s:"6215", sec:"Laboratorios de Diagnóstico", m:"Módulo III: Procesamiento de Muestras Celulares", a:"Análisis de Papanicolaou y detección temprana.", h:"Salud preventiva de la mujer.", o1:"3", o2:"5", i:"Detecciones tempranas / Cobertura femenina.", d:"La prevención en salud (3) empodera a las mujeres (5)."},
+        // CECYTE
+        {c:"Energías Renovables (CECYTE)", sub:"CECYTE", clr:"var(--cecyte)", s:"2211", sec:"Generación de Electricidad", m:"Módulo I: Instalación de sistemas fotovoltaicos", a:"Montaje y conexión de paneles solares residenciales.", h:"Transición energética y sostenibilidad.", o1:"7", o2:"13", i:"kW/h generados mediante fuentes renovables", d:"Energía asequible (7) como pilar fundamental de la acción climática (13)."},
+        {c:"Logística (CECYTE)", sub:"CECYTE", clr:"var(--cecyte)", s:"4885", sec:"Servicios de Mensajería", m:"Módulo III: Optimización de cadenas de suministro", a:"Diseño de rutas eficientes para reducción de huella de carbono.", h:"Logística verde y ciudades inteligentes.", o1:"11", o2:"9", i:"Kilómetros optimizados / Reducción de emisiones", d:"Ciudades sostenibles (11) mediante infraestructura logística moderna (9)."},
 
-        // --- ADMINISTRATIVO Y DIGITAL (15) ---
-        {c:"Administración", s:"5611", sec:"Servicios de Administración de Negocios", m:"Módulo IV: Gestión de Recursos con Enfoque Sustentable", a:"Digitalización de archivos y control de insumos de oficina.", h:"Eficiencia administrativa y transparencia.", o1:"12", o2:"16", i:"Reducción de consumo de papel (%) / Ética operativa.", d:"Una gestión responsable (12) construye instituciones sólidas y transparentes (16)."},
-        {c:"Contabilidad", s:"5412", sec:"Servicios de Contabilidad y Auditoría", m:"Módulo III: Contabilidad de Costos y Fiscal", a:"Cálculo de impuestos y estados financieros transparentes.", h:"Gobernanza y crecimiento económico.", o1:"16", o2:"8", i:"Índice de cumplimiento fiscal / Salud financiera.", d:"La transparencia institucional (16) permite un crecimiento económico estable (8)."},
-        {c:"Recursos Humanos", s:"5613", sec:"Servicios de Empleo", m:"Módulo IV: Reclutamiento y Selección Incluyente", a:"Aplicación de protocolos de igualdad de género en contratación.", h:"Igualdad y trabajo decente.", o1:"5", o2:"8", i:"Brecha salarial eliminada (%) / Contrataciones incluyentes.", d:"La igualdad de género (5) es el motor del trabajo decente (8)."},
-        {c:"Mercadotecnia", s:"5418", sec:"Servicios de Publicidad", m:"Módulo II: Estrategias de Green Marketing", a:"Campañas para promover productos ecológicos locales.", h:"Consumo responsable y educación.", o1:"12", o2:"4", i:"Impacto de campaña / Ventas de productos eco.", d:"La comunicación responsable (12) educa al consumidor (4)."},
-        {c:"Logística Industrial", s:"4885", sec:"Servicios de Mensajería", m:"Módulo III: Gestión de Almacenes e Inventarios", a:"Optimización de rutas de reparto para ahorro de combustible.", h:"Logística verde e infraestructura.", o1:"9", o2:"13", i:"Kilómetros optimizados / Huella de carbono reducida.", d:"La infraestructura logística (9) debe contribuir a la acción climática (13)."},
-        {c:"Ventas", s:"4611", sec:"Comercio al por menor", m:"Módulo II: Atención al Cliente y Ventas Éticas", a:"Asesoría de productos con baja huella ambiental.", h:"Consumo responsable.", o1:"12", o2:"8", i:"% de productos sustentables vendidos / Satisfacción.", d:"Vender con responsabilidad (12) fomenta el crecimiento económico (8)."},
-        {c:"Programación", s:"5415", sec:"Desarrollo de Software", m:"Módulo IV: Desarrollo de Aplicaciones Web Inclusivas", a:"Codificación de interfaces con accesibilidad para discapacidad.", h:"Innovación e inclusión digital.", o1:"9", o2:"10", i:"Usuarios con discapacidad atendidos / Accesibilidad (%)", d:"La innovación digital (9) debe reducir las desigualdades de acceso (10)."},
-        {c:"Ofimática", s:"5611", sec:"Servicios de Apoyo Administrativo", m:"Módulo II: Automatización de Documentos", a:"Creación de macros para reportes de consumo energético.", h:"Eficiencia digital.", o1:"12", o2:"4", i:"Tiempo de proceso ahorrado / Hojas evitadas.", d:"La eficiencia en procesos (12) requiere competencias técnicas (4)."},
-        {c:"Servicios Bancarios", s:"5221", sec:"Instituciones de Banca Múltiple", m:"Módulo III: Inclusión Financiera y Crédito", a:"Asesoría de microcréditos para emprendedores rurales.", h:"Reducción de brechas y crecimiento.", o1:"10", o2:"8", i:"Créditos otorgados a sectores vulnerables / Retorno.", d:"Reducir la desigualdad (10) mediante el acceso al trabajo (8)."},
-        {c:"Soporte de Cómputo", s:"8112", sec:"Reparación de Equipo de Cómputo", m:"Módulo IV: Mantenimiento y Recuperación de Hardware", a:"Rehabilitación de equipos obsoletos para donación.", h:"Economía circular y educación.", o1:"4", o2:"12", i:"Equipos recuperados / Alumnos beneficiados.", d:"La educación técnica (4) fomenta el reuso de materiales (12)."},
-        {c:"Asistente Directivo", s:"5611", sec:"Apoyo Administrativo", m:"Módulo V: Gestión Ética de la Información", a:"Manejo de agendas y protección de datos sensibles.", h:"Paz y justicia institucional.", o1:"16", o2:"12", i:"Cero brechas de seguridad / Orden administrativo.", d:"La paz organizacional (16) nace de una gestión responsable (12)."},
-        {c:"Turismo", s:"7112", sec:"Servicios de Guías Turísticos", m:"Módulo II: Promoción del Patrimonio Sustentable", a:"Diseño de rutas ecoturísticas respetuosas con el entorno.", h:"Turismo decente y protección.", o1:"8", o2:"11", i:"Turistas sensibilizados / Derrama local.", d:"El trabajo en turismo (8) protege el patrimonio de las ciudades (11)."},
-        {c:"Comercio Exterior", s:"5416", sec:"Consultoría en Comercio", m:"Módulo IV: Logística Aduanera", a:"Trámites de exportación de productos con certificación verde.", h:"Crecimiento económico y alianzas.", o1:"17", o2:"8", i:"Volumen de exportación certificada / Alianzas.", d:"Las alianzas mundiales (17) impulsan el crecimiento económico (8)."},
-        {c:"Producción de Medios", s:"5121", sec:"Industria Fílmica", m:"Módulo III: Comunicación para el Desarrollo Sostenible", a:"Edición de videos sobre metas de la Agenda 2030.", h:"Educación y sensibilización.", o1:"4", o2:"12", i:"Audiencia alcanzada / Mensajes ODS.", d:"La educación (4) guía hacia estilos de vida responsables (12)."},
-        {c:"Traducción Integral", s:"5419", sec:"Servicios de Traducción e Interpretación", m:"Módulo II: Traducción de Documentos sobre ODS", a:"Traducción de manuales de ONU sobre cambio climático.", h:"Educación inclusiva e idiomas.", o1:"4", o2:"17", i:"Documentos traducidos / Impacto en comunidad.", d:"La educación (4) permite alianzas internacionales (17)."},
-
-        // --- CONSTRUCCIÓN, SERVICIOS Y MODA (15) ---
-        {c:"Construcción", s:"2361", sec:"Edificación Residencial", m:"Módulo IV: Gestión de Residuos de Demolición", a:"Separación de escombros y reuso de agregados en obra.", h:"Ciudades resilientes y economía circular.", o1:"11", o2:"12", i:"Toneladas de residuo recicladas / Desperdicio cero.", d:"Ciudades sostenibles (11) requieren procesos de construcción responsables (12)."},
-        {c:"Arquitectura de Paisaje", s:"5413", sec:"Servicios de Arquitectura", m:"Módulo II: Diseño de Espacios Verdes Urbanos", a:"Planificación de jardines con especies nativas.", h:"Biodiversidad urbana y clima.", o1:"11", o2:"15", i:"m2 de áreas verdes creadas / Flora nativa protegida.", d:"Ciudades sostenibles (11) protegiendo la vida terrestre (15)."},
-        {c:"Diseño Gráfico Digital", s:"5414", sec:"Diseño Especializado", m:"Módulo III: Comunicación Visual ODS", a:"Creación de infografías sobre metas ambientales.", h:"Educación y sensibilización.", o1:"4", o2:"12", i:"Impacto visual / Grado de comprensión del usuario.", d:"Educación de calidad (4) para fomentar el consumo responsable (12)."},
-        {c:"Gastronomía", s:"7225", sec:"Restaurantes", m:"Módulo II: Gestión de Residuos y Cocina de Autor", a:"Elaboración de menús con desperdicio cero y composta.", h:"Consumo responsable y soberanía alimentaria.", o1:"12", o2:"2", i:"% de merma orgánica reducida / Insumos locales.", d:"Cocinar responsablemente (12) es la clave para el hambre cero (2)."},
-        {c:"Hospitalidad Turística", s:"7211", sec:"Hoteles", m:"Módulo IV: Gestión de Hotelería Sustentable", a:"Control de huella hídrica y energética en habitaciones.", h:"Turismo decente y sostenible.", o1:"8", o2:"11", i:"Ahorro de agua por huésped / Empleos generados.", d:"El trabajo en hotelería (8) debe proteger los recursos de la ciudad (11)."},
-        {c:"Diseño de Modas", s:"3152", sec:"Fabricación de Prendas de Vestir", m:"Módulo III: Patronaje y Confección Zero Waste", a:"Diseño de prendas optimizando el uso de tela al 100%.", h:"Moda circular y producción responsable.", o1:"12", o2:"8", i:"% de tela ahorrada vs estándar / Empleos dignos.", d:"Producir responsablemente (12) dignifica el trabajo textil (8)."},
-        {c:"Producción de Prendas", s:"3152", sec:"Confección", m:"Módulo II: Ensamble y Acabado de Ropa", a:"Uso de colorantes orgánicos y ahorro de agua en lavado.", h:"Consumo responsable e igualdad.", o1:"12", o2:"5", i:"Litros de agua ahorrados / Participación femenina.", d:"La moda responsable (12) empodera el empleo de las mujeres (5)."},
-        {c:"Ebanistería", s:"3371", sec:"Fabricación de Muebles de Madera", m:"Módulo IV: Uso de Maderas Certificadas y Acabados Eco", a:"Confección de muebles con madera sustentable (FSC).", h:"Gestión de bosques y producción.", o1:"15", o2:"12", i:"% de madera legal / Durabilidad del producto.", d:"Proteger los bosques (15) es la base de una producción duradera (12)."},
-        {c:"Artes Gráficas", s:"3231", sec:"Impresión", m:"Módulo III: Impresión con Tintas Biodegradables", a:"Configuración de prensas para uso de tintas base soya.", h:"Producción limpia.", o1:"12", o2:"9", i:"Volumen de solventes reducidos / Calidad.", d:"El consumo responsable (12) requiere innovación industrial (9)."},
-        {c:"Cerámica", s:"3271", sec:"Productos de Alfarería y Cerámica", m:"Módulo II: Procesos de Moldeado y Esmaltado", a:"Recuperación de agua de lavado de barbotina.", h:"Gestión de recursos hídricos.", o1:"12", o2:"6", i:"Litros de agua recuperados / Eficiencia.", d:"Producción responsable (12) con cuidado del agua (6)."},
-        {c:"Minería", s:"2122", sec:"Minería de Metales", m:"Módulo IV: Mitigación de Impacto Ambiental", a:"Reforestación de áreas de tajo y control de polvos.", h:"Protección terrestre e industria.", o1:"15", o2:"9", i:"Hectáreas restauradas / Eficiencia de procesos.", d:"Gestionar ecosistemas (15) mediante una industria moderna (9)."},
-        {c:"Producción Industrial", s:"3339", sec:"Otras Industrias Manufactureras", m:"Módulo V: Manufactura Esbelta (Lean Manufacturing)", a:"Optimización de flujos para eliminar desperdicios de tiempo.", h:"Producción responsable.", o1:"9", o2:"12", i:"Reducción de inventarios (%) / OEE.", d:"Industria resiliente (9) con enfoque en producción responsable (12)."},
-        {c:"Seguridad Higiene Industrial", s:"5416", sec:"Consultoría en Seguridad", m:"Módulo III: Prevención de Riesgos y Salud Laboral", a:"Auditoría de equipo de protección y señalética.", h:"Trabajo decente y salud.", o1:"8", o2:"3", i:"Tasa de accidentes laborales / Cumplimiento.", d:"El trabajo decente (8) garantiza la salud de los operarios (3)."},
-        {c:"Protección Civil", s:"9221", sec:"Justicia y Seguridad Pública", m:"Módulo II: Gestión de Riesgos y Desastres", a:"Diseño de planes de evacuación y resiliencia.", h:"Ciudades seguras y clima.", o1:"11", o2:"13", i:"Simulacros realizados / Tiempo de evacuación.", d:"Ciudades resilientes (11) preparadas para el cambio climático (13)."},
-        {c:"Técnico en Vidrio", s:"3272", sec:"Fabricación de Vidrio", m:"Módulo II: Soplado y Moldeado de Vidrio", a:"Reciclaje de calcín para nuevos envases.", h:"Economía circular.", o1:"12", o2:"9", i:"% de vidrio reciclado en mezcla / Energía.", d:"La producción responsable (12) optimiza la industria del vidrio (9)."}
-
-        // Nota: Se han cargado las 80 principales. Se pueden añadir las 15 restantes siguiendo el mismo formato.
+        // DGETAyCM
+        {c:"Agropecuario (DGETAyCM)", sub:"DGETAyCM", clr:"var(--dgetaycm)", s:"1111", sec:"Cultivo de Granos y Semillas", m:"Módulo IV: Producción agrícola sustentable", a:"Aplicación de biofertilizantes y control biológico de plagas.", h:"Soberanía alimentaria y salud del suelo.", o1:"2", o2:"15", i:"Hectáreas recuperadas mediante manejo orgánico", d:"Hambre cero (2) protegiendo la vida de los ecosistemas terrestres (15)."},
+        {c:"Sistemas de Producción Acuícola (DGETAyCM)", sub:"DGETAyCM", clr:"var(--dgetaycm)", s:"1125", sec:"Acuicultura", m:"Módulo II: Crianza de especies continentales", a:"Monitoreo de calidad de agua y nutrición de especies.", h:"Protección de vida submarina y nutrición.", o1:"14", o2:"2", i:"Biomasa producida / Índice de calidad del agua", d:"Gestión de vida submarina (14) para asegurar seguridad alimentaria (2)."}
     ];
 
     window.onload = () => {
-        const select = document.getElementById('carreraSelect');
-        baseDatos.sort((a,b) => a.c.localeCompare(b.c)).forEach(item => {
-            const opt = document.createElement('option');
+        const sel = document.getElementById('masterSelect');
+        database.sort((a,b) => a.c.localeCompare(b.c)).forEach(item => {
+            let opt = document.createElement('option');
             opt.value = item.c; opt.textContent = item.c;
-            select.appendChild(opt);
+            sel.appendChild(opt);
         });
     }
 
-    let itemActual = null;
+    let actual = null;
 
-    function mostrarResultado() {
-        const carreraSel = document.getElementById('carreraSelect').value;
-        const contenedor = document.getElementById('resultadoContenedor');
-        const btn = document.getElementById('btnDescargar');
-        if (!carreraSel) { contenedor.innerHTML = ''; btn.style.display = 'none'; return; }
-        itemActual = baseDatos.find(i => i.c === carreraSel);
+    function actualizarFicha() {
+        const val = document.getElementById('masterSelect').value;
+        const res = document.getElementById('visorFicha');
+        const btn = document.getElementById('btnDescarga');
+        if(!val) { res.innerHTML = ''; btn.style.display = 'none'; return; }
+        actual = database.find(x => x.c === val);
         btn.style.display = 'block';
 
-        contenedor.innerHTML = `
-            <div class="card">
-                <div class="full-width section-box" style="border-top: 10px solid var(--primary);">
-                    <span class="label">Carrera Técnica</span>
-                    <h2 style="margin:0; color:var(--primary);">${itemActual.c}</h2>
+        res.innerHTML = `
+            <div class="ficha-grid">
+                <div class="span-2 card" style="background:${actual.clr}; color:white; border:none;">
+                    <span class="tag-subsistema" style="background:rgba(255,255,255,0.2)">${actual.sub}</span>
+                    <h2 style="margin:0; font-size:28px;">${actual.c}</h2>
                 </div>
 
-                <div class="section-box scian-header">
-                    <span class="label">Referente Industrial (SCIAN)</span>
-                    <div class="content"><b>Código:</b> ${itemActual.s}</div>
-                    <div class="content"><b>Sector:</b> ${itemActual.sec}</div>
+                <div class="card card-scian">
+                    <span class="label">Identificador Industrial (SCIAN)</span>
+                    <div class="content"><b>Código:</b> ${actual.s}</div>
+                    <div class="content"><b>Sector Económico:</b> ${actual.sec}</div>
                 </div>
 
-                <div class="section-box ods-header">
-                    <span class="label">Agenda 2030 (ONU)</span>
-                    <div class="content"><b>ODS Principal:</b> Objetivo ${itemActual.o1}</div>
-                    <div class="def-ods"><b>Definición Oficial:</b> ${defODS[itemActual.o1]}</div>
+                <div class="card card-ods">
+                    <span class="label">Objetivo de Desarrollo Sostenible</span>
+                    <img src="https://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_Goals_Icons-0${actual.o1}.jpg" class="ods-icon" alt="ODS">
+                    <div class="content highlight">Objetivo ${actual.o1}: ${odsInfo[actual.o1].split(':')[0]}</div>
+                    <div class="ods-def">${odsInfo[actual.o1]}</div>
                 </div>
 
-                <div class="section-box dual-header full-width">
-                    <span class="label">Formación Dual y Práctica en Empresa</span>
-                    <div class="content"><span class="highlight">Módulo Académico:</span> ${itemActual.m}</div>
-                    <div class="content"><b>Actividad de Aprendizaje:</b> ${itemActual.a}</div>
+                <div class="span-2 card card-dual">
+                    <span class="label">Competencia y Aprendizaje (Modelo Dual)</span>
+                    <div class="content" style="font-size:18px; color:var(--conalep); font-weight:700; margin-bottom:10px;">${actual.m}</div>
+                    <div class="content"><b>Actividad Profesional:</b> ${actual.a}</div>
                 </div>
 
-                <div class="section-box">
-                    <span class="label">Habilidad de Desarrollo Sostenible</span>
-                    <div class="content">${itemActual.h}</div>
+                <div class="card">
+                    <span class="label">Habilidad Sostenible Desarrollada</span>
+                    <div class="content">${actual.h}</div>
                 </div>
 
-                <div class="section-box" style="border-left: 5px solid var(--accent);">
-                    <span class="label">Indicador de Logro</span>
-                    <div class="content highlight" style="color:var(--accent);">${itemActual.i}</div>
+                <div class="card">
+                    <span class="label">Indicador de Logro Técnico</span>
+                    <div class="badge-indicador">📊 ${actual.i}</div>
                 </div>
 
-                <div class="full-width section-box" style="background:#f1f3f5;">
-                    <span class="label">Lógica Sistémica (Impacto Cruzado)</span>
-                    <div class="content"><b>Sinergia (ODS ${itemActual.o1} + ODS ${itemActual.o2}):</b> ${itemActual.d}</div>
+                <div class="span-2 card card-impacto">
+                    <span class="label" style="color:rgba(255,255,255,0.7)">Lógica Sistémica de Impacto</span>
+                    <div class="content" style="font-size:17px;"><b>Sinergia ODS ${actual.o1} + ODS ${actual.o2}:</b> ${actual.d}</div>
                 </div>
             </div>
         `;
     }
 
-    function descargarFicha() {
-        if(!itemActual) return;
-        const texto = `FICHA DE VINCULACIÓN SISTÉMICA - DUAL 2026\n` +
-                      `--------------------------------------------------\n` +
-                      `CARRERA: ${itemActual.c}\n` +
-                      `CÓDIGO SCIAN: ${itemActual.s}\n` +
-                      `SECTOR INDUSTRIAL: ${itemActual.sec}\n\n` +
-                      `1. COMPONENTE ACADÉMICO (MODELO DUAL):\n` +
-                      `- Módulo: ${itemActual.m}\n` +
-                      `- Actividad de Aprendizaje: ${itemActual.a}\n\n` +
-                      `2. COMPONENTE ODS (AGENDA 2030):\n` +
-                      `- ODS Principal: ${itemActual.o1}\n` +
-                      `- Definición ONU: ${defODS[itemActual.o1]}\n` +
-                      `- Habilidad Sostenible: ${itemActual.h}\n\n` +
-                      `3. SEGUIMIENTO Y EVALUACIÓN:\n` +
-                      `- Indicador de Logro: ${itemActual.i}\n` +
-                      `- Lógica de Impacto: ${itemActual.d}\n` +
-                      `--------------------------------------------------\n` +
-                      `Generado el: ${new Date().toLocaleDateString()}\n` +
-                      `Expediente Técnico Estudiantil - México 2026`;
-        const blob = new Blob([texto], {type: 'text/plain'});
+    function generarTxt() {
+        if(!actual) return;
+        const body = `EXPEDIENTE DE VINCULACIÓN SISTÉMICA 2026\n` +
+                     `SUBSISTEMA: ${actual.sub}\nCARRERA: ${actual.c}\n` +
+                     `--------------------------------------------------\n` +
+                     `SCIAN: ${actual.s} - ${actual.sec}\n` +
+                     `MÓDULO DUAL: ${actual.m}\n` +
+                     `ACTIVIDAD: ${actual.a}\n` +
+                     `ODS IMPACTADO: ${actual.o1} (${odsInfo[actual.o1]})\n` +
+                     `INDICADOR: ${actual.i}\n` +
+                     `SINERGIA: ${actual.d}\n` +
+                     `--------------------------------------------------\n` +
+                     `Generado para fines de evaluación Dual.`;
+        const blob = new Blob([body], {type: 'text/plain'});
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
-        a.download = `Ficha_Dual_ODS_${itemActual.c.replace(/ /g,'_')}.txt`;
+        a.download = `Ficha_Vinculacion_${actual.c.replace(/ /g,'_')}.txt`;
         a.click();
     }
 </script>
