@@ -12,11 +12,11 @@
         .header-logos { display: flex; justify-content: center; align-items: center; gap: 30px; margin-bottom: 30px; flex-wrap: wrap; }
         .logo-rueda { height: 95px; width: auto; }
         .logo-frase { height: 75px; width: auto; }
-        .main-title { color: var(--primary); text-align: center; font-size: 24px; font-weight: 700; margin-bottom: 30px; line-height: 1.3; border-bottom: 3px solid var(--primary); padding-bottom: 20px; }
-        .nota-legal { font-size: 12.5px; color: #636e72; text-align: justify; background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #eee; }
+        .main-title { color: var(--primary); text-align: center; font-size: 22px; font-weight: 700; margin-bottom: 30px; line-height: 1.3; border-bottom: 3px solid var(--primary); padding-bottom: 20px; }
+        .nota-legal { font-size: 12px; color: #636e72; text-align: justify; background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #eee; }
         .guia-pedagogica { background: #eef2f7; border-left: 5px solid var(--primary); padding: 20px; margin-bottom: 20px; border-radius: 4px; }
         .guia-pedagogica h3 { margin-top: 0; color: var(--primary); font-size: 18px; }
-        .nota-correspondencia { background: #ffffff; border: 1px solid #d1d8e0; padding: 15px; border-radius: 8px; margin-bottom: 25px; font-size: 14px; line-height: 1.6; }
+        .nota-correspondencia { background: #ffffff; border: 1px solid #d1d8e0; padding: 15px; border-radius: 8px; margin-bottom: 25px; font-size: 13px; line-height: 1.6; }
         .nota-correspondencia h4 { margin-top: 0; color: #4b6584; margin-bottom: 5px; }
         .search-area { background: #f1f3f5; padding: 25px; border-radius: 8px; margin-bottom: 25px; text-align: center; }
         .search-box { width: 100%; max-width: 700px; padding: 14px; border: 2px solid #dfe6e9; border-radius: 8px; font-size: 16px; cursor: pointer; font-family: 'Inter', sans-serif; }
@@ -27,9 +27,8 @@
         .content { font-size: 15px; color: #2d3436; margin-top: 4px; line-height: 1.5; padding-right: 140px; }
         .indicador-box { background: #fff3e0; padding: 18px; border-radius: 8px; border: 1px dashed var(--accent); margin-top: 20px; }
         .btn-descargar { background: var(--secondary); color: white; padding: 16px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin-bottom: 20px; display: none; width: 100%; font-size: 16px; transition: 0.3s; }
-        .btn-descargar:hover { background: #218838; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        @media (max-width: 650px) { .ods-badge { position: static; width: 100%; margin-bottom: 20px; } .content { padding-right: 0; } .logo-rueda { height: 70px; } .logo-frase { height: 55px; } }
+        @media (max-width: 650px) { .ods-badge { position: static; width: 100%; margin-bottom: 20px; } .content { padding-right: 0; } }
     </style>
 </head>
 <body>
@@ -40,84 +39,134 @@
         <img src="logo-ods-frase.png" alt="Objetivos de Desarrollo Sostenible" class="logo-frase" onerror="this.style.display='none'">
     </div>
 
-    <h1 class="main-title">Buscador de Carreras Técnicas de Educación Dual alineadas a los ODS (Agenda 2030)</h1>
+    <h1 class="main-title">Buscador Integral de Carreras Técnicas alineadas a los ODS (Agenda 2030)</h1>
     
     <div class="nota-legal">
-        Este buscador facilita la asociación de actividades en puestos de aprendizaje con los ODS. Información basada en el Marco Curricular Común 2026 (SEP/COSAC). <strong>Derechos Reservados 2026.</strong>
+        Este buscador facilita la asociación de actividades en puestos de aprendizaje con los ODS. Basado en el catálogo oficial <strong>COSAC/SEMS 2026</strong>. <strong>Derechos Reservados 2026.</strong>
     </div>
 
     <div class="guia-pedagogica">
         <h3>👨‍🏫 Orientaciones para la o el Instructor</h3>
-        <ul style="font-size: 14px; margin: 0; padding-left: 25px; line-height: 1.6;">
+        <ul style="font-size: 13px; margin: 0; padding-left: 20px; line-height: 1.5;">
             <li><strong>Contextualización:</strong> Explique cómo la tarea asignada hoy impacta en una meta global de sostenibilidad.</li>
             <li><strong>Evidencia Técnica:</strong> Solicite al estudiante registrar el indicador propuesto en su bitácora semanal.</li>
-            <li><strong>Impacto Social:</strong> Reflexione sobre cómo la tecnología aplicada reduce desigualdades o protege el ambiente.</li>
         </ul>
     </div>
 
     <div class="nota-correspondencia">
-        <h4>📍 Nota sobre Correspondencia Curricular 2026</h4>
+        <h4>📍 Nota sobre Correspondencia Curricular</h4>
         <p style="margin: 0; color: #4b6584;">
-            Incluye las <strong>15 nuevas carreras de vanguardia</strong> y el catálogo tradicional de la COSAC. Aunque los nombres varíen por subsistema, las competencias técnicas mantienen una equivalencia directa para la vinculación con los ODS.
+            Nomenclatura basada en el <strong>Catálogo COSAC (SEMS)</strong>. Aunque varíen por subsistema (DGETI, DGETAyCM, CONALEP, CECyTEs), las competencias técnicas mantienen una equivalencia directa para la vinculación con los ODS.
         </p>
     </div>
 
     <div class="search-area">
         <select id="carreraSelect" class="search-box" onchange="mostrarResultado()">
-            <option value="">-- Seleccione una Carrera Técnica (Catálogo Completo 2026) --</option>
+            <option value="">-- Seleccione una Carrera Técnica (Catálogo Extenso) --</option>
         </select>
     </div>
 
-    <button id="btnDescargar" class="btn-descargar" onclick="descargarFicha()">📥 DESCARGAR FICHA TÉCNICA PARA EXPEDIENTE</button>
+    <button id="btnDescargar" class="btn-descargar" onclick="descargarFicha()">📥 DESCARGAR FICHA TÉCNICA</button>
     <div id="resultadoContenedor"></div>
 </div>
 
 <script>
     const baseDatos = [
-        // --- NUEVAS CARRERAS 2026 (TECNOLOGÍAS EMERGENTES) ---
-        {c:"Semiconductores", ods:"9", a:"Control de calidad en procesos de fotolitografía y ensamble de microchips.", h:"Soberanía tecnológica e innovación industrial.", m:"Meta 9.b: Apoyar el desarrollo tecnológico nacional.", i:"Tasa de rendimiento de obleas (Yield)."},
-        {c:"Inteligencia Artificial y Ciencia de Datos", ods:"9", a:"Desarrollo de algoritmos para optimización de recursos hídricos.", h:"Innovación digital orientada a la sostenibilidad.", m:"Meta 9.c: Aumento de acceso a TIC.", i:"% de eficiencia lograda por el modelo IA."},
-        {c:"Ciberseguridad", ods:"16", a:"Implementación de protocolos de protección de datos ciudadanos.", h:"Paz, justicia e instituciones sólidas en el entorno digital.", m:"Meta 16.10: Proteger libertades fundamentales.", i:"No. de vulnerabilidades mitigadas."},
-        {c:"Robótica y Automatización", ods:"9", a:"Programación de celdas robóticas con bajo consumo energético.", h:"Industria eficiente y resiliente.", m:"Meta 9.4: Adopción de tecnologías limpias.", i:"Reducción de kW/h por ciclo de producción."},
-        {c:"Electromovilidad", ods:"13", a:"Mantenimiento de sistemas de tracción eléctrica y baterías de litio.", h:"Transporte de bajas emisiones y acción climática.", m:"Meta 13.2: Medidas contra el cambio climático.", i:"Gramos de CO2 evitados por unidad eléctrica."},
-        {c:"Aeronáutica", ods:"9", a:"Mantenimiento de estructuras con materiales compuestos ligeros.", h:"Infraestructura de transporte moderna y eficiente.", m:"Meta 9.4: Infraestructura sostenible.", i:"Ahorro de combustible por reducción de peso."},
-        {c:"Sistemas de Energía Renovable", ods:"7", a:"Diagnóstico y optimización de parques eólicos o fotovoltaicos.", h:"Transición energética limpia.", m:"Meta 7.2: Aumentar energía renovable.", i:"MWh generados por fuente limpia."},
-        {c:"Agrotecnología Digital", ods:"2", a:"Uso de drones y sensores para agricultura de precisión.", h:"Seguridad alimentaria mediante tecnología.", m:"Meta 2.4: Sistemas de producción resilientes.", i:"Reducción de uso de agroquímicos (%)."},
-        {c:"Biotecnología Industrial", ods:"12", a:"Producción de bioplásticos a partir de residuos orgánicos.", h:"Consumo y producción responsable (economía circular).", m:"Meta 12.5: Reducción de desechos.", i:"Kg de biopolímero producido."},
-        {c:"Logística Inteligente", ods:"13", a:"Gestión de última milla con rutas optimizadas por GPS/IA.", h:"Reducción de huella de carbono logística.", m:"Meta 13.2: Mitigación climática.", i:"Reducción de km recorridos en vacío."},
-        {c:"Infraestructura de Redes y Nube", ods:"9", a:"Mantenimiento de servidores con sistemas de enfriamiento líquido.", h:"Infraestructura digital verde.", m:"Meta 9.c: Acceso universal a internet.", i:"PUE (Power Usage Effectiveness) del centro de datos."},
-        {c:"Animación y Efectos Visuales", ods:"4", a:"Creación de contenidos educativos interactivos sobre los ODS.", h:"Educación de calidad y comunicación social.", m:"Meta 4.7: Educación para desarrollo sostenible.", i:"Alcance de audiencia educativa."},
-        {c:"Mecatrónica en Moldes y Troqueles", ods:"9", a:"Fabricación de herramental de alta precisión para reducir mermas.", h:"Eficiencia técnica en manufactura.", m:"Meta 9.4: Procesos industriales sostenibles.", i:"% de reducción de desperdicio de acero."},
-        {c:"Sistemas de Seguridad Industrial", ods:"8", a:"Gestión de entornos laborales seguros mediante sensores IoT.", h:"Trabajo decente y salud ocupacional.", m:"Meta 8.8: Entornos de trabajo seguros.", i:"Disminución de tasa de incidentes."},
-        {c:"Gestión de Agua y Saneamiento", ods:"6", a:"Mantenimiento de plantas de tratamiento con tecnología de osmosis.", h:"Gestión hídrica sostenible.", m:"Meta 6.3: Mejorar calidad del agua.", i:"m3 de agua reutilizada en procesos."},
-
-        // --- SECTOR INDUSTRIAL ---
+        // --- NUEVA GENERACIÓN 2026 ---
+        {c:"Semiconductores", ods:"9", a:"Control de calidad en microchips.", h:"Soberanía tecnológica.", m:"Meta 9.b: Desarrollo tecnológico.", i:"Tasa de rendimiento de obleas."},
+        {c:"Inteligencia Artificial y Ciencia de Datos", ods:"9", a:"Algoritmos de optimización de recursos.", h:"Innovación digital sostenible.", m:"Meta 9.c: Acceso a TIC.", i:"% eficiencia del modelo."},
+        {c:"Ciberseguridad", ods:"16", a:"Protección de datos y privacidad.", h:"Justicia y entornos digitales seguros.", m:"Meta 16.10: Proteger libertades.", i:"Vulnerabilidades mitigadas."},
+        {c:"Robótica y Automatización", ods:"9", a:"Programación de celdas con bajo consumo.", h:"Industria eficiente.", m:"Meta 9.4: Tecnologías limpias.", i:"Ahorro kW/h por ciclo."},
+        {c:"Electromovilidad", ods:"13", a:"Mantenimiento de motores eléctricos y litio.", h:"Transporte de bajas emisiones.", m:"Meta 13.2: Acción climática.", i:"CO2 evitado/km."},
+        {c:"Agrotecnología Digital", ods:"2", a:"Drones y sensores en campo.", h:"Seguridad alimentaria tecnológica.", m:"Meta 2.4: Sistemas resilientes.", i:"Reducción de químicos (%)."},
+        {c:"Biotecnología Industrial", ods:"12", a:"Bioplásticos a partir de residuos.", h:"Economía circular.", m:"Meta 12.5: Reducción de desechos.", i:"Kg biopolímero producido."},
+        
+        // --- SECTOR INDUSTRIAL Y TECNOLOGÍA ---
         {c:"Mecatrónica", ods:"9", a:"Automatización de procesos industriales.", h:"Innovación industrial.", m:"Meta 9.4: Procesos limpios.", i:"Eficiencia energética en línea."},
         {c:"Electromecánica Industrial", ods:"12", a:"Recuperación de componentes mecánicos.", h:"Economía circular.", m:"Meta 12.5: Reutilización.", i:"No. piezas recuperadas."},
-        {c:"Electricidad Industrial", ods:"7", a:"Optimización de redes eléctricas industriales.", h:"Eficiencia energética.", m:"Meta 7.3: Eficiencia energética.", i:"kW/h ahorrados."},
-        {c:"Soldadura Industrial", ods:"9", a:"Procesos de unión con bajas emisiones de gases.", h:"Manufactura limpia.", m:"Meta 9.4: Procesos sostenibles.", i:"Control de humos tóxicos."},
-        {c:"Mantenimiento Industrial", ods:"12", a:"Mantenimiento predictivo para evitar fallas críticas.", h:"Producción responsable.", m:"Meta 12.2: Gestión de recursos.", i:"Vida útil de activos."},
-
+        {c:"Electricidad Industrial", ods:"7", a:"Optimización de redes eléctricas.", h:"Eficiencia energética.", m:"Meta 7.3: Duplicar tasa mejora.", i:"kW/h ahorrados."},
+        {c:"Mantenimiento Industrial", ods:"12", a:"Extensión de vida útil de activos.", h:"Producción responsable.", m:"Meta 12.2: Gestión recursos.", i:"% vida útil extendida."},
+        {c:"Máquinas Herramienta", ods:"12", a:"Reciclaje de rebaba y aceites.", h:"Gestión de materiales.", m:"Meta 12.4: Manejo químicos.", i:"Kg metal reciclado."},
+        {c:"Soldadura Industrial", ods:"9", a:"Procesos con baja emisión de humos.", h:"Manufactura limpia.", m:"Meta 9.4: Procesos sostenibles.", i:"Nivel partículas aire taller."},
+        {c:"Electrónica", ods:"12", a:"Recuperación de e-waste.", h:"Gestión desechos electrónicos.", m:"Meta 12.4: Manejo desechos.", i:"Tarjetas recuperadas."},
+        {c:"Sistemas Automotrices", ods:"11", a:"Control de emisiones vehiculares.", h:"Movilidad urbana sostenible.", m:"Meta 11.2: Transporte seguro.", i:"Gramos CO2 reducidos."},
+        {c:"Refrigeración y Climatización", ods:"13", a:"Gestión segura de gases refrigerantes.", h:"Acción climática.", m:"Meta 13.2: Reducción emisiones.", i:"Kg refrigerante recuperado."},
+        
         // --- SECTOR AGROPECUARIO ---
-        {c:"Agropecuario", ods:"2", a:"Sistemas de policultivo y manejo de suelos.", h:"Agricultura resiliente.", m:"Meta 2.4: Producción de alimentos.", i:"Rendimiento sostenible."},
-        {c:"Agroindustria", ods:"12", a:"Transformación de productos rurales con cero desperdicio.", h:"Consumo responsable.", m:"Meta 12.3: Reducir pérdidas.", i:"% aprovechamiento de insumos."},
-        {c:"Explotación Ganadera", ods:"15", a:"Manejo de ganado bajo normas de bienestar animal.", h:"Vida de ecosistemas terrestres.", m:"Meta 15.3: Lucha contra degradación.", i:"Hectáreas conservadas."},
-        {c:"Sistemas de Producción Agrícola", ods:"2", a:"Sustitución de pesticidas por control biológico.", h:"Agricultura limpia.", m:"Meta 2.4: Sistemas resilientes.", i:"Uso de químicos reducido."},
-        {c:"Técnico Forestal", ods:"15", a:"Manejo silvícola y prevención de incendios.", h:"Gestión de bosques.", m:"Meta 15.2: Gestión forestal.", i:"No. árboles supervivientes."},
+        {c:"Agropecuario", ods:"2", a:"Policultivos y rotación de suelos.", h:"Agricultura resiliente.", m:"Meta 2.4: Producción sostenible.", i:"Rendimiento por hectárea."},
+        {c:"Administración para el Emprendimiento Agropecuario", ods:"8", a:"Gestión de PyMEs rurales.", h:"Crecimiento inclusivo campo.", m:"Meta 8.3: Apoyo microempresas.", i:"Proyectos emprendimiento."},
+        {c:"Agroindustria", ods:"12", a:"Procesamiento sin desperdicio.", h:"Aprovechamiento integral.", m:"Meta 12.3: Reducir pérdidas.", i:"% merma aprovechada."},
+        {c:"Explotación Ganadera", ods:"15", a:"Pastoreo rotativo sustentable.", h:"Vida ecosistemas terrestres.", m:"Meta 15.3: Lucha degradación.", i:"Hectáreas conservadas."},
+        {c:"Sistemas de Producción Agrícola", ods:"2", a:"Control biológico de plagas.", h:"Agricultura de conservación.", m:"Meta 2.4: Sistemas resilientes.", i:"Uso químicos evitado."},
+        {c:"Sistemas de Producción Pecuaria", ods:"2", a:"Nutrición eficiente animal.", h:"Seguridad alimentaria.", m:"Meta 2.1: Fin al hambre.", i:"Tasa conversión alimenticia."},
+        {c:"Técnico Forestal", ods:"15", a:"Reforestación y manejo de cuencas.", h:"Gestión de bosques.", m:"Meta 15.2: Gestión forestal.", i:"Supervivencia árboles (%)"},
+        {c:"Riego y Drenaje", ods:"6", a:"Eficiencia en sistemas por goteo.", h:"Eficiencia hídrica campo.", m:"Meta 6.4: Uso eficiente agua.", i:"m3 agua ahorrada/riego."},
+        {c:"Manejo de Suelos y Agua", ods:"15", a:"Prevención de erosión y salinidad.", h:"Protección biodiversidad suelo.", m:"Meta 15.3: Rehabilitar suelos.", i:"Materia orgánica recuperada."},
+        {c:"Apicultura", ods:"15", a:"Protección de polinizadores.", h:"Biodiversidad terrestre.", m:"Meta 15.5: Detener pérdida.", i:"Colmenas activas."},
+        {c:"Horticultura", ods:"12", a:"Producción en ambiente controlado.", h:"Producción responsable.", m:"Meta 12.2: Gestión recursos.", i:"Kg vegetales por m2."},
 
         // --- SECTOR MARÍTIMO ---
-        {c:"Acuacultura de Aguas Marítimas", ods:"14", a:"Crianza de especies marinas bajo normas ambientales.", h:"Vida submarina.", m:"Meta 14.7: Beneficios acuicultura.", i:"Supervivencia de biomasa."},
-        {c:"Navegación y Pesca", ods:"14", a:"Pesca selectiva y respeto a vedas marinas.", h:"Pesca sostenible.", m:"Meta 14.4: Restablecer poblaciones.", i:"% captura conforme a norma."},
-        {c:"Mantenimiento de Motores Marinos", ods:"13", a:"Afinación para reducir derrame de aceites.", h:"Acción climática marina.", m:"Meta 13.2: Reducir contaminación.", i:"Horas de navegación limpia."},
+        {c:"Acuacultura de Aguas Marítimas", ods:"14", a:"Crianza marina sustentable.", h:"Vida submarina.", m:"Meta 14.7: Beneficios acuicultura.", i:"Tasa supervivencia biomasa."},
+        {c:"Acuacultura de Aguas Continentales", ods:"14", a:"Gestión de granjas acuícolas.", h:"Soberanía alimentaria hídrica.", m:"Meta 2.4: Alimentos resilientes.", i:"Kg/m3 agua."},
+        {c:"Navegación y Pesca", ods:"14", a:"Respeto a vedas y tallas.", h:"Pesca sostenible.", m:"Meta 14.4: Restablecer poblaciones.", i:"% captura conforme norma."},
+        {c:"Mantenimiento de Motores Marinos", ods:"13", a:"Prevención de vertidos en agua.", h:"Acción climática marina.", m:"Meta 13.2: Reducir contaminación.", i:"Horas navegación limpia."},
+        {c:"Operación Portuaria", ods:"9", a:"Logística con gestión residuos.", h:"Infraestructura verde.", m:"Meta 9.4: Infraestructura sostenible.", i:"Eficiencia maniobra segura."},
+        {c:"Pesca Deportiva y Buceo", ods:"14", a:"Guía conservación arrecifes.", h:"Turismo marino responsable.", m:"Meta 14.5: Conservar costas.", i:"Turistas sensibilizados."},
+        {c:"Construcción y Reparación Naval", ods:"9", a:"Prevención vertidos aceites.", h:"Ingeniería naval limpia.", m:"Meta 9.4: Tecnologías limpias.", i:"Normas estanqueidad."},
 
-        // --- SECTOR SALUD Y SERVICIOS ---
-        {c:"Enfermería Técnica", ods:"3", a:"Promoción de salud preventiva en comunidades.", h:"Salud y bienestar.", m:"Meta 3.d: Gestión riesgos salud.", i:"Tasa de prevención/vacunación."},
-        {c:"Laboratorio Clínico", ods:"3", a:"Gestión de residuos biológicos infecciosos (RPBI).", h:"Seguridad sanitaria.", m:"Meta 3.3: Lucha contra enfermedades.", i:"Clasificación de residuos (%)"},
-        {c:"Administración", ods:"12", a:"Administración digital de recursos empresariales.", h:"Oficina verde.", m:"Meta 12.5: Reducción de papel.", i:"Hojas ahorradas/mes."},
-        {c:"Gastronomía", ods:"12", a:"Cocina sustentable y reducción de desperdicios.", h:"Consumo responsable.", m:"Meta 12.3: Reducir desperdicio.", i:"Kg merma aprovechada."},
-        {c:"Hospitalidad Turística", ods:"8", a:"Turismo inclusivo con impacto cultural.", h:"Crecimiento económico.", m:"Meta 8.9: Turismo sostenible.", i:"Insumos locales usados (%)"},
-        {c:"Contabilidad", ods:"16", a:"Gestión financiera ética y transparente.", h:"Justicia y transparencia.", m:"Meta 16.6: Instituciones eficaces.", i:"Reportes sin observaciones."},
-        {c:"Trabajo Social", ods:"16", a:"Intervención para la cultura de paz y mediación.", h:"Paz y justicia.", m:"Meta 16.1: Reducir violencia.", i:"Casos de mediación exitosa."}
+        // --- SALUD, SERVICIOS Y ADMINISTRACIÓN ---
+        {c:"Enfermería Técnica", ods:"3", a:"Prevención comunitaria salud.", h:"Salud y bienestar.", m:"Meta 3.d: Riesgos sanitarios.", i:"Tasa prevención/vacunación."},
+        {c:"Laboratorio Clínico", ods:"3", a:"Gestión RPBI.", h:"Bioseguridad.", m:"Meta 3.3: Lucha enfermedades.", i:"Clasificación residuos (%)"},
+        {c:"Administración", ods:"12", a:"Oficina sin papel/nube.", h:"Eficiencia administrativa.", m:"Meta 12.5: Reducción papel.", i:"Hojas ahorradas."},
+        {c:"Administración de Recursos Humanos", ods:"5", a:"Inclusión y equidad laboral.", h:"Equidad de género.", m:"Meta 5.5: Participación plena.", i:"% diversidad ternas."},
+        {c:"Contabilidad", ods:"16", a:"Transparencia y fiscalidad.", h:"Instituciones sólidas.", m:"Meta 16.6: Transparencia.", i:"Cumplimiento reportes."},
+        {c:"Logística", ods:"13", a:"Optimización rutas emisiones.", h:"Logística verde.", m:"Meta 13.2: Cambio climático.", i:"Km optimizados/ruta."},
+        {c:"Hospitalidad Turística", ods:"8", a:"Turismo responsable local.", h:"Crecimiento económico.", m:"Meta 8.9: Cultura local.", i:"Proveedores locales (%)"},
+        {c:"Gastronomía", ods:"12", a:"Reducción desperdicio orgánico.", h:"Consumo responsable.", m:"Meta 12.3: Reducir desperdicio.", i:"Kg merma aprovechada."},
+        {c:"Diseño Gráfico Digital", ods:"4", a:"Campañas visuales ODS.", h:"Educación sostenibilidad.", m:"Meta 4.7: Educación calidad.", i:"Alcance campañas."},
+        {c:"Producción Industrial de Alimentos", ods:"9", a:"Procesos con ahorro térmico.", h:"Industria alimentaria limpia.", m:"Meta 9.4: Modernizar infra.", i:"Agua ahorrada/ton."},
+        {c:"Química Industrial", ods:"6", a:"Neutralización de vertidos.", h:"Prevención contaminación.", m:"Meta 6.3: Reducir vertidos.", i:"PH controlado efluentes."},
+        {c:"Trabajo Social", ods:"16", a:"Mediación de conflictos.", h:"Paz y justicia.", m:"Meta 16.1: Reducir violencia.", i:"Casos mediación."},
+        {c:"Sustentabilidad Ambiental", ods:"11", a:"Monitoreo calidad aire.", h:"Ciudades sostenibles.", m:"Meta 11.6: Impacto ambiental.", i:"Índice calidad aire."},
+        {c:"Fuentes Alternas de Energía", ods:"7", a:"Instalación sistemas solares.", h:"Energía renovable.", m:"Meta 7.2: Energía limpia.", i:"kWp instalados."},
+        {c:"Soporte y Mantenimiento de Cómputo", ods:"4", a:"Rehabilitación equipos escuelas.", h:"Reducción brecha digital.", m:"Meta 4.4: Competencias técnicas.", i:"Equipos donados."},
+        {c:"Construcción", ods:"11", a:"Gestión residuos obra (RCD).", h:"Gestión desechos sólidos.", m:"Meta 11.6: Gestión desechos.", i:"Ton recicladas."},
+        {c:"Ofimática", ods:"12", a:"Digitalización de archivos.", h:"Administración sin papel.", m:"Meta 12.5: Prevención desechos.", i:"Hojas papel evitadas."},
+        {c:"Puericultura", ods:"4", a:"Educación inclusiva temprana.", h:"Desarrollo infantil.", m:"Meta 4.2: Primera infancia.", i:"Niños seguimiento."},
+        {c:"Gericultura", ods:"10", a:"Derechos adulto mayor.", h:"Reducción desigualdades.", m:"Meta 10.2: Inclusión social.", i:"Índice bienestar."},
+        {c:"Producción Industrial", ods:"9", a:"Manufactura esbelta.", h:"Producción limpia.", m:"Meta 9.4: Industrias sostenibles.", i:"Reducción mermas (%)"},
+        {c:"Seguridad e Higiene Industrial", ods:"8", a:"Prevención riesgos laborales.", h:"Trabajo decente.", m:"Meta 8.8: Entorno seguro.", i:"Tasa accidentes evitados."},
+        {c:"Mecánica Industrial", ods:"9", a:"Optimización maquinaria.", h:"Infraestructura sostenible.", m:"Meta 9.4: Eficiencia recursos.", i:"Vida útil (%)"},
+        {c:"Mecánica Dental", ods:"3", a:"Materiales biocompatibles.", h:"Salud bucal.", m:"Meta 3.8: Salud calidad.", i:"No. prótesis ecológicas."},
+        {c:"Programación", ods:"9", a:"Apps inclusión social.", h:"Innovación tecnológica.", m:"Meta 9.c: Acceso tecnología.", i:"Usuarios beneficiados."},
+        {c:"Minería", ods:"15", a:"Recuperación áreas excavadas.", h:"Mitigación terrestre.", m:"Meta 15.1: Conservación.", i:"Has restauradas."},
+        {c:"Biotecnología", ods:"2", a:"Biofertilizantes resilientes.", h:"Sistemas alimentarios.", m:"Meta 2.4: Agricultura.", i:"Hectáreas tratadas."},
+        {c:"Diseño de Modas", ods:"12", a:"Patronaje residuo cero.", h:"Moda circular.", m:"Meta 12.5: Reciclaje.", i:"% tela ahorrada."},
+        {c:"Motores de Combustión", ods:"13", a:"Control emisiones afinación.", h:"Control contaminación.", m:"Meta 13.2: Cambio climático.", i:"Gramos CO2 reducidos."},
+        {c:"Cerámica", ods:"12", a:"Recuperación agua esmaltado.", h:"Producción cerámica.", m:"Meta 12.5: Prevención desechos.", i:"Litros recuperados."},
+        {c:"Telecomunicaciones", ods:"9", a:"Nodos energía solar.", h:"Infraestructura digital.", m:"Meta 9.c: Acceso universal.", i:"% energía solar."},
+        {c:"Arquitectura de Paisaje", ods:"11", a:"Zonas verdes urbanas.", h:"Planificación resiliente.", m:"Meta 11.7: Espacios seguros.", i:"m2 proyectados."},
+        {c:"Artes Gráficas", ods:"12", a:"Tintas biodegradables.", h:"Producción limpia.", m:"Meta 12.4: Gestión químicos.", i:"% insumos eco."},
+        {c:"Asistente Directivo", ods:"16", a:"Protección de datos.", h:"Acceso información.", m:"Meta 16.10: Ética.", i:"Nivel cumplimiento."},
+        {c:"Pesca y Acuacultura", ods:"14", a:"Respeto vedas pesqueras.", h:"Conservación marina.", m:"Meta 14.4: Pesca sostenible.", i:"Captura legal (%)."},
+        {c:"Plásticos", ods:"12", a:"Inyección polímero reciclado.", h:"Economía polímeros.", m:"Meta 12.5: Reciclado.", i:"% material reciclado."},
+        {c:"Vitivinicultura", ods:"12", a:"Riego goteo viñedos.", h:"Producción responsable.", m:"Meta 12.2: Gestión recursos.", i:"Eficiencia hídrica."},
+        {c:"Forestal", ods:"15", a:"Reforestación y viveros.", h:"Gestión sostenible.", m:"Meta 15.2: Bosques.", i:"Supervivencia (%)"},
+        {c:"Cueros y Pieles", ods:"6", a:"Tratamiento agua curtiduría.", h:"Control químicos.", m:"Meta 6.3: Reducir vertidos.", i:"Dureza agua tratada."},
+        {c:"Ventas", ods:"12", a:"Etiquetado productos eco.", h:"Consumo consciente.", m:"Meta 12.8: Estilos vida.", i:"% productos ODS."},
+        {c:"Servicios de Hospedaje", ods:"8", a:"Gestión hotelera verde.", h:"Turismo decente.", m:"Meta 8.9: Empleos locales.", i:"Ahorro agua huésped."},
+        {c:"Mantenimiento de Motores", ods:"13", a:"Afinación pro-clima.", h:"Acción climática.", m:"Meta 13.2: Emisiones.", i:"CO2 reducido."},
+        {c:"Electromecánica", ods:"9", a:"Instalación motores eficientes.", h:"Industria responsable.", m:"Meta 9.4: Tecnologías.", i:"kW/h reducidos."},
+        {c:"Traductor e Intérprete", ods:"4", a:"Material educativo bilingüe.", h:"Inclusión educativa.", m:"Meta 4.5: Igualdad acceso.", i:"Estudiantes beneficiados."},
+        {c:"Laboratorista Químico", ods:"6", a:"Gestión reactivos efluentes.", h:"Agua limpia.", m:"Meta 6.3: Contaminación.", i:"PH efluente."},
+        {c:"Protesista Dental", ods:"3", a:"Protocolos esterilización.", h:"Salud bienestar.", m:"Meta 3.8: Calidad.", i:"Eficacia bioseguridad."},
+        {c:"Servicios Bancarios", ods:"10", a:"Educación financiera inclusión.", h:"Reducción desigualdad.", m:"Meta 10.2: Inclusión.", i:"Créditos otorgados."},
+        {c:"Producción de Prendas", ods:"12", a:"Reducción retacería.", h:"Moda sustentable.", m:"Meta 12.5: Desechos.", i:"Kg retal reciclado."},
+        {c:"Ebanistería", ods:"15", a:"Uso maderas certificadas.", h:"Bosques sustentables.", m:"Meta 15.2: Certificación.", i:"% madera legal."},
+        {c:"Radiología", ods:"3", a:"Control dosis radiación.", h:"Seguridad paciente.", m:"Meta 3.8: Cobertura.", i:"Cumplimiento norma."},
+        {c:"Rehabilitación Física", ods:"10", a:"Inclusión personas discapacidad.", h:"Igualdad oportunidades.", m:"Meta 10.2: Inclusión.", i:"Pacientes rehabilitados."},
+        {c:"Protección Civil", ods:"11", a:"Gestión riesgos desastres.", h:"Ciudades resilientes.", m:"Meta 11.5: Desastres.", i:"Simulacros exitosos."},
+        {c:"Mecánica Naval", ods:"14", a:"Mantenimiento naves pesqueras.", h:"Vida submarina.", m:"Meta 14.4: Pesca.", i:"Estado motores (%)"}
     ];
 
     window.onload = () => {
@@ -145,16 +194,16 @@
                     <img src="${logoUrl}" class="ods-img" alt="ODS ${itemActual.ods}" onerror="this.src='https://placehold.co/105x105?text=ODS+${itemActual.ods}'">
                     <div style="font-size:11px; font-weight:bold; color:var(--primary); margin-top:10px;">ODS ${itemActual.ods}</div>
                 </div>
-                <span class="label">Carrera Técnica (MCCEMS 2026)</span>
+                <span class="label">Carrera (Catálogo COSAC/SEMS)</span>
                 <div class="content"><b>${itemActual.c}</b></div>
-                <span class="label">Actividad en el Puesto de Aprendizaje (Dual)</span>
+                <span class="label">Actividad Clave Dual</span>
                 <div class="content">${itemActual.a}</div>
-                <span class="label">Habilidad Hacia la Sostenibilidad</span>
+                <span class="label">Habilidad Sustentable</span>
                 <div class="content"><em>${itemActual.h}</em></div>
                 <span class="label">Meta Agenda 2030</span>
                 <div class="content">${itemActual.m}</div>
                 <div class="indicador-box">
-                    <span class="label" style="color:var(--accent); margin-top:0;">Indicador Sugerido para Bitácora</span>
+                    <span class="label" style="color:var(--accent); margin-top:0;">Indicador Sugerido</span>
                     <div class="content" style="font-weight:700; color:var(--accent);">${itemActual.i}</div>
                 </div>
             </div>
@@ -163,11 +212,11 @@
 
     function descargarFicha() {
         if(!itemActual) return;
-        const texto = `VINCULACIÓN ODS - EDUCACIÓN DUAL 2026\nCARRERA: ${itemActual.c}\nACTIVIDAD: ${itemActual.a}\nODS VINCULADO: ${itemActual.ods}\nINDICADOR: ${itemActual.i}\nHABILIDAD: ${itemActual.h}\nMETA: ${itemActual.m}`;
+        const texto = `VINCULACIÓN ODS 2026\nCARRERA: ${itemActual.c}\nACTIVIDAD: ${itemActual.a}\nODS: ${itemActual.ods}\nINDICADOR: ${itemActual.i}\nMETA: ${itemActual.m}`;
         const blob = new Blob([texto], {type: 'text/plain'});
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
-        a.download = `Ficha_ODS_2026_${itemActual.c.replace(/ /g,'_')}.txt`;
+        a.download = `Ficha_ODS_${itemActual.c.replace(/ /g,'_')}.txt`;
         a.click();
     }
 </script>
