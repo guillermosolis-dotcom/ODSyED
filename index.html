@@ -80,4 +80,14 @@ function draw(){
             <ul>${d.a.map(x=>`<li>${x}</li>`).join('')}</ul>
         </div>
         <div class="card" style="text-align:center; background:#ebf8ff; border:none;">
-            <span class="label">Impacto ODS</span><b style="font-size:30px; color:var(--blue);">${d.o1}</b><br><small>${d.o1_t}</small>
+            <span class="label">Impacto ODS</span><b style="font-size:30px; color:var(--blue);">${d.o1}</b><br><small>${d.o1_t}</small><br>
+            <img src="https://guillermosolis-dotcom.github.io/ODSyED/${d.o1}.png" class="ods-img" onerror="this.src='https://placehold.co/120?text=ODS+${d.o1}'">
+        </div>
+        <div class="card"><span class="label">Habilidad e Indicador</span><b>${d.h}</b><br><br><div style="background:var(--p); color:#fff; padding:8px; border-radius:5px; text-align:center;">${d.i}</div></div>
+        <div class="card c-dark"><span class="label">Sinergia Sistémica</span><p>"${d.d}"</p><span class="mini">ODS ${d.o1}</span> + <span class="mini">ODS ${d.o2}</span><br><br><small>Vincula ${d.o1_t} con ${d.o2_t}</small></div>
+        <div class="ins-box"><h4>💡 ORIENTACIONES PARA EL INSTRUCTOR</h4><p>${d.or}</p></div>
+    </div>`;
+}
+</script>
+</body>
+</html>
