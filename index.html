@@ -10,43 +10,51 @@
         body { font-family: 'Inter', sans-serif; background-color: var(--light); color: var(--dark); margin: 0; padding: 20px; }
         .container { max-width: 900px; margin: auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
         
-        /* Título Principal Único */
+        /* Encabezado de Logos */
+        .header-logos { display: flex; justify-content: center; align-items: center; gap: 30px; margin-bottom: 30px; flex-wrap: wrap; }
+        .logo-rueda { height: 90px; width: auto; }
+        .logo-frase { height: 70px; width: auto; }
+
         .main-title { color: var(--primary); text-align: center; font-size: 24px; font-weight: 700; margin-bottom: 30px; line-height: 1.3; border-bottom: 3px solid var(--primary); padding-bottom: 20px; }
         
-        /* Notas Legales y Derechos */
         .nota-legal { font-size: 13px; color: #636e72; text-align: justify; background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 25px; border: 1px solid #eee; line-height: 1.5; }
         .derechos { display: block; margin-top: 10px; font-weight: bold; text-align: center; color: var(--dark); }
 
-        /* Guía Pedagógica */
         .guia-pedagogica { background: #eef2f7; border-left: 5px solid var(--primary); padding: 25px; margin-bottom: 30px; border-radius: 4px; }
-        .guia-pedagogica h3 { margin-top: 0; color: var(--primary); font-size: 18px; display: flex; align-items: center; }
-        .guia-pedagogica p { font-size: 15px; margin-bottom: 10px; }
-        .guia-pedagogica ul { margin-left: -15px; }
+        .guia-pedagogica h3 { margin-top: 0; color: var(--primary); font-size: 18px; }
         .guia-pedagogica li { margin-bottom: 12px; font-size: 14px; line-height: 1.4; }
 
-        /* Buscador */
         .search-area { background: #f1f3f5; padding: 25px; border-radius: 8px; margin-bottom: 25px; }
-        .search-box { width: 100%; padding: 15px; border: 2px solid #dfe6e9; border-radius: 8px; font-size: 16px; cursor: pointer; transition: border 0.3s; }
-        .search-box:focus { border-color: var(--primary); outline: none; }
+        .search-box { width: 100%; padding: 15px; border: 2px solid #dfe6e9; border-radius: 8px; font-size: 16px; cursor: pointer; }
 
-        /* Tarjeta de Resultado */
         .card { border: 1px solid #dfe6e9; padding: 30px; border-radius: 12px; margin-top: 20px; border-left: 12px solid var(--primary); position: relative; background: #fff; animation: fadeIn 0.5s ease; }
         .ods-badge { position: absolute; top: 20px; right: 20px; text-align: center; width: 110px; }
         .ods-img { width: 100px; height: 100px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        
         .label { font-weight: 700; color: var(--primary); display: block; text-transform: uppercase; font-size: 11px; margin-top: 15px; letter-spacing: 0.8px; }
         .content { font-size: 15px; color: #2d3436; margin-top: 4px; line-height: 1.5; padding-right: 130px; }
         .indicador-box { background: #fff3e0; padding: 18px; border-radius: 8px; border: 1px dashed var(--accent); margin-top: 20px; }
         
-        .btn-descargar { background: var(--secondary); color: white; padding: 15px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin-bottom: 20px; display: none; width: 100%; font-size: 15px; transition: background 0.3s; }
-        .btn-descargar:hover { background: #218838; }
+        .btn-descargar { background: var(--secondary); color: white; padding: 15px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin-bottom: 20px; display: none; width: 100%; font-size: 15px; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        @media (max-width: 600px) { .ods-badge { position: static; width: 100%; margin-bottom: 20px; } .content { padding-right: 0; } .main-title { font-size: 20px; } }
+        @media (max-width: 600px) { 
+            .ods-badge { position: static; width: 100%; margin-bottom: 20px; } 
+            .content { padding-right: 0; }
+            .header-logos { gap: 15px; }
+            .logo-rueda { height: 70px; }
+            .logo-frase { height: 50px; }
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <div class="header-logos">
+        <img src="rueda-ods.png" alt="Rueda ODS" class="logo-rueda" onerror="this.src='https://placehold.co/90x90?text=ODS'">
+        <img src="logo-ods-frase.png" alt="Objetivos de Desarrollo Sostenible" class="logo-frase" onerror="this.style.display='none'">
+    </div>
+
     <h1 class="main-title">Buscador de Carreras Técnicas de Educación Dual alineadas a los Objetivos de Desarrollo Sostenible (ODS), de la Agenda 2030.</h1>
     
     <div class="nota-legal">
@@ -57,11 +65,11 @@
 
     <div class="guia-pedagogica">
         <h3>👨‍🏫 Orientaciones para la o el Instructor de la Empresa</h3>
-        <p>Su papel es fundamental para conectar la técnica con el propósito global. Utilice este buscador como herramienta de mediación pedagógica:</p>
+        <p>Su papel es fundamental para conectar la técnica con el propósito global:</p>
         <ul>
-            <li><strong>Contextualización:</strong> Al asignar una tarea en el puesto de aprendizaje, identifique el ODS vinculado para explicar al estudiante cómo su trabajo impacta en la sostenibilidad.</li>
-            <li><strong>Evidencia con Propósito:</strong> Impulse al estudiante a registrar el "Indicador" sugerido en su bitácora semanal; esto le permite cuantificar su aporte social y ambiental.</li>
-            <li><strong>Diálogo Reflexivo:</strong> Durante la retroalimentación, pregunte al joven cómo la "Habilidad de Sostenibilidad" aplicada hoy le ayuda a ser un mejor profesional para el futuro.</li>
+            <li><strong>Contextualización:</strong> Al asignar una tarea, explique cómo el trabajo impacta en la sostenibilidad.</li>
+            <li><strong>Evidencia con Propósito:</strong> Impulse al estudiante a registrar el "Indicador" sugerido en su bitácora semanal.</li>
+            <li><strong>Diálogo Reflexivo:</strong> Pregunte al joven cómo la habilidad aplicada hoy construye un mejor futuro profesional.</li>
         </ul>
     </div>
 
@@ -76,26 +84,7 @@
 </div>
 
 <script>
-    const mapaLogos = {
-        "1": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Sustainable_Development_Goal_01.png/1200px-Sustainable_Development_Goal_01.png",
-        "2": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Sustainable_Development_Goal_02.png/1200px-Sustainable_Development_Goal_02.png",
-        "3": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Sustainable_Development_Goal_03.png/1200px-Sustainable_Development_Goal_03.png",
-        "4": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Sustainable_Development_Goal_04.png/1200px-Sustainable_Development_Goal_04.png",
-        "5": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Sustainable_Development_Goal_05.png/1200px-Sustainable_Development_Goal_05.png",
-        "6": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Sustainable_Development_Goal_06.png/1200px-Sustainable_Development_Goal_06.png",
-        "7": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Sustainable_Development_Goal_07.png/1200px-Sustainable_Development_Goal_07.png",
-        "8": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Sustainable_Development_Goal_08.png/1200px-Sustainable_Development_Goal_08.png",
-        "9": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Sustainable_Development_Goal_09.png/1200px-Sustainable_Development_Goal_09.png",
-        "10": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Sustainable_Development_Goal_10.png/1200px-Sustainable_Development_Goal_10.png",
-        "11": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Sustainable_Development_Goal_11.png/1200px-Sustainable_Development_Goal_11.png",
-        "12": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Sustainable_Development_Goal_12.png/1200px-Sustainable_Development_Goal_12.png",
-        "13": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Sustainable_Development_Goal_13.png/1200px-Sustainable_Development_Goal_13.png",
-        "14": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Sustainable_Development_Goal_14.png/1200px-Sustainable_Development_Goal_14.png",
-        "15": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Sustainable_Development_Goal_15.png/1200px-Sustainable_Development_Goal_15.png",
-        "16": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Sustainable_Development_Goal_16.png/1200px-Sustainable_Development_Goal_16.png",
-        "17": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Sustainable_Development_Goal_17.png/1200px-Sustainable_Development_Goal_17.png"
-    };
-
+    // Base de datos completa
     const baseDatos = [
         {c:"Acabado de Textiles", sc:"313", s:"Textil", a:"Control de teñido y tratamiento de aguas residuales.", h:"Responsabilidad Normativa: Gestión de químicos hídricos.", ods:"6", m:"Meta 6.3: Mejorar calidad del agua.", i:"Litros de agua tratada por lote."},
         {c:"Administración", sc:"54", s:"Servicios Profesionales", a:"Optimización de procesos de oficina y digitalización.", h:"Eficiencia de Recursos: Reducción de huella administrativa.", ods:"12", m:"Meta 12.5: Reducción de generación de desechos.", i:"% de reducción en uso de papel."},
@@ -171,12 +160,13 @@
         itemActual = baseDatos.find(i => i.c === carreraSel);
         btn.style.display = 'block';
 
-        const logoUrl = mapaLogos[itemActual.ods];
+        const logoUrl = itemActual.ods + '.png';
 
         contenedor.innerHTML = `
             <div class="card">
                 <div class="ods-badge">
-                    <img src="${logoUrl}" class="ods-img" alt="ODS ${itemActual.ods}">
+                    <img src="${logoUrl}" class="ods-img" alt="ODS ${itemActual.ods}" 
+                         onerror="this.src='https://placehold.co/100x100?text=ODS+${itemActual.ods}'">
                     <div style="font-size:11px; font-weight:bold; color:var(--primary); margin-top:10px;">ODS ${itemActual.ods}</div>
                 </div>
                 
