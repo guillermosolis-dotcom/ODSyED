@@ -3,102 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Vinculación Dual ODS-SCIAN 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Plataforma Maestra de Vinculación Sistémica 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root { --dgeti: #004a7c; --conalep: #003833; --cecyte: #a51d1d; --dgetaycm: #144618; --primary: #1a2a44; --secondary: #28a745; --ods: #00aed9; --scian: #d35400; --light: #f4f7f6; }
-        body { font-family: 'Inter', sans-serif; background: var(--light); margin: 0; padding: 20px; color: #2d3436; }
-        .container { max-width: 1100px; margin: auto; background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 8px solid var(--primary); }
-        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; margin-bottom: 25px; padding-bottom: 20px; }
-        .search-box { background: #f8fafc; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 25px; text-align: center; }
-        .main-select { width: 100%; padding: 15px; border-radius: 8px; border: 2px solid #cbd5e0; font-size: 16px; font-weight: 600; cursor: pointer; }
-        .ficha { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; animation: fadeIn 0.4s ease; }
-        .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 20px; }
-        .full { grid-column: span 2; }
-        .h-card { color: #fff; padding: 20px; border-radius: 10px; margin-bottom: 5px; }
-        .c-scian { border-left: 6px solid var(--scian); background: #fffaf5; }
-        .c-dual { border-left: 6px solid var(--secondary); background: #f0fff4; }
-        .c-ods { border-left: 6px solid var(--ods); background: #ebf8ff; text-align: center; }
-        .c-logica { background: var(--primary); color: #fff; }
-        .label { font-size: 10px; font-weight: 800; text-transform: uppercase; color: #718096; margin-bottom: 5px; display: block; }
-        .content { font-size: 15px; font-weight: 500; }
-        .ods-num { font-size: 24px; font-weight: 800; color: var(--ods); display: block; }
-        .badge { background: var(--primary); color: #fff; padding: 8px 12px; border-radius: 5px; font-size: 13px; font-weight: 700; display: inline-block; margin-top: 10px; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        :root {
+            --dgeti: #004a7c; --conalep: #003833; --cecyte: #a51d1d; --dgetaycm: #144618;
+            --primary: #1a2a44; --secondary: #28a745; --ods-blue: #00aed9; --scian: #d35400;
+            --light: #f8fafc; --white: #ffffff;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #e2e8f0; margin: 0; padding: 40px; color: #1e293b; }
+        
+        /* Contenedor Principal Estilo Expediente */
+        .expediente-master {
+            max-width: 1100px; margin: auto; background: var(--white);
+            border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            overflow: hidden; border: 1px solid #cbd5e1;
+        }
+
+        /* Encabezado Institucional Premium */
+        .header-institucional {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 40px; background: linear-gradient(135deg, var(--primary) 0%, #2c3e50 100%);
+            color: white; border-bottom: 8px solid var(--secondary);
+        }
+        .logos-box { display: flex; gap: 20px; align-items: center; }
+        .logo-placeholder { width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px; text-align: center; }
+        
+        .titulo-central { text-align: right; }
+        .titulo-central h1 { margin: 0; font-size: 26px; letter-spacing: -1px; }
+        .titulo-central p { margin: 5px 0 0; opacity: 0.8; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; }
+
+        /* Buscador */
+        .search-container { padding: 30px 40px; background: #f1f5f9; border-bottom: 1px solid #e2e8f0; text-align: center; }
+        .main-select {
+            width: 100%; max-width: 800px; padding: 18px; border: 2px solid #cbd5e1;
+            border-radius: 12px; font-size: 18px; font-weight: 600; color: var(--primary);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); cursor: pointer;
+        }
+
+        /* Grid de la Ficha */
+        .ficha-body { padding: 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+        .col-span-2 { grid-column: span 2; }
+        .col-span-3 { grid-column: span 3; }
+
+        /* Estilo de Tarjetas */
+        .card { background: white; border: 1px solid #e2e8f0; border-radius: 15px; padding: 25px; position: relative; transition: 0.3s; }
+        .card-label { font-size: 11px; font-weight: 800; text-transform: uppercase; color: #64748b; letter-spacing: 1.5px; margin-bottom: 12px; display: block; }
+        .card-content { font-size: 16px; font-weight: 500; line-height: 1.5; color: #334155; }
+
+        /* Variantes de Tarjetas */
+        .card-highlight { border-top: 6px solid var(--secondary); background: #f0fff4; }
+        .card-scian { border-left: 6px solid var(--scian); }
+        .card-ods { border: none; background: #ebf8ff; text-align: center; display: flex; flex-direction: column; align-items: center; }
+        .card-dark { background: var(--primary); color: white; border: none; }
+        .card-dark .card-label { color: rgba(255,255,255,0.6); }
+        .card-dark .card-content { color: white; }
+
+        /* Orientaciones para el Instructor */
+        .instrucciones-box {
+            background: #fffbeb; border: 2px dashed #f59e0b; padding: 25px; border-radius: 15px;
+            margin-top: 10px;
+        }
+        .instrucciones-box h4 { margin: 0 0 10px 0; color: #b45309; display: flex; align-items: center; gap: 10px; }
+
+        /* Imagen ODS */
+        .ods-img-large { width: 140px; height: 140px; margin-top: 15px; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); border: 4px solid white; }
+
+        .btn-print {
+            display: block; width: calc(100% - 80px); margin: 0 40px 40px; padding: 20px;
+            background: var(--secondary); color: white; border: none; border-radius: 12px;
+            font-size: 18px; font-weight: 800; cursor: pointer; text-transform: uppercase;
+        }
+
+        @keyframes slideIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .animated { animation: slideIn 0.5s ease-out forwards; }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="header">
-        <div style="font-weight: 800; font-size: 20px; color: var(--primary);">ESTRATEGIA DUAL 2026</div>
-        <div style="text-align: right; font-size: 12px; font-weight: 600;">MCCEMS + SCIAN + AGENDA 2030</div>
-    </div>
-    <div class="search-box">
-        <select id="selCarrera" class="main-select" onchange="render()"><option value="">-- SELECCIONE CARRERA TÉCNICA --</option></select>
-    </div>
-    <div id="visor"></div>
+
+<div class="expediente-master">
+    <header class="header-institucional">
+        <div class="logos-box">
+            <div class="logo-placeholder">DGETI</div>
+            <div class="logo-placeholder">CONALEP</div>
+            <div class="logo-placeholder">CECYTE</div>
+            <div class="logo-placeholder">DGETAyCM</div>
+        </div>
+        <div class="titulo-central">
+            <h1>EXPEDIENTE TÉCNICO DE VINCULACIÓN</h1>
+            <p>Modelo Dual Sistémico • Ciclo Escolar 2026</p>
+        </div>
+    </header>
+
+    <section class="search-container">
+        <select id="mainSelector" class="main-select" onchange="renderFicha()">
+            <option value="">-- Seleccione Carrera Técnica para desplegar Orientaciones --</option>
+        </select>
+    </section>
+
+    <div id="renderArea"></div>
+
+    <button class="btn-print" id="btnPrint" style="display:none;" onclick="window.print()">📥 DESCARGAR EXPEDIENTE PDF</button>
 </div>
 
 <script>
-const odsT = {"1":"Fin de Pobreza","2":"Hambre Cero","3":"Salud","4":"Educación","5":"Género","6":"Agua","7":"Energía","8":"Trabajo","9":"Industria","10":"Desigualdad","11":"Ciudades","12":"Producción","13":"Clima","14":"Vida Submarina","15":"Vida Terrestre","16":"Paz","17":"Alianzas"};
+    const db = [
+        {
+            c: "Programación (DGETI)",
+            sub: "DGETI",
+            clr: "var(--dgeti)",
+            s: "541512",
+            sec: "Desarrollo de software y servicios relacionados",
+            m: "Módulo IV: Desarrolla aplicaciones web con conexión a bases de datos",
+            a: "Creación de interfaces de usuario con protocolos de accesibilidad (WCAG) para personas con discapacidad.",
+            h: "Inclusión Digital y Ética Tecnológica",
+            o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+            o2: "10",
+            i: "Índice de accesibilidad en la interfaz (Audit score > 90%)",
+            d: "La innovación técnica (9) debe servir como puente para eliminar las barreras de desigualdad (10) en el acceso a la información.",
+            orientacion: "Instructor(a): Asegure que el estudiante no solo programe, sino que documente cómo su código permite que un lector de pantalla interprete los datos. Es la transición de 'hacer código' a 'crear impacto social'."
+        },
+        {
+            c: "Electromovilidad (CONALEP)",
+            sub: "CONALEP",
+            clr: "var(--conalep)",
+            s: "336111",
+            sec: "Fabricación de automóviles y camionetas",
+            m: "Módulo III: Mantenimiento de sistemas de propulsión eléctrica",
+            a: "Diagnóstico de degradación de celdas en bancos de baterías y configuración de inversores de corriente.",
+            h: "Transición Energética y Descarbonización",
+            o1: "13", o1_t: "Acción por el Clima",
+            o2: "7",
+            i: "Eficiencia de recuperación energética (Wh/km)",
+            d: "El mantenimiento preventivo en movilidad eléctrica (13) garantiza el uso eficiente de energías limpias (7) en el transporte masivo.",
+            orientacion: "Instructor(a): Enfatice el manejo de alto voltaje y la responsabilidad ambiental del confinamiento de litio. El técnico es el primer respondiente ante la crisis climática desde el taller."
+        }
+        // Aquí se integrarán las 80+ carreras con este mismo nivel de detalle.
+    ];
 
-// BASE DE DATOS MAESTRA (Densidad Máxima)
-const db = [
-    {c:"Programación (DGETI)", sub:"DGETI", clr:"var(--dgeti)", s:"5415", sec:"Sistemas", m:"M4: Desarrollo Web", a:"Accesibilidad WCAG", h:"Inclusión Digital", o1:"9", o2:"10", i:"% Accesibilidad", d:"Innovación para reducir brecha digital."},
-    {c:"Mecatrónica (DGETI)", sub:"DGETI", clr:"var(--dgeti)", s:"3339", sec:"Fabricación", m:"M2: PLC/Control", a:"Ahorro Energético", h:"Eficiencia Energética", o1:"9", o2:"12", i:"kW/h ahorro", d:"Industria inteligente y responsable."},
-    {c:"Contabilidad (DGETI)", sub:"DGETI", clr:"var(--dgeti)", s:"5412", sec:"Serv. Contables", m:"M4: Fiscal", a:"RSE y Transparencia", h:"Ética Financiera", o1:"16", o2:"17", i:"Índice Ético", d:"Instituciones sólidas y alianzas."},
-    {c:"Logística (CECYTE)", sub:"CECYTE", clr:"var(--cecyte)", s:"4885", sec:"Transporte", m:"M3: Almacenes", a:"Rutas Críticas", h:"Logística Verde", o1:"11", o2:"13", i:"Km Reducción", d:"Ciudades sostenibles y clima."},
-    {c:"Enfermería (CONALEP)", sub:"CONALEP", clr:"var(--conalep)", s:"6211", sec:"Salud", m:"M3: Salud Pública", a:"Prevención", h:"Equidad en Salud", o1:"3", o2:"10", i:"Cobertura Hab.", d:"Salud para reducir desigualdad social."},
-    {c:"Electromovilidad (CONALEP)", sub:"CONALEP", clr:"var(--conalep)", s:"3361", sec:"Automotriz", m:"M3: Motores Eléc", a:"Eficiencia Baterías", h:"Descarbonización", o1:"13", o2:"7", i:"CO2 evitado", d:"Acción climática y energía limpia."},
-    {c:"Alimentos y Bebidas (CONALEP)", sub:"CONALEP", clr:"var(--conalep)", s:"7225", sec:"Turismo/Alim", m:"M3: Cocina Prof.", a:"Insumos Km 0", h:"Gastronomía Sust.", o1:"2", o2:"12", i:"% Desperdicio", d:"Hambre cero y producción responsable."},
-    {c:"Soporte Técnico (CECYTE)", sub:"CECYTE", clr:"var(--cecyte)", s:"8112", sec:"Electrónica", m:"M2: Hardware", a:"Gestión e-waste", h:"Econ. Circular", o1:"12", o2:"11", i:"Kg RECUP.", d:"Producción responsable urbana."},
-    {c:"Construcción (DGETI)", sub:"DGETI", clr:"var(--dgeti)", s:"2361", sec:"Edificación", m:"M2: Supervisión", a:"Reciclaje Áridos", h:"Urbanismo Resiliente", o1:"11", o2:"9", i:"% Escombro", d:"Ciudades e Innovación técnica."},
-    {c:"Arquitectura (CECYTE)", sub:"CECYTE", clr:"var(--cecyte)", s:"5413", sec:"Diseño", m:"M4: Bioclimática", a:"Luz Natural", h:"Eficiencia Pasiva", o1:"11", o2:"7", i:"Ahorro Luz %", d:"Ciudades y energía asequible."},
-    {c:"Agropecuario (DGETAyCM)", sub:"DGETAyCM", clr:"var(--dgetaycm)", s:"1111", sec:"Agricultura", m:"M4: Suelos", a:"Biofertilización", h:"Soberanía Alim", o1:"2", o2:"15", i:"Ha. Orgánicas", d:"Hambre cero y vida terrestre."},
-    {c:"Acuacultura (DGETAyCM)", sub:"DGETAyCM", clr:"var(--dgetaycm)", s:"1125", sec:"Pesca/Cría", m:"M3: Control Agua", a:"Calidad Nitritos", h:"Vida Marina", o1:"14", o2:"2", i:"Biomasa Salud", d:"Vida submarina y nutrición."},
-    {c:"Recursos Humanos (CONALEP)", sub:"CONALEP", clr:"var(--conalep)", s:"5611", sec:"Admin", m:"M2: Selección", a:"Inclusión Diversa", h:"Equidad Laboral", o1:"5", o2:"8", i:"% Paridad", d:"Género y trabajo decente."},
-    {c:"Laboratorio Químico (DGETI)", sub:"DGETI", clr:"var(--dgeti)", s:"3251", sec:"Química", m:"M5: Análisis", a:"Gestión Ph", h:"Control Químico", o1:"12", o2:"6", i:"Ph Vertido", d:"Producción y agua limpia."},
-    {c:"Electricidad (CECYTE)", sub:"CECYTE", clr:"var(--cecyte)", s:"2211", sec:"Energía", m:"M4: Redes", a:"Factor Potencia", h:"Eficiencia Red", o1:"7", o2:"13", i:"Cos Phi", d:"Energía y acción climática."},
-    {c:"Soldadura (CONALEP)", sub:"CONALEP", clr:"var(--conalep)", s:"3323", sec:"Metalurgia", m:"M2: SMAW/TIG", a:"Filtros Emisión", h:"Seguridad Lab", o1:"3", o2:"12", i:"Calidad Aire", d:"Salud y producción responsable."},
-    {c:"Ofimática (CECYTE)", sub:"CECYTE", clr:"var(--cecyte)", s:"5614", sec:"Servicios", m:"M3: Gestión Dig", a:"Paperless", h:"Eficiencia Dig", o1:"15", o2:"12", i:"Hojas Ahorro", d:"Vida terrestre y gestión digital."}
-];
+    function renderFicha() {
+        const val = document.getElementById('mainSelector').value;
+        const area = document.getElementById('renderArea');
+        const btn = document.getElementById('btnPrint');
+        if(!val) { area.innerHTML = ''; btn.style.display = 'none'; return; }
+        
+        const d = db.find(x => x.c === val);
+        btn.style.display = 'block';
 
-window.onload = () => {
-    const s = document.getElementById('selCarrera');
-    db.sort((a,b)=>a.c.localeCompare(b.c)).forEach(x => {
-        let o = document.createElement('option'); o.value=x.c; o.textContent=x.c; s.appendChild(o);
-    });
-}
+        area.innerHTML = `
+            <div class="ficha-body animated">
+                <div class="col-span-3 card card-dark" style="background:${d.clr}">
+                    <span class="card-label">Carrera Técnica Seleccionada</span>
+                    <h2 style="margin:0; font-size:32px;">${d.c}</h2>
+                    <p style="margin:10px 0 0; opacity:0.8; font-weight:700;">Subsistema: ${d.sub}</p>
+                </div>
 
-function render() {
-    const v = document.getElementById('visor'); const c = document.getElementById('selCarrera').value;
-    if(!c){v.innerHTML=''; return;} const d = db.find(x=>x.c===c);
-    v.innerHTML = `
-        <div class="ficha">
-            <div class="full h-card" style="background:${d.clr}">
-                <span class="label" style="color:#fff; opacity:0.8">SUBSISTEMA: ${d.sub}</span>
-                <h2 style="margin:0">${d.c}</h2>
+                <div class="card card-scian">
+                    <span class="card-label">Clasificación SCIAN 2026</span>
+                    <div class="card-content">
+                        <b>Código:</b> ${d.s}<br>
+                        <b>Sector:</b> ${d.sec}
+                    </div>
+                </div>
+
+                <div class="col-span-2 card card-highlight">
+                    <span class="card-label">Módulo Profesional (MCCEMS)</span>
+                    <div class="card-content" style="font-size:18px; font-weight:700; color:var(--primary);">
+                        ${d.m}
+                    </div>
+                    <hr style="margin:15px 0; border:0; border-top:1px solid #cbd5e1;">
+                    <span class="card-label">Actividad en Entorno Dual</span>
+                    <div class="card-content">${d.a}</div>
+                </div>
+
+                <div class="card card-ods">
+                    <span class="card-label">ODS Impactado</span>
+                    <span style="font-size:40px; font-weight:800; color:var(--ods-blue); line-height:1;">${d.o1}</span>
+                    <div class="card-content" style="font-weight:700;">${d.o1_t}</div>
+                    <img src="${d.o1}.png" class="ods-img-large" onerror="this.src='https://placehold.co/140x140?text=ODS+${d.o1}'">
+                </div>
+
+                <div class="card">
+                    <span class="card-label">Habilidad Sostenible</span>
+                    <div class="card-content" style="font-weight:700;">${d.h}</div>
+                    <div style="margin-top:20px; background:var(--primary); color:white; padding:12px; border-radius:8px; font-weight:800; font-size:14px;">
+                        📊 INDICADOR: ${d.i}
+                    </div>
+                </div>
+
+                <div class="card card-dark">
+                    <span class="card-label">Sinergia Sistémica (ODS ${d.o1} + ${d.o2})</span>
+                    <div class="card-content" style="font-style:italic;">"${d.d}"</div>
+                </div>
+
+                <div class="col-span-3 instrucciones-box">
+                    <h4>💡 ORIENTACIONES PARA LA O EL INSTRUCTOR</h4>
+                    <p class="card-content" style="font-size:15px; color:#92400e;">${d.orientacion}</p>
+                </div>
             </div>
-            <div class="card c-scian"><span class="label">SCIAN</span><div class="content"><b>${d.s}</b> - ${d.sec}</div></div>
-            <div class="card c-ods">
-                <span class="label">OBJETIVO ODS</span><span class="ods-num">${d.o1}</span>
-                <div class="content">${odsT[d.o1]}</div>
-            </div>
-            <div class="full card c-dual">
-                <span class="label">MÓDULO Y ACTIVIDAD DUAL (MCCEMS)</span>
-                <div class="content"><b>${d.m}</b></div>
-                <div class="content" style="margin-top:5px; color:#4a5568;">${d.a}</div>
-            </div>
-            <div class="card">
-                <span class="label">HABILIDAD SOSTENIBLE</span><div class="content">${d.h}</div>
-                <div class="badge">📊 ${d.i}</div>
-            </div>
-            <div class="full card c-logica">
-                <span class="label" style="color:rgba(255,255,255,0.7)">SINERGIA SISTÉMICA ODS ${d.o1}+${d.o2}</span>
-                <div class="content">${d.d}</div>
-            </div>
-        </div>`;
-}
+        `;
+    }
+
+    // Carga inicial de opciones
+    window.onload = () => {
+        const sel = document.getElementById('mainSelector');
+        db.sort((a,b) => a.c.localeCompare(b.c)).forEach(item => {
+            let opt = document.createElement('option');
+            opt.value = item.c; opt.textContent = item.c;
+            sel.appendChild(opt);
+        });
+    }
 </script>
+
 </body>
 </html>
