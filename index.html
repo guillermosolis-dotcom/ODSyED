@@ -11,74 +11,33 @@
             --light: #f8fafc; --white: #ffffff;
         }
         body { font-family: 'Inter', sans-serif; background-color: #e2e8f0; margin: 0; padding: 20px; color: #1e293b; }
-        
-        .expediente-master {
-            max-width: 1100px; margin: auto; background: var(--white);
-            border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-            overflow: hidden; border: 1px solid #cbd5e1;
-        }
-
-        .header-ods {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 30px 50px; background: white; border-bottom: 5px solid var(--primary);
-        }
+        .expediente-master { max-width: 1100px; margin: auto; background: var(--white); border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.2); overflow: hidden; border: 1px solid #cbd5e1; }
+        .header-ods { display: flex; justify-content: space-between; align-items: center; padding: 30px 50px; background: white; border-bottom: 5px solid var(--primary); }
         .logo-rueda { height: 100px; width: auto; }
         .logo-frase { height: 80px; width: auto; }
-
         .seccion-titulo { padding: 30px 50px; text-align: center; background: #f8fafc; }
         .seccion-titulo h1 { color: var(--primary); margin: 0; font-size: 28px; font-weight: 800; }
-        .objetivo-texto { 
-            margin: 15px auto 0; max-width: 900px; font-size: 14px; 
-            color: #64748b; line-height: 1.6; font-style: italic;
-        }
-
+        .objetivo-texto { margin: 15px auto 0; max-width: 900px; font-size: 14px; color: #64748b; line-height: 1.6; font-style: italic; }
         .search-container { padding: 20px 50px; background: #f1f5f9; border-bottom: 1px solid #e2e8f0; text-align: center; }
-        .main-select {
-            width: 100%; max-width: 800px; padding: 15px; border: 2px solid #cbd5e1;
-            border-radius: 12px; font-size: 17px; font-weight: 600; color: var(--primary);
-            background: white; cursor: pointer;
-        }
-
+        .main-select { width: 100%; max-width: 800px; padding: 15px; border: 2px solid #cbd5e1; border-radius: 12px; font-size: 17px; font-weight: 600; color: var(--primary); background: white; cursor: pointer; }
         .ficha-body { padding: 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .col-span-2 { grid-column: span 2; }
         .col-span-3 { grid-column: span 3; }
-
         .card { background: white; border: 1px solid #e2e8f0; border-radius: 15px; padding: 25px; }
         .card-label { font-size: 11px; font-weight: 800; text-transform: uppercase; color: #64748b; margin-bottom: 10px; display: block; }
         .card-content { font-size: 16px; color: #334155; line-height: 1.5; }
-
         .card-highlight { border-top: 6px solid var(--secondary); background: #f0fff4; }
         .card-scian { border-left: 6px solid var(--scian); }
         .card-ods { border: none; background: #ebf8ff; text-align: center; }
-        
         .card-dark { background: #111827 !important; color: #ffffff !important; border: none; }
         .card-dark .card-label { color: rgba(255,255,255,0.7) !important; }
         .card-dark .card-content { color: #ffffff !important; font-weight: 400; font-style: italic; }
-
-        .sinergia-logos { display: flex; align-items: center; gap: 10px; margin-top: 15px; }
-        .mini-ods { 
-            background: var(--ods-blue); color: white; padding: 5px 10px; 
-            border-radius: 5px; font-weight: 800; font-size: 14px; margin-right: 5px;
-        }
-
-        .instrucciones-box {
-            background: #fffbeb; border: 2px dashed #f59e0b; padding: 25px; border-radius: 15px; grid-column: span 3;
-        }
+        .mini-ods { background: var(--ods-blue); color: white; padding: 5px 10px; border-radius: 5px; font-weight: 800; font-size: 14px; margin-right: 5px; }
+        .instrucciones-box { background: #fffbeb; border: 2px dashed #f59e0b; padding: 25px; border-radius: 15px; grid-column: span 3; }
         .instrucciones-box h4 { margin: 0 0 10px 0; color: #b45309; font-weight: 800; }
-
         .ods-img-large { width: 120px; height: 120px; margin-top: 10px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        
-        .btn-print {
-            display: block; width: calc(100% - 100px); margin: 0 50px 40px; padding: 18px;
-            background: var(--secondary); color: white; border: none; border-radius: 10px;
-            font-size: 16px; font-weight: 800; cursor: pointer;
-        }
-
-        @media print {
-            .search-container, .btn-print, .header-ods { display: none; }
-            body { background: white; padding: 0; }
-            .expediente-master { box-shadow: none; border: none; }
-        }
+        .btn-print { display: block; width: calc(100% - 100px); margin: 0 50px 40px; padding: 18px; background: var(--secondary); color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: 800; cursor: pointer; }
+        @media print { .search-container, .btn-print, .header-ods { display: none; } body { background: white; padding: 0; } .expediente-master { box-shadow: none; border: none; } }
     </style>
 </head>
 <body>
@@ -136,7 +95,7 @@
                 "Optimización de secuencias lógicas en PLC para la reducción del consumo energético de los motores industriales.",
                 "Configuración y validación de protocolos de paros de emergencia para garantizar la seguridad total del operador.",
                 "Instalación de sensores de presencia y actuadores para la gestión eficiente de la iluminación en la planta.",
-                "Ejecución de programas de mantenimiento preventivo para prolongar la vida útil de los componentes y evitar residuos.",
+                "Ejecución de programas de mantenimiento preventivo para prolongar la vida útil de los componentes.",
                 "Sincronización de sistemas robóticos para maximizar la precisión de los procesos y lograr cero mermas de material."
             ],
             h: "Eficiencia Energética Industrial",
@@ -154,7 +113,7 @@
             a: [
                 "Auditoría de cumplimiento en Responsabilidad Social Empresarial (RSE) y transparencia en reportes fiscales.",
                 "Análisis de transparencia en el reporte de estados financieros públicos para fortalecer la rendición de cuentas.",
-                "Gestión de incentivos fiscales para empresas que invierten en tecnologías limpias y proyectos de economía circular.",
+                "Gestión de incentivos fiscales para empresas que invierten en tecnologías limpias.",
                 "Implementación de sistemas de control interno contable para prevenir la corrupción y asegurar la gobernanza financiera.",
                 "Asesoría contable para el fortalecimiento de alianzas estratégicas sostenibles mediante reportes de impacto económico."
             ],
@@ -163,7 +122,7 @@
             o2: "17", o2_t: "Alianzas para lograr los Objetivos",
             i: "Índice de transparencia en reportes",
             d: "La rendición de cuentas clara fortalece la confianza para generar alianzas público-privadas sostenibles.",
-            orientacion: "Instructor(a): Oriente al alumno para que identifique cómo el pago correcto de impuestos y la transparencia contable contribuyen al desarrollo nacional."
+            orientacion: "Instructor(a): Oriente al alumno sobre cómo la transparencia contable contribuye a la justicia social."
         }
     ];
 
@@ -179,18 +138,54 @@
         area.innerHTML = `
             <div class="ficha-body">
                 <div class="col-span-3 card" style="background:var(--primary); color:white;">
-                    <span class="card-label" style="color:rgba(255,255,255,0.6)">Carrera Técnica Seleccionada</span>
-                    <h2 style="margin:0; font-size:26px;">${d.c}</h2>
+                    <span class="card-label" style="color:rgba(255,255,255,0.6)">Carrera Técnica</span>
+                    <h2 style="margin:0;">${d.c}</h2>
                 </div>
-
                 <div class="card card-scian">
                     <span class="card-label">Referente SCIAN (INEGI)</span>
-                    <div class="card-content">
-                        <span style="font-family:monospace; font-size:22px; font-weight:800; color:var(--scian); letter-spacing:3px; display:block; margin-bottom:5px;">${d.s}</span>
-                        ${d.sec}
+                    <div class="card-content"><b style="color:var(--scian); font-size:20px; font-family:monospace;">${d.s}</b><br>${d.sec}</div>
+                </div>
+                <div class="col-span-2 card card-highlight">
+                    <span class="card-label">Módulo Profesional y Actividades Duales</span>
+                    <div class="card-content"><b>${d.m}</b></div>
+                    <ul style="margin-top:10px; padding-left:20px;">
+                        ${d.a.map(act => `<li>${act}</li>`).join('')}
+                    </ul>
+                </div>
+                <div class="card card-ods">
+                    <span class="card-label">Impacto Agenda 2030</span>
+                    <div style="font-size:32px; font-weight:800; color:var(--ods-blue);">${d.o1}</div>
+                    <div class="card-content"><b>${d.o1_t}</b></div>
+                    <img src="https://guillermosolis-dotcom.github.io/ODSyED/${d.o1}.png" class="ods-img-large" onerror="this.src='https://placehold.co/120x120?text=ODS+${d.o1}'">
+                </div>
+                <div class="card">
+                    <span class="card-label">Habilidad Sostenible</span>
+                    <div class="card-content"><b>${d.h}</b></div>
+                    <div style="margin-top:15px; background:var(--primary); color:white; padding:10px; border-radius:8px; font-size:13px; font-weight:800; text-align:center;">📊 INDICADOR: ${d.i}</div>
+                </div>
+                <div class="card card-dark">
+                    <span class="card-label">Sinergia Sistémica</span>
+                    <div class="card-content">"${d.d}"</div>
+                    <div style="margin-top:15px;">
+                        <span class="mini-ods">ODS ${d.o1}</span> <span style="font-weight:800;">+</span> <span class="mini-ods">ODS ${d.o2}</span>
                     </div>
                 </div>
+                <div class="col-span-3 instrucciones-box">
+                    <h4>💡 ORIENTACIONES PARA LA O EL INSTRUCTOR</h4>
+                    <p class="card-content" style="color:#92400e;">${d.orientacion}</p>
+                </div>
+            </div>
+        `;
+    }
 
-                <div class="col-span-2 card card-highlight">
-                    <span class="card-label">Módulo Profesional y Propuestas de Puestos de Aprendizaje (Dual)</span>
-                    <div class="card-content" style="font-weight:
+    window.onload = () => {
+        const sel = document.getElementById('mainSelector');
+        db.sort((a,b) => a.c.localeCompare(b.c)).forEach(item => {
+            let opt = document.createElement('option');
+            opt.value = item.c; opt.textContent = item.c;
+            sel.appendChild(opt);
+        });
+    }
+</script>
+</body>
+</html>
