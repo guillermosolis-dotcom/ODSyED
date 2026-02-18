@@ -55,6 +55,7 @@
         .card-dark .card-label { color: rgba(255,255,255,0.7) !important; }
         .card-dark .card-content { color: #ffffff !important; font-weight: 400; font-style: italic; }
 
+        .sinergia-logos { display: flex; align-items: center; gap: 10px; margin-top: 15px; }
         .mini-ods { 
             background: var(--ods-blue); color: white; padding: 5px 10px; 
             border-radius: 5px; font-weight: 800; font-size: 14px; margin-right: 5px;
@@ -63,4 +64,133 @@
         .instrucciones-box {
             background: #fffbeb; border: 2px dashed #f59e0b; padding: 25px; border-radius: 15px; grid-column: span 3;
         }
-        .inst
+        .instrucciones-box h4 { margin: 0 0 10px 0; color: #b45309; font-weight: 800; }
+
+        .ods-img-large { width: 120px; height: 120px; margin-top: 10px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        
+        .btn-print {
+            display: block; width: calc(100% - 100px); margin: 0 50px 40px; padding: 18px;
+            background: var(--secondary); color: white; border: none; border-radius: 10px;
+            font-size: 16px; font-weight: 800; cursor: pointer;
+        }
+
+        @media print {
+            .search-container, .btn-print, .header-ods { display: none; }
+            body { background: white; padding: 0; }
+            .expediente-master { box-shadow: none; border: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="expediente-master">
+    <header class="header-ods">
+        <img src="https://guillermosolis-dotcom.github.io/ODSyED/rueda-ods.png" alt="Rueda ODS" class="logo-rueda">
+        <img src="https://guillermosolis-dotcom.github.io/ODSyED/logo-ods-frase.jpg" alt="ODS Frase" class="logo-frase">
+    </header>
+
+    <section class="seccion-titulo">
+        <h1>Educación Dual y Objetivos de Desarrollo Sostenible, de la Agenda 2030</h1>
+        <p class="objetivo-texto">
+            El objetivo de esta herramienta es de carácter ilustrativo y pedagógico, está elaborada con datos públicos de la Secretaría de Educación Pública (SEP), el Instituto Nacional de Estadística y Geografía (INEGI), y la Organización de las Naciones Unidas (ONU).
+        </p>
+    </section>
+
+    <section class="search-container">
+        <select id="mainSelector" class="main-select" onchange="renderFicha()">
+            <option value="">-- Seleccione una Carrera Técnica --</option>
+        </select>
+    </section>
+
+    <div id="renderArea"></div>
+    <button class="btn-print" id="btnPrint" style="display:none;" onclick="window.print()">📥 GENERAR REPORTE TÉCNICO PDF</button>
+</div>
+
+<script>
+    const db = [
+        {
+            c: "Programación (DGETI)",
+            s: "541512",
+            sec: "Desarrollo de software y servicios relacionados",
+            m: "Módulo IV: Desarrolla aplicaciones web con conexión a bases de datos",
+            a: [
+                "Creación de interfaces de usuario con protocolos de accesibilidad (WCAG) para asegurar la inclusión de personas con discapacidad.",
+                "Implementación de esquemas de seguridad y cifrado en bases de datos para la protección de datos sensibles.",
+                "Desarrollo de módulos de transparencia que permitan el acceso ciudadano a la información pública.",
+                "Optimización de scripts y algoritmos para reducir el consumo de recursos en servidores (Green IT).",
+                "Realización de pruebas de usabilidad y experiencia de usuario centradas en la inclusión de adultos mayores."
+            ],
+            h: "Inclusión Digital y Ética Tecnológica",
+            o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+            o2: "10", o2_t: "Reducción de las Desigualdades",
+            i: "Audit score de accesibilidad > 90%",
+            d: "La innovación técnica permite que el software sea un puente de inclusión, eliminando barreras de acceso para grupos vulnerables.",
+            orientacion: "Instructor(a): Verifique que el estudiante aplique etiquetas ARIA en el código. No se trata solo de que la web funcione, sino de que sea operable para todos."
+        },
+        {
+            c: "Mecatrónica (DGETI)",
+            s: "333999",
+            sec: "Fabricación de maquinaria y equipo",
+            m: "Módulo II: Mantiene sistemas de control por PLC",
+            a: [
+                "Optimización de secuencias lógicas en PLC para la reducción del consumo energético de los motores industriales.",
+                "Configuración y validación de protocolos de paros de emergencia para garantizar la seguridad total del operador.",
+                "Instalación de sensores de presencia y actuadores para la gestión eficiente de la iluminación en la planta.",
+                "Ejecución de programas de mantenimiento preventivo para prolongar la vida útil de los componentes y evitar residuos.",
+                "Sincronización de sistemas robóticos para maximizar la precisión de los procesos y lograr cero mermas de material."
+            ],
+            h: "Eficiencia Energética Industrial",
+            o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+            o2: "12", o2_t: "Producción y Consumo Responsables",
+            i: "Reducción de kW/h por ciclo optimizado",
+            d: "La automatización inteligente reduce el desperdicio de recursos energéticos en la manufactura a gran escala.",
+            orientacion: "Instructor(a): Solicite al alumno un reporte de ahorro energético tras la optimización del código del PLC."
+        },
+        {
+            c: "Contabilidad (DGETI)",
+            s: "541211",
+            sec: "Servicios de contabilidad y auditoría",
+            m: "Módulo IV: Determina las contribuciones fiscales de personas físicas y morales",
+            a: [
+                "Auditoría de cumplimiento en Responsabilidad Social Empresarial (RSE) y transparencia en reportes fiscales.",
+                "Análisis de transparencia en el reporte de estados financieros públicos para fortalecer la rendición de cuentas.",
+                "Gestión de incentivos fiscales para empresas que invierten en tecnologías limpias y proyectos de economía circular.",
+                "Implementación de sistemas de control interno contable para prevenir la corrupción y asegurar la gobernanza financiera.",
+                "Asesoría contable para el fortalecimiento de alianzas estratégicas sostenibles mediante reportes de impacto económico."
+            ],
+            h: "Ética Financiera y Gobernanza",
+            o1: "16", o1_t: "Paz, Justicia e Instituciones Sólidas",
+            o2: "17", o2_t: "Alianzas para lograr los Objetivos",
+            i: "Índice de transparencia en reportes",
+            d: "La rendición de cuentas clara fortalece la confianza para generar alianzas público-privadas sostenibles.",
+            orientacion: "Instructor(a): Oriente al alumno para que identifique cómo el pago correcto de impuestos y la transparencia contable contribuyen al desarrollo nacional."
+        }
+    ];
+
+    function renderFicha() {
+        const val = document.getElementById('mainSelector').value;
+        const area = document.getElementById('renderArea');
+        const btn = document.getElementById('btnPrint');
+        if(!val) { area.innerHTML = ''; btn.style.display = 'none'; return; }
+        
+        const d = db.find(x => x.c === val);
+        btn.style.display = 'block';
+
+        area.innerHTML = `
+            <div class="ficha-body">
+                <div class="col-span-3 card" style="background:var(--primary); color:white;">
+                    <span class="card-label" style="color:rgba(255,255,255,0.6)">Carrera Técnica Seleccionada</span>
+                    <h2 style="margin:0; font-size:26px;">${d.c}</h2>
+                </div>
+
+                <div class="card card-scian">
+                    <span class="card-label">Referente SCIAN (INEGI)</span>
+                    <div class="card-content">
+                        <span style="font-family:monospace; font-size:22px; font-weight:800; color:var(--scian); letter-spacing:3px; display:block; margin-bottom:5px;">${d.s}</span>
+                        ${d.sec}
+                    </div>
+                </div>
+
+                <div class="col-span-2 card card-highlight">
+                    <span class="card-label">Módulo Profesional y Propuestas de Puestos de Aprendizaje (Dual)</span>
+                    <div class="card-content" style="font-weight:
