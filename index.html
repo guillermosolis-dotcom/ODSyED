@@ -1,58 +1,2536 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Educación Dual y Objetivos de Desarrollo Sostenible, de la Agenda 2030</title>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&family=IBM+Plex+Mono:wght@600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Educación Dual y ODS — Agenda 2030 | EMS México 2024-2025</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+
+<style>
+/* ─── TOKENS ──────────────────────────────────────────── */
+:root {
+  --navy:   #0B1E35;
+  --navy2:  #152D4A;
+  --steel:  #2C4A6E;
+  --teal:   #009FC2;
+  --teal-l: #E0F5FA;
+  --green:  #1E7E34;
+  --gold:   #D4890A;
+  --light:  #F2F5F9;
+  --white:  #FFFFFF;
+  --muted:  #5A6A7E;
+  --border: #D8E2EE;
+  --text:   #1A2B3C;
+  --r:      14px;
+  --rs:     8px;
+
+  /* Subsistema colors */
+  --bted-bg:    #1565C0; --bted-lt:    #DDEEFF;
+  --cecyte-bg:  #2E7D32; --cecyte-lt:  #E4F5E6;
+  --agro-bg:    #00838F; --agro-lt:    #DFF6FA;
+  --dgeti-bg:   #6A1B9A; --dgeti-lt:   #F0E4FA;
+  --conalep-bg: #BF360C; --conalep-lt: #FDEDE8;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: #E4EBF3;
+  min-height: 100vh;
+  padding: 20px 12px 48px;
+  color: var(--text);
+}
+
+/* ─── SHELL ───────────────────────────────────────────── */
+.shell {
+  max-width: 1060px;
+  margin: 0 auto;
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: 0 16px 48px rgba(11,30,53,.15), 0 2px 0 rgba(0,159,194,.3);
+  overflow: hidden;
+}
+
+/* ─── HEADER ──────────────────────────────────────────── */
+.hdr {
+  background: var(--white);
+  padding: 22px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 3px solid var(--teal);
+}
+.hdr-logos { display: flex; align-items: center; gap: 18px; }
+.logo-rueda { height: 80px; width: auto; }
+.logo-frase { height: 64px; width: auto; }
+.hdr-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.4;
+  text-align: right;
+  max-width: 320px;
+}
+.hdr-title strong { color: var(--navy); font-size: 18px; display: block; margin-bottom: 2px; }
+
+/* ─── ODS STRIP ───────────────────────────────────────── */
+.ods-strip {
+  background: var(--navy2);
+  padding: 10px 40px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.ods-strip-lbl {
+  font-size: 9px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: rgba(255,255,255,.4);
+  white-space: nowrap; margin-right: 4px;
+}
+.ods-pill {
+  height: 30px; width: 30px; border-radius: 5px;
+  object-fit: cover; flex-shrink: 0;
+  cursor: pointer; transition: transform .18s, opacity .18s;
+  opacity: .85;
+}
+.ods-pill:hover { transform: scale(1.22); opacity: 1; }
+
+/* ─── SEARCH BAR ──────────────────────────────────────── */
+.search-wrap {
+  padding: 18px 40px;
+  background: var(--light);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.search-label {
+  display: block;
+  font-size: 11px; font-weight: 700; letter-spacing: .8px;
+  text-transform: uppercase; color: var(--muted);
+  margin-bottom: 8px;
+}
+.search-inner { position: relative; }
+.search-input {
+  width: 100%; padding: 14px 46px 14px 16px;
+  border: 2px solid var(--border); border-radius: var(--rs);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px; font-weight: 500; color: var(--navy);
+  background: var(--white);
+  transition: border-color .2s, box-shadow .2s;
+}
+.search-input::placeholder { color: #8FA3BC; }
+.search-input:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(0,159,194,.14); }
+.search-icon {
+  position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+  color: var(--muted); pointer-events: none; font-size: 18px;
+}
+.search-clear {
+  position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; cursor: pointer;
+  color: var(--muted); font-size: 18px; line-height: 1;
+  display: none;
+}
+
+/* Dropdown */
+.dropdown {
+  position: absolute; top: calc(100% + 4px); left: 0; right: 0;
+  background: var(--white);
+  border: 2px solid var(--teal);
+  border-radius: var(--rs);
+  max-height: 320px; overflow-y: auto;
+  z-index: 200;
+  box-shadow: 0 8px 32px rgba(11,30,53,.18);
+  display: none;
+}
+.dropdown.open { display: block; }
+.dd-item {
+  padding: 12px 16px;
+  cursor: pointer;
+  display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid var(--border);
+  transition: background .12s;
+  font-size: 15px; color: var(--text);
+}
+.dd-item:last-child { border-bottom: none; }
+.dd-item:hover, .dd-item.active { background: var(--teal-l); }
+.dd-item mark { background: none; color: var(--teal); font-weight: 700; }
+.dd-subs { display: flex; gap: 4px; flex-shrink: 0; flex-wrap: wrap; }
+.dd-empty { padding: 20px; text-align: center; color: var(--muted); font-size: 14px; }
+
+/* Subsistema tags */
+.sub-tag {
+  font-size: 9px; font-weight: 700; letter-spacing: .5px;
+  padding: 2px 7px; border-radius: 20px; white-space: nowrap;
+  text-transform: uppercase;
+}
+.sub-BTED     { background: var(--bted-bg);    color: #fff; }
+.sub-CECyTE   { background: var(--cecyte-bg);  color: #fff; }
+.sub-DGETAyCM { background: var(--agro-bg);    color: #fff; }
+.sub-DGETI    { background: var(--dgeti-bg);   color: #fff; }
+.sub-CONALEP  { background: var(--conalep-bg); color: #fff; }
+
+/* ─── FICHA ───────────────────────────────────────────── */
+.ficha {
+  padding: 28px 40px 36px;
+  display: none;
+}
+.ficha.visible { display: block; }
+
+/* ─── BANDA SUPERIOR: carrera + subsistemas ─── */
+.band-career {
+  background: var(--navy);
+  border-radius: var(--r);
+  padding: 22px 28px;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+.band-career-left {}
+.career-name {
+  font-size: 22px; font-weight: 700; color: #fff;
+  line-height: 1.2; margin-bottom: 10px;
+}
+.subs-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.sub-tag-lg {
+  font-size: 11px; font-weight: 700; letter-spacing: .4px;
+  padding: 4px 11px; border-radius: 20px;
+  text-transform: uppercase;
+}
+.band-career-right {
+  text-align: right; flex-shrink: 0;
+}
+.year-chip {
+  display: inline-block;
+  background: rgba(255,255,255,.1); color: rgba(255,255,255,.7);
+  font-size: 11px; font-weight: 600;
+  padding: 4px 12px; border-radius: 20px; margin-bottom: 8px;
+}
+.scian-block { text-align: right; }
+.scian-lbl {
+  font-size: 9px; font-weight: 700; letter-spacing: .8px;
+  text-transform: uppercase; color: rgba(255,255,255,.45);
+  display: block; margin-bottom: 2px;
+}
+.scian-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 22px; font-weight: 500;
+  color: #FFB74D; display: block; letter-spacing: 3px;
+}
+.scian-sec { font-size: 11px; color: rgba(255,255,255,.5); max-width: 200px; line-height: 1.3; }
+
+/* ─── GRID PRINCIPAL ──────────────────────────────────── */
+.grid-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 180px;
+  grid-template-rows: auto auto auto;
+  gap: 14px;
+}
+/* Slot layout:
+   [ods1        ] [ods2    ] [hab  col3 r1-2]
+   [modulo  r2  ] [act r2-3] [hab  col3 r1-2]
+   [sinergia    ] [act r2-3] [inst col3 r3  ]
+   -- Nuevo: ODS al inicio, luego módulo+actividadesbilidad] [ods2 block]
+   [sinergia col3          ] [instructor]
+*/
+
+/* ─── CARD BASE ───────────────────────────────────────── */
+.card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r);
+  padding: 20px;
+  overflow: hidden;
+}
+.card-lbl {
+  font-size: 10px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--muted);
+  display: flex; align-items: center; gap: 6px;
+  margin-bottom: 12px;
+}
+.card-lbl-icon { font-size: 14px; }
+
+/* ─── MÓDULO ──────────────────────────────────────────── */
+.card-modulo {
+  grid-column: 1; grid-row: 2;
+  border-top: 4px solid var(--teal);
+  background: var(--teal-l);
+}
+.modulo-txt {
+  font-size: 15px; font-weight: 700; color: var(--navy2);
+  line-height: 1.35;
+}
+
+/* ─── ACTIVIDADES ─────────────────────────────────────── */
+.card-act {
+  grid-column: 2; grid-row: 2 / 4;
+  border-top: 4px solid var(--navy2);
+}
+.act-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.act-item { display: flex; gap: 10px; align-items: flex-start; }
+.act-dot {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--navy); color: #fff;
+  font-size: 10px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 1px;
+}
+.act-txt { font-size: 14px; color: var(--text); line-height: 1.5; }
+
+/* ─── ODS PRINCIPAL ───────────────────────────────────── */
+.card-ods1 {
+  grid-column: 1; grid-row: 1;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; gap: 8px;
+  border: 3px solid transparent;
+}
+.ods1-num {
+  font-size: 36px; font-weight: 700; line-height: 1;
+}
+.ods1-name {
+  font-size: 14px; font-weight: 700; line-height: 1.3;
+}
+.ods1-img {
+  width: 72px; height: 72px; border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 8px 24px rgba(0,0,0,.2);
+}
+
+/* ─── ODS SECUNDARIO ──────────────────────────────────── */
+.card-ods2 {
+  grid-column: 2; grid-row: 1;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; gap: 6px;
+  border: 2px solid transparent;
+}
+.ods2-lbl { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+.ods2-num { font-size: 26px; font-weight: 700; line-height: 1; }
+.ods2-name { font-size: 12px; font-weight: 600; line-height: 1.3; }
+.ods2-img {
+  width: 64px; height: 64px; border-radius: 10px;
+  object-fit: cover; box-shadow: 0 4px 14px rgba(0,0,0,.18);
+}
+
+/* ─── HABILIDAD ───────────────────────────────────────── */
+.card-hab {
+  grid-column: 3; grid-row: 1 / 3;
+  border-top: 4px solid var(--green);
+  background: #F0FDF4;
+}
+.hab-txt {
+  font-size: 15px; font-weight: 700; color: #14532D;
+  line-height: 1.35; margin-bottom: 12px;
+}
+.indicador {
+  background: var(--navy);
+  color: #fff; border-radius: var(--rs);
+  padding: 9px 13px;
+  font-size: 12px; font-weight: 600;
+  display: flex; gap: 8px; align-items: flex-start; line-height: 1.4;
+}
+
+/* ─── SINERGIA ────────────────────────────────────────── */
+.card-sin {
+  grid-column: 1; grid-row: 3;
+  background: var(--navy); border: none;
+}
+.card-sin .card-lbl { color: rgba(255,255,255,.45); }
+.sin-quote {
+  font-size: 14px; font-style: italic;
+  color: rgba(255,255,255,.9); line-height: 1.6;
+  margin-bottom: 14px;
+}
+.sin-quote::before { content: '\201C'; color: var(--teal); font-size: 24px; line-height: .8; vertical-align: -.25em; }
+.sin-quote::after  { content: '\201D'; color: var(--teal); font-size: 24px; line-height: .8; vertical-align: -.25em; }
+.ods-tags2 { display: flex; gap: 8px; flex-wrap: wrap; }
+.ods-tag2 {
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,.1); border-radius: 6px;
+  padding: 5px 10px; font-size: 12px; font-weight: 600; color: #fff;
+}
+.ods-tag-ico { width: 22px; height: 22px; border-radius: 4px; object-fit: cover; }
+
+/* ─── INSTRUCTOR ──────────────────────────────────────── */
+.card-inst {
+  grid-column: 3; grid-row: 3;
+  background: #FFFDF0;
+  border: 2px dashed #E5B800;
+}
+.inst-icon { font-size: 20px; display: block; margin-bottom: 6px; }
+.inst-txt { font-size: 13px; color: #7A4F00; line-height: 1.6; }
+
+/* ─── BOTÓN IMPRIMIR ──────────────────────────────────── */
+.print-bar {
+  padding: 0 40px 36px;
+  display: none;
+}
+.print-bar.visible { display: block; }
+.btn-print {
+  width: 100%; padding: 16px;
+  background: linear-gradient(135deg, #1E7E34 0%, #0F5C24 100%);
+  color: #fff; border: none; border-radius: var(--rs);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px; font-weight: 700; letter-spacing: .4px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(30,126,52,.3);
+  transition: transform .15s, box-shadow .15s;
+}
+.btn-print:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(30,126,52,.4); }
+
+/* ─── FOOTER ──────────────────────────────────────────── */
+.ftr {
+  background: var(--navy2);
+  padding: 14px 40px;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px;
+  font-size: 11px; color: rgba(255,255,255,.4);
+}
+.ftr a { color: var(--teal); text-decoration: none; }
+
+/* ─── NOTA TÉCNICA ────────────────────────────────────── */
+.nota {
+  margin: 0; padding: 14px 40px;
+  background: #EAF4FB;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px; color: #1A4A6B; line-height: 1.6;
+}
+.nota strong { color: #0C3351; }
+
+/* ─── EMPTY STATE ─────────────────────────────────────── */
+.empty {
+  padding: 48px 40px; text-align: center; color: var(--muted);
+  display: block;
+}
+.empty-ico { font-size: 52px; opacity: .4; display: block; margin-bottom: 14px; }
+.empty h3 { font-size: 18px; font-weight: 700; color: var(--navy2); margin-bottom: 6px; }
+.empty p  { font-size: 14px; }
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE MOBILE
+══════════════════════════════════════════════════════ */
+@media (max-width: 860px) {
+  body { padding: 10px 6px 36px; }
+  .hdr { padding: 16px 20px; flex-wrap: wrap; gap: 12px; }
+  .logo-rueda { height: 56px; }
+  .logo-frase { height: 46px; }
+  .hdr-title { font-size: 11px; text-align: left; }
+  .ods-strip { padding: 8px 20px; }
+  .search-wrap, .nota, .ficha, .print-bar, .ftr { padding-left: 20px; padding-right: 20px; }
+
+  .grid-main {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+  .card-ods1    { grid-column: 1;     grid-row: 1; }
+  .card-ods2    { grid-column: 2;     grid-row: 1; }
+  .card-modulo  { grid-column: 1 / 3; grid-row: 2; }
+  .card-act     { grid-column: 1 / 3; grid-row: 3; }
+  .card-hab     { grid-column: 1 / 3; grid-row: 4; }
+  .card-sin     { grid-column: 1;     grid-row: 5; }
+  .card-inst    { grid-column: 2;     grid-row: 5; }
+
+  .ods1-img { width: 100px; height: 100px; }
+  .ods2-img { width: 70px; height: 70px; }
+  .ods1-num { font-size: 44px; }
+  .career-name { font-size: 18px; }
+  .band-career { flex-direction: column; }
+  .band-career-right { text-align: left; }
+}
+
+@media (max-width: 480px) {
+  .grid-main { grid-template-columns: 1fr; }
+  .card-modulo, .card-act, .card-ods1, .card-ods2,
+  .card-hab, .card-sin, .card-inst { grid-column: 1; }
+  .card-ods1    { grid-row: 1; }
+  .card-ods2    { grid-row: 2; }
+  .card-modulo  { grid-row: 3; }
+  .card-act     { grid-row: 4; }
+  .card-hab     { grid-row: 5; }
+  .card-sin     { grid-row: 6; }
+  .card-inst    { grid-row: 7; }
+}
+
+/* ══════════════════════════════════════════════════════
+   PRINT — carta horizontal reducida a 1 página
+══════════════════════════════════════════════════════ */
+@media print {
+  @page {
+    size: letter landscape;
+    margin: 8mm 10mm;
+  }
+
+  html, body {
+    background: white !important;
+    padding: 0 !important;
+    font-size: 10px !important;
+  }
+
+  .shell {
+    max-width: 100% !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  /* Ocultar todo menos ficha */
+  .hdr, .ods-strip, .search-wrap, .nota,
+  .empty, .print-bar, .ftr { display: none !important; }
+
+  /* Encabezado impreso */
+  .print-header {
+    display: flex !important;
+    align-items: center;
+    gap: 14px;
+    padding: 6px 0 8px;
+    border-bottom: 2px solid #0B1E35;
+    margin-bottom: 8px;
+  }
+  .print-header img { height: 44px; }
+  .print-header-title {
+    font-size: 12px; font-weight: 700; color: #0B1E35; line-height: 1.3;
+  }
+  .print-header-sub {
+    font-size: 9px; color: #5A6A7E; margin-top: 2px;
+  }
+
+  .ficha {
+    display: block !important;
+    padding: 0 !important;
+  }
+
+  .band-career {
+    padding: 10px 14px !important;
+    margin-bottom: 8px !important;
+    border-radius: 6px !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    background: #0B1E35 !important;
+  }
+  .career-name { font-size: 14px !important; margin-bottom: 6px !important; }
+  .scian-num { font-size: 14px !important; }
+  .year-chip, .sub-tag-lg { font-size: 8px !important; padding: 2px 7px !important; }
+
+  .grid-main {
+    grid-template-columns: 1.5fr 1.5fr 110px !important;
+    gap: 6px !important;
+  }
+
+  .card {
+    padding: 10px 12px !important;
+    border-radius: 6px !important;
+    border-width: 1px !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .modulo-txt { font-size: 11px !important; }
+  .act-txt    { font-size: 10px !important; }
+  .act-list   { gap: 4px !important; }
+  .act-dot    { width: 16px !important; height: 16px !important; font-size: 8px !important; }
+  .card-lbl   { font-size: 8px !important; margin-bottom: 6px !important; }
+  .ods1-num   { font-size: 22px !important; }
+  .ods1-name  { font-size: 10px !important; }
+  .ods1-img   { width: 52px !important; height: 52px !important; }
+  .ods2-num   { font-size: 16px !important; }
+  .ods2-name  { font-size: 9px !important; }
+  .ods2-img   { width: 44px !important; height: 44px !important; }
+  .hab-txt    { font-size: 11px !important; }
+  .indicador  { font-size: 9px !important; padding: 6px 8px !important; }
+  .sin-quote  { font-size: 10px !important; margin-bottom: 6px !important; }
+  .ods-tag2   { font-size: 9px !important; padding: 3px 7px !important; }
+  .inst-txt   { font-size: 10px !important; }
+
+  .card-sin, .card-inst, .band-career {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Nota técnica impresa */
+  .print-nota {
+    display: block !important;
+    font-size: 8px !important;
+    color: #5A6A7E !important;
+    text-align: center !important;
+    margin-top: 6px !important;
+    border-top: 1px solid #D8E2EE !important;
+    padding-top: 4px !important;
+  }
+}
+
+/* Elementos solo visibles en print */
+.print-header, .print-nota { display: none; }
+
+/* ─── ANIMACIONES ─────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity:0; transform: translateY(12px); }
+  to   { opacity:1; transform: translateY(0); }
+}
+.ficha.visible { animation: fadeUp .3s ease both; }
+</style>
 </head>
 <body>
-<div class="expediente-master">
-    <header class="header-ods">
-        <img src="https://guillermosolis-dotcom.github.io/ODSyED/rueda-ods.png" alt="Rueda ODS" class="logo-rueda"
-             onerror="this.style.display='none'">
-        <img src="https://guillermosolis-dotcom.github.io/ODSyED/logo-ods-frase.jpg" alt="ODS Frase" class="logo-frase"
-             onerror="this.style.display='none'">
-    </header>
-    <section class="seccion-titulo">
-        <h1>Educación Dual y Objetivos de Desarrollo Sostenible de la Agenda 2030</h1>
-        <div class="nota-tecnica">
-            <strong>Nota técnica:</strong> El contenido de esta plataforma es de carácter <strong>ilustrativo y pedagógico</strong>.
-            Los módulos y actividades se presentan como referentes técnicos para ejemplificar la vinculación con los ODS.
-            Para una planeación formal, el personal docente con las y los instructores deberán consultar el programa de estudios específico
-            y vigente de su subsistema (DGETI, DGETAyCM, CECyTE o CONALEP). La información aquí presentada es de carácter público
-            obtenida de la SEP, el INEGI y la ONU. Derechos reservados - 2026.
-        </div>
-    </section>
-    <section class="search-container">
-        <label class="search-label">Buscar carrera técnica por nombre o subsistema</label>
-        <div class="search-input-wrap">
-            <span class="search-icon">&#9906;</span>
-            <input
-                type="text"
-                id="searchInput"
-                placeholder="Ej: Electrónica, CONALEP, Logística, Acuacultura..."
-                autocomplete="off"
-                oninput="onSearch()"
-                onfocus="showResults()"
-            >
-            <div id="resultsList"></div>
-        </div>
-        <div class="search-stats" id="searchStats"></div>
-    </section>
-    <div id="renderArea">
-        <div class="placeholder-inicial">
-            <div class="icono">&#127758;</div>
-            <p>Escribe el nombre de una carrera técnica en el buscador para ver su vinculación con los ODS.</p>
-        </div>
+<div class="shell">
+
+  <!-- HEADER -->
+  <header class="hdr">
+    <div class="hdr-logos">
+      <img src="rueda-ods.png" alt="Rueda ODS" class="logo-rueda" onerror="this.style.display='none'">
+      <img src="logo-ods-frase.jpg" alt="ODS Agenda 2030" class="logo-frase" onerror="this.style.display='none'">
     </div>
-    <button class="btn-print" id="btnPrint" style="display:none;" onclick="window.print()">
-        GENERAR REPORTE TÉCNICO PDF
+    <div class="hdr-title">
+      <strong>Educación Dual y los Objetivos de Desarrollo Sostenible de la Agenda 2030</strong>
+    </div>
+  </header>
+
+  <!-- TIRA ODS -->
+  <nav class="ods-strip">
+    <span class="ods-strip-lbl">17 ODS →</span>
+    <img src="1.png"  alt="ODS 1"  class="ods-pill" title="ODS 1 — Fin de la Pobreza"                      onerror="this.style.display='none'">
+    <img src="2.png"  alt="ODS 2"  class="ods-pill" title="ODS 2 — Hambre Cero"                            onerror="this.style.display='none'">
+    <img src="3.png"  alt="ODS 3"  class="ods-pill" title="ODS 3 — Salud y Bienestar"                      onerror="this.style.display='none'">
+    <img src="4.png"  alt="ODS 4"  class="ods-pill" title="ODS 4 — Educación de Calidad"                   onerror="this.style.display='none'">
+    <img src="5.png"  alt="ODS 5"  class="ods-pill" title="ODS 5 — Igualdad de Género"                     onerror="this.style.display='none'">
+    <img src="6.png"  alt="ODS 6"  class="ods-pill" title="ODS 6 — Agua Limpia y Saneamiento"              onerror="this.style.display='none'">
+    <img src="7.png"  alt="ODS 7"  class="ods-pill" title="ODS 7 — Energía Asequible y No Contaminante"   onerror="this.style.display='none'">
+    <img src="8.png"  alt="ODS 8"  class="ods-pill" title="ODS 8 — Trabajo Decente y Crecimiento Económico" onerror="this.style.display='none'">
+    <img src="9.png"  alt="ODS 9"  class="ods-pill" title="ODS 9 — Industria, Innovación e Infraestructura" onerror="this.style.display='none'">
+    <img src="10.png" alt="ODS 10" class="ods-pill" title="ODS 10 — Reducción de las Desigualdades"       onerror="this.style.display='none'">
+    <img src="11.png" alt="ODS 11" class="ods-pill" title="ODS 11 — Ciudades y Comunidades Sostenibles"   onerror="this.style.display='none'">
+    <img src="12.png" alt="ODS 12" class="ods-pill" title="ODS 12 — Producción y Consumo Responsables"    onerror="this.style.display='none'">
+    <img src="13.png" alt="ODS 13" class="ods-pill" title="ODS 13 — Acción por el Clima"                  onerror="this.style.display='none'">
+    <img src="14.png" alt="ODS 14" class="ods-pill" title="ODS 14 — Vida Submarina"                       onerror="this.style.display='none'">
+    <img src="15.png" alt="ODS 15" class="ods-pill" title="ODS 15 — Vida de Ecosistemas Terrestres"       onerror="this.style.display='none'">
+    <img src="16.png" alt="ODS 16" class="ods-pill" title="ODS 16 — Paz, Justicia e Instituciones Sólidas" onerror="this.style.display='none'">
+    <img src="data:image/jpeg;base64,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" alt="ODS 17" class="ods-pill" title="ODS 17 — Alianzas para lograr los Objetivos"   onerror="this.style.display='none'">
+  </nav>
+
+  <!-- NOTA TÉCNICA -->
+  <div class="nota">
+    <strong>Nota técnica:</strong> Contenido <strong>ilustrativo y pedagógico</strong>.
+    Para planeación formal, consulte el programa de estudios vigente de su subsistema.
+    Fuentes: SEP · INEGI-SCIAN · ONU Agenda 2030 · CONALEP. — <strong>Derechos reservados 2026.</strong>
+  </div>
+
+  <!-- BÚSQUEDA INTELIGENTE -->
+  <section class="search-wrap">
+    <label class="search-label" for="searchInput">🔍 Buscar carrera técnica</label>
+    <div class="search-inner">
+      <input type="text" id="searchInput" class="search-input"
+             placeholder="Escribe el nombre de la carrera… ej: mecatrónica, salud, logística"
+             autocomplete="off" spellcheck="false"
+             oninput="onSearch()" onkeydown="onKey(event)">
+      <span class="search-icon" id="searchIcon">⌕</span>
+      <button class="search-clear" id="searchClear" onclick="clearSearch()" title="Limpiar">✕</button>
+      <div class="dropdown" id="dropdown" role="listbox"></div>
+    </div>
+  </section>
+
+  <!-- ENCABEZADO SOLO PARA IMPRESIÓN -->
+  <div class="print-header">
+    <img src="rueda-ods.png" alt="ODS" onerror="this.style.display='none'">
+    <img src="logo-ods-frase.jpg" alt="Agenda 2030" onerror="this.style.display='none'">
+    <div>
+      <div class="print-header-title">Educación Dual y Objetivos de Desarrollo Sostenible — Agenda 2030</div>
+      <div class="print-header-sub">EMS México 2024-2025 · COSAC-SEMS: BTED · CECyTE · DGETAyCM · DGETI + CONALEP Nacional</div>
+    </div>
+  </div>
+
+  <!-- EMPTY STATE -->
+  <div class="empty" id="emptyState">
+    <span class="empty-ico">🎯</span>
+    <h3>Seleccione una carrera técnica</h3>
+    <p>85 carreras EMS vinculadas con los ODS, SCIAN y Educación Dual</p>
+  </div>
+
+  <!-- FICHA TÉCNICA -->
+  <section class="ficha" id="ficha"></section>
+
+  <!-- NOTA SOLO IMPRESIÓN -->
+  <div class="print-nota">
+    Contenido ilustrativo y pedagógico. Fuentes: SEP · INEGI-SCIAN · ONU Agenda 2030 · CONALEP. Derechos reservados 2026.
+  </div>
+
+  <!-- BOTÓN IMPRIMIR -->
+  <div class="print-bar" id="printBar">
+    <button class="btn-print" onclick="window.print()">
+      📄 Generar reporte técnico — Imprimir / Guardar PDF
     </button>
-</div>
-<!-- Scripts: primero los datos, luego la lógica -->
-<script src="data.js"></script>
-<script src="app.js"></script>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="ftr">
+    <span>Educación Dual &amp; ODS · EMS México 2024-2025 · 85 Carreras Técnicas</span>
+    <span>
+      <a href="https://cosac.sems.gob.mx" target="_blank">COSAC-SEMS</a> ·
+      <a href="https://www.inegi.org.mx" target="_blank">INEGI-SCIAN</a> ·
+      <a href="https://www.un.org/sustainabledevelopment/es/" target="_blank">ONU 2030</a> ·
+      <a href="https://conalep.edu.mx" target="_blank">CONALEP</a>
+    </span>
+  </footer>
+</div><!-- .shell -->
+
+<script>
+const BASE = './';
+
+/* ─── ODS colors ──────────────────────────────────────── */
+const ODS_COLORS = {
+  '1':'#E5243B','2':'#DDA63A','3':'#4C9F38','4':'#C5192D',
+  '5':'#FF3A21','6':'#26BDE2','7':'#FCC30B','8':'#A21942',
+  '9':'#FD6925','10':'#DD1367','11':'#FD9D24','12':'#BF8B2E',
+  '13':'#3F7E44','14':'#0A97D9','15':'#56C02B','16':'#00689D',
+  '17':'#19486A'
+};
+
+/* ─── Subsistema colors ───────────────────────────────── */
+const SUB_CLASS = {
+  'BTED':'sub-BTED','CECyTE':'sub-CECyTE',
+  'DGETAyCM':'sub-DGETAyCM','DGETI':'sub-DGETI','CONALEP':'sub-CONALEP'
+};
+
+/* ─── DATABASE ────────────────────────────────────────── */
+const db = [
+    {
+        c: "Administración (BTED / CECyTE / DGETAyCM / DGETI / CONALEP)",
+        s: "541211",
+        sec: "Servicios de contabilidad y consultoría administrativa",
+        m: "Módulo III: Administra los procesos operativos de una organización",
+        a: [
+            "Implementación de sistemas de gestión documental digital para alcanzar la administración sin papel.",
+            "Diseño de indicadores de desempeño organizacional que integren métricas de sostenibilidad (ASG).",
+            "Gestión de compras verdes priorizando proveedores con certificaciones ambientales y de responsabilidad social.",
+            "Promoción de políticas de inclusión y equidad de género en los procesos de reclutamiento y promoción interna.",
+            "Aplicación de herramientas de mejora continua (ciclo PDCA) para optimizar el uso de recursos en la organización."
+        ],
+        h: "Gestión Organizacional Ética y Sostenible",
+        o1: "8", o1_t: "Trabajo Decente y Crecimiento Económico",
+        o2: "12", o2_t: "Producción y Consumo Responsables",
+        i: "Porcentaje de reducción de insumos administrativos y mejora en indicadores de desempeño",
+        d: "La administración técnica ética es la columna vertebral de toda organización que aspira a crecer sin comprometer el bienestar colectivo.",
+        orientacion: "Instructor(a): Evalúe que el alumno diseñe un proceso administrativo completo con indicadores de eficiencia, incluyendo al menos un criterio de sostenibilidad ambiental o social."
+    },
+    {
+        c: "Mecatrónica (CECyTE / DGETAyCM / DGETI / CONALEP)",
+        s: "333249",
+        sec: "Fabricación de maquinaria y equipo para otras industrias",
+        m: "Módulo III: Integra sistemas mecatrónicos automatizados",
+        a: [
+            "Programación de robots colaborativos (cobots) para tareas repetitivas, liberando al operario para funciones de mayor valor cognitivo.",
+            "Diseño e implementación de gemelos digitales para simular el consumo energético de una línea de producción antes de su instalación.",
+            "Mantenimiento predictivo mediante sensores IoT y análisis de datos para anticipar fallas y eliminar paros no programados.",
+            "Integración de actuadores de bajo consumo eléctrico en sistemas de control para reducir la huella energética del proceso.",
+            "Gestión de residuos electrónicos y componentes de automatización al final de su vida útil mediante protocolos de reciclaje técnico."
+        ],
+        h: "Automatización Sostenible y Manufactura Inteligente",
+        o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+        o2: "8", o2_t: "Trabajo Decente y Crecimiento Económico",
+        i: "Reducción del tiempo de ciclo productivo y consumo energético por unidad fabricada",
+        d: "La mecatrónica técnica es el puente entre la máquina y la inteligencia; automatizar con propósito es construir industria sostenible.",
+        orientacion: "Instructor(a): Evalúe que el alumno integre correctamente los sistemas eléctrico, mecánico y de control, verificando la lógica de programación en PLC antes de la puesta en marcha."
+    },
+    {
+        c: "Contabilidad (CECyTE / DGETAyCM / DGETI / CONALEP)",
+        s: "541211",
+        sec: "Servicios de contabilidad y auditoría",
+        m: "Módulo III: Registra y controla las operaciones financieras de la empresa",
+        a: [
+            "Implementación de sistemas de contabilidad ambiental para cuantificar los costos del impacto ecológico de la empresa.",
+            "Aplicación de criterios ASG (Ambientales, Sociales y de Gobernanza) en el análisis de estados financieros.",
+            "Digitalización del ciclo contable completo para alcanzar el objetivo de oficina cero papel.",
+            "Elaboración de reportes de sostenibilidad (GRI) que integren indicadores financieros con métricas de impacto social.",
+            "Gestión transparente de la nómina garantizando la equidad salarial y el cumplimiento de prestaciones de ley."
+        ],
+        h: "Contabilidad Verde y Transparencia Financiera",
+        o1: "8", o1_t: "Trabajo Decente y Crecimiento Económico",
+        o2: "12", o2_t: "Producción y Consumo Responsables",
+        i: "Porcentaje de procesos contables digitalizados y sin papel",
+        d: "La contabilidad técnica honesta es el espejo de la salud ética de una organización; registrar bien es gobernar con responsabilidad.",
+        orientacion: "Instructor(a): Fomente en el alumno el uso de software contable (CONTPAQi, SAP) y la comprensión de las normas de información financiera (NIF) con enfoque en transparencia."
+    },
+    {
+        c: "Electromecánica Industrial (CECyTE / DGETAyCM / DGETI / CONALEP)",
+        s: "333249",
+        sec: "Fabricación de maquinaria y equipo para otras industrias",
+        m: "Módulo II: Mantiene sistemas de transmisión de potencia",
+        a: [
+            "Optimización de sistemas de transmisión para reducir las pérdidas de energía por fricción o desalineación.",
+            "Mantenimiento preventivo de motores eléctricos para asegurar su operación en el punto de máxima eficiencia.",
+            "Gestión responsable de lubricantes y grasas industriales para evitar derrames y contaminación del suelo.",
+            "Instalación de variadores de frecuencia para el control de velocidad y ahorro energético en procesos industriales.",
+            "Implementación de protocolos de bloqueo y etiquetado (LOTO) para garantizar la seguridad del personal de mantenimiento."
+        ],
+        h: "Eficiencia Operativa y Seguridad Industrial",
+        o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+        o2: "7", o2_t: "Energía Asequible y No Contaminante",
+        i: "Reducción de paros no programados y ahorro energético",
+        d: "El técnico electromecánico es el guardián de la continuidad operativa bajo estándares de alta eficiencia energética.",
+        orientacion: "Instructor(a): Evalúe la destreza del alumno en el diagnóstico de fallas que causan consumos eléctricos anormales."
+    },
+    {
+        c: "Informática (CECyTE / DGETAyCM / DGETI / CONALEP)",
+        s: "541512",
+        sec: "Servicios de consultoría en computación",
+        m: "Módulo II: Administra redes y sistemas operativos",
+        a: [
+            "Configuración de políticas de ahorro energético en equipos de cómputo y servidores (Green Computing).",
+            "Implementación de sistemas de virtualización para reducir el número de servidores físicos y el consumo eléctrico.",
+            "Gestión responsable de equipos de cómputo obsoletos (e-waste) mediante su canalización a programas de reciclaje certificado.",
+            "Configuración de redes seguras con protocolos de ciberseguridad para proteger los datos de los usuarios.",
+            "Desarrollo de soluciones digitales accesibles que favorezcan la inclusión de personas con discapacidad tecnológica."
+        ],
+        h: "Cómputo Verde y Ciudadanía Digital Responsable",
+        o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+        o2: "10", o2_t: "Reducción de las Desigualdades",
+        i: "Reducción del consumo eléctrico del centro de cómputo por equipo activo",
+        d: "La informática técnica es la base de la sociedad del conocimiento; administrar datos con eficiencia y ética es administrar el futuro.",
+        orientacion: "Instructor(a): Verifique que el alumno domine la configuración de redes bajo estándar IEEE 802 y comprenda los principios básicos de ciberseguridad y privacidad de datos."
+    },
+    {
+        c: "Mantenimiento de Sistemas Electrónicos (CECyTE / DGETAyCM / DGETI / CONALEP)",
+        s: "334419",
+        sec: "Fabricación de otros equipos electrónicos",
+        m: "Módulo III: Diagnostica y repara sistemas electrónicos industriales",
+        a: [
+            "Diagnóstico de fallas en tarjetas electrónicas industriales para su reparación y extensión de vida útil, reduciendo e-waste.",
+            "Implementación de técnicas de soldadura de precisión (SMD) para la reparación de componentes en lugar de su reemplazo.",
+            "Uso de osciloscopio y multímetro digital para diagnósticos precisos que eviten el cambio innecesario de componentes.",
+            "Gestión de residuos electrónicos peligrosos (condensadores, CRT, baterías) conforme a la normativa ambiental vigente.",
+            "Actualización de firmware y software de equipos electrónicos para extender su funcionalidad sin necesidad de reemplazo."
+        ],
+        h: "Electrónica Sostenible y Reducción de E-waste",
+        o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+        o2: "12", o2_t: "Producción y Consumo Responsables",
+        i: "Número de sistemas electrónicos reparados vs desechados",
+        d: "Reparar el sistema electrónico es derrotar a la obsolescencia programada; el técnico sostenible alarga la vida de la tecnología.",
+        orientacion: "Instructor(a): Evalúe la destreza del alumno en la lectura de esquemáticos y en el diagnóstico sistemático de fallas antes de reemplazar componentes."
+    },
+    {
+        c: "Alimentos y Bebidas (CECyTE / DGETAyCM / DGETI / CONALEP)",
+        s: "722511",
+        sec: "Servicios de preparación de alimentos y bebidas",
+        m: "Módulo II: Prepara alimentos de acuerdo al recetario base",
+        a: [
+            "Aplicación de la técnica 'Pequeñas Porciones, Gran Valor' para reducir el desperdicio de alimentos en el plato del comensal.",
+            "Aprovechamiento de insumos locales y de temporada provenientes de cadenas cortas agropecuarias.",
+            "Separación estricta de residuos orgánicos para su aprovechamiento en procesos de compostaje o biogás.",
+            "Uso eficiente de equipos de refrigeración y cocción para minimizar el gasto de gas y electricidad.",
+            "Gestión responsable de aceites vegetales usados para evitar la contaminación de mantos freáticos y drenajes."
+        ],
+        h: "Gastronomía Sostenible y Soberanía Alimentaria",
+        o1: "12", o1_t: "Producción y Consumo Responsables",
+        o2: "2", o2_t: "Hambre Cero",
+        i: "Kilogramos de residuos orgánicos recuperados para compostaje",
+        d: "La técnica en alimentos impacta en la reducción de residuos y fortalece la economía de los productores locales.",
+        orientacion: "Instructor(a): Oriente al alumno en la gestión de inventarios 'PEPS' y en la importancia de consumir lo local."
+    },
+    {
+        c: "Administración de emprendimientos (BTED / CECyTE / DGETAyCM / DGETI)",
+        s: "541611",
+        sec: "Servicios de consultoría en administración",
+        m: "Módulo III: Desarrolla el plan de negocios del emprendimiento",
+        a: [
+            "Diseño de modelos de negocio con triple impacto (económico, social y ambiental) bajo el enfoque de emprendimiento social.",
+            "Análisis de mercado local para identificar necesidades comunitarias que puedan resolverse con emprendimiento sostenible.",
+            "Elaboración de planes financieros que consideren el acceso a microfinanciamiento y fondos de economía verde.",
+            "Implementación de estrategias de marketing digital de bajo costo para emprendimientos en comunidades con pocos recursos.",
+            "Registro formal del emprendimiento ante las autoridades para garantizar el acceso a seguridad social del emprendedor."
+        ],
+        h: "Emprendimiento Social e Innovación Sostenible",
+        o1: "8", o1_t: "Trabajo Decente y Crecimiento Económico",
+        o2: "1", o2_t: "Fin de la Pobreza",
+        i: "Número de emprendimientos formalizados con plan de impacto social o ambiental",
+        d: "Emprender con técnica y propósito transforma la creatividad juvenil en soluciones reales para los retos de la comunidad.",
+        orientacion: "Instructor(a): Guíe al alumno en la elaboración de un Business Model Canvas con criterios de sostenibilidad y en la presentación de su plan ante posibles inversores o clientes reales."
+    },
+    {
+        c: "Fuentes alternas de energía (CECyTE / DGETAyCM / DGETI / CONALEP)",
+        s: "221119",
+        sec: "Generación de energía eléctrica (otras fuentes)",
+        m: "Módulo III: Instala y mantiene sistemas de energía solar fotovoltaica",
+        a: [
+            "Dimensionamiento y montaje de arreglos fotovoltaicos en instalaciones residenciales o productivas para autoconsumo.",
+            "Mantenimiento preventivo de paneles solares, inversores y baterías para maximizar la vida útil del sistema.",
+            "Instalación de sistemas de calentamiento solar de agua para sustituir el uso de gas LP en hogares y empresas.",
+            "Gestión responsable de baterías de ciclo profundo al final de su vida útil, evitando la contaminación por plomo y electrolitos.",
+            "Evaluación del recurso solar y eólico mediante instrumentación de campo para el diseño óptimo de sistemas híbridos."
+        ],
+        h: "Transición Energética y Sistemas Renovables",
+        o1: "7", o1_t: "Energía Asequible y No Contaminante",
+        o2: "13", o2_t: "Acción por el Clima",
+        i: "Kilowatts-hora generados a partir de fuentes renovables instaladas",
+        d: "La energía técnica renovable es la respuesta al cambio climático; instalar un panel solar es plantar un árbol de luz para el futuro.",
+        orientacion: "Instructor(a): Evalúe la capacidad del alumno para calcular la irradiación solar del sitio y dimensionar correctamente un sistema fotovoltaico aislado o conectado a red."
+    },
+    {
+        c: "Refrigeración y Climatización (CECyTE / DGETI / CONALEP)",
+        s: "333412",
+        sec: "Fabricación de equipo de refrigeración industrial y comercial",
+        m: "Módulo IV: Mantiene sistemas de refrigeración industrial",
+        a: [
+            "Sustitución de refrigerantes con alto potencial de calentamiento global por alternativas ecológicas y naturales.",
+            "Optimización de la eficiencia energética en sistemas de refrigeración de plantas procesadoras de alimentos.",
+            "Recuperación, reciclaje y regeneración de gases refrigerantes para evitar su liberación a la atmósfera.",
+            "Implementación de sistemas de monitoreo remoto para detectar fugas de gas de manera inmediata.",
+            "Mantenimiento preventivo a cámaras frías para reducir el desperdicio de energía y la pérdida de productos perecederos."
+        ],
+        h: "Gestión Atmosférica y Cadena de Frío",
+        o1: "13", o1_t: "Acción por el Clima",
+        o2: "7", o2_t: "Energía Asequible y No Contaminante",
+        i: "Toneladas de CO2 equivalente evitadas mediante gestión de gases",
+        d: "El técnico en refrigeración es un guardián de la capa de ozono y un pilar para la seguridad alimentaria nacional.",
+        orientacion: "Instructor(a): Verifique el uso obligatorio de la bomba de vacío y la unidad recuperadora durante las prácticas de mantenimiento."
+    },
+    {
+        c: "Autotrónica (CECyTE / CONALEP)",
+        s: "811111",
+        sec: "Reparación y mantenimiento de automóviles y camiones",
+        m: "Módulo III: Diagnostica y repara sistemas de control electrónico del vehículo",
+        a: [
+            "Diagnóstico mediante scanner OBD-II de fallas en sistemas de gestión del motor para optimizar la combustión y reducir emisiones.",
+            "Calibración y reemplazo de sensores de oxígeno (sondas lambda) para garantizar la eficiencia del catalizador.",
+            "Diagnóstico y mantenimiento de sistemas de frenos ABS y control de estabilidad para garantizar la seguridad vial.",
+            "Programación de unidades de control electrónico (ECU) para vehículos híbridos y eléctricos.",
+            "Gestión de baterías de alta tensión en vehículos eléctricos bajo protocolos de seguridad eléctrica certificados."
+        ],
+        h: "Diagnóstico Electrónico y Movilidad Limpia",
+        o1: "13", o1_t: "Acción por el Clima",
+        o2: "9", o2_t: "Industria, Innovación e Infraestructura",
+        i: "Reducción de emisiones verificadas post-diagnóstico electrónico",
+        d: "La autotrónica es el cerebro del vehículo moderno; diagnosticar con precisión es garantizar movilidad eficiente y cero emisiones innecesarias.",
+        orientacion: "Instructor(a): Verifique que el alumno interprete correctamente los códigos DTC y utilice el osciloscopio para el análisis de señales de sensores."
+    },
+    {
+        c: "Administración de Recursos Humanos (CECyTE / DGETAyCM / DGETI)",
+        s: "561110",
+        sec: "Servicios de apoyo a los negocios",
+        m: "Módulo IV: Controla los procesos de capacitación y desarrollo del capital humano",
+        a: [
+            "Diseño de planes de formación técnica que incluyan competencias en sostenibilidad y responsabilidad social.",
+            "Implementación de políticas de igualdad salarial y no discriminación en los procesos de promoción interna.",
+            "Evaluación de riesgos psicosociales (NOM-035) para garantizar un entorno de trabajo seguro y decente.",
+            "Promoción de la diversidad e inclusión de grupos vulnerables en la plantilla laboral de la empresa.",
+            "Gestión de programas de bienestar que fomenten el equilibrio entre la vida laboral y familiar."
+        ],
+        h: "Capital Humano y Trabajo Decente",
+        o1: "8", o1_t: "Trabajo Decente y Crecimiento Económico",
+        o2: "10", o2_t: "Reducción de las Desigualdades",
+        i: "Índice de satisfacción laboral y equidad de género",
+        d: "Gestionar el talento con ética es la base para construir organizaciones productivas que no dejen a nadie atrás.",
+        orientacion: "Instructor(a): Fomente en el alumno el uso de indicadores de inclusión y el análisis de la brecha salarial de género."
+    },
+    {
+        c: "Electrónica (CECyTE / DGETAyCM / DGETI)",
+        s: "334410",
+        sec: "Fabricación de componentes electrónicos",
+        m: "Módulo II: Implementa sistemas de control de baja potencia",
+        a: [
+            "Diseño de circuitos electrónicos de bajo consumo (Low Power Design) para extender la vida de las baterías.",
+            "Implementación de sensores de luz y movimiento para la automatización de edificios inteligentes y ahorro energético.",
+            "Reparación y mantenimiento de tarjetas electrónicas para combatir la obsolescencia programada y reducir la basura electrónica.",
+            "Uso de soldadura libre de plomo para reducir el impacto tóxico de los componentes al final de su vida útil.",
+            "Desarrollo de prototipos de monitoreo ambiental (calidad del aire/agua) basados en hardware abierto."
+        ],
+        h: "Eco-diseño y Eficiencia Energética",
+        o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+        o2: "7", o2_t: "Energía Asequible y No Contaminante",
+        i: "Reducción de consumo en standby de los dispositivos",
+        d: "La electrónica es el cerebro de la transición energética; sin control inteligente no hay ahorro de recursos.",
+        orientacion: "Instructor(a): Evalúe la capacidad del alumno para proponer mejoras en la eficiencia de una fuente de alimentación."
+    },
+    {
+        c: "Logística (CECyTE / DGETAyCM / DGETI)",
+        s: "488512",
+        sec: "Servicios de mensajería y paquetería",
+        m: "Módulo IV: Organiza el transporte de mercancías",
+        a: [
+            "Diseño de rutas de transporte optimizadas (Software de ruteo) para reducir el consumo de diésel y la huella de carbono.",
+            "Implementación de estrategias de 'última milla' mediante vehículos eléctricos o transporte no motorizado.",
+            "Supervisión del embalaje sostenible utilizando materiales biodegradables y reduciendo el uso de plásticos de embalaje.",
+            "Gestión de la logística inversa para el retorno de envases y embalajes, promoviendo la economía circular.",
+            "Auditoría de proveedores de transporte para asegurar el cumplimiento de normas de mantenimiento y bajas emisiones."
+        ],
+        h: "Suministro Ético y Descarbonización",
+        o1: "12", o1_t: "Producción y Consumo Responsables",
+        o2: "13", o2_t: "Acción por el Clima",
+        i: "Reducción de kilómetros recorridos por unidad de carga",
+        d: "La logística técnica es el puente hacia un consumo consciente; optimizar el movimiento es salvar energía.",
+        orientacion: "Instructor(a): Verifique que el alumno calcule el ahorro de emisiones al consolidar cargas y optimizar rutas."
+    },
+    {
+        c: "Preparación de alimentos y bebidas (CECyTE / DGETAyCM / DGETI)",
+        s: "722511",
+        sec: "Servicios de preparación de alimentos y bebidas",
+        m: "Módulo II: Prepara alimentos de acuerdo al recetario base",
+        a: [
+            "Aplicación de la técnica 'Pequeñas Porciones, Gran Valor' para reducir el desperdicio de alimentos en el plato del comensal.",
+            "Aprovechamiento de insumos locales y de temporada provenientes de cadenas cortas agropecuarias.",
+            "Separación estricta de residuos orgánicos para su aprovechamiento en procesos de compostaje o biogás.",
+            "Uso eficiente de equipos de refrigeración y cocción para minimizar el gasto de gas y electricidad.",
+            "Gestión responsable de aceites vegetales usados para evitar la contaminación de mantos freáticos y drenajes."
+        ],
+        h: "Gastronomía Sostenible y Soberanía Alimentaria",
+        o1: "12", o1_t: "Producción y Consumo Responsables",
+        o2: "2", o2_t: "Hambre Cero",
+        i: "Kilogramos de residuos orgánicos recuperados para compostaje",
+        d: "La técnica en alimentos impacta en la reducción de residuos y fortalece la economía de los productores locales.",
+        orientacion: "Instructor(a): Oriente al alumno en la gestión de inventarios 'PEPS' y en la importancia de consumir lo local."
+    },
+    {
+        c: "Programación (CECyTE / DGETAyCM / DGETI)",
+        s: "541511",
+        sec: "Desarrollo y producción de software",
+        m: "Módulo III: Desarrolla aplicaciones móviles y web",
+        a: [
+            "Desarrollo de aplicaciones para el monitoreo en tiempo real de consumo de energía o agua en hogares y empresas.",
+            "Implementación de algoritmos de optimización para reducir el tiempo de ejecución y el consumo de recursos de cómputo.",
+            "Diseño de interfaces accesibles (WCAG 2.1) para garantizar que las aplicaciones sean usables por personas con discapacidad.",
+            "Aplicación de metodologías ágiles (Scrum) para el desarrollo iterativo y eficiente de soluciones tecnológicas.",
+            "Desarrollo de plataformas de datos abiertos que faciliten la transparencia y la participación ciudadana en decisiones locales."
+        ],
+        h: "Desarrollo de Software Ético y Accesible",
+        o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+        o2: "10", o2_t: "Reducción de las Desigualdades",
+        i: "Número de aplicaciones desarrolladas con estándares de accesibilidad y eficiencia energética",
+        d: "Programar con propósito social es convertir el código en un puente hacia la inclusión y la solución de problemas reales del planeta.",
+        orientacion: "Instructor(a): Oriente al alumno en el uso de control de versiones (Git/GitHub) y en las buenas prácticas de documentación de código para garantizar la colaboración técnica."
+    },
+    {
+        c: "Mantenimiento industrial (CECyTE / DGETAyCM / DGETI)",
+        s: "811311",
+        sec: "Reparación y mantenimiento de maquinaria y equipo industrial",
+        m: "Módulo III: Mantiene sistemas neumáticos e hidráulicos",
+        a: [
+            "Detección y sellado de fugas en líneas de aire comprimido para reducir el desperdicio de energía eléctrica en compresores.",
+            "Implementación de planes de recuperación y filtrado de aceites hidráulicos para evitar su desecho prematuro.",
+            "Sustitución de componentes neumáticos por versiones de bajo consumo de aire (eficiencia fluídica).",
+            "Mantenimiento preventivo de válvulas y actuadores para garantizar la precisión operativa y reducir mermas de producción.",
+            "Aplicación de protocolos de seguridad para el manejo de energías peligrosas (bloqueo y etiquetado)."
+        ],
+        h: "Mantenimiento Preventivo y Ahorro Energético",
+        o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+        o2: "12", o2_t: "Producción y Consumo Responsables",
+        i: "Reducción de m3 de aire comprimido desperdiciado",
+        d: "El mantenimiento técnico asegura que la industria opere con el mínimo impacto ambiental y el máximo aprovechamiento de recursos.",
+        orientacion: "Instructor(a): Verifique que el alumno identifique el costo energético de una fuga de aire y proponga medidas de corrección inmediata."
+    },
+    {
+        c: "Producción industrial de alimentos (CECyTE / DGETAyCM / DGETI)",
+        s: "311999",
+        sec: "Industrias alimentarias",
+        m: "Módulo II: Realiza los procesos de transformación de productos lácteos",
+        a: [
+            "Optimización del uso de agua en los procesos de limpieza y sanitización de equipos industriales (Sistemas CIP).",
+            "Tratamiento de suero lácteo para evitar su vertido en drenajes, transformándolo en productos de valor agregado.",
+            "Implementación de controles de temperatura precisos para evitar el desperdicio de materia prima por descomposición.",
+            "Uso de tecnologías de empaque al vacío o atmósfera modificada para extender la vida útil del producto de forma natural.",
+            "Supervisión del cumplimiento de la NOM-251-SSA1 para garantizar alimentos inocuos y evitar mermas sanitarias."
+        ],
+        h: "Eco-Procesamiento y Seguridad Alimentaria",
+        o1: "2", o1_t: "Hambre Cero",
+        o2: "12", o2_t: "Producción y Consumo Responsables",
+        i: "Porcentaje de suero lácteo recuperado o procesado",
+        d: "La industria alimentaria técnica debe cerrar sus ciclos, convirtiendo subproductos en recursos para combatir el hambre.",
+        orientacion: "Instructor(a): Evalúe la propuesta del alumno para el manejo del suero de leche, evitando su impacto ambiental."
+    },
+    {
+        c: "Construcción (DGETI / CONALEP)",
+        s: "236111",
+        sec: "Edificación de vivienda unifamiliar",
+        m: "Módulo III: Supervisa obras de construcción de acuerdo a los planos y especificaciones",
+        a: [
+            "Supervisión del uso de materiales con baja huella de carbono y procesos constructivos que minimicen el desperdicio en obra.",
+            "Implementación de medidas de seguridad y salud en el trabajo para prevenir riesgos de caída y accidentes laborales.",
+            "Verificación de la correcta gestión y disposición de residuos de construcción y demolición (RCD).",
+            "Monitoreo del uso eficiente del agua y energía durante la fase de ejecución de la obra técnica.",
+            "Aseguramiento del cumplimiento de las normas de accesibilidad universal en accesos y circulaciones."
+        ],
+        h: "Edificación Segura y Responsable",
+        o1: "11", o1_t: "Ciudades y Comunidades Sostenibles",
+        o2: "8", o2_t: "Trabajo Decente y Crecimiento Económico",
+        i: "Porcentaje de residuos de obra reciclados o reutilizados",
+        d: "La construcción técnica responsable garantiza hábitats seguros que respetan tanto al trabajador como al entorno urbano.",
+        orientacion: "Instructor(a): Verifique que el alumno sepa interpretar las normas de seguridad e higiene y el manejo de bitácoras de residuos."
+    },
+    {
+        c: "Ciencia de Datos e Inteligencia Artificial (CECyTE / DGETI / CONALEP)",
+        s: "541512",
+        sec: "Servicios de consultoría en computación",
+        m: "Módulo IV: Desarrolla modelos de aprendizaje automático aplicados",
+        a: [
+            "Análisis de grandes volúmenes de datos climáticos para generar modelos predictivos de riesgo ambiental.",
+            "Desarrollo de modelos de IA para la detección temprana de enfermedades en cultivos mediante visión computacional.",
+            "Implementación de algoritmos de optimización energética en redes eléctricas inteligentes (Smart Grid).",
+            "Uso ético de datos personales bajo marcos de privacidad (GDPR/LFPDPPP) para proteger los derechos digitales.",
+            "Diseño de sistemas de IA con sesgo controlado para garantizar la equidad en decisiones automatizadas."
+        ],
+        h: "IA Ética y Análisis de Datos para el Bien Común",
+        o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+        o2: "13", o2_t: "Acción por el Clima",
+        i: "Precisión del modelo de predicción ambiental o productiva desarrollado",
+        d: "La inteligencia artificial técnica es la herramienta más poderosa para acelerar los ODS si se desarrolla con ética y propósito colectivo.",
+        orientacion: "Instructor(a): Evalúe que el alumno comprenda los sesgos en los datos de entrenamiento y proponga estrategias para garantizar la equidad en los modelos de IA."
+    },
+    {
+        c: "Ciencia de datos e información (CECyTE / DGETI)",
+        s: "541512",
+        sec: "Servicios de consultoría en computación",
+        m: "Módulo III: Procesa y visualiza datos para la toma de decisiones",
+        a: [
+            "Construcción de tableros de control (dashboards) con indicadores de sostenibilidad para organizaciones y empresas.",
+            "Limpieza y normalización de bases de datos para garantizar la calidad y confiabilidad de la información analizada.",
+            "Análisis estadístico de datos socioeconómicos para identificar patrones de desigualdad y proponer intervenciones.",
+            "Uso de herramientas de visualización (Power BI, Tableau) para comunicar hallazgos de datos a audiencias no técnicas.",
+            "Gestión de datos abiertos del sector público para mejorar la transparencia y la rendición de cuentas institucional."
+        ],
+        h: "Alfabetización de Datos y Gobernanza Informacional",
+        o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+        o2: "16", o2_t: "Paz, Justicia e Instituciones Sólidas",
+        i: "Número de indicadores de sostenibilidad correctamente visualizados en tablero",
+        d: "Los datos bien analizados son la brújula de las políticas públicas; quien domina la información, domina el camino hacia los ODS.",
+        orientacion: "Instructor(a): Fomente en el alumno el uso de Python (pandas, matplotlib) o R para el análisis reproducible y la generación de reportes técnicos automatizados."
+    },
+    {
+        c: "Electromecánica (CECyTE / DGETI)",
+        s: "333249",
+        sec: "Fabricación de maquinaria y equipo para otras industrias",
+        m: "Módulo II: Instala y mantiene sistemas electromecánicos",
+        a: [
+            "Instalación de sistemas de bombeo eficiente con variadores de frecuencia para reducir el consumo de energía en pozos.",
+            "Mantenimiento preventivo de motores y generadores para asegurar la eficiencia energética en instalaciones rurales e industriales.",
+            "Gestión responsable de aceites dieléctricos y lubricantes para evitar su vertido al suelo o cuerpos de agua.",
+            "Diagnóstico de fallas electromecánicas mediante instrumentos de medición calibrados para reducir los tiempos de paro.",
+            "Implementación de protocolos de seguridad eléctrica (LOTO) para garantizar la integridad del técnico durante las intervenciones."
+        ],
+        h: "Sistemas Electromecánicos Eficientes y Seguros",
+        o1: "7", o1_t: "Energía Asequible y No Contaminante",
+        o2: "9", o2_t: "Industria, Innovación e Infraestructura",
+        i: "Reducción de consumo energético en sistemas de bombeo y transmisión mantenidos",
+        d: "La electromecánica técnica conecta la energía con el movimiento; hacerlo con eficiencia es reducir la factura del planeta.",
+        orientacion: "Instructor(a): Evalúe que el alumno interprete correctamente un diagrama eléctrico-mecánico y realice el mantenimiento preventivo con base en el manual del fabricante."
+    },
+    {
+        c: "Inteligencia artificial (CECyTE / DGETI)",
+        s: "541511",
+        sec: "Desarrollo y producción de software",
+        m: "Módulo II: Implementa sistemas de aprendizaje automático",
+        a: [
+            "Desarrollo de chatbots de orientación social para facilitar el acceso de la ciudadanía a servicios públicos.",
+            "Implementación de redes neuronales para la clasificación de residuos sólidos en plantas de separación automatizada.",
+            "Entrenamiento de modelos de visión artificial para el monitoreo de deforestación en imágenes satelitales.",
+            "Auditoría de algoritmos de IA para detectar y corregir sesgos de género, raza o condición socioeconómica.",
+            "Integración de IA en sistemas de salud para el apoyo al diagnóstico clínico en regiones con escasez de especialistas."
+        ],
+        h: "Inteligencia Artificial para el Desarrollo Humano",
+        o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+        o2: "3", o2_t: "Salud y Bienestar",
+        i: "Tasa de precisión del modelo de IA en la tarea social o ambiental asignada",
+        d: "La IA técnica al servicio de los ODS convierte millones de datos en decisiones que protegen vidas y ecosistemas.",
+        orientacion: "Instructor(a): Verifique que el alumno aplique métricas de evaluación de modelos (precisión, recall, F1) y comprenda las implicaciones éticas de cada aplicación desarrollada."
+    },
+    {
+        c: "Refrigeración y aire acondicionado (CECyTE / DGETI)",
+        s: "333412",
+        sec: "Fabricación de equipo de refrigeración industrial y comercial",
+        m: "Módulo III: Instala y mantiene sistemas de aire acondicionado residencial y comercial",
+        a: [
+            "Instalación de equipos de aire acondicionado con refrigerantes de bajo potencial de calentamiento global (R-32, R-290).",
+            "Optimización de los parámetros de operación (temperatura, humedad) para maximizar el confort con mínima energía.",
+            "Recuperación y reciclaje de gases refrigerantes durante el mantenimiento, evitando su liberación a la atmósfera.",
+            "Instalación de sistemas de ventilación natural complementaria para reducir la dependencia del aire acondicionado mecánico.",
+            "Mantenimiento preventivo de filtros y serpentines para garantizar la eficiencia y la calidad del aire interior."
+        ],
+        h: "Climatización Eficiente y Confort Sostenible",
+        o1: "13", o1_t: "Acción por el Clima",
+        o2: "7", o2_t: "Energía Asequible y No Contaminante",
+        i: "Reducción de kWh consumidos por m2 climatizado mediante ajuste técnico",
+        d: "El técnico en climatización moderno diseña el confort del hogar y la empresa sin sacrificar el confort del planeta.",
+        orientacion: "Instructor(a): Verifique que el alumno domine el uso del manifold y la unidad recuperadora de refrigerante, y comprenda la normativa de Kigali sobre la eliminación de HFCs."
+    },
+    {
+        c: "Servicios de hospedaje (CECyTE / DGETI)",
+        s: "721110",
+        sec: "Hoteles con otros servicios integrados",
+        m: "Módulo III: Gestiona los servicios de recepción y habitaciones",
+        a: [
+            "Implementación de sistemas de gestión energética en habitaciones (sensores de ocupación) para reducir el consumo eléctrico.",
+            "Uso de amenidades biodegradables y recargables para eliminar la generación de plásticos de un solo uso.",
+            "Aplicación de programas de reutilización de ropa de cama y toallas, reduciendo el consumo de agua y detergentes.",
+            "Integración de proveedores locales en el suministro de alimentos para el desayuno del huésped, apoyando la economía regional.",
+            "Implementación de sistemas de check-in y check-out digital para reducir el uso de papel en el área de recepción."
+        ],
+        h: "Hospitalidad Responsable y Turismo Verde",
+        o1: "12", o1_t: "Producción y Consumo Responsables",
+        o2: "8", o2_t: "Trabajo Decente y Crecimiento Económico",
+        i: "Litros de agua y kWh ahorrados por habitación ocupada por mes",
+        d: "El hospedaje técnico de calidad transforma cada estadía en una experiencia de consumo consciente que protege el destino turístico.",
+        orientacion: "Instructor(a): Evalúe la capacidad del alumno para gestionar el ciclo completo de una habitación con criterios de eficiencia y estándares de calidad turística (NMX-TT)."
+    },
+    {
+        c: "Turismo (DGETI / CONALEP)",
+        s: "561510",
+        sec: "Agencias de viajes y servicios de reservaciones",
+        m: "Módulo IV: Diseña y opera productos turísticos sustentables",
+        a: [
+            "Diseño de circuitos de ecoturismo que generen beneficios directos a las comunidades locales y preserven el patrimonio natural.",
+            "Evaluación de la capacidad de carga de los sitios turísticos para evitar el sobreturismo y la degradación del atractivo.",
+            "Promoción del turismo accesible e inclusivo para personas con discapacidad o adultos mayores.",
+            "Implementación de certificaciones de turismo sustentable (Sello S) para los operadores turísticos de la región.",
+            "Diseño de estrategias de marketing digital responsable que eviten la sobreexplotación visual de comunidades indígenas."
+        ],
+        h: "Turismo Sostenible y Gestión del Patrimonio",
+        o1: "8", o1_t: "Trabajo Decente y Crecimiento Económico",
+        o2: "11", o2_t: "Ciudades y Comunidades Sostenibles",
+        i: "Porcentaje del gasto turístico que permanece en la economía local",
+        d: "El turismo técnico bien gestionado es el motor de la economía comunitaria y el guardián de los paisajes que nos hacen únicos.",
+        orientacion: "Instructor(a): Oriente al alumno en el cálculo de la capacidad de carga turística y en el diseño de rutas que distribuyan el flujo de visitantes de manera equitativa."
+    },
+    {
+        c: "Control de Calidad (CONALEP)",
+        s: "541990",
+        sec: "Servicios profesionales, científicos y técnicos",
+        m: "Módulo II: Realiza pruebas físicas y químicas a materiales",
+        a: [
+            "Aplicación de control estadístico de procesos para reducir la generación de productos defectuosos y desperdicio de materia prima.",
+            "Implementación de técnicas de metrología dimensional para asegurar la precisión y evitar el re-trabajo industrial.",
+            "Supervisión del cumplimiento de normativas ambientales y de seguridad en los procesos de manufactura.",
+            "Uso de herramientas de mejora continua (Lean Six Sigma) para optimizar el uso de recursos energéticos y materiales.",
+            "Gestión de la trazabilidad del producto para garantizar la seguridad del consumidor y la responsabilidad corporativa."
+        ],
+        h: "Excelencia Operativa y Cero Desperdicio",
+        o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+        o2: "12", o2_t: "Producción y Consumo Responsables",
+        i: "Reducción del índice de scrap (desperdicio) por lote",
+        d: "El técnico en control de calidad asegura que la eficiencia y la sostenibilidad se cumplan desde la primera fase de producción.",
+        orientacion: "Instructor(a): Evalúe la destreza del alumno en el uso de instrumentos de medición y la interpretación de gráficas de control."
+    },
+    {
+        c: "Escenotecnia (CONALEP)",
+        s: "711510",
+        sec: "Compañías y grupos de espectáculos artísticos y culturales",
+        m: "Módulo II: Diseña e instala sistemas de iluminación y audio para espectáculos",
+        a: [
+            "Uso de tecnología LED de alta eficiencia en el diseño de iluminación escénica para reducir el consumo eléctrico en un 60%.",
+            "Fabricación de utilería y escenografía con materiales reciclados, madera certificada y residuos industriales reutilizados.",
+            "Implementación de sistemas de gestión de cables y equipos para maximizar su reutilización entre producciones.",
+            "Diseño de montajes escénicos desmontables y modulares que eliminen la generación de residuos al finalizar la temporada.",
+            "Aplicación de protocolos de seguridad en alturas (trabajo en parrilla) para garantizar la integridad física del técnico."
+        ],
+        h: "Producción Cultural Responsable y Segura",
+        o1: "11", o1_t: "Ciudades y Comunidades Sostenibles",
+        o2: "8", o2_t: "Trabajo Decente y Crecimiento Económico",
+        i: "Porcentaje de residuos de producción escénica reutilizados o reciclados",
+        d: "La escenotecnia técnica convierte el arte en experiencia; hacerlo con eficiencia y seguridad es sostener la cultura para todos.",
+        orientacion: "Instructor(a): Verifique que el alumno domine el uso del equipo de protección en alturas y comprenda el cálculo básico de cargas para la instalación de equipos en la parrilla."
+    },
+    {
+        c: "Industria del Vestido (CONALEP)",
+        s: "315999",
+        sec: "Confección de prendas de vestir",
+        m: "Módulo III: Confecciona prendas de vestir industrial",
+        a: [
+            "Optimización de los trazos de corte mediante software CAD para maximizar el aprovechamiento de la tela y reducir los desperdicios.",
+            "Uso de telas orgánicas, recicladas o de fibras naturales para reducir el impacto ambiental de la industria textil.",
+            "Implementación de técnicas de upcycling para transformar retazos y prendas dañadas en nuevos productos de valor.",
+            "Gestión responsable de residuos líquidos del proceso de teñido para evitar la contaminación de cuerpos de agua.",
+            "Aplicación de condiciones de trabajo justas y ergonómicamente adecuadas para garantizar el bienestar del operario de confección."
+        ],
+        h: "Moda Sostenible y Economía Circular Textil",
+        o1: "12", o1_t: "Producción y Consumo Responsables",
+        o2: "8", o2_t: "Trabajo Decente y Crecimiento Económico",
+        i: "Porcentaje de merma de tela recuperada o reutilizada por lote de producción",
+        d: "La industria del vestido técnica debe evolucionar hacia la moda circular, donde cada prenda se diseña pensando en su próxima vida.",
+        orientacion: "Instructor(a): Fomente en el alumno el análisis del ciclo de vida de una prenda y la búsqueda de proveedores con certificaciones de responsabilidad social y ambiental."
+    },
+    {
+        c: "Máquinas Herramienta (CONALEP)",
+        s: "332710",
+        sec: "Maquinado de piezas industriales y fabricación de tornillos",
+        m: "Módulo IV: Maquina piezas por Control Numérico Computarizado (CNC)",
+        a: [
+            "Programación eficiente de trayectorias de corte para reducir el tiempo de maquinado y el gasto energético.",
+            "Uso de fluidos de corte (refrigerantes) biodegradables y sistemas de filtración para prolongar su vida útil.",
+            "Gestión y clasificación de virutas metálicas para su reintegración en la cadena de reciclaje siderúrgico.",
+            "Aplicación de metrología de alta precisión para evitar el re-trabajo y el desperdicio de piezas defectuosas.",
+            "Mantenimiento predictivo de los husillos y guías para asegurar la máxima eficiencia operativa del equipo."
+        ],
+        h: "Manufactura de Alta Precisión y Cero Desperdicio",
+        o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+        o2: "12", o2_t: "Producción y Consumo Responsables",
+        i: "Reducción de piezas rechazadas (merma cero)",
+        d: "La precisión técnica en el maquinado es sinónimo de eficiencia; producir bien a la primera es una acción sostenible.",
+        orientacion: "Instructor(a): Oriente al alumno en el cálculo de avances y velocidades para maximizar la vida útil de las herramientas de corte."
+    },
+    {
+        c: "Producción y Transformación de Productos Acuícolas (DGETAyCM / CONALEP)",
+        s: "112512",
+        sec: "Acuicultura de peces en cuerpos de agua dulce",
+        m: "Módulo III: Opera sistemas de cultivo de organismos acuáticos",
+        a: [
+            "Implementación de sistemas de recirculación acuícola (RAS) para minimizar el uso y contaminación del agua.",
+            "Monitoreo de parámetros físico-químicos para asegurar la salud y bienestar de las especies en cultivo.",
+            "Uso de alimentos balanceados con ingredientes sostenibles para reducir la dependencia de harina de pescado silvestre.",
+            "Gestión de lodos y residuos orgánicos para su transformación en abonos mediante acuaponía.",
+            "Prevención y control biológico de enfermedades para evitar el uso excesivo de antibióticos en el medio acuático."
+        ],
+        h: "Acuicultura Sostenible y Salud Azul",
+        o1: "14", o1_t: "Vida Submarina",
+        o2: "2", o2_t: "Hambre Cero",
+        i: "Factor de conversión alimenticia (FCR) optimizado",
+        d: "La acuacultura técnica es la solución para alimentar a la población sin agotar las poblaciones de peces silvestres.",
+        orientacion: "Instructor(a): Verifique que el alumno domine el control de nitritos y amoníaco para prevenir la mortalidad y el desperdicio de recursos."
+    },
+    {
+        c: "Química Industrial (CONALEP)",
+        s: "325999",
+        sec: "Fabricación de otros productos químicos",
+        m: "Módulo III: Realiza análisis químicos industriales",
+        a: [
+            "Optimización de procesos químicos para reducir la generación de subproductos tóxicos o residuos peligrosos.",
+            "Implementación de sistemas de recuperación de solventes mediante destilación para su reutilización en planta.",
+            "Monitoreo de emisiones atmosféricas y efluentes líquidos para asegurar el cumplimiento de las normas ambientales (SEMARNAT).",
+            "Sustitución de reactivos convencionales por alternativas de 'Química Verde' con menor impacto ambiental.",
+            "Gestión estricta de la hoja de seguridad de materiales (MSDS) para prevenir riesgos químicos y accidentes laborales."
+        ],
+        h: "Procesos Químicos Sostenibles y Seguridad",
+        o1: "12", o1_t: "Producción y Consumo Responsables",
+        o2: "9", o2_t: "Industria, Innovación e Infraestructura",
+        i: "Reducción de residuos químicos peligrosos por lote de producción",
+        d: "La química industrial técnica busca transformar la materia de forma eficiente, minimizando la huella tóxica en el entorno.",
+        orientacion: "Instructor(a): Verifique que el alumno domine el pesaje analítico y el manejo de residuos químicos de acuerdo a su compatibilidad."
+    },
+    {
+        c: "Seguridad e Higiene y Protección Civil (CONALEP)",
+        s: "541690",
+        sec: "Otros servicios de consultoría científica y técnica",
+        m: "Módulo III: Implementa programas de seguridad e higiene ocupacional",
+        a: [
+            "Identificación y evaluación de riesgos físicos, químicos y ergonómicos en el lugar de trabajo según la NOM-030-STPS.",
+            "Diseño de programas de capacitación en seguridad laboral que incluyan perspectiva de género y accesibilidad.",
+            "Implementación de planes de emergencia y evacuación que integren a personas con discapacidad y adultos mayores.",
+            "Monitoreo de la exposición a agentes contaminantes (ruido, polvos, vapores) para proteger la salud de los trabajadores.",
+            "Gestión del comité de seguridad e higiene para promover una cultura preventiva y participativa en el centro de trabajo."
+        ],
+        h: "Cultura Preventiva y Trabajo Seguro",
+        o1: "8", o1_t: "Trabajo Decente y Crecimiento Económico",
+        o2: "3", o2_t: "Salud y Bienestar",
+        i: "Reducción del índice de frecuencia de accidentes laborales en el centro de trabajo",
+        d: "La seguridad técnica no es un gasto, es la inversión más rentable: un trabajador seguro produce mejor y vive más.",
+        orientacion: "Instructor(a): Evalúe la capacidad del alumno para elaborar mapas de riesgo y verificar el cumplimiento de las NOMs de seguridad e higiene en una empresa real o simulada."
+    },
+    {
+        c: "Laministería y Recubrimiento de las Aeronaves (CONALEP)",
+        s: "488110",
+        sec: "Servicios relacionados con el transporte aéreo",
+        m: "Módulo III: Aplica procesos de laministería y recubrimiento en estructuras aeronáuticas",
+        a: [
+            "Aplicación de pinturas y recubrimientos de bajo contenido de COV para reducir las emisiones del proceso aeronáutico.",
+            "Gestión rigurosa de residuos peligrosos (solventes, masillas, abrasivos) conforme a la normativa aeronáutica internacional.",
+            "Preparación de superficies con técnicas de chorro de granalla que minimicen el desperdicio de abrasivo.",
+            "Uso de materiales compuestos ultraligeros en reparaciones estructurales para reducir el peso y el consumo de combustible.",
+            "Documentación técnica electrónica de cada trabajo de laministería para la trazabilidad y el control de calidad."
+        ],
+        h: "Manufactura Aeronáutica de Precisión y Sostenibilidad",
+        o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+        o2: "12", o2_t: "Producción y Consumo Responsables",
+        i: "Reducción de consumo de solventes y VOC por trabajo de recubrimiento",
+        d: "La laministería aeronáutica técnica garantiza que cada aeronave vuele más segura, más liviana y con menor huella ambiental.",
+        orientacion: "Instructor(a): Supervise el manejo de materiales compuestos y la aplicación de pintura con pistola HVLP para reducir la dispersión de vapores."
+    },
+    {
+        c: "Mantenimiento Automotriz (CONALEP)",
+        s: "811111",
+        sec: "Reparación y mantenimiento de automóviles y camiones",
+        m: "Módulo IV: Diagnostica el estado de los sistemas de encendido y control de emisiones",
+        a: [
+            "Afinación técnica de motores para reducir la emisión de gases contaminantes (CO2 y NOx) a la atmósfera.",
+            "Diagnóstico electrónico del sistema de inyección para optimizar el rendimiento de combustible.",
+            "Gestión responsable de aceites usados, filtros y baterías para evitar la contaminación de suelos.",
+            "Mantenimiento de sistemas de frenado regenerativo en vehículos híbridos y eléctricos.",
+            "Implementación de protocolos de seguridad en el taller para prevenir riesgos laborales y accidentes."
+        ],
+        h: "Movilidad Sostenible y Eficiencia Energética",
+        o1: "13", o1_t: "Acción por el Clima",
+        o2: "9", o2_t: "Industria, Innovación e Infraestructura",
+        i: "Reducción de emisiones verificada post-mantenimiento",
+        d: "El técnico automotriz es clave para asegurar una movilidad que respete los límites ambientales y proteja la salud urbana.",
+        orientacion: "Instructor(a): Verifique que el alumno utilice correctamente el analizador de gases y comprenda el impacto de una mala combustión en el ODS 13."
+    },
+    {
+        c: "Mantenimiento de Motores y Planeadores (CONALEP)",
+        s: "488110",
+        sec: "Servicios relacionados con el transporte aéreo",
+        m: "Módulo II: Mantiene los sistemas eléctricos y electrónicos de las aeronaves",
+        a: [
+            "Ejecución de inspecciones rigurosas para asegurar la máxima eficiencia de combustión en motores aeronáuticos.",
+            "Gestión estricta de residuos peligrosos (aceites y solventes) según la normativa aeronáutica internacional.",
+            "Implementación de técnicas de mantenimiento predictivo para extender la vida útil de los componentes estructurales.",
+            "Uso de materiales compuestos avanzados que reducen el peso de la aeronave y el consumo de combustible.",
+            "Optimización de los procesos de limpieza de motores para reducir el arrastre aerodinámico y las emisiones."
+        ],
+        h: "Seguridad Aeronáutica y Eficiencia de Combustible",
+        o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+        o2: "12", o2_t: "Producción y Consumo Responsables",
+        i: "Reducción de consumo de turbosina por milla volada mediante mantenimiento óptimo",
+        d: "La precisión en el mantenimiento aeronáutico garantiza la seguridad humana y minimiza el impacto ambiental del transporte aéreo.",
+        orientacion: "Instructor(a): Supervise el manejo de bitácoras de mantenimiento y la correcta disposición final de lubricantes usados."
+    },
+    {
+        c: "Expresión Gráfica Digital (CONALEP)",
+        s: "541430",
+        sec: "Diseño gráfico",
+        m: "Módulo II: Produce documentos técnicos digitales con software especializado",
+        a: [
+            "Creación de planos y maquetas digitales en 3D para visualizar proyectos de construcción o manufactura antes de su ejecución.",
+            "Uso de software de diseño vectorial libre (Inkscape, LibreOffice Draw) para reducir costos de licencias y promover el software abierto.",
+            "Diseño de infografías que comuniquen datos complejos de sostenibilidad de forma visual y accesible a la ciudadanía.",
+            "Optimización de archivos digitales para reducir el peso de almacenamiento y el consumo energético en transmisión.",
+            "Aplicación de principios de diseño universal para que los materiales gráficos sean comprensibles para personas con baja escolaridad."
+        ],
+        h: "Comunicación Técnica Visual e Inclusiva",
+        o1: "4", o1_t: "Educación de Calidad",
+        o2: "9", o2_t: "Industria, Innovación e Infraestructura",
+        i: "Número de proyectos técnicos comunicados con criterios de accesibilidad visual",
+        d: "La expresión gráfica técnica traduce ideas complejas en imágenes que todos entienden; visualizar bien es democratizar el conocimiento.",
+        orientacion: "Instructor(a): Verifique que el alumno domine el uso de capas y símbolos normalizados en dibujo técnico, y que aplique las normas ISO de representación gráfica."
+    },
+    {
+        c: "Soporte y Mantenimiento de Equipo de Cómputo (CONALEP)",
+        s: "811212",
+        sec: "Reparación y mantenimiento de computadoras y equipo periférico",
+        m: "Módulo III: Mantiene equipos de cómputo y redes de área local",
+        a: [
+            "Extensión de la vida útil de equipos de cómputo mediante mantenimiento preventivo para reducir la generación de e-waste.",
+            "Implementación de programas de donación y refacondicionamiento de equipos para comunidades con bajo acceso tecnológico.",
+            "Configuración de políticas de ahorro de energía en sistemas operativos para reducir el consumo eléctrico en standby.",
+            "Gestión responsable de componentes electrónicos (baterías, cartuchos, circuitos) al final de su vida útil.",
+            "Desarrollo de soluciones de red eficientes para reducir la latencia y el consumo de ancho de banda por usuario."
+        ],
+        h: "Mantenimiento Digital e Inclusión Tecnológica",
+        o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+        o2: "10", o2_t: "Reducción de las Desigualdades",
+        i: "Número de equipos refacondicionados y donados a comunidades vulnerables",
+        d: "El técnico en soporte de cómputo extiende la vida de los equipos y la oportunidad digital de las personas; reparar es incluir.",
+        orientacion: "Instructor(a): Evalúe que el alumno diagnostique fallas de hardware y software correctamente, y gestione de manera responsable los residuos electrónicos generados en el taller."
+    },
+    {
+        c: "Telecomunicaciones (CONALEP)",
+        s: "517311",
+        sec: "Operadores de telecomunicaciones alámbricas e inalámbricas",
+        m: "Módulo II: Instala y mantiene redes de telecomunicaciones",
+        a: [
+            "Instalación de redes de fibra óptica para maximizar la velocidad de transmisión con menor consumo de energía.",
+            "Configuración de equipos de red con protocolos de ahorro energético (Green IT) en horarios de baja demanda.",
+            "Mantenimiento preventivo de estaciones base y antenas para reducir la basura electrónica y extender la vida útil del equipo.",
+            "Implementación de sistemas de alimentación solar en repetidoras de zonas remotas para reducir la huella de carbono.",
+            "Gestión responsable de cables y componentes electrónicos obsoletos mediante programas de reciclaje técnico."
+        ],
+        h: "Conectividad Sostenible y Eficiencia Digital",
+        o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+        o2: "17", o2_t: "Alianzas para lograr los Objetivos",
+        i: "Kilómetros de red instalada con protocolos de eficiencia energética",
+        d: "Las telecomunicaciones técnicas son el sistema nervioso de la sociedad moderna; su eficiencia es clave para cerrar la brecha digital.",
+        orientacion: "Instructor(a): Verifique que el alumno domine el proceso de fusión de fibra óptica y el uso de equipos de medición como el OTDR."
+    },
+    {
+        c: "Electricidad Industrial (CONALEP)",
+        s: "238210",
+        sec: "Instalaciones eléctricas en construcciones",
+        m: "Módulo III: Instala y mantiene instalaciones eléctricas industriales",
+        a: [
+            "Dimensionamiento de instalaciones eléctricas industriales bajo la NOM-001-SEDE para garantizar la seguridad y eficiencia.",
+            "Instalación de variadores de frecuencia y arrancadores suaves para reducir el consumo de energía en motores industriales.",
+            "Implementación de sistemas de compensación de energía reactiva (banco de capacitores) para mejorar el factor de potencia.",
+            "Mantenimiento preventivo de tableros de distribución, incluyendo pruebas termográficas para detectar puntos calientes.",
+            "Integración de medidores inteligentes (smart meters) para el monitoreo en tiempo real del consumo eléctrico por área."
+        ],
+        h: "Eficiencia Eléctrica y Energía Segura",
+        o1: "7", o1_t: "Energía Asequible y No Contaminante",
+        o2: "9", o2_t: "Industria, Innovación e Infraestructura",
+        i: "Reducción del consumo kWh por turno de producción mediante mejoras en la instalación",
+        d: "El electricista industrial técnico es el artesano de la energía; instalar bien es garantizar que cada vatio llegue donde debe llegar.",
+        orientacion: "Instructor(a): Verifique que el alumno realice correctamente el cálculo de caída de tensión y dimensione los conductores conforme a la NOM-001-SEDE vigente."
+    },
+    {
+        c: "Sistemas Electrónicos de Aviación (CONALEP)",
+        s: "488110",
+        sec: "Servicios relacionados con el transporte aéreo",
+        m: "Módulo III: Mantiene sistemas de aviónica y comunicaciones aeronáuticas",
+        a: [
+            "Mantenimiento de sistemas de navegación GPS y altímetros para garantizar la precisión y la seguridad del vuelo.",
+            "Calibración de equipos de comunicación aeronáutica (VHF/HF) para asegurar la continuidad operativa sin interferencias.",
+            "Implementación de protocolos de documentación técnica electrónica para eliminar el uso de papel en bitácoras de mantenimiento.",
+            "Diagnóstico de sistemas fly-by-wire para garantizar la respuesta óptima de los controles de vuelo.",
+            "Gestión responsable de componentes electrónicos aeronáuticos obsoletos bajo normativas DGAC y FAA."
+        ],
+        h: "Aviónica Segura y Transporte Aéreo Eficiente",
+        o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+        o2: "13", o2_t: "Acción por el Clima",
+        i: "Índice de disponibilidad operativa de los sistemas de aviónica mantenidos",
+        d: "La aviónica técnica es la garantía de que cada vuelo sea seguro y eficiente; reducir el error humano en el aire salva vidas y combustible.",
+        orientacion: "Instructor(a): Supervise que el alumno consulte el Manual de Mantenimiento de la Aeronave (AMM) para cada procedimiento y aplique correctamente los torques especificados."
+    },
+    {
+        c: "Enfermería General (CONALEP)",
+        s: "621111",
+        sec: "Consultorios de medicina general",
+        m: "Módulo III: Proporciona cuidados de enfermería al paciente hospitalizado",
+        a: [
+            "Implementación de protocolos de higiene de manos y control de infecciones para reducir las infecciones asociadas a la atención sanitaria (IAAS).",
+            "Gestión correcta de residuos peligrosos biológico-infecciosos (RPBI) conforme a la NOM-087 para proteger el ambiente.",
+            "Administración segura de medicamentos con doble verificación para prevenir errores y el desperdicio de fármacos.",
+            "Educación al paciente y su familia en autocuidado, nutrición y adherencia terapéutica para reducir reingresos hospitalarios.",
+            "Registro electrónico de signos vitales y evolución del paciente para mejorar la continuidad del cuidado y eliminar el papel."
+        ],
+        h: "Cuidado Humano Seguro y Gestión Sanitaria",
+        o1: "3", o1_t: "Salud y Bienestar",
+        o2: "6", o2_t: "Agua Limpia y Saneamiento",
+        i: "Tasa de reducción de IAAS en el área de práctica clínica",
+        d: "La enfermería técnica es el pilar del sistema de salud; cuidar con protocolos y humanismo es el acto más sostenible que existe.",
+        orientacion: "Instructor(a): Evalúe que el alumno aplique la técnica correcta de venopunción, el manejo aséptico de catéteres y la interpretación de signos vitales para la toma de decisiones clínicas."
+    },
+    {
+        c: "Optometría (CONALEP)",
+        s: "621320",
+        sec: "Consultorios de otros servicios de salud",
+        m: "Módulo III: Realiza examen optométrico y adaptación de lentes",
+        a: [
+            "Aplicación de técnicas de refracción objetiva y subjetiva para prescribir correcciones visuales que mejoren la calidad de vida.",
+            "Detección temprana de patologías oculares (glaucoma, retinopatía diabética) para su derivación oportuna al oftalmólogo.",
+            "Asesoría en el uso correcto de pantallas digitales para prevenir el síndrome de visión por computadora.",
+            "Promoción del uso de armazones y lentes reciclables o de materiales biocompatibles de bajo impacto ambiental.",
+            "Acciones de salud visual comunitaria en zonas rurales y de alta marginación para reducir la brecha en salud ocular."
+        ],
+        h: "Salud Visual Comunitaria e Inclusión",
+        o1: "3", o1_t: "Salud y Bienestar",
+        o2: "10", o2_t: "Reducción de las Desigualdades",
+        i: "Número de exámenes visuales realizados en zonas de alta marginación",
+        d: "Ver con claridad es un derecho humano básico; la optometría técnica lleva ese derecho a quienes más lo necesitan.",
+        orientacion: "Instructor(a): Verifique que el alumno domine el uso del foróptero y la interpretación de la carta de Snellen para una prescripción visual precisa y segura."
+    },
+    {
+        c: "Terapia Respiratoria (CONALEP)",
+        s: "621398",
+        sec: "Consultorios de otros servicios de salud",
+        m: "Módulo III: Aplica tratamientos de terapia inhalatoria y rehabilitación pulmonar",
+        a: [
+            "Administración de nebulizaciones y aerosolterapia con dispositivos de bajo desperdicio de medicamento para reducir costos.",
+            "Aplicación de técnicas de fisioterapia respiratoria para mejorar la ventilación y movilización de secreciones en pacientes.",
+            "Monitoreo de la calidad del aire en el entorno hospitalario y su relación con las exacerbaciones de enfermedades respiratorias.",
+            "Educación al paciente con EPOC o asma en el uso correcto del inhalador y técnicas de respiración diafragmática.",
+            "Rehabilitación pulmonar de pacientes post-COVID con programas de ejercicio progresivo y oxigenoterapia controlada."
+        ],
+        h: "Salud Respiratoria y Calidad del Aire",
+        o1: "3", o1_t: "Salud y Bienestar",
+        o2: "13", o2_t: "Acción por el Clima",
+        i: "Mejora en el volumen espiratorio forzado (FEV1) de pacientes en rehabilitación pulmonar",
+        d: "La terapia respiratoria técnica es la respuesta al aire que nos enferma; rehabilitar el pulmón es también defender el derecho a un ambiente sano.",
+        orientacion: "Instructor(a): Evalúe que el alumno interprete correctamente la espirometría y ajuste los parámetros de ventilación mecánica según el estado clínico del paciente."
+    },
+    {
+        c: "Asistente Directivo (CONALEP)",
+        s: "561110",
+        sec: "Servicios de apoyo a los negocios",
+        m: "Módulo II: Gestiona documentación y comunicación oficial",
+        a: [
+            "Implementación de sistemas de archivo digital para alcanzar el objetivo de 'Oficina Cero Papel'.",
+            "Gestión eficiente de la agenda ejecutiva priorizando reuniones virtuales para reducir la huella de carbono por viajes.",
+            "Uso de herramientas ofimáticas en la nube para el trabajo colaborativo y la reducción de insumos físicos.",
+            "Aplicación de normas de ética y confidencialidad en el manejo de la información institucional.",
+            "Promoción de compras verdes y suministros de oficina con certificaciones ecológicas."
+        ],
+        h: "Gestión Administrativa Sostenible",
+        o1: "12", o1_t: "Producción y Consumo Responsables",
+        o2: "8", o2_t: "Trabajo Decente y Crecimiento Económico",
+        i: "Porcentaje de reducción en el consumo de suministros de oficina",
+        d: "El asistente directivo moderno coordina la eficiencia operativa desde un enfoque de responsabilidad ambiental y ética.",
+        orientacion: "Instructor(a): Fomente en el alumno el uso de firmas digitales y protocolos de ciberseguridad para la protección de datos."
+    },
+    {
+        c: "Atletismo (BTED)",
+        s: "713940",
+        sec: "Parques, playas y similares",
+        m: "Módulo II: Desarrolla las capacidades físicas y técnicas del atleta",
+        a: [
+            "Diseño de planes de entrenamiento periodizados que respeten el ciclo de carga y recuperación para prevenir lesiones.",
+            "Implementación de programas de activación física inclusivos para personas con discapacidad en modalidades paralímpicas.",
+            "Uso de espacios naturales y áreas verdes para el entrenamiento al aire libre, promoviendo el vínculo con el entorno.",
+            "Gestión responsable del equipamiento deportivo para prolongar su vida útil y reducir la generación de residuos.",
+            "Fomento de la nutrición deportiva basada en alimentos naturales y locales para el rendimiento y la salud del atleta."
+        ],
+        h: "Deporte, Salud y Bienestar Integral",
+        o1: "3", o1_t: "Salud y Bienestar",
+        o2: "10", o2_t: "Reducción de las Desigualdades",
+        i: "Número de personas incorporadas a programas de activación física y mejora de condición física",
+        d: "El atletismo técnico es la ciencia del movimiento humano; entrenar bien es cultivar salud, disciplina y equidad en el deporte.",
+        orientacion: "Instructor(a): Verifique que el alumno aplique la periodización del entrenamiento y utilice herramientas de evaluación física (test de Cooper, Yo-Yo) para planificar con evidencia."
+    },
+    {
+        c: "Béisbol (BTED)",
+        s: "713940",
+        sec: "Parques, playas y similares",
+        m: "Módulo III: Aplica técnicas avanzadas de bateo, pitcheo y fielding",
+        a: [
+            "Análisis biomecánico del pitcheo y el bateo para optimizar el rendimiento y prevenir lesiones en el manguito rotador.",
+            "Diseño de programas de acondicionamiento físico con énfasis en la prevención de lesiones comunes en el béisbol.",
+            "Fomento del juego limpio y los valores del fair play en la formación técnica de jóvenes beisbolistas.",
+            "Gestión responsable del equipo deportivo (guantes, bates, pelotas) mediante su reparación y reutilización.",
+            "Implementación de programas inclusivos de iniciación al béisbol adaptado para personas con discapacidad motriz."
+        ],
+        h: "Formación Deportiva y Valores del Deporte",
+        o1: "3", o1_t: "Salud y Bienestar",
+        o2: "4", o2_t: "Educación de Calidad",
+        i: "Número de jóvenes incorporados a programas formativos de béisbol con énfasis en valores",
+        d: "El béisbol técnico más allá del rendimiento es una escuela de disciplina, trabajo en equipo y carácter que impacta vidas.",
+        orientacion: "Instructor(a): Evalúe el conocimiento del alumno en el reglamento oficial y su capacidad para diseñar sesiones de práctica progresivas y seguras para distintos grupos de edad."
+    },
+    {
+        c: "Boxeo (BTED)",
+        s: "713940",
+        sec: "Parques, playas y similares",
+        m: "Módulo II: Desarrolla las técnicas ofensivas y defensivas del boxeo",
+        a: [
+            "Aplicación de protocolos de seguridad (casco, guantes, protector bucal) para prevenir lesiones durante el entrenamiento.",
+            "Diseño de rutinas de acondicionamiento físico basado en ciencias del deporte para optimizar la potencia y resistencia.",
+            "Educación en valores de disciplina, respeto y autocontrol como pilares del boxeo técnico más allá del combate.",
+            "Implementación de nutrición deportiva adecuada al control de peso de categoría sin comprometer la salud del deportista.",
+            "Fomento de la inclusión mediante programas de boxeo terapéutico para jóvenes en situación de vulnerabilidad social."
+        ],
+        h: "Deporte de Combate, Salud y Disciplina Social",
+        o1: "3", o1_t: "Salud y Bienestar",
+        o2: "16", o2_t: "Paz, Justicia e Instituciones Sólidas",
+        i: "Número de jóvenes en situación de riesgo integrados a programas formativos de boxeo",
+        d: "El boxeo técnico transforma la agresividad en disciplina; cada golpe bien entrenado es una forma de construir paz interior y social.",
+        orientacion: "Instructor(a): Verifique que el alumno aplique correctamente el vendaje de manos y comprenda los protocolos médicos de evaluación neurológica antes de cada práctica de sparring."
+    },
+    {
+        c: "Agropecuario (DGETAyCM)",
+        s: "115110",
+        sec: "Servicios relacionados con la agricultura",
+        m: "Módulo III: Aplica técnicas de producción agrícola y pecuaria integradas",
+        a: [
+            "Implementación de sistemas integrados de producción agropecuaria (IPA) para maximizar la eficiencia de los recursos del predio.",
+            "Uso de abonos orgánicos producidos en la propia unidad para reducir la dependencia de fertilizantes químicos externos.",
+            "Manejo integrado de plagas (MIP) combinando control biológico, cultural y mínimo uso de agroquímicos.",
+            "Gestión del agua de riego mediante sistemas de goteo o aspersión para optimizar el uso hídrico por cultivo.",
+            "Registro y análisis de datos productivos para la toma de decisiones técnicas basadas en evidencia agronómica."
+        ],
+        h: "Producción Agropecuaria Integrada y Eficiente",
+        o1: "2", o1_t: "Hambre Cero",
+        o2: "15", o2_t: "Vida de Ecosistemas Terrestres",
+        i: "Rendimiento por hectárea con reducción de insumos externos",
+        d: "La producción agropecuaria técnica integrada es la base para alimentar al mundo sin destruir la tierra que nos alimenta.",
+        orientacion: "Instructor(a): Fomente en el alumno el diseño de un plan de producción anual que integre cultivos y especies animales en sinergia, optimizando el uso del suelo y el agua."
+    },
+    {
+        c: "Fisioterapia del ejercicio físico (BTED)",
+        s: "621340",
+        sec: "Consultorios de fisioterapia y terapia ocupacional",
+        m: "Módulo III: Diseña y aplica programas de rehabilitación física funcional",
+        a: [
+            "Evaluación funcional del paciente para diseñar protocolos de rehabilitación personalizados y basados en evidencia.",
+            "Aplicación de técnicas de fisioterapia manual y electroterapia para la recuperación de lesiones musculoesqueléticas.",
+            "Diseño de programas de actividad física adaptada para personas con enfermedades crónicas no transmisibles.",
+            "Educación postural y ergonómica en el lugar de trabajo para prevenir lesiones laborales y el ausentismo.",
+            "Implementación de programas de rehabilitación comunitaria para personas con discapacidad en zonas de alta marginación."
+        ],
+        h: "Rehabilitación Funcional e Inclusión en Salud",
+        o1: "3", o1_t: "Salud y Bienestar",
+        o2: "10", o2_t: "Reducción de las Desigualdades",
+        i: "Porcentaje de mejora funcional en pacientes tras el programa de rehabilitación",
+        d: "La fisioterapia técnica devuelve la movilidad y la dignidad; rehabilitar el cuerpo es restituir el derecho a una vida plena.",
+        orientacion: "Instructor(a): Evalúe que el alumno aplique correctamente las escalas de valoración funcional (Barthel, FIM) y diseñe objetivos de rehabilitación SMART con el paciente."
+    },
+    {
+        c: "Agroindustrias (DGETAyCM)",
+        s: "311999",
+        sec: "Industrias alimentarias",
+        m: "Módulo II: Transforma productos agropecuarios en productos de valor agregado",
+        a: [
+            "Diseño de procesos de transformación agroindustrial que minimicen las pérdidas postcosecha y agreguen valor al productor local.",
+            "Implementación de sistemas de inocuidad (BPM, HACCP) para garantizar la seguridad del consumidor final.",
+            "Aprovechamiento de subproductos agroindustriales (bagazo, suero, semillas) para la elaboración de alimentos funcionales.",
+            "Uso de tecnologías de conservación naturales (deshidratación solar, fermentación) para reducir el consumo de energía.",
+            "Creación de sellos y marcas colectivas para la comercialización de productos artesanales con identidad territorial."
+        ],
+        h: "Valor Agregado Rural y Soberanía Alimentaria",
+        o1: "2", o1_t: "Hambre Cero",
+        o2: "8", o2_t: "Trabajo Decente y Crecimiento Económico",
+        i: "Porcentaje de materia prima agrícola transformada en producto de valor agregado",
+        d: "La agroindustria técnica es la palanca que convierte la cosecha del campo en prosperidad para el productor y alimento para todos.",
+        orientacion: "Instructor(a): Oriente al alumno en el análisis del mercado local para identificar productos agroindustriales con potencial de comercialización y generación de empleo rural."
+    },
+    {
+        c: "Mecánica naval (DGETAyCM)",
+        s: "811312",
+        sec: "Reparación y mantenimiento de maquinaria y equipo pesado",
+        m: "Módulo III: Mantiene sistemas de propulsión marina",
+        a: [
+            "Ajuste técnico de motores fuera de borda e intraborda para optimizar el consumo de combustible y reducir emisiones.",
+            "Mantenimiento preventivo de sistemas de transmisión marina para evitar fugas de lubricantes al ecosistema oceánico.",
+            "Reparación de sistemas de gobierno y propulsión para garantizar la seguridad de la navegación en alta mar.",
+            "Implementación de protocolos de limpieza de motores que eviten la dispersión de especies invasoras en el agua de lastre.",
+            "Gestión responsable de baterías y componentes electrónicos marinos para su reciclaje técnico."
+        ],
+        h: "Mantenimiento Marítimo y Protección Oceánica",
+        o1: "14", o1_t: "Vida Submarina",
+        o2: "9", o2_t: "Industria, Innovación e Infraestructura",
+        i: "Reducción de consumo de combustible por hora de navegación mediante ajuste técnico",
+        d: "El mecánico naval técnico es el garante de que la flota opere de forma segura y respetuosa con la biodiversidad de nuestros mares.",
+        orientacion: "Instructor(a): Verifique que el alumno aplique las normas de seguridad marítima y el manejo correcto de hidrocarburos en el taller."
+    },
+    {
+        c: "Gericultura (DGETI)",
+        s: "624120",
+        sec: "Servicios de centros de atención para personas con discapacidad y ancianos",
+        m: "Módulo IV: Auxilia al adulto mayor en las actividades de la vida diaria",
+        a: [
+            "Diseño de planes de activación física y mental para promover el envejecimiento activo y saludable.",
+            "Implementación de técnicas de movilización segura que prevengan lesiones y mejoren la calidad de vida del adulto mayor.",
+            "Acompañamiento emocional y social para combatir el aislamiento y la depresión en la tercera edad.",
+            "Administración responsable de cuidados paliativos y preventivos bajo supervisión médica.",
+            "Promoción de entornos accesibles y seguros que respeten la dignidad y autonomía de las personas mayores."
+        ],
+        h: "Cuidado Digno y Envejecimiento Saludable",
+        o1: "3", o1_t: "Salud y Bienestar",
+        o2: "10", o2_t: "Reducción de las Desigualdades",
+        i: "Mejora en el índice de autonomía funcional de las personas atendidas",
+        d: "La gericultura técnica responde al reto demográfico, asegurando que el envejecimiento sea una etapa de vida digna y protegida.",
+        orientacion: "Instructor(a): Evalúe la sensibilidad y paciencia del alumno, así como su dominio de las técnicas de primeros auxilios geriátricos."
+    },
+    {
+        c: "Agrotecnología (CONALEP)",
+        s: "115110",
+        sec: "Servicios relacionados con la agricultura",
+        m: "Módulo IV: Emplea tecnologías de agricultura de precisión",
+        a: [
+            "Uso de drones para el monitoreo de salud de cultivos, permitiendo la aplicación focalizada de insumos (tasa variable).",
+            "Instalación de estaciones meteorológicas y sensores IoT para predecir plagas y optimizar calendarios de siembra.",
+            "Análisis de imágenes multiespectrales para determinar deficiencias nutricionales sin sobrefertilizar el suelo.",
+            "Gestión de grandes volúmenes de datos (Big Data) para mejorar la toma de decisiones en la unidad de producción.",
+            "Implementación de sistemas de trazabilidad digital desde la siembra hasta la cosecha para garantizar inocuidad."
+        ],
+        h: "Agricultura Digital y Precisión Climática",
+        o1: "2", o1_t: "Hambre Cero",
+        o2: "9", o2_t: "Industria, Innovación e Infraestructura",
+        i: "Reducción del uso de agroquímicos por hectárea mediante aplicación dirigida",
+        d: "La agrotecnología es la evolución digital del campo, permitiendo producir más alimentos con una huella ambiental mínima.",
+        orientacion: "Instructor(a): Evalúe la capacidad del alumno para interpretar mapas de rendimiento y operar software de SIG (Sistemas de Información Geográfica)."
+    },
+    {
+        c: "Artes Gráficas (CONALEP)",
+        s: "323119",
+        sec: "Industrias de las artes gráficas",
+        m: "Módulo II: Opera sistemas de impresión offset y digital",
+        a: [
+            "Uso de tintas de base vegetal y solventes de baja emisión de compuestos orgánicos volátiles (COV) en los procesos de impresión.",
+            "Optimización de la imposición de páginas mediante software especializado para reducir el consumo de papel por trabajo.",
+            "Implementación de circuitos de reciclaje de placas metálicas de aluminio y químicos de revelado de pre-prensa.",
+            "Selección de papeles con certificación FSC o de fibras recicladas para proteger los ecosistemas forestales.",
+            "Mantenimiento preventivo de los equipos de impresión para asegurar la eficiencia energética y la calidad del producto."
+        ],
+        h: "Impresión Sustentable y Comunicación Responsable",
+        o1: "12", o1_t: "Producción y Consumo Responsables",
+        o2: "15", o2_t: "Vida de Ecosistemas Terrestres",
+        i: "Porcentaje de papel certificado FSC utilizado en la producción total",
+        d: "Las artes gráficas técnicas modernas deben imprimir el futuro con tintas limpias y papeles que respeten los bosques que nos dan aire.",
+        orientacion: "Instructor(a): Evalúe la capacidad del alumno para calcular la merma de papel por orden de trabajo y proponer mejoras en el proceso de imposición para reducirla."
+    },
+    {
+        c: "Conservación del Medio Ambiente (CONALEP)",
+        s: "924110",
+        sec: "Administración de programas de protección ambiental",
+        m: "Módulo III: Implementa programas de manejo y conservación de recursos naturales",
+        a: [
+            "Elaboración de inventarios de flora y fauna para la evaluación del estado de conservación de los ecosistemas locales.",
+            "Diseño e implementación de programas de educación ambiental en escuelas y comunidades para fomentar la cultura ecológica.",
+            "Gestión de áreas naturales protegidas (ANP) bajo criterios de conservación, uso sostenible y participación comunitaria.",
+            "Monitoreo de la calidad del agua, suelo y aire para detectar fuentes de contaminación y proponer medidas correctivas.",
+            "Restauración de ecosistemas degradados mediante reforestación con especies nativas y técnicas de bioingeniería."
+        ],
+        h: "Gestión Ambiental y Restauración Ecosistémica",
+        o1: "15", o1_t: "Vida de Ecosistemas Terrestres",
+        o2: "6", o2_t: "Agua Limpia y Saneamiento",
+        i: "Hectáreas bajo programa activo de conservación o restauración",
+        d: "Conservar el medio ambiente con técnica es garantizar que las generaciones futuras tengan el mismo planeta que nosotros recibimos.",
+        orientacion: "Instructor(a): Fomente en el alumno el uso de metodologías de evaluación de impacto ambiental (EIA) y guíelo en la interpretación de la legislación ambiental mexicana vigente."
+    },
+    {
+        c: "Curtiduría (CONALEP)",
+        s: "316110",
+        sec: "Curtido y acabado de cuero y piel",
+        m: "Módulo III: Realiza procesos de curtición y acabado del cuero",
+        a: [
+            "Implementación de curtición vegetal con taninos naturales para sustituir el cromo y reducir la toxicidad de los efluentes.",
+            "Gestión del tratamiento de aguas residuales del proceso de curtido para cumplir con la NOM-001-SEMARNAT.",
+            "Recuperación y reutilización de los baños de curtición para reducir el consumo de agua y productos químicos.",
+            "Aprovechamiento de los recortes de cuero para la elaboración de accesorios, eliminando el desperdicio de materia prima.",
+            "Adopción de sistemas de medición de huella hídrica y química para la mejora continua del proceso productivo."
+        ],
+        h: "Industria del Cuero Limpia y Economía Circular",
+        o1: "12", o1_t: "Producción y Consumo Responsables",
+        o2: "6", o2_t: "Agua Limpia y Saneamiento",
+        i: "Reducción de carga contaminante (DBO/DQO) en los efluentes del proceso de curtición",
+        d: "La curtiduría técnica debe transformarse hacia un proceso limpio donde el agua y los químicos se usen con responsabilidad y circularidad.",
+        orientacion: "Instructor(a): Verifique que el alumno comprenda el impacto ambiental del cromo trivalente y hexavalente, y proponga alternativas de curtición más sostenibles en su práctica."
+    },
+    {
+        c: "Exploración y Producción Petrolera (CONALEP)",
+        s: "211111",
+        sec: "Extracción de petróleo y gas",
+        m: "Módulo III: Aplica técnicas de perforación y mantenimiento de pozos",
+        a: [
+            "Implementación de planes de manejo ambiental para minimizar el impacto de las operaciones en ecosistemas sensibles.",
+            "Uso de tecnologías de perforación direccional para reducir la huella superficial de las instalaciones petroleras.",
+            "Gestión estricta de los residuos peligrosos generados en campo (lodos de perforación, hidrocarburos) bajo la NOM-138.",
+            "Monitoreo de emisiones fugitivas de metano para su captación y reducción del impacto de gases de efecto invernadero.",
+            "Aplicación de protocolos de respuesta a emergencias y derrames para la protección inmediata del suelo y agua."
+        ],
+        h: "Producción Responsable de Energía y Gestión Ambiental",
+        o1: "7", o1_t: "Energía Asequible y No Contaminante",
+        o2: "13", o2_t: "Acción por el Clima",
+        i: "Reducción de emisiones fugitivas de metano y volumen de residuos gestionados correctamente",
+        d: "La industria petrolera técnica debe operar con la máxima responsabilidad ambiental mientras el mundo transita hacia las energías limpias.",
+        orientacion: "Instructor(a): Oriente al alumno en el conocimiento de la normativa ambiental aplicable a la industria extractiva y en los protocolos de atención a contingencias ambientales."
+    },
+    {
+        c: "Industria Automotriz (CONALEP)",
+        s: "336111",
+        sec: "Fabricación de automóviles y camiones",
+        m: "Módulo III: Opera y supervisa líneas de ensamble automotriz",
+        a: [
+            "Implementación de herramientas Lean Manufacturing para eliminar desperdicios en la línea de producción automotriz.",
+            "Supervisión del uso eficiente de pintura y solventes en el área de carrocería para reducir emisiones de COV.",
+            "Mantenimiento preventivo de robots de soldadura y ensamble para garantizar la eficiencia energética del proceso.",
+            "Gestión responsable de residuos metálicos, plásticos y vidrios de la línea de producción para su reintegración circular.",
+            "Control de calidad final mediante técnicas de metrología y pruebas funcionales para evitar retrabajos y desperdicios."
+        ],
+        h: "Manufactura Automotriz Eficiente y Sostenible",
+        o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+        o2: "12", o2_t: "Producción y Consumo Responsables",
+        i: "Unidades producidas por hora con cero defectos y mínima generación de residuos",
+        d: "La industria automotriz técnica es el motor de la economía manufacturera; producir con eficiencia es construir competitividad sostenible.",
+        orientacion: "Instructor(a): Evalúe que el alumno comprenda la filosofía de manufactura esbelta (Lean) y aplique las 5S en el área de trabajo para mejorar la seguridad y la eficiencia."
+    },
+    {
+        c: "Metalmecánica (CONALEP)",
+        s: "332710",
+        sec: "Maquinado de piezas industriales y fabricación de tornillos",
+        m: "Módulo II: Fabrica piezas metálicas mediante procesos de conformado y maquinado",
+        a: [
+            "Planificación de procesos de maquinado optimizados para reducir el número de operaciones y el gasto de energía por pieza.",
+            "Clasificación y reciclaje de virutas metálicas de acero, aluminio y cobre generadas durante el proceso de maquinado.",
+            "Uso de fluidos de corte de base vegetal o semisintéticos para reducir la toxicidad del proceso y proteger al operario.",
+            "Aplicación de control dimensional con instrumentos de metrología calibrados para asegurar piezas a la primera.",
+            "Mantenimiento preventivo de máquinas convencionales y CNC para prolongar su vida útil y mantener la eficiencia energética."
+        ],
+        h: "Manufactura Metálica de Precisión y Cero Merma",
+        o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+        o2: "12", o2_t: "Producción y Consumo Responsables",
+        i: "Porcentaje de viruta metálica reciclada respecto al total de material removido",
+        d: "La metalmecánica técnica es el oficio que da forma a la infraestructura del país; hacerlo con precisión es producir con responsabilidad.",
+        orientacion: "Instructor(a): Verifique que el alumno seleccione correctamente los parámetros de corte (velocidad, avance, profundidad) para cada material y proceso, optimizando la vida de la herramienta."
+    },
+    {
+        c: "Metalurgia (CONALEP)",
+        s: "331111",
+        sec: "Industria básica del hierro y del acero",
+        m: "Módulo III: Controla los procesos de fundición y moldeo",
+        a: [
+            "Optimización de la carga térmica en hornos para reducir el consumo de combustible y las emisiones de CO2.",
+            "Implementación de técnicas de reciclaje de chatarra ferrosa y no ferrosa para reintegrarlas al ciclo productivo.",
+            "Monitoreo y filtrado de polvos y gases de combustión para minimizar el impacto ambiental de la fundición.",
+            "Uso de arenas de moldeo recuperadas para reducir la extracción de áridos naturales.",
+            "Gestión segura de escorias metálicas para su posible aprovechamiento en la industria de la construcción."
+        ],
+        h: "Metalurgia Circular y Eficiencia Térmica",
+        o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+        o2: "12", o2_t: "Producción y Consumo Responsables",
+        i: "Toneladas de metal reciclado procesadas",
+        d: "La metalurgia técnica es el corazón de la infraestructura; hacerla eficiente es clave para una industria sostenible.",
+        orientacion: "Instructor(a): Evalúe la capacidad del alumno para realizar balances de materia y energía en procesos de fundición."
+    },
+    {
+        c: "Minero Metalurgista (CONALEP)",
+        s: "212210",
+        sec: "Minería de hierro",
+        m: "Módulo III: Aplica procesos de beneficio y concentración de minerales",
+        a: [
+            "Implementación de técnicas de flotación con reactivos de menor toxicidad para la separación de minerales de valor.",
+            "Gestión del agua de proceso en circuito cerrado para minimizar el consumo hídrico y evitar derrames en jales.",
+            "Monitoreo y control de polvo en las operaciones de trituración y molienda para proteger la salud pulmonar del trabajador.",
+            "Rehabilitación de áreas disturbadas por la minería mediante programas de restauración de suelos y revegetación.",
+            "Aplicación de técnicas de minería de bajo impacto para reducir la huella ambiental de la extracción."
+        ],
+        h: "Minería Responsable y Cierre de Minas",
+        o1: "12", o1_t: "Producción y Consumo Responsables",
+        o2: "15", o2_t: "Vida de Ecosistemas Terrestres",
+        i: "Superficie restaurada post-explotación como porcentaje del área disturbada total",
+        d: "La minería técnica del siglo XXI extrae el mineral que necesita el mundo y devuelve la tierra que le debe a la naturaleza.",
+        orientacion: "Instructor(a): Oriente al alumno en el conocimiento de la Ley Minera y la NOM-141 para el manejo de jales, y en la importancia del cierre responsable de minas."
+    },
+    {
+        c: "Plásticos (CONALEP)",
+        s: "326199",
+        sec: "Fabricación de otros productos de plástico",
+        m: "Módulo III: Controla la transformación de plásticos por inyección",
+        a: [
+            "Configuración de parámetros de máquina para minimizar el consumo de energía eléctrica por ciclo de producción.",
+            "Integración de material recuperado (post-industrial) en el proceso de inyección para fomentar la economía circular.",
+            "Optimización del diseño de moldes para reducir el desperdicio de material (coladas y rebabas).",
+            "Sustitución progresiva de polímeros vírgenes por bioplásticos o materiales compostables.",
+            "Implementación de sistemas de enfriamiento de agua en circuito cerrado para evitar el desperdicio del recurso hídrico."
+        ],
+        h: "Economía Circular y Manufactura Responsable",
+        o1: "12", o1_t: "Producción y Consumo Responsables",
+        o2: "9", o2_t: "Industria, Innovación e Infraestructura",
+        i: "Porcentaje de material reciclado integrado en la producción",
+        d: "La industria del plástico debe transformarse hacia modelos de ciclo cerrado donde el residuo se convierta en recurso.",
+        orientacion: "Instructor(a): Fomente en el alumno la búsqueda de soluciones para reducir el 'scrap' (desperdicio) en los arranques de máquina."
+    },
+    {
+        c: "Procesamiento Industrial de Alimentos (CONALEP)",
+        s: "311999",
+        sec: "Industrias alimentarias",
+        m: "Módulo III: Controla los procesos de transformación y envasado de alimentos",
+        a: [
+            "Implementación de sistemas CIP (Cleaning in Place) para la limpieza eficiente de equipos con mínimo uso de agua y detergentes.",
+            "Monitoreo de parámetros de proceso (temperatura, pH, aw) para garantizar la inocuidad y reducir mermas por descomposición.",
+            "Uso de tecnologías de envasado al vacío y atmósfera modificada para extender la vida de anaquel sin conservadores artificiales.",
+            "Aprovechamiento de subproductos del procesamiento (suero, orujo, cascaras) para generar productos de valor agregado.",
+            "Aplicación del sistema HACCP para la identificación y control de puntos críticos que garanticen la seguridad alimentaria."
+        ],
+        h: "Inocuidad Alimentaria y Eficiencia Industrial",
+        o1: "2", o1_t: "Hambre Cero",
+        o2: "12", o2_t: "Producción y Consumo Responsables",
+        i: "Reducción del índice de desperdicio de materia prima por lote de producción",
+        d: "El procesamiento técnico de alimentos es el puente entre la cosecha y el plato; hacerlo sin desperdiciar es alimentar con responsabilidad.",
+        orientacion: "Instructor(a): Evalúe que el alumno interprete correctamente los registros HACCP y proponga acciones correctivas ante desviaciones en los puntos críticos de control."
+    },
+    {
+        c: "Producción de Calzado (CONALEP)",
+        s: "316210",
+        sec: "Fabricación de calzado con corte de cuero y piel",
+        m: "Módulo III: Ensambla calzado con procesos semiautomatizados",
+        a: [
+            "Optimización de los patrones de corte en piel y materiales alternativos para maximizar el aprovechamiento y reducir merma.",
+            "Uso de adhesivos y cementos de base acuosa en lugar de solventes para reducir la emisión de compuestos volátiles.",
+            "Diseño de calzado modular y reparable bajo principios de ecodiseño que extiendan su vida útil.",
+            "Implementación de condiciones ergonómicas en las estaciones de trabajo para prevenir enfermedades profesionales del calzado.",
+            "Aprovechamiento de recortes de cuero y materiales textiles para la elaboración de accesorios o calzado infantil."
+        ],
+        h: "Fabricación de Calzado Responsable y Ergonómica",
+        o1: "12", o1_t: "Producción y Consumo Responsables",
+        o2: "8", o2_t: "Trabajo Decente y Crecimiento Económico",
+        i: "Porcentaje de merma de material recuperada por modelo de calzado fabricado",
+        d: "Cada par de zapatos técnico bien hecho es un compromiso con el artesano que lo fabrica y con el planeta que provee el material.",
+        orientacion: "Instructor(a): Oriente al alumno en el trazado eficiente de patrones y en el uso correcto de maquinaria (desbastadora, aparadora) con todos los elementos de seguridad activos."
+    },
+    {
+        c: "Productividad Industrial (CONALEP)",
+        s: "541614",
+        sec: "Servicios de consultoría en administración",
+        m: "Módulo III: Analiza y mejora los procesos productivos de la empresa",
+        a: [
+            "Aplicación de herramientas de Manufactura Esbelta (Lean) para identificar y eliminar los 8 desperdicios del proceso productivo.",
+            "Implementación de eventos Kaizen para la mejora rápida de procesos con la participación del equipo de trabajo.",
+            "Uso de la metodología DMAIC (Six Sigma) para la reducción de la variabilidad y el incremento de la calidad.",
+            "Diseño de indicadores de desempeño (KPIs) alineados con los ODS para medir el impacto ambiental y social de la producción.",
+            "Aplicación del análisis de valor para identificar actividades que no generan valor al cliente y optimizar el flujo de trabajo."
+        ],
+        h: "Mejora Continua y Producción con Propósito",
+        o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+        o2: "8", o2_t: "Trabajo Decente y Crecimiento Económico",
+        i: "Reducción porcentual de desperdicios del proceso mediante herramientas Lean",
+        d: "La productividad técnica sostenible es aquella que produce más con menos recursos, generando riqueza sin agotar el capital natural.",
+        orientacion: "Instructor(a): Guíe al alumno en el mapeo de la cadena de valor (VSM) de un proceso real, identificando los cuellos de botella y proponiendo soluciones basadas en datos."
+    },
+    {
+        c: "Soldaduras Industriales (CONALEP)",
+        s: "332310",
+        sec: "Fabricación de estructuras metálicas",
+        m: "Módulo III: Suelda estructuras y recipientes industriales con procesos SMAW, MIG y TIG",
+        a: [
+            "Selección técnica del proceso de soldadura más eficiente energéticamente (MIG/TIG) para cada tipo de material y espesor.",
+            "Implementación de sistemas de extracción y filtrado de humos de soldadura para proteger la salud respiratoria del soldador.",
+            "Optimización del uso de materiales de aporte para reducir el desperdicio de electrodo y alambre en cada junta.",
+            "Gestión responsable de los residuos del proceso (escoria, colillas, salpicaduras) para su clasificación y disposición final.",
+            "Aplicación de ensayos no destructivos (líquidos penetrantes, ultrasonido) para asegurar la calidad sin desperdiciar materiales."
+        ],
+        h: "Soldadura de Alta Calidad y Seguridad Laboral",
+        o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+        o2: "8", o2_t: "Trabajo Decente y Crecimiento Económico",
+        i: "Reducción de tasa de defectos en juntas soldadas mediante inspección visual y END",
+        d: "La soldadura industrial técnica une el metal con la misma precisión con que debe unirse la seguridad laboral con la calidad del proceso.",
+        orientacion: "Instructor(a): Verifique que el alumno respete los parámetros del Procedimiento de Soldadura (WPS) y domine el uso del equipo de protección personal específico para cada proceso."
+    },
+    {
+        c: "Textil (CONALEP)",
+        s: "313110",
+        sec: "Fabricación de telas",
+        m: "Módulo III: Opera sistemas de tejido y acabado textil",
+        a: [
+            "Optimización de los parámetros de tejido para reducir el desperdicio de hilo y el consumo de energía por metro de tela.",
+            "Implementación de técnicas de tintura con colorantes naturales o de bajo impacto hídrico para reducir la carga contaminante.",
+            "Gestión del agua residual del proceso de acabado textil con sistemas de tratamiento para su reutilización en el proceso.",
+            "Uso de fibras naturales orgánicas (algodón, lino, cáñamo) o recicladas para reducir la huella de carbono del tejido.",
+            "Diseño de productos textiles con principios de ecodiseño que faciliten su reparación, reutilización y reciclaje al final de la vida."
+        ],
+        h: "Textil Sostenible y Economía Circular Fibra",
+        o1: "12", o1_t: "Producción y Consumo Responsables",
+        o2: "6", o2_t: "Agua Limpia y Saneamiento",
+        i: "Litros de agua tratada y reutilizada en el proceso de acabado textil por metro de tela",
+        d: "La industria textil técnica debe tejer su futuro con fibras limpias y agua cuidada, demostrando que la moda puede ser sostenible.",
+        orientacion: "Instructor(a): Oriente al alumno en el análisis del ciclo de vida de una prenda textil y en el cálculo de la huella hídrica por metro de tela producido."
+    },
+    {
+        c: "Mantenimiento de Sistemas Automáticos (CONALEP)",
+        s: "335311",
+        sec: "Fabricación de instrumentos de medición y control",
+        m: "Módulo III: Mantiene sistemas de control automático y SCADA",
+        a: [
+            "Mantenimiento preventivo de PLCs y HMIs para garantizar la continuidad operativa de líneas de producción automatizadas.",
+            "Diagnóstico de fallas en redes de automatización (Profibus, Ethernet Industrial) para minimizar tiempos de paro.",
+            "Optimización de lazos de control automático para reducir el consumo de materia prima y energía en el proceso.",
+            "Implementación de monitoreo remoto (SCADA) para la supervisión de sistemas sin necesidad de desplazamientos físicos.",
+            "Actualización de software de control para mejorar la eficiencia y la seguridad de las instalaciones automatizadas."
+        ],
+        h: "Automatización Industrial y Optimización de Procesos",
+        o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+        o2: "12", o2_t: "Producción y Consumo Responsables",
+        i: "Reducción de tiempo de paro no programado mediante mantenimiento preventivo de sistemas automáticos",
+        d: "El técnico en automatización es el arquitecto de la eficiencia industrial; mantener los sistemas automáticos en óptimas condiciones es producir con inteligencia.",
+        orientacion: "Instructor(a): Verifique que el alumno realice backups de los programas de PLC antes de cualquier intervención y documente correctamente los cambios realizados."
+    },
+    {
+        c: "Motores a Diésel (CONALEP)",
+        s: "811111",
+        sec: "Reparación y mantenimiento de automóviles y camiones",
+        m: "Módulo III: Diagnostica y repara sistemas de inyección diésel de alta presión",
+        a: [
+            "Calibración de inyectores de alta presión (Common Rail) para optimizar la atomización del combustible y reducir el hollin.",
+            "Diagnóstico y ajuste del sistema EGR y el filtro de partículas diésel (DPF/FAP) para cumplir normas de emisiones Euro VI.",
+            "Gestión de aceites lubricantes usados y filtros de diésel para su disposición técnica y evitar contaminación de suelos.",
+            "Mantenimiento del sistema de postcombustión (SCR/AdBlue) para reducir las emisiones de óxidos de nitrógeno (NOx).",
+            "Optimización de rutas y regímenes de conducción mediante telemetría para reducir el consumo de diésel por kilómetro."
+        ],
+        h: "Eficiencia en Combustión y Reducción de Emisiones",
+        o1: "13", o1_t: "Acción por el Clima",
+        o2: "9", o2_t: "Industria, Innovación e Infraestructura",
+        i: "Reducción de emisiones de material particulado (PM) y NOx post-mantenimiento",
+        d: "El técnico en motores diésel es el guardián de que el corazón del transporte pesado late limpio y eficiente para el planeta.",
+        orientacion: "Instructor(a): Evalúe que el alumno utilice el banco de prueba de inyectores correctamente y comprenda la importancia del mantenimiento del DPF en la calidad del aire urbano."
+    },
+    {
+        c: "Operación y Mantenimiento de Maquinaria Pesada (CONALEP)",
+        s: "532411",
+        sec: "Alquiler de camiones y maquinaria pesada",
+        m: "Módulo III: Opera y mantiene maquinaria de construcción y minería",
+        a: [
+            "Aplicación de técnicas de operación eficiente (eco-operación) para reducir el consumo de diésel por hora de trabajo de la maquinaria.",
+            "Mantenimiento preventivo de sistemas hidráulicos y de tren de rodamiento para evitar derrames de aceite al suelo.",
+            "Implementación de planes de mantenimiento predictivo mediante análisis de aceite para anticipar fallas costosas.",
+            "Verificación del cumplimiento de normas de emisiones (Tier 4) en los motores de maquinaria para reducir contaminación atmosférica.",
+            "Gestión responsable de baterías, filtros y aceites hidráulicos usados para su disposición técnica y sin contaminación."
+        ],
+        h: "Operación Eficiente y Mantenimiento de Maquinaria",
+        o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+        o2: "13", o2_t: "Acción por el Clima",
+        i: "Litros de diésel consumidos por hora de operación efectiva de la maquinaria",
+        d: "El operador técnico de maquinaria pesada mueve la tierra que construye el futuro; hacerlo con eficiencia es edificar sin destruir el planeta.",
+        orientacion: "Instructor(a): Evalúe que el alumno realice correctamente la inspección pre-operacional de la maquinaria y aplique las técnicas de operación eficiente para reducir el consumo de combustible."
+    },
+    {
+        c: "Autotransporte (CONALEP)",
+        s: "484110",
+        sec: "Autotransporte de carga en general",
+        m: "Módulo III: Gestiona la operación segura y eficiente de unidades de autotransporte",
+        a: [
+            "Planificación de rutas de autotransporte optimizadas mediante GPS y software de ruteo para minimizar el consumo de diésel.",
+            "Verificación del mantenimiento preventivo de las unidades (llantas, frenos, luces) para garantizar la seguridad vial.",
+            "Registro en la bitácora de viaje y cumplimiento de tiempos de conducción y descanso según el Reglamento Federal de Tránsito.",
+            "Gestión responsable de los residuos generados en ruta (aceites, filtros, llantas) para evitar el abandono en carretera.",
+            "Implementación de técnicas de conducción eficiente (eco-driving) para reducir el consumo de combustible por tonelada/km."
+        ],
+        h: "Movilidad de Carga Segura y Eficiente",
+        o1: "9", o1_t: "Industria, Innovación e Infraestructura",
+        o2: "13", o2_t: "Acción por el Clima",
+        i: "Litros de diésel consumidos por tonelada-kilómetro transportada",
+        d: "El autotransporte técnico es la columna vertebral de la economía nacional; conducir con eficiencia y seguridad es un acto de responsabilidad colectiva.",
+        orientacion: "Instructor(a): Verifique que el alumno conozca y aplique el Reglamento Federal de Tránsito en carreteras y comprenda el impacto del eco-driving en la reducción de emisiones."
+    },
+    {
+        c: "Pilotaje de Drones (CONALEP)",
+        s: "488110",
+        sec: "Servicios relacionados con el transporte aéreo",
+        m: "Módulo III: Opera drones con fines profesionales en misiones específicas",
+        a: [
+            "Planificación de misiones de monitoreo ambiental (deforestación, inundaciones) con sistemas UAV de ala fija y multirrotor.",
+            "Operación de drones bajo la normativa de la Secretaría de Comunicaciones y Transportes (SCT/AFAC) para vuelos seguros.",
+            "Uso de cámaras multiespectrales en drones para el análisis de salud de cultivos y detección de zonas con estrés hídrico.",
+            "Gestión responsable de baterías de litio de los UAV para su recarga óptima y disposición final sin contaminación.",
+            "Aplicación de drones para la reforestación asistida mediante dispersión de semillas en zonas de difícil acceso."
+        ],
+        h: "Tecnología UAV para la Conservación y Monitoreo",
+        o1: "15", o1_t: "Vida de Ecosistemas Terrestres",
+        o2: "2", o2_t: "Hambre Cero",
+        i: "Hectáreas monitoreadas o reforestadas mediante operación técnica de drones",
+        d: "El piloto técnico de drones lleva los ojos de la ciencia a los rincones más remotos, protegiendo ecosistemas y optimizando la producción.",
+        orientacion: "Instructor(a): Verifique que el alumno obtenga la certificación de piloto de RPAS ante la autoridad aeronáutica y comprenda los procedimientos de vuelo seguro en zonas rurales y urbanas."
+    },
+    {
+        c: "Transporte Ferroviario (CONALEP)",
+        s: "482110",
+        sec: "Transporte ferroviario",
+        m: "Módulo III: Opera y supervisa sistemas de transporte ferroviario",
+        a: [
+            "Implementación de sistemas de conducción eficiente de trenes para reducir el consumo de energía por pasajero/km.",
+            "Gestión del mantenimiento preventivo de vías y material rodante para garantizar la puntualidad y la seguridad del servicio.",
+            "Supervisión de los protocolos de seguridad en zonas de trabajo en vía para la protección del personal de mantenimiento.",
+            "Monitoreo del sistema de señalización ferroviaria para prevenir colisiones y garantizar la fluidez del tráfico.",
+            "Promoción del transporte ferroviario como alternativa de baja emisión de carbono frente al autotransporte carretero."
+        ],
+        h: "Transporte Colectivo Limpio y Seguro",
+        o1: "11", o1_t: "Ciudades y Comunidades Sostenibles",
+        o2: "13", o2_t: "Acción por el Clima",
+        i: "Toneladas de CO2 evitadas por la sustitución de carga carretera por ferroviaria",
+        d: "El ferrocarril técnico es el transporte del futuro sostenible; mover personas y mercancías por rieles es elegir el camino más limpio.",
+        orientacion: "Instructor(a): Oriente al alumno en el conocimiento de la Ley Reglamentaria del Servicio Ferroviario y en la aplicación de los protocolos de seguridad en la zona de vía."
+    },
+    {
+        c: "Asistente y Protesista Dental (CONALEP)",
+        s: "339113",
+        sec: "Fabricación de material e instrumental dental",
+        m: "Módulo III: Elabora prótesis dentales fijas y removibles",
+        a: [
+            "Gestión responsable de los residuos peligrosos (amalgama de mercurio, yesos, ceras) generados en el laboratorio dental.",
+            "Uso de materiales dentales libres de bisfenol A (BPA) y mercurio para proteger la salud del paciente y el ambiente.",
+            "Implementación de técnicas de esterilización eficientes (autoclave) para garantizar la bioseguridad con mínimo consumo de agua.",
+            "Elaboración de prótesis de alta durabilidad y ajuste preciso para reducir las consultas de revisión y el desperdicio de materiales.",
+            "Educación al paciente en higiene oral para prevenir enfermedades y reducir la necesidad de tratamientos invasivos y costosos."
+        ],
+        h: "Salud Bucodental y Materiales Biocompatibles",
+        o1: "3", o1_t: "Salud y Bienestar",
+        o2: "12", o2_t: "Producción y Consumo Responsables",
+        i: "Porcentaje de residuos dentales peligrosos gestionados conforme a la NOM-087",
+        d: "La salud bucal técnica bien atendida mejora la calidad de vida de forma integral; un buen ajuste protésico es dignidad restaurada.",
+        orientacion: "Instructor(a): Verifique que el alumno realice correctamente el proceso de encerado, muflado y prensado de resinas acrílicas, controlando tiempos y temperaturas para evitar desperdicios."
+    },
+    {
+        c: "Enfermería Comunitaria (CONALEP)",
+        s: "621111",
+        sec: "Consultorios de medicina general",
+        m: "Módulo III: Implementa programas de salud comunitaria y preventiva",
+        a: [
+            "Diseño y ejecución de campañas de vacunación y control del niño sano para reducir la mortalidad infantil evitable.",
+            "Detección oportuna de enfermedades crónico-degenerativas (diabetes, hipertensión) en jornadas de salud comunitaria.",
+            "Educación en saneamiento básico (agua potable, manejo de alimentos) para prevenir enfermedades gastrointestinales.",
+            "Atención de la salud sexual y reproductiva con enfoque de género e inclusión para reducir embarazos no planeados.",
+            "Articulación con redes comunitarias para asegurar el acceso a servicios de salud de grupos vulnerables."
+        ],
+        h: "Salud Preventiva Comunitaria e Igualdad",
+        o1: "3", o1_t: "Salud y Bienestar",
+        o2: "1", o2_t: "Fin de la Pobreza",
+        i: "Cobertura de vacunación y detección oportuna de enfermedades en la comunidad atendida",
+        d: "La enfermería comunitaria técnica lleva la salud a las puertas de quienes menos acceso tienen; prevenir es el acto más poderoso de curar.",
+        orientacion: "Instructor(a): Guíe al alumno en la elaboración del diagnóstico de salud comunitaria y en la aplicación del Modelo de Atención Integral a la Salud (MAIS) en su práctica."
+    },
+    {
+        c: "Fonoaudiología (CONALEP)",
+        s: "621340",
+        sec: "Consultorios de fisioterapia y terapia ocupacional",
+        m: "Módulo III: Evalúa y trata trastornos de la comunicación humana",
+        a: [
+            "Evaluación audiológica básica para la detección temprana de pérdidas auditivas en recién nacidos y adultos mayores.",
+            "Intervención terapéutica en trastornos del lenguaje y habla para mejorar la comunicación y la calidad de vida.",
+            "Adaptación y rehabilitación auditiva mediante auxiliares auditivos para reducir el aislamiento social por hipoacusia.",
+            "Diseño de programas de comunicación aumentativa y alternativa (CAA) para personas con discapacidad severa del habla.",
+            "Educación a padres y cuidadores en estrategias de estimulación del lenguaje en el entorno natural del niño."
+        ],
+        h: "Comunicación Humana e Inclusión Social",
+        o1: "3", o1_t: "Salud y Bienestar",
+        o2: "10", o2_t: "Reducción de las Desigualdades",
+        i: "Porcentaje de mejora en indicadores de comunicación en pacientes tratados",
+        d: "La fonoaudiología técnica restituye la voz a quienes la perdieron y abre el mundo a quienes nunca la tuvieron; comunicar es incluir.",
+        orientacion: "Instructor(a): Evalúe que el alumno aplique correctamente el protocolo de evaluación del lenguaje (TEPROSIF, PLON-R) y diseñe planes terapéuticos individualizados con metas medibles."
+    },
+    {
+        c: "Laboratorio Clínico (CONALEP)",
+        s: "621511",
+        sec: "Laboratorios médicos y de diagnóstico",
+        m: "Módulo III: Realiza análisis hematológicos de serie roja",
+        a: [
+            "Gestión estricta de Residuos Peligrosos Biológico-Infecciosos (RPBI) para prevenir la contaminación del suelo y mantos freáticos.",
+            "Uso eficiente de reactivos mediante técnicas de microescala para reducir la generación de desechos químicos.",
+            "Promoción de la cultura de prevención de enfermedades crónicas para reducir la carga sobre los servicios de salud pública.",
+            "Implementación de protocolos de bioseguridad que garanticen la salud y el bienestar del personal y los pacientes.",
+            "Digitalización de resultados clínicos para eliminar el uso de papel y plásticos en la entrega de diagnósticos."
+        ],
+        h: "Salud Pública y Gestión de Residuos",
+        o1: "3", o1_t: "Salud y Bienestar",
+        o2: "6", o2_t: "Agua Limpia y Saneamiento",
+        i: "Kilogramos de RPBI gestionados correctamente",
+        d: "El laboratorio clínico es la primera línea de defensa para el bienestar social y la protección ambiental contra patógenos.",
+        orientacion: "Instructor(a): Verifique que el alumno domine la NOM-087-ECOL-SSA1 sobre el manejo de residuos infecciosos."
+    },
+    {
+        c: "Nutrición y Dietética (CONALEP)",
+        s: "621111",
+        sec: "Consultorios de medicina general",
+        m: "Módulo III: Diseña planes de alimentación y dietoterapia",
+        a: [
+            "Elaboración de planes de alimentación basados en alimentos locales, de temporada y bajos en huella de carbono.",
+            "Evaluación del estado nutricional mediante indicadores antropométricos y bioquímicos para diagnósticos precisos.",
+            "Diseño de estrategias de intervención para la prevención y control de enfermedades crónicas asociadas a la malnutrición.",
+            "Educación nutricional con enfoque en dietas plant-based y reducción del consumo de proteína animal de alto impacto ambiental.",
+            "Implementación de programas de seguridad alimentaria en comunidades vulnerables para combatir la desnutrición infantil."
+        ],
+        h: "Alimentación Saludable y Sostenible",
+        o1: "2", o1_t: "Hambre Cero",
+        o2: "3", o2_t: "Salud y Bienestar",
+        i: "Mejora en indicadores nutricionales (IMC, hemoglobina) de la población atendida",
+        d: "La nutrición técnica sostenible nos enseña que comer bien y comer sano para el planeta son el mismo acto; la dieta es política ambiental.",
+        orientacion: "Instructor(a): Verifique que el alumno calcule correctamente los requerimientos energéticos y de macronutrientes, y que proponga menús culturalmente aceptables y nutricionalmente completos."
+    },
+    {
+        c: "Radiología e Imagen (CONALEP)",
+        s: "621511",
+        sec: "Laboratorios médicos y de diagnóstico",
+        m: "Módulo III: Opera equipos de diagnóstico por imagen",
+        a: [
+            "Optimización de los parámetros de exposición radiológica para obtener imágenes diagnósticas con la mínima dosis de radiación.",
+            "Implementación del principio ALARA (As Low As Reasonably Achievable) para la protección radiológica de pacientes y personal.",
+            "Gestión responsable de los materiales de contraste y reveladores fotográficos para evitar la contaminación del drenaje.",
+            "Digitalización del archivo de imágenes diagnósticas (PACS) para eliminar el uso de placas de plata y reducir residuos.",
+            "Verificación del correcto blindaje de los cubículos de rayos X para proteger a los trabajadores y al público en general."
+        ],
+        h: "Diagnóstico por Imagen Seguro y Radioprotección",
+        o1: "3", o1_t: "Salud y Bienestar",
+        o2: "9", o2_t: "Industria, Innovación e Infraestructura",
+        i: "Dosis efectiva promedio por estudio radiológico (comparada con el estándar internacional)",
+        d: "La radiología técnica es la ventana al interior del cuerpo humano; ver con precisión y mínima radiación es el arte del diagnóstico responsable.",
+        orientacion: "Instructor(a): Evalúe que el alumno aplique correctamente los factores de exposición (kVp, mAs) según el protocolo de cada estudio y verifique el uso obligatorio del dosímetro personal."
+    },
+    {
+        c: "Radioterapia (CONALEP)",
+        s: "621511",
+        sec: "Laboratorios médicos y de diagnóstico",
+        m: "Módulo III: Asiste en la planificación y administración de tratamientos de radioterapia",
+        a: [
+            "Verificación de la dosimetría del tratamiento para garantizar que la dosis prescrita llegue al tumor con máxima precisión.",
+            "Implementación de protocolos de posicionamiento reproducible del paciente para asegurar la consistencia del tratamiento.",
+            "Gestión de los residuos radiactivos generados en el proceso de radioterapia conforme a las normas del ININ.",
+            "Educación y acompañamiento emocional al paciente oncológico para reducir la ansiedad y mejorar la adherencia al tratamiento.",
+            "Mantenimiento preventivo del acelerador lineal y equipos de imagen portal para asegurar la calidad del tratamiento."
+        ],
+        h: "Oncología de Precisión y Radioprotección Clínica",
+        o1: "3", o1_t: "Salud y Bienestar",
+        o2: "9", o2_t: "Industria, Innovación e Infraestructura",
+        i: "Precisión dosimétrica del tratamiento (porcentaje de desviación respecto a la dosis prescrita)",
+        d: "La radioterapia técnica combate el cáncer con la misma precisión con que la ciencia cuida la vida; cada centiGray cuenta para la dignidad del paciente.",
+        orientacion: "Instructor(a): Verifique que el alumno domine el proceso de verificación de campos de tratamiento y comprenda los principios básicos de física de radiaciones aplicados a la radioterapia."
+    },
+    {
+        c: "Salud Comunitaria (CONALEP)",
+        s: "621111",
+        sec: "Consultorios de medicina general",
+        m: "Módulo II: Promueve la salud y previene enfermedades en la comunidad",
+        a: [
+            "Realización de diagnósticos participativos de salud para identificar los principales problemas de salud pública en la comunidad.",
+            "Diseño e implementación de campañas de prevención de enfermedades transmitidas por vector (dengue, chikungunya, zika).",
+            "Promoción de la salud mental comunitaria mediante grupos de apoyo y estrategias de reducción del estigma.",
+            "Capacitación de promotores comunitarios de salud para ampliar el alcance de las intervenciones preventivas.",
+            "Monitoreo de indicadores de salud pública (morbilidad, mortalidad) para evaluar el impacto de los programas comunitarios."
+        ],
+        h: "Promoción de la Salud y Prevención Comunitaria",
+        o1: "3", o1_t: "Salud y Bienestar",
+        o2: "11", o2_t: "Ciudades y Comunidades Sostenibles",
+        i: "Reducción de la incidencia de enfermedades prevenibles en la comunidad intervenida",
+        d: "La salud comunitaria técnica entiende que el bienestar no se alcanza en el consultorio sino en los patios, las calles y los corazones de la comunidad.",
+        orientacion: "Instructor(a): Guíe al alumno en el uso de la metodología del Diagnóstico Rápido Participativo (DRP) y en la formulación de indicadores de salud comunitaria verificables."
+    },
+    {
+        c: "Terapia Física (CONALEP)",
+        s: "621340",
+        sec: "Consultorios de fisioterapia y terapia ocupacional",
+        m: "Módulo III: Aplica modalidades terapéuticas físicas en la rehabilitación",
+        a: [
+            "Aplicación de agentes físicos (ultrasonido, electroterapia, crioterapia) en el tratamiento de lesiones musculoesqueléticas.",
+            "Diseño de programas de ejercicio terapéutico basados en la neurociencia del dolor para la rehabilitación funcional.",
+            "Implementación de técnicas de terapia manual (movilización articular, tejido blando) para restaurar el rango de movimiento.",
+            "Educación del paciente en estrategias de autocuidado y prevención de recaídas para promover la independencia funcional.",
+            "Adaptación del entorno doméstico del paciente para facilitar la recuperación y prevenir caídas en adultos mayores."
+        ],
+        h: "Rehabilitación Física y Autonomía Personal",
+        o1: "3", o1_t: "Salud y Bienestar",
+        o2: "10", o2_t: "Reducción de las Desigualdades",
+        i: "Porcentaje de recuperación funcional en escala de valoración (Barthel, EVA) al alta del paciente",
+        d: "La terapia física técnica devuelve el movimiento a quienes lo perdieron; cada articulación recuperada es un paso hacia la independencia y la dignidad.",
+        orientacion: "Instructor(a): Evalúe la capacidad del alumno para realizar una evaluación musculoesquelética completa y diseñar un plan de tratamiento con técnicas basadas en evidencia científica."
+    },
+    {
+        c: "Terapia Ocupacional (CONALEP)",
+        s: "621340",
+        sec: "Consultorios de fisioterapia y terapia ocupacional",
+        m: "Módulo III: Facilita la participación ocupacional de personas con discapacidad",
+        a: [
+            "Evaluación del desempeño ocupacional en las áreas de autocuidado, productividad y ocio para diseñar intervenciones.",
+            "Adaptación de productos de apoyo y del entorno para maximizar la independencia funcional de personas con discapacidad.",
+            "Implementación de programas de rehabilitación vocacional para facilitar la reintegración laboral de personas con discapacidad.",
+            "Diseño de actividades de estimulación cognitiva para adultos mayores con deterioro cognitivo leve o moderado.",
+            "Promoción de entornos laborales inclusivos y ergonómicamente adaptados para personas con diferentes capacidades."
+        ],
+        h: "Ocupación Humana e Inclusión Social Plena",
+        o1: "3", o1_t: "Salud y Bienestar",
+        o2: "10", o2_t: "Reducción de las Desigualdades",
+        i: "Número de personas con discapacidad con plan de intervención ocupacional activo y con mejora verificable",
+        d: "La terapia ocupacional técnica reconoce que el hacer humano nos define; facilitar la participación de todos en la vida cotidiana es justicia social.",
+        orientacion: "Instructor(a): Guíe al alumno en el uso de instrumentos de evaluación ocupacional (COPM, FIM) y en el diseño de actividades significativas adaptadas a las necesidades de cada persona."
+    },
+    {
+        c: "Asistente Bibliotecario (CONALEP)",
+        s: "519120",
+        sec: "Bibliotecas y archivos",
+        m: "Módulo II: Organiza y cataloga acervos bibliográficos y documentales",
+        a: [
+            "Catalogación de materiales bibliográficos bajo estándares RDA (Recursos: Descripción y Acceso) para garantizar su recuperación eficiente.",
+            "Digitalización de acervos documentales históricos para su preservación y acceso universal en línea.",
+            "Implementación de sistemas de gestión de biblioteca (KOHA) para optimizar el préstamo y la administración del acervo.",
+            "Diseño de servicios de alfabetización informacional para capacitar a los usuarios en la búsqueda y evaluación de información.",
+            "Gestión de la donación y descarte de materiales en desuso para libros de segunda vida, evitando el desperdicio bibliográfico."
+        ],
+        h: "Gestión del Conocimiento e Inclusión Informacional",
+        o1: "4", o1_t: "Educación de Calidad",
+        o2: "10", o2_t: "Reducción de las Desigualdades",
+        i: "Número de usuarios capacitados en competencias informacionales por año",
+        d: "El asistente bibliotecario técnico es el guardián del conocimiento colectivo; organizar el saber es hacer que sea accesible para todos.",
+        orientacion: "Instructor(a): Evalúe que el alumno aplique correctamente las Reglas de Catalogación Angloamericanas (RCAA2) o RDA y domine el uso de los sistemas de clasificación Dewey y LC."
+    },
+];
+
+/* ─── SEARCH ──────────────────────────────────────────── */
+let activeIdx = -1;
+let filtered  = [];
+
+function normalize(s) {
+  return s.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[^a-z0-9 ]/g,'');
+}
+
+function parseName(fullName) {
+  const p = fullName.lastIndexOf('(');
+  return {
+    name: p > -1 ? fullName.slice(0,p).trim() : fullName,
+    subs: p > -1 ? fullName.slice(p+1,-1).split('/').map(s=>s.trim()) : []
+  };
+}
+
+function highlight(text, query) {
+  if (!query) return text;
+  const re = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
+  return text.replace(re, '<mark>$1</mark>');
+}
+
+function subTagsHTML(subs, cls='sub-tag') {
+  return subs.map(s => `<span class="${cls} ${SUB_CLASS[s]||''}">${s}</span>`).join('');
+}
+
+function onSearch() {
+  const q   = document.getElementById('searchInput').value.trim();
+  const qn  = normalize(q);
+  const dd  = document.getElementById('dropdown');
+  const clr = document.getElementById('searchClear');
+  const ico = document.getElementById('searchIcon');
+
+  clr.style.display = q ? 'block' : 'none';
+  ico.style.display = q ? 'none'  : 'block';
+
+  if (!qn || qn.length < 1) { dd.classList.remove('open'); filtered=[]; activeIdx=-1; return; }
+
+  filtered = db.filter(d => normalize(d.c).includes(qn))
+               .sort((a,b) => {
+                 const an = normalize(a.c), bn = normalize(b.c);
+                 if (an.startsWith(qn) && !bn.startsWith(qn)) return -1;
+                 if (!an.startsWith(qn) && bn.startsWith(qn)) return 1;
+                 return an.localeCompare(bn, 'es');
+               }).slice(0,12);
+
+  activeIdx = -1;
+
+  if (!filtered.length) {
+    dd.innerHTML = `<div class="dd-empty">Sin resultados para "<b>${q}</b>"</div>`;
+    dd.classList.add('open');
+    return;
+  }
+
+  dd.innerHTML = filtered.map((d,i) => {
+    const {name, subs} = parseName(d.c);
+    const hl = highlight(name, q);
+    return `<div class="dd-item" data-idx="${i}" onclick="selectItem(${i})" onmouseover="setActive(${i})">
+      <span style="flex:1;">${hl}</span>
+      <span class="dd-subs">${subTagsHTML(subs)}</span>
+    </div>`;
+  }).join('');
+
+  dd.classList.add('open');
+}
+
+function setActive(idx) {
+  activeIdx = idx;
+  [...document.querySelectorAll('.dd-item')].forEach((el,i) =>
+    el.classList.toggle('active', i === idx));
+}
+
+function onKey(e) {
+  const dd = document.getElementById('dropdown');
+  if (!dd.classList.contains('open')) return;
+  if (e.key === 'ArrowDown') { e.preventDefault(); setActive(Math.min(activeIdx+1, filtered.length-1)); }
+  if (e.key === 'ArrowUp')   { e.preventDefault(); setActive(Math.max(activeIdx-1, 0)); }
+  if (e.key === 'Enter' && activeIdx >= 0) { e.preventDefault(); selectItem(activeIdx); }
+  if (e.key === 'Escape') { dd.classList.remove('open'); }
+}
+
+function selectItem(idx) {
+  const d = filtered[idx];
+  if (!d) return;
+  const {name} = parseName(d.c);
+  document.getElementById('searchInput').value = name;
+  document.getElementById('dropdown').classList.remove('open');
+  document.getElementById('searchClear').style.display = 'block';
+  document.getElementById('searchIcon').style.display = 'none';
+  renderFicha(d);
+}
+
+function clearSearch() {
+  document.getElementById('searchInput').value = '';
+  document.getElementById('dropdown').classList.remove('open');
+  document.getElementById('searchClear').style.display = 'none';
+  document.getElementById('searchIcon').style.display = 'block';
+  document.getElementById('ficha').classList.remove('visible');
+  document.getElementById('emptyState').style.display = 'block';
+  document.getElementById('printBar').classList.remove('visible');
+  filtered = []; activeIdx = -1;
+}
+
+/* Close dropdown on outside click */
+document.addEventListener('click', e => {
+  if (!e.target.closest('.search-inner'))
+    document.getElementById('dropdown').classList.remove('open');
+});
+
+/* ─── RENDER ──────────────────────────────────────────── */
+function oImg(num, w, cls) {
+  return `<img src="${BASE}${num}.png" alt="ODS ${num}" class="${cls}" width="${w}" height="${w}"
+    onerror="this.src='https://placehold.co/${w}x${w}/${ODS_COLORS[num]?ODS_COLORS[num].replace('#',''):'888'}/fff?text=ODS+${num}'; this.onerror=null;">`;
+}
+
+function renderFicha(d) {
+  const ficha = document.getElementById('ficha');
+  const empty = document.getElementById('emptyState');
+  const pb    = document.getElementById('printBar');
+
+  empty.style.display = 'none';
+  pb.classList.add('visible');
+
+  const {name, subs} = parseName(d.c);
+  const c1 = ODS_COLORS[d.o1] || '#888';
+  const c2 = ODS_COLORS[d.o2] || '#888';
+
+  const actsHTML = (d.a||[]).map((a,i) =>
+    `<li class="act-item"><span class="act-dot">${i+1}</span><span class="act-txt">${a}</span></li>`
+  ).join('');
+
+  ficha.innerHTML = `
+    <!-- BAND CARRERA -->
+    <div class="band-career">
+      <div class="band-career-left">
+        <div class="career-name">${name}</div>
+        <div class="subs-row">${subTagsHTML(subs,'sub-tag-lg '+Object.keys(SUB_CLASS).map(k=>subs.includes(k)?SUB_CLASS[k]:'').join(' '))}</div>
+      </div>
+      <div class="band-career-right">
+        <div class="year-chip">Ciclo 2024-2025 · Educación Dual</div>
+        <div class="scian-block">
+          <span class="scian-lbl">Código SCIAN</span>
+          <span class="scian-num">${d.s}</span>
+          <span class="scian-sec">${d.sec}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRID -->
+    <div class="grid-main">
+
+      <!-- MÓDULO -->
+      <div class="card card-modulo">
+        <div class="card-lbl"><span class="card-lbl-icon">🏭</span> Módulo Profesional</div>
+        <div class="modulo-txt">${d.m}</div>
+      </div>
+
+      <!-- ODS 1 -->
+      <div class="card card-ods1" style="background:${c1}12; border-color:${c1}50;">
+        <div class="card-lbl" style="color:${c1};">🎯 ODS Principal</div>
+        ${oImg(d.o1, 72, 'ods1-img')}
+        <div class="ods1-num" style="color:${c1};">${d.o1}</div>
+        <div class="ods1-name" style="color:${c1};">${d.o1_t}</div>
+      </div>
+
+      <!-- ODS 2 -->
+      <div class="card card-ods2" style="background:${c2}10; border-color:${c2}40;">
+        <div class="ods2-lbl" style="color:${c2};">ODS Secundario</div>
+        ${oImg(d.o2, 64, 'ods2-img')}
+        <div class="ods2-num" style="color:${c2};">${d.o2}</div>
+        <div class="ods2-name" style="color:${c2};">${d.o2_t}</div>
+      </div>
+
+      <!-- ACTIVIDADES -->
+      <div class="card card-act">
+        <div class="card-lbl"><span class="card-lbl-icon">✅</span> Puestos de Aprendizaje (Dual) — 5 Actividades</div>
+        <ul class="act-list">${actsHTML}</ul>
+      </div>
+
+      <!-- HABILIDAD -->
+      <div class="card card-hab">
+        <div class="card-lbl"><span class="card-lbl-icon">🌱</span> Habilidad de Desarrollo Sostenible</div>
+        <div class="hab-txt">${d.h}</div>
+        <div class="indicador">
+          <span>📈</span>
+          <div><strong>Indicador:</strong> ${d.i}</div>
+        </div>
+      </div>
+
+      <!-- SINERGIA -->
+      <div class="card card-sin">
+        <div class="card-lbl"><span>🔗</span> Sinergia Sistémica</div>
+        <div class="sin-quote">${d.d}</div>
+        <div class="ods-tags2">
+          <div class="ods-tag2">${oImg(d.o1,22,'ods-tag-ico')} ODS ${d.o1} — ${d.o1_t}</div>
+          <div class="ods-tag2">${oImg(d.o2,22,'ods-tag-ico')} ODS ${d.o2} — ${d.o2_t}</div>
+        </div>
+      </div>
+
+      <!-- INSTRUCTOR -->
+      <div class="card card-inst">
+        <span class="inst-icon">💡</span>
+        <div class="card-lbl">Orientaciones para el/la Instructor(a)</div>
+        <div class="inst-txt">${d.orientacion}</div>
+      </div>
+
+    </div><!-- grid-main -->
+  `;
+
+  // Fix subsistema tags in band (re-render with proper classes)
+  const subsRow = ficha.querySelector('.subs-row');
+  subsRow.innerHTML = subs.map(s =>
+    `<span class="sub-tag-lg ${SUB_CLASS[s]||''}">${s}</span>`
+  ).join('');
+
+  ficha.classList.add('visible');
+  ficha.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
 </body>
 </html>
