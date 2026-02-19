@@ -1,5 +1,5 @@
 // ============================================================
-// app.js - Logica de busqueda y renderizado de fichas
+// app.js - Lógica de búsqueda y renderizado de fichas
 // Depende de: data.js (variable global `db`)
 // ============================================================
 
@@ -64,7 +64,7 @@ function highlightTexto(texto, query) {
     return result;
 }
 
-// ==== BUSQUEDA ====
+// ==== BÚSQUEDA ====
 
 var selectedIndex = -1;
 var currentResults = [];
@@ -112,7 +112,7 @@ function renderResults(q) {
     list.innerHTML = '';
 
     if (currentResults.length === 0) {
-        list.innerHTML = '<div class="no-results">No se encontraron carreras con ese criterio de busqueda.</div>';
+        list.innerHTML = '<div class="no-results">No se encontraron carreras con ese criterio de búsqueda.</div>';
         list.classList.add('visible');
         return;
     }
@@ -179,7 +179,7 @@ function renderFicha(d) {
     area.innerHTML =
         '<div class="ficha-body">' +
             '<div class="carrera-header-card card">' +
-                '<span class="card-label">Carrera Tecnica Seleccionada</span>' +
+                '<span class="card-label">Carrera Técnica Seleccionada</span>' +
                 '<h2>' + d.nombre + '</h2>' +
                 '<div class="subsistemas-ficha">' +
                     renderTagsSubsistemasCardHeader(d.subsistemas) +
@@ -195,7 +195,7 @@ function renderFicha(d) {
             '</div>' +
 
             '<div class="col-span-2 card card-highlight">' +
-                '<span class="card-label">Modulo Profesional y Propuestas de Puestos de Aprendizaje (Dual)</span>' +
+                '<span class="card-label">Módulo Profesional y Propuestas de Puestos de Aprendizaje (Dual)</span>' +
                 '<div class="card-content" style="font-weight:700; color:var(--primary); margin-bottom:12px;">' + d.m + '</div>' +
                 '<hr style="margin:0 0 12px; border:0; border-top:1px solid #d1fae5;">' +
                 '<div class="card-content">' +
@@ -222,7 +222,7 @@ function renderFicha(d) {
             '</div>' +
 
             '<div class="card card-dark">' +
-                '<span class="card-label">Sinergia Sistemica</span>' +
+                '<span class="card-label">Sinergia Sistémica</span>' +
                 '<div class="card-content" style="margin-bottom:18px; line-height:1.6;">"' + d.d + '"</div>' +
                 '<div style="display:flex; flex-direction:column; gap:10px;">' +
                     '<div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">' +
@@ -231,7 +231,7 @@ function renderFicha(d) {
                         '<span class="mini-ods">ODS ' + d.o2 + '</span>' +
                     '</div>' +
                     '<div style="font-size:12px; line-height:1.4; opacity:0.85;">' +
-                        '<span style="color:var(--ods-blue); font-weight:700;">Vinculo Secundario:</span><br>' + d.o2_t +
+                        '<span style="color:var(--ods-blue); font-weight:700;">Vínculo Secundario:</span><br>' + d.o2_t +
                     '</div>' +
                 '</div>' +
             '</div>' +
