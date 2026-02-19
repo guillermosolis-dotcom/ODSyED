@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Educacion Dual y Objetivos de Desarrollo Sostenible, de la Agenda 2030</title>
+    <title>Educación Dual y Objetivos de Desarrollo Sostenible, de la Agenda 2030</title>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&family=IBM+Plex+Mono:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
 <div class="expediente-master">
     <header class="header-ods">
         <img src="https://guillermosolis-dotcom.github.io/ODSyED/rueda-ods.png" alt="Rueda ODS" class="logo-rueda"
@@ -16,26 +15,24 @@
         <img src="https://guillermosolis-dotcom.github.io/ODSyED/logo-ods-frase.jpg" alt="ODS Frase" class="logo-frase"
              onerror="this.style.display='none'">
     </header>
-
     <section class="seccion-titulo">
-        <h1>Educacion Dual y Objetivos de Desarrollo Sostenible de la Agenda 2030</h1>
+        <h1>Educación Dual y Objetivos de Desarrollo Sostenible de la Agenda 2030</h1>
         <div class="nota-tecnica">
-            <strong>Nota tecnica:</strong> El contenido de esta plataforma es de caracter <strong>ilustrativo y pedagogico</strong>.
-            Los modulos y actividades se presentan como referentes tecnicos para ejemplificar la vinculacion con los ODS.
-            Para una planeacion formal, el personal docente con las y los instructores deberan consultar el programa de estudios especifico
-            y vigente de su subsistema (DGETI, DGETAyCM, CECyTE o CONALEP). La informacion aqui presentada es de caracter publico
+            <strong>Nota técnica:</strong> El contenido de esta plataforma es de carácter <strong>ilustrativo y pedagógico</strong>.
+            Los módulos y actividades se presentan como referentes técnicos para ejemplificar la vinculación con los ODS.
+            Para una planeación formal, el personal docente con las y los instructores deberán consultar el programa de estudios específico
+            y vigente de su subsistema (DGETI, DGETAyCM, CECyTE o CONALEP). La información aquí presentada es de carácter público
             obtenida de la SEP, el INEGI y la ONU. Derechos reservados - 2026.
         </div>
     </section>
-
     <section class="search-container">
-        <label class="search-label">Buscar carrera tecnica por nombre o subsistema</label>
+        <label class="search-label">Buscar carrera técnica por nombre o subsistema</label>
         <div class="search-input-wrap">
             <span class="search-icon">&#9906;</span>
             <input
                 type="text"
                 id="searchInput"
-                placeholder="Ej: Electronica, CONALEP, Logistica, Acuacultura..."
+                placeholder="Ej: Electrónica, CONALEP, Logística, Acuacultura..."
                 autocomplete="off"
                 oninput="onSearch()"
                 onfocus="showResults()"
@@ -44,21 +41,18 @@
         </div>
         <div class="search-stats" id="searchStats"></div>
     </section>
-
     <div id="renderArea">
         <div class="placeholder-inicial">
             <div class="icono">&#127758;</div>
-            <p>Escribe el nombre de una carrera tecnica en el buscador para ver su vinculacion con los ODS.</p>
+            <p>Escribe el nombre de una carrera técnica en el buscador para ver su vinculación con los ODS.</p>
         </div>
     </div>
     <button class="btn-print" id="btnPrint" style="display:none;" onclick="window.print()">
-        GENERAR REPORTE TECNICO PDF
+        GENERAR REPORTE TÉCNICO PDF
     </button>
 </div>
-
-<!-- Scripts: primero los datos, luego la logica -->
+<!-- Scripts: primero los datos, luego la lógica -->
 <script src="data.js"></script>
 <script src="app.js"></script>
-
 </body>
 </html>
